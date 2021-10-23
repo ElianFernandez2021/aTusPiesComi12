@@ -1,0 +1,28 @@
+/*Como cliente quiero poder acceder al detalle de mi carrito de compras en
+cualquier momento para finalizar la compra.
+★ Como cliente quiero poder modificar productos del carrito para poder eliminarlos
+de la compra o modificar la cantidad.*/
+
+/*  Category    */
+.category{
+    display: flex;
+    flex-direction: column;
+}
+.product-cart .names {
+    
+    justify-content: space-between;
+}
+.product-cart .items{
+    
+    justify-content: space-between;
+}
+/*  End Category*/
+
+/*  Last option*/
+.last-option ul{
+    display:flex;
+    justify-content: space-between;
+}
+.last-option ul li{
+    list-style: none;
+}
