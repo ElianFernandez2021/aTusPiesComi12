@@ -7,7 +7,7 @@ de la compra o modificar la cantidad.*/
     box-sizing: content-box;
 }
 body{
-    background-color: #c9c2a1;
+    background: linear-gradient(#96894b, #fcf3e4);
 }
 /*  End Body*/
 /*  Category    */
@@ -45,9 +45,11 @@ body{
     margin-top: 3px;
     margin-left:15px;
 }
-.category .items .total{
+.total{
     display:flex;
-    justify-content: end;
+    justify-content: center;
+    padding-top: 20px;
+    font-size: 23px;
 }
 /*  End Category*/
 
@@ -61,10 +63,23 @@ body{
 }
 /* End Last option*/
 
+/*  Footer  */
+footer{
+    background: linear-gradient(#a1c9c7,#a4eafd);
+}
 /*  Media queries   */
 
     /*  Tablet  */
     @media (min-width:768px){
+        .category{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .category .items{
+            width: 297px;
+        }
         .category .items .image{
             width: 300px;
             margin-bottom: 15px;
