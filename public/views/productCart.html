@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/productCart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <title>Carrito de Compras</title>
+</head>
+<body>
+    <header> 
+        HEADER
+    </header>
+    <!--    Product Cart    -->
+    <section class="category">
+        <article class="items"> 
+            <div class="image-position"> 
+                <img class="image" src="../img/zapatillas-led-1.jpg" alt="ZapaLed">
+            </div>
+            <div class="items descriptions">
+                <div class="amount">
+                    Cantidad 1  
+                    <button class="button">+</button>
+                    <button class="button">-</button>
+                </div>
+                <div class="price">
+                    Precio  
+                    $100
+                </div>
+                <div class="subtotal">
+                    SubTotal $100
+                </div>
+                <p class="description">
+                    Zapatillas con luces Led bien chetardas para cuando quieras zapatearla en el campo con algo mas que estilo,
+                    incluye cable usb, no incluye cordones
+                </p> 
+            </div>
+        </article>
+        <article class="items">  
+            <div class="image-position">
+                <img class="image" src="../img/zapatillas_hombre_moda_tendencias_2831.jpg" alt="Imagen">
+            </div>
+            <div class="items descriptions"> 
+                <div class="amount">
+                    Cantidad 1 
+                    <button class="button">+</button>
+                    <button class="button">-</button>
+                </div>
+                <div class="price">
+                    Precio $200
+                </div>
+                <div class="subtotal">
+                    SubTotal $200
+                </div>
+                <p class="description"> 
+                   Zapatillas hombre mezcla basquet con boxeo, tipico del basquetbolista boxeador, para estar siempre con la guardia arriba
+                   y el ojo en el aro. Incluye pelota de basquet y 1 solo guante de boxeo
+                </p>
+
+            </div>
+        </article>
+        <article class="items"> 
+            <div class="image-position">
+                <img class="image" src="../img/Zapatillas-baby-yoda.jpg" alt="Imagen">
+            </div>
+            <div class="items descriptions"> 
+                <div class="amount">
+                    Cantidad 1 
+                    <button class="button">+</button>
+                    <button class="button">-</button>
+                </div>
+                <div class="price">
+                    Precio $300
+                </div>
+                <div class="subtotal">
+                    SubTotal $300
+                </div>            
+                <p class="description">
+                    Zapatillas baby yoda con el poder de la fuerza podras levantar objetos, como matilda pero haciendo un ademán con la mano
+                    no incluye sable laser
+                </p> 
+        
+            </div>
+        </article>
+    </section>
+    <p class="total">
+        Total $600
+    </p>
+    <nav class="last-option">
+        <ul>
+            <li><a href="#">Volver</a></li>
+            <li><button class="button-open-popup" id="button-open-popup">continuar  </button></li>
+        </ul>
+    </nav>
+    <!--    End Product Cart    -->
+    <!--Seccion pago-->
+    <div class="overlay" id="overlay">
+        <div class="popup" id="popup">
+            <h3 class="popup"> Seleccione metodo de pago</h3>
+        <button>Tarjeta Debito/Credito</button>
+        <button>Efectivo</button>
+        <button>Codigo QR</button>
+        <!--Tarjeta Debito/Credito-->
+        <label for="tarjeta">Numero: </label>
+        <input type="number" name="card" id="tarjeta">
+        <label for="code">Codigo de seguridad: </label>
+        <input type="password" name="code" id="code">
+        <label for="expire">Fecha de vencimiento: </label>
+        <input type="text" name="vto" id="expire">
+        <!--Efectivo-->
+        <h3 class="popup">Seleccione la empresa mas cercana a realizar el pago: </h3>
+        <a href="">Pago Facil</a>
+        <a href="">Rapi Pago</a>
+        <a href="">Mercado Liebre</a>
+        <!--Completar con codigo de referencia para confirmar pago!-->
+        <!--Codigo QR-->
+        <h3>Por favor escanee el codigo QR para continuar el pago</h3>
+        <img src="" alt="Codigo QR">
+            <a href="" id="button-close-popup" class="button-close-popup"> <i class="fas fa-times"></i> </a>
+        <form action="">
+            <div class="container-input">
+                <input type="text" placeholder="nombre">
+                <input type="email" placeholder="correo">
+            </div>
+            <input type="submit" value="button-submit" value="suscribirse">
+        </form>
+        </div>
+    </div> 
+    <script src="../app.js"></script>
+    <footer>
+        <h4>
+            <p> Acerca de <a href="">nosotros</a></p>
+            <p> <a href="">Contacto</a> <i class="fab fa-whatsapp"></i></p>
+            <p> <a href="#">Home</a></p>
+            <p> Seguinos <a href="www.facebook.com"><i class="fab fa-facebook"></i></a>
+                <a href="www.instagram.com"><i class="fab fa-instagram"></i></a>
+                <a href="www.twitter.com"><i class="fab fa-twitter"></i></a>
+            </p>
+        </h4>
+        
+    </footer>
+</body>
+</html>

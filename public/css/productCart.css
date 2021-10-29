@@ -1,0 +1,162 @@
+/*Como cliente quiero poder acceder al detalle de mi carrito de compras en
+cualquier momento para finalizar la compra.
+★ Como cliente quiero poder modificar productos del carrito para poder eliminarlos
+de la compra o modificar la cantidad.*/
+/*  Body    */
+*{
+    box-sizing: content-box;
+}
+body{
+    background: linear-gradient(#96894b, #fcf3e4);
+}
+/*  End Body*/
+/*  Category    */
+.category{
+    display: flex;
+    flex-direction: column;
+}
+.category .items{
+    display: flex;
+    flex-wrap: wrap;
+}
+.category .items .image-position{
+    display: flex;
+    align-items: center;
+}
+.category .items .image{
+    width: 140px;
+}
+.category .items .amount{
+    height: 50px;
+    width: 61px;
+}
+.category .items .price{
+    margin: 0px 7px;
+    height: 50px;
+    width: 60px;
+}
+.category .items .subtotal{
+    width:50px;
+}
+.category .items .description{
+    font-size: 11px;
+    height: 50px;
+    width: 255px;
+    margin-top: 3px;
+    margin-left:15px;
+}
+.total{
+    display:flex;
+    justify-content: center;
+    padding-top: 20px;
+    font-size: 23px;
+}
+/*  End Category*/
+
+/*  Last option*/
+.last-option ul{
+    display: flex;
+    justify-content: space-between;
+}
+.last-option ul li{
+    list-style: none;
+}
+/* End Last option*/
+
+/*  Footer  */
+footer{
+    background: linear-gradient(#a1c9c7,#a4eafd);
+}
+/*  Media queries   */
+
+    /*  Tablet  */
+    @media (min-width:768px){
+        .category{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .category .items{
+            width: 297px;
+        }
+        .category .items .image{
+            width: 300px;
+            margin-bottom: 15px;
+        }
+        .category .items .description{
+            font-size: 15px;
+            display: flex;
+        }
+    }
+
+/*  Popup   */
+.overlay{
+    background: rgba(0, 0, 0, 0.8); 
+    position: fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
+.overlay.active{
+    visibility: visible;
+}
+.popup{
+    background: #f8f8f8;
+    box-shadow: 0 0 5 0 rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    padding:20px;
+    text-align: center;
+    width: 300px;
+
+}
+.popup .button-close-popup{
+    font-size: 16px;
+    line-height: 16px;
+    display: block;
+    text-align: right;
+    color:#BBBBBB;
+    transition: 0.3 ease all
+}
+.popup .button-close-popup:hover{
+    color: #000;
+}
+h2.popup, h3.popup{
+    font-size: 36px;
+    margin-bottom:10px;
+    opacity: 0;
+}
+.popup form .conteiner.input{
+ 
+}
+.popup form .conteiner.input input{
+    width: 100%;
+    margin-bottom: 20px;
+    height: 52px;
+    line-height: 52px;
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid #BBBBBB;
+
+}
+.popup form .button-submit{
+    padding: 0 20;
+    height: 40;
+    line-height: 40;
+    border: none;
+    color: #fff;
+    background: #5e7de3;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3 ease all;
+}
+.popup form .button-submit:hover{
+    background: rgba(94, 125, 227, 0.6);
+
+}
