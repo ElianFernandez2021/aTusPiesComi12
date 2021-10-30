@@ -2,6 +2,9 @@
 cualquier momento para finalizar la compra.
 ★ Como cliente quiero poder modificar productos del carrito para poder eliminarlos
 de la compra o modificar la cantidad.*/
+
+                /*  Mobile  */
+
 /*  Body    */
 *{
     box-sizing: content-box;
@@ -9,9 +12,10 @@ de la compra o modificar la cantidad.*/
 body{
     background: linear-gradient(#96894b, #fcf3e4);
 }
-/*  End Body*/
+/*  End Body    */
+
 /*  Category    */
-.category{
+.category{ /*Agrego display flex a todo el cuerpo*/
     display: flex;
     flex-direction: column;
 }
@@ -84,7 +88,32 @@ body{
 
 /*  Footer  */
 footer{
-    background: linear-gradient(#a1c9c7,#a4eafd);
+    background: linear-gradient(#a1c9c7,#a1c9c7);
+}
+footer h4{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+footer h4 a{
+    text-decoration: none;
+    color: black;
+}
+footer h4 #fb{
+    color: blue;
+}
+footer h4 #wpp{
+    color: white;
+    background-color: green;
+    border-radius: 100%;
+}
+footer h4 #ig{
+    background:linear-gradient(#8a3ab9,#fccc63,#fbad50,#cd486b);
+    color: white;
+    border-radius: 10%;
+}
+footer h4 #tw{
+    color: cyan;
 }
 /*  Media queries   */
 
