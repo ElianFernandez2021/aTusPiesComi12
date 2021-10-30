@@ -7,7 +7,7 @@ const PORT=3030;
 app.get('/',(req,res)=> {
     res.sendFile(path.join(__dirname,"/public/views/index.html"))
 })
-app.get('Detalle del producto',(req,res)=>{
+app.get('/productdetail',(req,res)=>{
     res.sendFile(path.join(__dirname, "/public/views/productDetail.html"))
 
 })
