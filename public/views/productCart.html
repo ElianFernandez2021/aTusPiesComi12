@@ -18,24 +18,25 @@
             <div class="image-position"> 
                 <img class="image" src="../img/zapatillas-led-1.jpg" alt="ZapaLed">
             </div>
-            <div class="items descriptions">
-                <div class="amount">
-                    Cantidad 1  
-                    <button class="button">+</button>
-                    <button class="button">-</button>
+            <form action="" method="get">
+                <div class="items descriptions">
+                    <div class="amount">
+                        <label for="cantidad">Cantidad</label>
+                        <input type="number"  id="cantidad" value=1 checked>
+                    </div>
+                    <div class="price">
+                        Precio  
+                        $100
+                    </div>
+                    <div class="subtotal">
+                        SubTotal $100
+                    </div>
+                    <p class="description">
+                        Zapatillas con luces Led bien chetardas para cuando quieras zapatearla en el campo con algo mas que estilo,
+                        incluye cable usb, no incluye cordones
+                    </p> 
                 </div>
-                <div class="price">
-                    Precio  
-                    $100
-                </div>
-                <div class="subtotal">
-                    SubTotal $100
-                </div>
-                <p class="description">
-                    Zapatillas con luces Led bien chetardas para cuando quieras zapatearla en el campo con algo mas que estilo,
-                    incluye cable usb, no incluye cordones
-                </p> 
-            </div>
+            </form>
         </article>
         <article class="items">  
             <div class="image-position">
@@ -43,9 +44,8 @@
             </div>
             <div class="items descriptions"> 
                 <div class="amount">
-                    Cantidad 1 
-                    <button class="button">+</button>
-                    <button class="button">-</button>
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number"  id="cantidad" value=1 checked>
                 </div>
                 <div class="price">
                     Precio $200
@@ -66,9 +66,8 @@
             </div>
             <div class="items descriptions"> 
                 <div class="amount">
-                    Cantidad 1 
-                    <button class="button">+</button>
-                    <button class="button">-</button>
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number"  id="cantidad" value=1 checked>
                 </div>
                 <div class="price">
                     Precio $300
@@ -90,7 +89,8 @@
     <nav class="last-option">
         <ul>
             <li><a href="#">Volver</a></li>
-            <li><button class="button-open-popup" id="button-open-popup">continuar  </button></li>
+            <li><a href="#">Continuar</a></li>
+            <!--<li><button class="button-open-popup" id="button-open-popup">continuar  </button></li>-->
         </ul>
     </nav>
     <!--    End Product Cart    -->
@@ -102,12 +102,14 @@
         <button>Efectivo</button>
         <button>Codigo QR</button>
         <!--Tarjeta Debito/Credito-->
-        <label for="tarjeta">Numero: </label>
-        <input type="number" name="card" id="tarjeta">
-        <label for="code">Codigo de seguridad: </label>
-        <input type="password" name="code" id="code">
-        <label for="expire">Fecha de vencimiento: </label>
-        <input type="text" name="vto" id="expire">
+        <form action="" method="post">
+            <label for="tarjeta">Numero: </label>
+            <input type="number" name="card" id="tarjeta">
+            <label for="code">Codigo de seguridad: </label>
+            <input type="password" name="code" id="code">
+            <label for="expire">Fecha de vencimiento: </label>
+            <input type="text" name="vto" id="expire">
+        </form>
         <!--Efectivo-->
         <h3 class="popup">Seleccione la empresa mas cercana a realizar el pago: </h3>
         <a href="">Pago Facil</a>
@@ -117,17 +119,6 @@
         <!--Codigo QR-->
         <h3>Por favor escanee el codigo QR para continuar el pago</h3>
         <img src="" alt="Codigo QR">
-            <a href="" id="button-close-popup" class="button-close-popup"> <i class="fas fa-times"></i> </a>
-        <form action="">
-            <div class="container-input">
-                <input type="text" placeholder="nombre">
-                <input type="email" placeholder="correo">
-            </div>
-            <input type="submit" value="button-submit" value="suscribirse">
-        </form>
-        </div>
-    </div> 
-    <script src="../app.js"></script>
     <footer>
         <h4>
             <p> Acerca de <a href="">nosotros</a></p>
@@ -137,8 +128,7 @@
                 <a href="www.instagram.com"><i class="fab fa-instagram"></i></a>
                 <a href="www.twitter.com"><i class="fab fa-twitter"></i></a>
             </p>
-        </h4>
-        
+        </h4>        
     </footer>
 </body>
 </html>

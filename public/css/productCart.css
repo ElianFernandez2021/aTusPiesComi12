@@ -18,6 +18,7 @@ body{
 .category .items{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center    ;
 }
 .category .items .image-position{
     display: flex;
@@ -29,6 +30,9 @@ body{
 .category .items .amount{
     height: 50px;
     width: 61px;
+}
+.category .items .amount input {
+    width: 90%;
 }
 .category .items .price{
     margin: 0px 7px;
@@ -56,11 +60,26 @@ body{
 /*  Last option*/
 .last-option ul{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+}
+.last-option ul {
+    list-style: none;
+    text-decoration: none;
 }
 .last-option ul li{
-    list-style: none;
+    font-size: 20px;
 }
+.last-option ul li a{
+    text-decoration: none;
+    border:2.5px solid black;
+    border-radius: 16px;
+    color: black;
+}
+.last-option ul li a:hover{
+    background: linear-gradient(90deg,#96894b 0%,aqua 50%);
+    transition: all 3s ease-out;
+}
+
 /* End Last option*/
 
 /*  Footer  */
@@ -79,9 +98,11 @@ footer{
         }
         .category .items{
             width: 297px;
+            margin: 0px 5px 30px 0px;
         }
         .category .items .image{
-            width: 300px;
+            width: 240px;
+            height: 200px;
             margin-bottom: 15px;
         }
         .category .items .description{
@@ -90,73 +111,9 @@ footer{
         }
     }
 
-/*  Popup   */
-.overlay{
-    background: rgba(0, 0, 0, 0.8); 
-    position: fixed;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    visibility: hidden;
-}
-.overlay.active{
-    visibility: visible;
-}
-.popup{
-    background: #f8f8f8;
-    box-shadow: 0 0 5 0 rgba(0, 0, 0, 0.3);
-    border-radius: 3px;
-    padding:20px;
-    text-align: center;
-    width: 300px;
-
-}
-.popup .button-close-popup{
-    font-size: 16px;
-    line-height: 16px;
-    display: block;
-    text-align: right;
-    color:#BBBBBB;
-    transition: 0.3 ease all
-}
-.popup .button-close-popup:hover{
-    color: #000;
-}
-h2.popup, h3.popup{
-    font-size: 36px;
-    margin-bottom:10px;
-    opacity: 0;
-}
-.popup form .conteiner.input{
- 
-}
-.popup form .conteiner.input input{
-    width: 100%;
-    margin-bottom: 20px;
-    height: 52px;
-    line-height: 52px;
-    font-size: 18px;
-    text-align: center;
-    border: 1px solid #BBBBBB;
-
-}
-.popup form .button-submit{
-    padding: 0 20;
-    height: 40;
-    line-height: 40;
-    border: none;
-    color: #fff;
-    background: #5e7de3;
-    border-radius: 3px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3 ease all;
-}
-.popup form .button-submit:hover{
-    background: rgba(94, 125, 227, 0.6);
-
-}
+    /*  Desktop */
+    @media(min-width:1024px){
+        .category .items .description{
+            font-size: 20px;
+        }
+    }
