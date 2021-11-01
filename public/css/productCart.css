@@ -78,14 +78,21 @@ body{
     border:2.5px solid black;
     border-radius: 16px;
     color: black;
+    font-size: 20px;
 }
 .last-option ul li a:hover{
-    background: linear-gradient(90deg,#96894b 0%,aqua 50%);
+    background: linear-gradient(90deg,#96894b,#bb7821);
     transition: all 3s ease-out;
 }
 
 /* End Last option*/
 
+/*  Metodo de pago    */
+form input{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
 /*  Footer  */
 footer{
     background: linear-gradient(#a1c9c7,#a1c9c7);
@@ -95,25 +102,34 @@ footer h4{
     justify-content: space-between;
     flex-wrap: wrap;
 }
+footer p {
+    display:flex;
+    justify-content:space-between;
+    font-size: 17px;
+}
 footer h4 a{
     text-decoration: none;
     color: black;
 }
 footer h4 #fb{
     color: blue;
+    font-size:20px;
 }
 footer h4 #wpp{
     color: white;
     background-color: green;
     border-radius: 100%;
+    font-size:23px;
 }
 footer h4 #ig{
     background:linear-gradient(#8a3ab9,#fccc63,#fbad50,#cd486b);
     color: white;
     border-radius: 10%;
+    font-size:20px;
 }
 footer h4 #tw{
     color: cyan;
+    font-size:20px;
 }
 /*  Media queries   */
 
