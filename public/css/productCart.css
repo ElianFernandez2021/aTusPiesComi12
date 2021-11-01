@@ -87,6 +87,12 @@ body{
 
 /* End Last option*/
 
+/*  Metodo de pago    */
+form input{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
 /*  Footer  */
 footer{
     background: linear-gradient(#a1c9c7,#a1c9c7);
