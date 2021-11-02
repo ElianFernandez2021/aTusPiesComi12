@@ -28,10 +28,10 @@ li{
     /*********HEADER*********/
     header{
         width: 100%; /*ancho header*/
-        position: fixed;    
+        position: sticky;    
     }
 
-    img{ /*controla que no desborde la imágen del logo*/
+    .header img{ /*controla que no desborde la imágen del logo*/
         width: 15%;
         margin-top: 1em;
     }
@@ -92,18 +92,25 @@ li{
 @media all and (min-width:768px){
     /**********MENU**********/
     .img-menú1 img{ /*imagenes de menu hamb y la equis*/
-        width: 5%;
+        width: 25%;
         padding: 0.3em;
+        align-items:end;
+    }
+    #abrir, #cerrar{
+        display: none;
+    } 
+
+    #contenedor-menú #contenedor-enlaces{
+        display: flex;
+        flex-direction: row;
+        height: 10%;
     }
 }
     
 /*****************ESCRITORIO********************/
 @media all and (min-width:1024PX){
     /**********MENU**********/
-    .img-menú1 img{ /*imagenes de menu hamb y la equis*/
-        width: 8%;
-        padding: 0.3em;
-    }
+    
 
     #abrir, #cerrar{
         display: none;
