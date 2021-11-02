@@ -5,7 +5,13 @@
 }
 /********HEADER*******/
 header{
-    background: linear-gradient(#524d3d, #8c8364 50%, #cdc4a9 ,  #f8f1df 30%);
+    background: linear-gradient(#524d3d, #8c8364 50%, #cdc4a9 ,  #f8f1df);
+}
+
+.posicion-logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .redondo{ /*sombreado en el radio del logo*/
@@ -13,7 +19,7 @@ header{
 }
 /**********MENÚ***********/
 li{
-    border-bottom: #cdc4a9 solid 0.2em;
+    border-bottom: #8c8364 solid 0.2em;
 }
 
 /*******************CELULAR********************/
@@ -25,23 +31,21 @@ li{
         position: fixed;    
     }
 
-    img{ /*controla que no desborde la imágen en el header y el logo*/
-        width: 20%;
+    img{ /*controla que no desborde la imágen del logo*/
+        width: 15%;
+        margin-top: 1em;
     }
 
     .redondo{ /*forma redondeada de logo*/
         border-radius: 50%;
-    }
-
-    .posicion-logo{ /*posicion del logo*/
         display: flex;
         justify-content: center;
         object-fit:scale-down;
     }
-    
+  
     /*********MENÚ*********/
     li{
-        padding: 1em;
+        padding: 0.4em;
     } 
     
     nav ul{
@@ -50,24 +54,15 @@ li{
 
     nav a{
         text-decoration: none;
+        font-size: 1.2em;
+        color: #000000;
+        display: flex;
+        align-items: center;
     }
 
     .img-menú1 img{ /*imagenes de menu hamb y la equis*/
-        width: 8%;
-    }
-
-    .img-menú2 img{ /*imagenes del 2do menú lupa, login y carrito*/
-        width: 100%;
-    }
-
-    .img-menú2 li{
-        width: 7%;
-        margin: 0 auto; /*ubica el segundo nav ocupando todo el ancho de pantalla y centrado*/
-    }
-
-    .img-menú2{
-        display: flex;
-        flex-direction: row;
+        width: 5%;
+        padding: 0.5em;
     }
 
     #contenedor-menú #cerrar{ /*oculta imagen de la equis*/
@@ -89,7 +84,7 @@ li{
     }
 
     #contenedor-menú:target #contenedor-enlaces{
-        height: 30vh; /*altura del menú*/
+        height: 70vh; /*altura del menú*/
         transition: height 2s ease;
     }
 }
@@ -97,23 +92,17 @@ li{
 @media all and (min-width:768px){
     /**********MENU**********/
     .img-menú1 img{ /*imagenes de menu hamb y la equis*/
-        width: 10%;
+        width: 5%;
+        padding: 0.3em;
     }
-
 }
     
 /*****************ESCRITORIO********************/
 @media all and (min-width:1024PX){
     /**********MENU**********/
-    
-    .img-menú2{ /*posiciona menù 2 a la izquierda y lo orienta de forma horizontal*/
-       width: 30%;   
-     }
-
-    .menú-iconos{
-        display: flex;
-        flex-direction: row; 
-        justify-content: flex-end;
+    .img-menú1 img{ /*imagenes de menu hamb y la equis*/
+        width: 8%;
+        padding: 0.3em;
     }
 
     #abrir, #cerrar{
@@ -124,17 +113,10 @@ li{
         display: flex;
         flex-direction: row;
         height: 10%;
-
     }
 
     li{
         border-bottom: none;
     }
-
-    a{
-        font-size: 1.2em;
-        color: #000000;
-    }
-
 
 }
