@@ -22,12 +22,11 @@ li{
     /*********HEADER*********/
     header{
         width: 100%; /*ancho header*/
-        height: 100%; /*largo*/
         position: fixed;    
-}
+    }
 
     img{ /*controla que no desborde la imágen en el header y el logo*/
-        width: 50%;
+        width: 20%;
     }
 
     .redondo{ /*forma redondeada de logo*/
@@ -35,15 +34,14 @@ li{
     }
 
     .posicion-logo{ /*posicion del logo*/
-        position: relative;
-        top: 20px;
-        left: 90px;
+        display: flex;
+        justify-content: center;
+        object-fit:scale-down;
     }
     
     /*********MENÚ*********/
     li{
         padding: 1em;
-
     } 
     
     nav ul{
@@ -55,118 +53,68 @@ li{
     }
 
     .img-menú1 img{ /*imagenes de menu hamb y la equis*/
-        width: 15%;
+        width: 8%;
     }
 
     .img-menú2 img{ /*imagenes del 2do menú lupa, login y carrito*/
         width: 100%;
     }
+
     .img-menú2 li{
-        width: 10%;
-        position: relative;
+        width: 7%;
+        margin: 0 auto; /*ubica el segundo nav ocupando todo el ancho de pantalla y centrado*/
+    }
+
+    .img-menú2{
+        display: flex;
+        flex-direction: row;
+    }
+
+    #contenedor-menú #cerrar{ /*oculta imagen de la equis*/
+        display: none;
     }
 
     #contenedor-menú #contenedor-enlaces{
-        width: 50%;
-        height: 40%;
-        display: inline-block;
-        vertical-align: middle;
-    }
-
-    .img-menú2{ /*posiciona menù 2 a la izquierda*/
-        position: relative;
-        left: 285px;
-        bottom: 250px;
-
-     }
-
-    #contenedor-menú #cerrar{
-        display: none; /*oculta imagen equis*/
-    }
-
-    #contenedor-menú #contenedor-enlaces{
-        height: 0;
-        transition: heigth 1s ease; /*efecto de transicion*/
-        overflow: hidden; /*ocultar lo que sobresalga*/
+        height: 0; /*cambia altura a 0*/
+        overflow: hidden; /*oculta lo que sobresalga del menú*/
+        transition: height 2s ease; /*efecto de transicion*/
     }
     
     #contenedor-menú:target #abrir{
-        display: none; /*oculta img de hamburguesa*/
-        
+        display: none;
     }
 
     #contenedor-menú:target #cerrar{
-        display: block; /*muestra img de equis*/
+        display: block;
     }
-    
+
     #contenedor-menú:target #contenedor-enlaces{
-        height: 25vh;
-        transition: height 1s ease;
+        height: 30vh; /*altura del menú*/
+        transition: height 2s ease;
     }
 }
 /*******************TABLET********************/
 @media all and (min-width:768px){
-    /***********HEADER*************/
-    img{ /*tamaño logo*/
-        width: 35%;
-    }
-
+    /**********MENU**********/
     .img-menú1 img{ /*imagenes de menu hamb y la equis*/
         width: 10%;
     }
 
-    .posicion-logo{ /*posicion del logo*/
-        position: relative;
-        top: 100px;
-        left: 150px;
-
-    }
-
-    /**********MENU**********/
-    
-    .img-menú2{ /*posiciona menù 2 a la izquierda y lo orienta de forma horizontal*/
-       display: flex;
-       flex-direction: row;
-       justify-content: center;
-     }
-
-    .nav-dos{
-        position: relative;
-        right: 70px;
-        top: 30px;
-      }
-    
 }
     
-
 /*****************ESCRITORIO********************/
 @media all and (min-width:1024PX){
-    /*********MENÚ*********/
-    img{ /*tamaño logo*/
-        width: 25%;
-    }
-
-    .posicion-logo{ /*posicion del logo*/
-        position: relative;
-        left: 370px;
-        top: 20px;
-    }
-
     /**********MENU**********/
     
     .img-menú2{ /*posiciona menù 2 a la izquierda y lo orienta de forma horizontal*/
-       width: 35%;     
-       display: flex;
-       flex-direction: row;
-       justify-content: center;
+       width: 30%;   
      }
 
-    .nav-dos{
-        position: relative;
-        right: -400px;
-        top: 70px;
-      }
-
+    .menú-iconos{
+        display: flex;
+        flex-direction: row; 
+        justify-content: flex-end;
+    }
 
     #abrir, #cerrar{
         display: none;
@@ -176,9 +124,7 @@ li{
         display: flex;
         flex-direction: row;
         height: 10%;
-        position: relative;
-        bottom: 118px;
-        left: 20px;
+
     }
 
     li{
