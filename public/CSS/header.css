@@ -6,11 +6,20 @@
 /********HEADER*******/
 header{
     background: linear-gradient(#524d3d, #8c8364 50%, #cdc4a9 ,  #f8f1df);
+    position: fixed;
+    z-index:10;
+    top: 0;
+    left:0;
 }
+
 
 .posicion-logo{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+}
+.posicion-logo a{
+    display: flex;
     justify-content: center;
 }
 

@@ -91,7 +91,6 @@ transition: .9s;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10; 
 }
 .slider__btn--right{
     position: absolute;
@@ -100,7 +99,6 @@ transition: .9s;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
     
 }
 
@@ -215,6 +213,7 @@ transition: .9s;
 
 .card-bg img {
     height: 100%;
+    width: 100%;
     object-fit: cover;
 }
 
@@ -305,7 +304,7 @@ transition: .9s;
 
 
 
-@media (max-width: 700px) {
+@media (min-width: 700px) {
     .slider__btn--right{
         
         right: 10px;
@@ -341,8 +340,7 @@ transition: .9s;
         overflow:hidden;
     
         position: relative;
-        margin-top: 3.125rem;
-        
+        padding-top: 13rem;       
     
     }
 

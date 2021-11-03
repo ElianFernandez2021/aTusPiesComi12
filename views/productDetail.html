@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/CSS/style.css" />
+    <link rel="stylesheet" href="/CSS/header.css">
+    <link rel="stylesheet" href="/CSS/footer.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
@@ -15,6 +17,22 @@
     <title>Detalles</title>
   </head>
   <body>
+    <header class="color-gradient">
+        
+        <section  id="contenedor-menú"> 
+            <figure class="posicion-logo"> <a href="/"><img class="redondo" src="/images/login/logo.png" alt="logo"></a></figure>
+            <a href="#contenedor-menú" class="img-menú1 hamburguesa"><img src="/images/header/menu.png" alt="menú hamburguesa" id="abrir"></a>
+            <a href="#" class="img-menú1 equis"><img src="/images/header/equis.png" alt="equis" id="cerrar"></a>
+            <nav>
+                <ul id="contenedor-enlaces">
+                    <li><a href="" class="img-menú1"><img src="/images/header/huella.png" alt="">Productos</a></li>
+                    <li><a href="login.html" class="img-menú1"><img src="/images/header/login.png" alt="">Login</a></li>
+                    <li><a href="productCart.html" class="img-menú1"><img src="/images/header/carrito.png" alt="">Carrito</a></li>
+                    <li><a href="" class="img-menú1 lupa"><img  src="/images/header/busqueda2.png" alt="">Buscar</a></li>
+                </ul>
+            </nav> 
+        </section>
+    </header>
     <!--  -->
     <section class="productDetail">
         <div class="card-wrapper">
@@ -132,11 +150,9 @@
     <script src="/productDetail.js"></script>
 
     <footer>
-        <link rel="stylesheet" href="/public/CSS/footer.css">
-        <script src="https://kit.fontawesome.com/789d6992bb.js" crossorigin="anonymous"></script>
         <h4>
             <p> Acerca de <a href="">nosotros</a> <i class="fas fa-child"></i></p>
-            <p> <a href="#">Home</a><i class="fas fa-home"></i></p>
+            <p> <a href="/">Home</a><i class="fas fa-home"></i></p>
             <p> <a href="">Contacto</a> <i id="wpp" class="fab fa-whatsapp"></i></p>
             <p> Seguinos <a href="www.facebook.com"><i id="fb" class="fab fa-facebook"></i></a>
                 <a href="www.twitter.com"><i id="tw" class="fab fa-twitter"></i></a>
