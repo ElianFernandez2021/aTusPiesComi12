@@ -28,10 +28,10 @@ li{
     /*********HEADER*********/
     header{
         width: 100%; /*ancho header*/
-        position: sticky;    
+        position: fixed;    
     }
 
-    .header img{ /*controla que no desborde la imágen del logo*/
+    img{ /*controla que no desborde la imágen del logo*/
         width: 15%;
         margin-top: 1em;
     }
@@ -64,6 +64,10 @@ li{
         width: 5%;
         padding: 0.5em;
     }
+    .img.menú img :nth-child(4)
+    {
+        width:40%;
+    }
 
     #contenedor-menú #cerrar{ /*oculta imagen de la equis*/
         display: none;
@@ -84,17 +88,20 @@ li{
     }
 
     #contenedor-menú:target #contenedor-enlaces{
-        height: 70vh; /*altura del menú*/
+        height:50%; /*altura del menú*/
         transition: height 2s ease;
     }
 }
 /*******************TABLET********************/
 @media all and (min-width:768px){
     /**********MENU**********/
-    .img-menú1 img{ /*imagenes de menu hamb y la equis*/
+    
+    .img-menú1 img{ 
         width: 25%;
-        padding: 0.3em;
         align-items:end;
+    }
+   #contenedor-enlaces li .lupa img{
+        width:36%;
     }
     #abrir, #cerrar{
         display: none;
@@ -105,12 +112,19 @@ li{
         flex-direction: row;
         height: 10%;
     }
+
+    li{
+        border-bottom: none;
+    }
 }
     
 /*****************ESCRITORIO********************/
 @media all and (min-width:1024PX){
     /**********MENU**********/
-    
+    .img-menú1 img{ /*imagenes de menu hamb y la equis*/
+        width: 8%;
+        padding: 0.3em;
+    }
 
     #abrir, #cerrar{
         display: none;
