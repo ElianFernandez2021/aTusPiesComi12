@@ -8,7 +8,7 @@ app.get('/',(req,res)=> {
     res.sendFile(path.join(__dirname,"/public/views/index.html"))
 })
 app.get('/productdetail',(req,res)=>{
-    res.sendFile(path.join(__dirname, "/public/views/productDetail.html"))
+    res.sendFile(path.join(__dirname, "/views/productDetail"))
 
 })
 app.get('Carrito de compras',(req,res)=>{
