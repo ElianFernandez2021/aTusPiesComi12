@@ -40,7 +40,7 @@ body{
 .slider{
     display: flex;
     width: 400%;
-    height: 400px;
+    height: 300px;
     margin-left: -100%;
     
 
@@ -253,6 +253,39 @@ transition: .9s;
     justify-content: space-between;
     font-size: 35px;
     margin-top: 3%;
+}
+.eligeypaga1{
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    
+}
+.fa-shoe-prints:nth-child(1){
+    margin-right: 15px;
+    rotate: 100%;
+}
+.fa-shoe-prints{
+    margin-left: 15px;
+}
+.container-0 {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    
+}
+.contenedoreligeypaga0{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 /**********/
