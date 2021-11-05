@@ -5,7 +5,7 @@
     box-sizing: content-box;
 }
 body{
-    background: linear-gradient(#96894b, #fcf3e4);
+    background: #fcf3e4;
 }
 /*  End Body    */
 
@@ -24,6 +24,14 @@ body{
 .category .items .image-position{
     display: flex;
     align-items: center;
+}
+.category .items .image-position i{
+    position:relative;
+    bottom:-3rem;
+    right:-3px;
+    color: slateblue;
+    background-color:white;
+    border-radius:50px;
 }
 .category .items .image{
     width: 140px;
@@ -132,7 +140,24 @@ footer{
 
     /*  Desktop */
     @media(min-width:1024px){
+        .category{
+            top:12rem;
+        }
         .category .items .description{
             font-size: 20px;
+        }
+        .total{
+            top:14rem;
+        }
+        .last-option{
+            top:12rem;
+        }
+        form.pay{
+            position: relative;
+            top: 12rem;
+        }
+        footer{
+            position: relative;
+            top: 12rem;
         }
     }
