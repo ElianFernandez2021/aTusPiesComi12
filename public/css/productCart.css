@@ -7,7 +7,13 @@
 body{
     background: #fcf3e4;
 }
+
 /*  End Body    */
+
+/* p  descripcion debajo de la foto del carrito */
+.descripcion-mas-info {
+    margin: 1.5rem;
+}
 
 /*  Category    */
 .category{ /*Agrego display flex a todo el cuerpo*/
