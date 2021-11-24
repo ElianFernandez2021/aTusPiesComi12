@@ -105,15 +105,102 @@ body{
 /* End Last option*/
 
 /*  Metodo de pago    */
-form.pay{
-    position: relative;
-    top: 7rem;
-}
 form input{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    border: none;
+    border-radius:50px;
 }
+.continue{
+    cursor: pointer;
+}
+
+/* Modal // PopUp */
+form.pay{
+    position: fixed;
+    top: 7rem;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top:0;
+    left:0;
+}
+.pay .metodo-pago, .card{
+    border:solid 2px white;
+    height: 30%;
+    background-color: beige;
+    border-radius:20px;
+    position:relative;
+    animation-name: popUp;
+    animation-duration:1s;
+    animation-iteration-count: 1;
+
+}
+@keyframes popUp{
+    0%{
+        opacity: 0;
+        transform: scale(0);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.pay .metodo-pago label{
+    display: flex;
+    justify-content: space-evenly;
+}
+h2{
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+}
+h2:hover{
+    color: white;
+    background: black;
+    cursor: pointer;
+}
+.pay .card{
+    display: none;
+}
+.pay .card-pay,.cash-pay,.scan-pay{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    display: none;
+    animation-name: popUp;
+    animation-iteration-count: 1;
+    animation-duration: 1;
+}
+.boton{
+    display: none;
+    width:50%;
+    height:5%;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    border-radius:50px;
+    background-color: beige;
+}
+.method{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
 /*  End metodo de pago*/
 footer{
     position: relative;
@@ -153,14 +240,10 @@ footer{
             font-size: 20px;
         }
         .total{
-            top:14rem;
+            top:11rem;
         }
         .last-option{
             top:12rem;
-        }
-        form.pay{
-            position: relative;
-            top: 12rem;
         }
         footer{
             position: relative;

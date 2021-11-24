@@ -7,12 +7,6 @@ footer{
     bottom: 0;
     
 }
-footer h4{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    
-}
 footer p {
     display:flex;
     justify-content:space-between;
@@ -22,28 +16,28 @@ footer p {
     margin-right: 30px;
     margin-bottom: -50px;
 }
-footer h4 a{
+footer a{
     text-decoration: none;
     color: black;
     
 }
-footer h4 #fb{
+footer #fb{
     color: blue;
     font-size:20px;
 }
-footer h4 #wpp{
+footer #wpp{
     color: white;
     background-color: green;
     border-radius: 100%;
     font-size:23px;
 }
-footer h4 #ig{
+footer #ig{
     background:linear-gradient(#8a3ab9,#fccc63,#fbad50,#cd486b);
     color: white;
     border-radius: 10%;
     font-size:20px;
 }
-footer h4 #tw{
+footer #tw{
     color: cyan;
     font-size:20px;
 }

@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/productCart.css">
-    <link rel="stylesheet" href="/CSS/header.css">
-    <link rel="stylesheet" href="/CSS/footer.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <script src="https://kit.fontawesome.com/789d6992bb.js" crossorigin="anonymous"></script>
     <title>Carrito de Compras</title>
@@ -47,13 +45,12 @@
                     <div class="subtotal">
                         SubTotal $100
                     </div>
-                    <p class="descripcion-mas-info">
-                        Un nuevo integrante de la familia running retro pero de look más moderno. <a href="productDetail.html">Más info...</a>
-                    </p>
-                   <!--  <p class="description">
-                        Zapatillas con luces Led bien chetardas para cuando quieras zapatearla en el campo con algo mas que estilo,
-                        incluye cable usb, no incluye cordones
-                    </p>  -->
+                    <div class="color">
+                        color <input type="color" name="" id="">
+                    </div>
+                    <div class="talle">
+                        talle
+                    </div>
                 </div>
         </article>
         <article class="items">  
@@ -72,14 +69,12 @@
                 <div class="subtotal">
                     SubTotal $200
                 </div>
-                <p class="descripcion-mas-info">
-                    Capellada: de ripstop con detalles en film con tecnología skinnect y contrafuerte externo de tpu. <a href="productDetail.html">Más info...</a>
-                </p>
-               <!--  <p class="description"> 
-                   Zapatillas hombre mezcla basquet con boxeo, tipico del basquetbolista boxeador, para estar siempre con la guardia arriba
-                   y el ojo en el aro. Incluye pelota de basquet y 1 solo guante de boxeo
-                </p> -->
-
+                <div class="color">
+                    color <input type="color" name="" id="">
+                </div>
+                <div class="talle">
+                    talle
+                </div>
             </div>
         </article>
         <article class="items"> 
@@ -98,69 +93,81 @@
                 <div class="subtotal">
                     SubTotal $300
                 </div>
-                <p class="descripcion-mas-info">
-                    Suela: de eva termoformada para brindar mayor amortiguación y goma antideslizante. <a href="productDetail.html">Más info...</a>
-                </p>            
-               <!--  <p class="description">
-                    Zapatillas baby yoda con el poder de la fuerza podras levantar objetos, como matilda pero haciendo un ademán con la mano
-                    no incluye sable laser
-                </p>  -->
-        
+                <div class="color">
+                    color <input type="color" name="" id="">
+                </div>
+                <div class="talle">
+                    talle
+                </div> 
             </div>
         </article>
     </section>
     <p class="total">Total $600</p>
     <nav class="last-option">
         <ul>
-            <li><a href="#">Volver</a></li>
-            <li><a href="#">Continuar</a></li>
+            <li><a href="productDetail.html">Volver</a></li>
+            <li><a class="continue">Continuar</a></li>
         </ul>
     </nav>
     <!--    End Product Cart    -->
 
     <!--Seccion pago-->
     <form class="pay" action="" method="post">
-    <label for="metodo"><h3> Seleccione metodo de pago</h3></label>
-    <input list="lista" name="pay-method" id="metodo" placeholder="Seleccione aquí" required>
-    <datalist id="lista">
-        <option value="Tarjeta Debito/Credito"></option>
-        <option value="Efectivo"></option>
-        <option value="Codigo QR"></option>
-    </datalist>
-    <hr>
-    <!--Tarjeta Debito/Credito-->
-        <label for="tarjeta">Numero: </label>
-        <input type="number" name="card" id="tarjeta" required>
-        <label for="code">Codigo de seguridad: </label>
-        <input type="password" name="code" id="code" required>
-        <label for="expire">Fecha de vencimiento: </label>
-        <input type="text" name="vto" id="expire" required>
-
-    <!--Efectivo-->
-    <h3>Seleccione la empresa mas cercana a realizar el pago: </h3>
-    <a href="">Pago Facil</a>
-    <a href="">Rapi Pago</a>
-    <a href="">Mercado Liebre</a>
-   
-    <!--Completar con codigo de referencia para confirmar pago!-->
-    <!--Codigo QR-->
-    <h3>Por favor escanee el codigo QR para continuar el pago</h3>
-    <img src="" alt="Codigo QR">
-    <button type="reset">Reinciar</button>
-    <button type="submit">Enviar</button>
-    </form>
-    <!--End seccion de pago -->
+        <div class="metodo-pago">
+            <label>
+                <h3> Seleccione metodo de pago</h3>
+                <h2>X</h2>
+            </label>
+            <section class="method">
+                <label for="debito"> Tarjeta de credito/debito<input type="radio" name="card-method"value="credito/debito" id="card"></label>
+            </section>
+            <section class="method">
+                <label for="efectivo">Efectivo<input type="radio" name="cash-method"value="Efectivo" id="cash"></label>
+            </section>
+            <section class="method">
+                <label for="escanear">QR <input type="radio" name="scan-method"value="Qr" id="scan"></label>
+            </section>        
+        </div>
+        <hr>
+        <section class="card-pay card">  <!--Tarjeta Debito/Credito-->
+            <h2>X</h2>
+            <label for="tarjeta">Numero: </label>
+            <input type="number" name="card" id="tarjeta" required>
+            <label for="code">Codigo de seguridad: </label>
+            <input type="password" name="code" id="code" required>
+            <label for="expire">Fecha de vencimiento: </label>
+            <input type="text" name="vto" id="expire" required>
+        </section>
+        <section class="cash-pay card">    <!--Efectivo-->
+            <h3>Seleccione la empresa mas cercana a realizar el pago: </h3>
+            <h2>X</h2>
+            <a href="">Pago Facil</a>
+            <a href="">Rapi Pago</a>
+            <a href="">Mercado Liebre</a>
+        </section>
+        <!--Completar con codigo de referencia para confirmar pago!-->
+        <section class="scan-pay card">  <!--Codigo QR-->
+            <h3>Por favor escanee el codigo QR para continuar el pago</h3>
+            <h2>X</h2>
+            <img src="" alt="Codigo QR">
+        </section>
+        <div class="boton">  
+            <button type="reset">Reinciar</button>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>     <!--End seccion de pago -->
 
     <footer>
-        <h4>
-            <p> Acerca de <a href="">nosotros</a> <i class="fas fa-child"></i></p>
-            <p> <a href="/">Home</a><i class="fas fa-home"></i></p>
-            <p> <a href="">Contacto</a> <i id="wpp" class="fab fa-whatsapp"></i></p>
-            <p> Seguinos <a href="www.facebook.com"><i id="fb" class="fab fa-facebook"></i></a>
+        <div>
+            <p> Acerca de <a href=""> nosotros </a> <i class="fas fa-child"></i></p>
+            <p> <a href="#">Home</a><i class="fas fa-home"></i></p>
+            <p> <a href="">Contacto</a> <i id="wpp"  class="fab fa-whatsapp"></i></p>
+            <p> Seguinos <a href="www.facebook.com"><i id="fb" class="fab fa-facebook-f"></i></a>
                 <a href="www.twitter.com"><i id="tw" class="fab fa-twitter"></i></a>
                 <a href="www.instagram.com"><i id="ig" class="fab fa-instagram"></i></a>
             </p>
-        </h4>        
+        </div>        
     </footer>
+    <script src="/javascript/productCart.js"></script>
 </body>
 </html>
