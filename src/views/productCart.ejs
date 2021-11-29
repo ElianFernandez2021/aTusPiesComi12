@@ -1,39 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <script src="https://kit.fontawesome.com/789d6992bb.js" crossorigin="anonymous"></script>
-    <title>Carrito de Compras</title>
-</head>
+    <%- include ('./partials/head.ejs')%>
 <body>
-    <header class="color-gradient">
-        
-        <section  id="contenedor-menú"> 
-            <figure class="posicion-logo"><a href="/"><img class="redondo" src="/images/login/logo.png" alt="logo"></a></figure>
-            <a href="#contenedor-menú" class="img-menú1 hamburguesa"><img src="/images/header/menu.png" alt="menú hamburguesa" id="abrir"></a>
-            <a href="#" class="img-menú1 equis"><img src="/images/header/equis.png" alt="equis" id="cerrar"></a>
-            <nav>
-                <ul id="contenedor-enlaces">
-                    <li><a href="" class="img-menú1"><img src="/images/header/huella.png" alt="">Productos</a></li>
-                    <li><a href="" class="img-menú1"><img src="/images/header/login.png" alt="">Login</a></li>
-                    <li><a href="" class="img-menú1"><img src="/images/header/carrito.png" alt="">Carrito</a></li>
-                    <li><a href="" class="img-menú1 lupa"><img  src="/images/header/busqueda2.png" alt="">Buscar</a></li>
-                </ul>
-            </nav> 
-        </section>
-    </header>
+    <%- include ('./partials/header.ejs')%>
     <!--    Product Cart    -->
     <section class="category">
         <article class="items"> 
             <div class="image-position"> 
                 <img class="image" src="/images/productDetail/zapatillas-dakota-azul/zapatilla-dakota-azul1.jpg" alt="ZapaLed">
-                <a href="productDetail.html"><i class="fas fa-info-circle"></i></a>
+                <a href="productDetail"><i class="fas fa-info-circle"></i></a>
             </div>
-                <div class="items descriptions">
+                <div class="items-descriptions">
                     <div class="amount">
                         <label for="cantidad">Cantidad</label>
                         <input type="number"  id="cantidad" value=1 checked>
@@ -56,9 +33,9 @@
         <article class="items">  
             <div class="image-position">
                 <img class="image" src="/images/productDetail/zapatillas-dakota-negro/zapatillas-dakota1.jpg" alt="Imagen">
-                <a href="productDetail.html"><i class="fas fa-info-circle"></i></a>
+                <a href="productDetail"><i class="fas fa-info-circle"></i></a>
             </div>
-            <div class="items descriptions"> 
+            <div class="items-descriptions"> 
                 <div class="amount">
                     <label for="cantidad">Cantidad</label>
                     <input type="number"  id="cantidad" value=1 checked>
@@ -80,9 +57,9 @@
         <article class="items"> 
             <div class="image-position">
                 <img class="image" src="/images/productDetail/zapatillas-dakota-blanca.jfif" alt="Imagen">
-                <a href="productDetail.html"><i class="fas fa-info-circle"></i></a>
+                <a href="productDetail"><i class="fas fa-info-circle"></i></a>
             </div>
-            <div class="items descriptions"> 
+            <div class="items-descriptions"> 
                 <div class="amount">
                     <label for="cantidad">Cantidad</label>
                     <input type="number"  id="cantidad" value=1 checked>
@@ -105,9 +82,10 @@
     <p class="total">Total $600</p>
     <nav class="last-option">
         <ul>
-            <li><a href="productDetail.html">Volver</a></li>
+            <li><a href="productDetail">Volver</a></li>
             <li><a class="continue">Continuar</a></li>
         </ul>
+        <img class="banner" src="/images/banners/Banner.jpg" alt="Banner  ">
     </nav>
     <!--    End Product Cart    -->
 
@@ -156,18 +134,7 @@
             <button type="submit">Enviar</button>
         </div>
     </form>     <!--End seccion de pago -->
-
-    <footer>
-        <div>
-            <p> Acerca de <a href=""> nosotros </a> <i class="fas fa-child"></i></p>
-            <p> <a href="#">Home</a><i class="fas fa-home"></i></p>
-            <p> <a href="">Contacto</a> <i id="wpp"  class="fab fa-whatsapp"></i></p>
-            <p> Seguinos <a href="www.facebook.com"><i id="fb" class="fab fa-facebook-f"></i></a>
-                <a href="www.twitter.com"><i id="tw" class="fab fa-twitter"></i></a>
-                <a href="www.instagram.com"><i id="ig" class="fab fa-instagram"></i></a>
-            </p>
-        </div>        
-    </footer>
-    <script src="/javascript/productCart.js"></script>
+    <%- include ('./partials/footer.ejs')%>
+    <%- include ('./partials/scripts.ejs')%>
 </body>
 </html>

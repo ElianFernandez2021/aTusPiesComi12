@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include ('./partials/head.ejs')%>
+<body >
+    <%- include ('./partials/header.ejs')%>
+    <div class="cuadro-form tamaño-logo">
+        <img src="/images/login/logo.png" alt="logo" >
+        <form action="">
+            <h3>Registrate</h3>
+            <div>
+                <label for="usu">Email:</label>
+            </div>      
+            <div >
+                <input type="text" id="usu" name="usuario" class="forma-tamaño" placeholder="Ingrese aquí su email" required>
+            </div>
+            <div>
+                <label for="clave">Contraseña:</label>
+            </div>    
+            <div>
+                <input type="password" id="clave" name="pass" class="forma-tamaño" placeholder="Ingrese aquí su contraseña" required>
+            </div>
+            <div>
+                <label for="clave">Vuelve a escribir la contraseña:</label>
+            </div>    
+            <div>
+                <input type="password" id="clave" name="pass" class="forma-tamaño" placeholder="Ingrese aquí su contraseña">
+            </div>
+            <div id="boton-logueo">
+                <button type="submit" value="Registrate"> Registrate</button>
+            </div>
+            <div class="borde">
+            </div>
+            <div class="centrar-o">
+            <p>o</p>
+            </div>
+            <section class="orientar-boton">
+               <div><button class="button-google forma-tamaño" >GOOGLE</button></div>
+                <div><button class="button-face forma-tamaño">FACEBOOK</button></div> 
+            </section>
+            
+        </form>
+        <div ><a href="">¿Olvidaste tu contraseña?</a> </div>
+    </div>
+    <div class="cuadro-form orientar-p">
+        <p>¿Tienes cuenta?</p>
+        <a href="login.html">Inicia sesion</a> 
+    </div>
+    <%- include ('./partials/footer.ejs')%>
+</body>
+</html>

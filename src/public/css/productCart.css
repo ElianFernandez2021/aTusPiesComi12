@@ -1,3 +1,4 @@
+@import url('./animation.css');
 /*  Mobile  */
 
 /*  Body    */
@@ -42,27 +43,8 @@ body{
 .category .items .image{
     width: 140px;
 }
-.category .items .amount{
-    height: 50px;
-    width: 61px;
-}
-.category .items .amount input {
-    width: 90%;
-}
-.category .items .price{
-    margin: 0px 7px;
-    height: 50px;
-    width: 60px;
-}
-.category .items .subtotal{
-    width:50px;
-}
-.category .items .description{
-    font-size: 11px;
-    height: 50px;
-    width: 255px;
-    margin-top: 3px;
-    margin-left:15px;
+.category .amount #cantidad{
+    width:30px;
 }
 .total{
     display:flex;
@@ -143,16 +125,6 @@ form.pay{
     animation-iteration-count: 1;
 
 }
-@keyframes popUp{
-    0%{
-        opacity: 0;
-        transform: scale(0);
-    }
-    100%{
-        opacity: 1;
-        transform: scale(1);
-    }
-}
 .pay .metodo-pago label{
     display: flex;
     justify-content: space-evenly;
@@ -201,6 +173,9 @@ h2:hover{
     align-items:center;
 }
 
+.banner{
+    display:none;
+}
 /*  End metodo de pago*/
 footer{
     position: relative;
@@ -228,6 +203,10 @@ footer{
         .category .items .description{
             font-size: 15px;
             display: flex;
+        }
+        .banner{
+            display:flex;
+            width:100%;
         }
     }
 
