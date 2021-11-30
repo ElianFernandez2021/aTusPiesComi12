@@ -13,9 +13,9 @@
 
 <!DOCTYPE html>
 <html lang="es">
-    <%- include ('./partials/head') %>
+    <%- include ('./partials/head.ejs')%>
   <body>
-    <%- include ('./partials/header') %>
+    <%- include ('./partials/header.ejs')%>
     <!--  -->
     <section class="productDetail">
         <div class="card-wrapper">
@@ -131,8 +131,8 @@
     </section>
     <section>
     </section>
-
-    <script src="/javascript/productDetail.js"></script>
-    <%- include ('./partials/footer') %>
-    </body>
+    <%- include ('./partials/footer.ejs')%>  
+    <%- include ('./partials/scripts.ejs')%>
+    
+</body>
 </html>

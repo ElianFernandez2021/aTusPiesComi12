@@ -12,17 +12,15 @@ app.set('views', path.join(__dirname, 'views'))
 /* Enrutadores */
 let productCartRouter=require('./routes/productCart')
 let indexRouter = require("./routes/indexRouter")
-let loginRouter = require("./routes/loginRouter")
-let registerRouter = require("./routes/registerRouter")
+let userRoutes = require("./routes/userRoutes")
 let productDetailRouter = require("./routes/productDetail")
 
 /* Routes */
-app.use("/", indexRouter)
-app.use("/login", loginRouter)
-app.use("/register", registerRouter)
-app.use('/productDetail',productDetailRouter)
-app.use('/productCart',productCartRouter)
-app.listen(PORT, ()=> console.log(`Servidor abierto en el puerto${PORT}
+app.use('/',indexRouter)//home
+app.use('/user',userRoutes)//Register
+app.use('/productDetail',productDetailRouter)//ProductDetail
+app.use('/productCart',productCartRouter)//ProductCart
+app.listen(PORT, ()=> console.log(`Servidor abierto en el puerto ${PORT}
 http://localhost:${PORT}`))
 
 

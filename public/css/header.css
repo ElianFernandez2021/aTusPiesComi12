@@ -1,3 +1,4 @@
+@import url('./animation.css');
 *{
     margin: 0;
     padding: 0;
@@ -10,6 +11,9 @@ header{
     z-index:10;
     top: 0;
     left:0;
+}
+header.header-opacity{
+    opacity: 40%;
 }
 
 

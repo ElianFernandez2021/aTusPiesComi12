@@ -5,6 +5,7 @@ footer{
     border-radius: 20px 20px 0 0 ;
     margin-top: 12px;
     bottom: 0;
+    width:100%
     
 }
 footer p {
@@ -40,4 +41,16 @@ footer #ig{
 footer #tw{
     color: cyan;
     font-size:20px;
+}
+@media(min-width:768px){
+    footer i, footer #fb, footer #wpp, footer #ig, footer #tw{
+        font-size:50px;
+        justify-content: space-between;
+    }
+    footer #wpp{
+        height:50px;
+    }
+    footer p{
+        font-size: 2rem;
+    }
 }
