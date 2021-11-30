@@ -206,7 +206,11 @@ footer{
         }
         .banner{
             display:flex;
+        }
+        .banner img{
             width:100%;
+            position:relative;
+            top:7rem;
         }
     }
 
