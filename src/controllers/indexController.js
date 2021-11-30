@@ -1,6 +1,6 @@
-let controller={
-    index:(req,res)=>{
-        res.render('index')
+let controller = {
+    home:(req,res) => {
+        res.render("index")
     }
-}
-module.exports=controller;
+};
+module.exports = controller;
