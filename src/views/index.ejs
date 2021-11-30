@@ -1,33 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1,
-    maximun-scale=1, minimum-scale=1">
-    <title>Home</title>
-    <script src="https://kit.fontawesome.com/789d6992bb.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/css/home.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/header.css">
-</head>
+<html lang="es">
+<%- include ('./partials/head') %> 
 <body>
-    <header class="color-gradient">
-        
-        <section  id="contenedor-menú"> 
-            <figure class="posicion-logo"><img class="redondo" src="/images/login/logo.png" alt="logo"></figure>
-            <a href="#contenedor-menú" class="img-menú1 hamburguesa"><img src="/images/header/menu.png" alt="menú hamburguesa" id="abrir"></a>
-            <a href="#" class="img-menú1 equis"><img src="/images/header/equis.png" alt="equis" id="cerrar"></a>
-            <nav>
-                <ul id="contenedor-enlaces">
-                    <li><a href="" class="img-menú1"><img src="/images/header/huella.png" alt="">Productos</a></li>
-                    <li><a href="login.html" class="img-menú1"><img src="/images/header/login.png" alt="">Login</a></li>
-                    <li><a href="productCart.html" class="img-menú1"><img src="/images/header/carrito.png" alt="">Carrito</a></li>
-                    <li><a href="" class="img-menú1 lupa"><img  src="/images/header/busqueda2.png" alt="">Buscar</a></li>
-                </ul>
-            </nav> 
-        </section>
-    </header>
+    <%- include ('./partials/header') %> 
     <div class="container-slider">
         <div class="slider" id="slider">
             <div class="slider__section" >
@@ -109,17 +84,7 @@
             <h2>Dakota Deportivas</h2>
             <p>  $50 dolares</p>
     </section>
-    <footer>
-        <h4>
-            <p> Acerca de <a href="">nosotros</a><i class="fas fa-child"></i></p>
-            <p> <a href="#">Home</a><i class="fas fa-home"></i></p>
-            <p> <a href="">Contacto</a> <i id="wpp" class="fab fa-whatsapp"></i></p>
-            <p> Seguinos <a href="www.facebook.com"><i id="fb" class="fab fa-facebook"></i></a>
-                <a href="www.twitter.com"><i id="tw" class="fab fa-twitter"></i></a>
-                <a href="www.instagram.com"><i id="ig" class="fab fa-instagram"></i></a>
-            </p>
-        </h4>        
-    </footer>
+    <%- include ('./partials/footer') %> 
     <script src="/javascript/slider.js"></script>
 </body>
 </html>

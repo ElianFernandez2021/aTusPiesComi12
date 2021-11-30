@@ -18,10 +18,6 @@ header{
     flex-direction: row;
     justify-content: center;
 }
-.posicion-logo a{
-    display: flex;
-    justify-content: center;
-}
 
 .redondo{ /*sombreado en el radio del logo*/
     box-shadow: 0 0 15px #f8f1df ;
@@ -53,8 +49,9 @@ li{
     }
   
     /*********MENÚ*********/
-    li{
-        padding: 0.4em;
+    .header ul li{
+        padding: 1em;
+
     } 
     
     nav ul{
@@ -65,17 +62,12 @@ li{
         text-decoration: none;
         font-size: 1.2em;
         color: #000000;
-        display: flex;
-        align-items: center;
+
     }
 
     .img-menú1 img{ /*imagenes de menu hamb y la equis*/
         width: 5%;
         padding: 0.5em;
-    }
-    .img.menú img :nth-child(4)
-    {
-        width:40%;
     }
 
     #contenedor-menú #cerrar{ /*oculta imagen de la equis*/
@@ -104,14 +96,7 @@ li{
 /*******************TABLET********************/
 @media all and (min-width:768px){
     /**********MENU**********/
-    
-    .img-menú1 img{ 
-        width: 25%;
-        align-items:end;
-    }
-   #contenedor-enlaces li .lupa img{
-        width:36%;
-    }
+ 
     #abrir, #cerrar{
         display: none;
     } 
@@ -119,6 +104,7 @@ li{
     #contenedor-menú #contenedor-enlaces{
         display: flex;
         flex-direction: row;
+        justify-content: space-around;
         height: 10%;
     }
 
