@@ -11,9 +11,9 @@ header{
     z-index:10;
     top: 0;
     left:0;
-    animation-name: transparencia;
-    animation-duration: 1s;
-    animation-iteration-count: 1;
+}
+header.header-opacity{
+    opacity: 40%;
 }
 
 

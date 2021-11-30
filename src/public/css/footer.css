@@ -47,6 +47,9 @@ footer #tw{
         font-size:50px;
         justify-content: space-between;
     }
+    footer #wpp{
+        height:50px;
+    }
     footer p{
         font-size: 3rem;
     }
