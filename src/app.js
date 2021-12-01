@@ -5,7 +5,7 @@ const path=require('path');
 const PORT=3030; 
 
 /* Middlewares */
-app.use(express.static('src/public'));
+app.use(express.static('public'));
 app.set("view engine", "ejs")
 app.set('views', path.join(__dirname, 'views'))
 
