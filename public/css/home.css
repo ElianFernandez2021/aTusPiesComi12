@@ -261,11 +261,11 @@ transition: .9s;
     align-items: center;
     
 }
-.fa-shoe-prints:nth-child(1){
+.eligeypaga1 .fa-shoe-prints:nth-child(1){
     margin-right: 15px;
     rotate: 100%;
 }
-.fa-shoe-prints{
+.eligeypaga1 .fa-shoe-prints{
     margin-left: 15px;
 }
 .container-0 {

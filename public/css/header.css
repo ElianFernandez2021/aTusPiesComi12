@@ -2,12 +2,12 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: content-box;
+    box-sizing: border-box;
 }
 /********HEADER*******/
-header{
+.header{
     background: linear-gradient(#524d3d, #8c8364 50%, #cdc4a9 ,  #f8f1df);
-    position: fixed;
+    position: stiky;
     z-index:10;
     top: 0;
     left:0;
@@ -30,14 +30,15 @@ header.header-opacity{
 li{
     border-bottom: #8c8364 solid 0.2em;
 }
-
+.img-menú1 .fas{
+    color: black;
+}
 /*******************CELULAR********************/
 @media all and (min-width:320px){
 
     /*********HEADER*********/
-    header{
-        width: 100%; /*ancho header*/
-        position: fixed;    
+    .header{
+        width: 100%; /*ancho header*/   
     }
 
     img{ /*controla que no desborde la imágen del logo*/
@@ -93,8 +94,24 @@ li{
     }
 
     #contenedor-menú:target #contenedor-enlaces{
-        height:50%; /*altura del menú*/
-        transition: height 2s ease;
+        height: 20%; /*altura del menú*/
+        transition: height 3s ease;
+    }
+
+    /***************BUSCADOR******************/
+    .search-bar{
+        height: 5%;
+        display: flex;
+        flex-direction: row;
+    }
+    .search-bar input{
+        width: 90%;
+        height: 5%;
+        padding: 0.3em;
+    }
+    .lupa-search{
+        position: relative;
+        bottom: 20px;
     }
 }
 /*******************TABLET********************/
