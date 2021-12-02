@@ -5,7 +5,7 @@ const path=require('path');
 const PORT=3030; 
 
 /* Middlewares */
-app.use(express.static('src/public'));
+app.use(express.static('public'));
 app.set("view engine", "ejs")
 app.set('views', path.join(__dirname, 'views'))
 
@@ -22,6 +22,7 @@ app.use('/user',userRoutes)//Register
 app.use('/productDetail',productDetailRouter)//ProductDetail
 app.use('/productCart',productCartRouter)//ProductCart
 app.use('/productCreate',productCreateRouter)
+app.use('/productEdit',productCreateRouter)
 app.listen(PORT, () => console.log(`Servidor abierto en el puerto ${PORT}
 http://localhost:${PORT}`))
 
