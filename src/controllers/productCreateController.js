@@ -1,6 +1,9 @@
 let controller={
-    create:(req,res)=>{
+    productCreate:(req,res)=>{
         res.render('productCreate')
+    },
+    productEdit:(req,res)=>{
+        res.render('productEdit')
     }
 }
 module.exports=controller;
