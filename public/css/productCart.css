@@ -129,22 +129,6 @@ form.pay{
     display: flex;
     justify-content: space-evenly;
 }
-h2{
-    border: 1px solid black;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 900;
-}
-h2:hover{
-    color: white;
-    background: black;
-    cursor: pointer;
-}
 .pay .card{
     display: none;
 }
