@@ -96,21 +96,9 @@
     .tamaño-logo img{ /*tamaño y posicion del logo*/
         bottom: 60px;
     }
-
-    .button-google{
-        position: relative;
-        right: 80px;
-        top: 20px;
-    }
-
-    .button-face{
-        position: relative;
-        left: 120px;
-        bottom: 27px;
-    }
-
-    .forma-tamaño{
-        width: 80%;
+    .orientar-boton{
+        display:flex;
+        flex-direction: row;
     }
 
 }
@@ -127,15 +115,6 @@
     .tamaño-logo img{ /*tamaño y posicion del logo*/
         top: 5px;
         right: 20px;
-    }
-
-    .button-google{
-        right: -5px;
-    }
-
-    .button-face{
-        left: 200px;
-        bottom: 28px;
     }
 
 }

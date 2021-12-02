@@ -349,10 +349,10 @@ body {
     margin-top: 2rem;
   }
   .productDetail .card-wrapper {
-    height: 134vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top:11rem;
   }
   .productDetail .product-imgs {
     display: flex;
