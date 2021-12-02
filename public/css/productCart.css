@@ -161,10 +161,7 @@ form.pay{
     display:none;
 }
 /*  End metodo de pago*/
-footer{
-    position: relative;
-    top: 7rem;
-}
+
 /*  Media queries   */
 
     /*  Tablet  */
@@ -214,9 +211,5 @@ footer{
         }
         .last-option{
             top:12rem;
-        }
-        footer{
-            position: relative;
-            top: 12rem;
         }
     }

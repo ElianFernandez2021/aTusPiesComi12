@@ -47,12 +47,12 @@
 
     .cuadro-form{ /*centra el contenido del form y pone color de fondo*/
         width: 70%;
-        background-color: lightgray;
+        background-image: url('../images/login/huella.jpg');
         display: flex;
         flex-direction: column;
         align-items: center;
         border-radius: 8%;
-        margin: 1em;
+        margin-top: 1rem;
 
     }
 
@@ -118,9 +118,10 @@
 
 /*****************ESCRITORIO********************/
 @media all and (min-width:1024PX){
-    .cuadro-form{
+    .tamaño-logo{
         flex-direction: row;
         justify-content: center;
+        margin-top:14rem;
     }
 
     .tamaño-logo img{ /*tamaño y posicion del logo*/
