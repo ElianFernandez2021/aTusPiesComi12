@@ -83,6 +83,7 @@ body {
 }
 
 .toggle {
+    margin: 15px;
     position: absolute;
     top: 0;
     right: 0;
@@ -132,6 +133,8 @@ body {
   }
   
   .topnav {
+    
+    width: 100%;
     overflow: hidden;
     background-color: #8C8065;
   }
@@ -184,17 +187,13 @@ body {
 }
 
 @media screen and (max-width: 350px) {
-    .topnav {
-        width: 134%;
-    }
+    
     .toggle {
         right: -27%;
     }
 }
 @media screen and (max-width: 427px) {
-    .topnav {
-        width: 134%;
-    }
+    
     .toggle {
         right: -27%;
     }

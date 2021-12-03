@@ -22,6 +22,7 @@ app.use('/user',userRoutes)//Register
 app.use('/productDetail',productDetailRouter)//ProductDetail
 app.use('/productCart',productCartRouter)//ProductCart
 app.use('/productCreate',productCreateRouter)
+app.use('/productEdit',productCreateRouter)
 app.listen(PORT, () => console.log(`Servidor abierto en el puerto ${PORT}
 http://localhost:${PORT}`))
 
