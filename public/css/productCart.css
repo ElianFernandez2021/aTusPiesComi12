@@ -11,17 +11,11 @@ body{
 
 /*  End Body    */
 
-/* p  descripcion debajo de la foto del carrito */
-.descripcion-mas-info {
-    margin: 1.5rem;
-}
-
 /*  Category    */
 .category{ /*Agrego display flex a todo el cuerpo*/
     display: flex;
     flex-direction: column;
     position: relative;
-    top: 7rem;
 }
 .category .items{
     display: flex;
@@ -43,6 +37,15 @@ body{
 .category .items .image{
     width: 140px;
 }
+.category .items .items-descriptions{
+    margin-left: 20px;
+}
+.category .items .items-descriptions .color-text,
+.category .items .items-descriptions #cantidad{
+    width: 50%;
+    padding:0;
+    font-size: 20px;
+}
 .category .amount #cantidad{
     width:30px;
 }
@@ -51,16 +54,11 @@ body{
     justify-content: center;
     padding-top: 20px;
     font-size: 23px;
-    position: relative;
-    top: 7rem;
 }
 /*  End Category*/
 
 /*  Last option*/
-.last-option{
-    position: relative;
-    top: 7rem;
-}
+
 .last-option ul{
     display: flex;
     justify-content: space-evenly;
@@ -190,26 +188,16 @@ form.pay{
         }
         .banner{
             display:flex;
+            width:100%;
         }
         .banner img{
             width:100%;
-            position:relative;
-            top:11rem;
         }
     }
 
     /*  Desktop */
     @media(min-width:1024px){
-        .category{
-            top:12rem;
-        }
         .category .items .description{
             font-size: 20px;
-        }
-        .total{
-            top:11rem;
-        }
-        .last-option{
-            top:12rem;
         }
     }
