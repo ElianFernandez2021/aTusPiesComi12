@@ -22,7 +22,7 @@ body{
 
 
 
-.container-slider{
+.container-slider00{
     width: 90%;
     
     max-width: 78.125rem;
@@ -37,7 +37,7 @@ body{
     
 
 }
-.slider{
+.slider11{
     display: flex;
     width: 400%;
     height: 300px;
@@ -45,17 +45,17 @@ body{
     
 
 }
-.slider__section{
+.slider__section22{
     width: 100%;
     
 }
-.slider__img{
+.slider__img33{
 display: block;
 width: 100%;
 height: 100%;
 
 }
-.slider__btn{
+.slider__btn44{
     
     width: 2.5rem;
     height: 2.5rem;
@@ -77,13 +77,13 @@ height: 100%;
 }
 
 
-.slider__btn:hover{
+.slider__btn44:hover{
 background-color: black;
 color: white;
 transform: scale(01);
 transition: .9s;
 }
-.slider__btn--left{
+.slider__btn--left55{
     
     position: absolute;
     
@@ -92,7 +92,7 @@ transition: .9s;
     justify-content: center;
     align-items: center;
 }
-.slider__btn--right{
+.slider__btn--right55{
     position: absolute;
     
     right: 10px;
