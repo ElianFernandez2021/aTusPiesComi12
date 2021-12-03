@@ -7,7 +7,7 @@
 /********HEADER*******/
 .header{
     background: linear-gradient(#524d3d, #8c8364 50%, #cdc4a9 ,  #f8f1df);
-    position: stiky;
+    position: sticky;
     z-index:10;
     top: 0;
     left:0;
@@ -71,13 +71,8 @@ li{
 
     }
 
-    .img-menú1 img{ /*imagenes de menu hamb y la equis*/
-        width: 5%;
-        padding: 0.5em;
-    }
-
     #contenedor-menú #cerrar{ /*oculta imagen de la equis*/
-        display: none;
+        display: block;
     }
 
     #contenedor-menú #contenedor-enlaces{
@@ -147,10 +142,6 @@ li{
 /*****************ESCRITORIO********************/
 @media all and (min-width:1024PX){
     /**********MENU**********/
-    .img-menú1 img{ /*imagenes de menu hamb y la equis*/
-        width: 8%;
-        padding: 0.3em;
-    }
 
     #abrir, #cerrar{
         display: none;
