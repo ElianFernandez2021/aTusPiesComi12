@@ -113,6 +113,7 @@ li{
         position: relative;
         bottom: 20px;
     }
+
 }
 /*******************TABLET********************/
 @media all and (min-width:768px){
@@ -131,6 +132,14 @@ li{
 
     li{
         border-bottom: none;
+    }
+    .search-bar input{
+        width: 80%;
+    } 
+
+    #contenedor-menú nav{
+        display: flex;
+        flex-direction: row;
     }
 }
     
