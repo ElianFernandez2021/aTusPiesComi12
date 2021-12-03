@@ -55,7 +55,7 @@ width: 100%;
 height: 100%;
 
 }
-.slider__btn44{
+.slider__btn{
     
     width: 2.5rem;
     height: 2.5rem;
@@ -77,13 +77,13 @@ height: 100%;
 }
 
 
-.slider__btn44:hover{
+.slider__btn:hover{
 background-color: black;
 color: white;
 transform: scale(01);
 transition: .9s;
 }
-.slider__btn--left55{
+.slider__btn--left{
     
     position: absolute;
     
@@ -92,7 +92,7 @@ transition: .9s;
     justify-content: center;
     align-items: center;
 }
-.slider__btn--right55{
+.slider__btn--right{
     position: absolute;
     
     right: 10px;
@@ -107,7 +107,7 @@ transition: .9s;
 /**************/
 /* Section 1 */
 /*************/
-.container-1 {
+.container-11 {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -118,7 +118,7 @@ transition: .9s;
 }
 
 
-.container-1 .item {
+.container-11 .item {
     width: 17.5rem;
     box-shadow: 0.3125rem 0.3125rem 0.3125rem rgba(0, 0, 0, 0.1);
     height: 16.25rem;
@@ -128,23 +128,25 @@ transition: .9s;
     justify-content: center; 
 }
 
-.container-1 .item:hover {
+.container-11 .item:hover {
     box-shadow: 0.3125rem 0.3125rem 0.9375rem rgba(0, 0, 0, 0.1);
     transform: scale(1.1);
 }
 
 
-.card-bg {
+.card-bg111 {
     position: relative;
 }
 
-.card-bg img {
-    height: 1%;
+.card-bg111 img {
+    width: 100%;
+    height: 100%;
+    margin: 0;
     object-fit: cover;
 }
 
 
-.card-data2 {
+.card-data22 {
     position: absolute;
     color: white;
     height: 100%;
@@ -204,6 +206,7 @@ transition: .9s;
 .item .image-container img {
     width: 100%;
     height: 100%;
+    margin-top: 0;
     object-fit: cover;
 }
 
@@ -301,50 +304,6 @@ transition: .9s;
     
 }
 
-
-
-
-@media (min-width: 700px) {
-    .slider__btn--right{
-        
-        right: 10px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .slider__btn--left{
-        
-        left: 10px;
-        display: flex;
-        justify-content: center;
-    }
-    
-    .slider__img{
-        object-fit:scale-down;
-    }
-    .slider__btn{
-        opacity: 0.4;
-    
-    }
-    
-    .container-1{
-       flex-direction: column; 
-       justify-content: center;
-       align-items: center;
-    }
-    .container-slider{
-        width: 90%;
-        
-        max-width: 78.125rem;
-        margin: auto;
-        overflow:hidden;
-    
-        position: relative;
-        padding-top: 13rem;       
-    
-    }
-
-}
 
 
 
