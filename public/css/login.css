@@ -30,8 +30,6 @@
         flex-direction: column;
         align-items: center;
     }
-
-    
     .tamaño-logo img{ /*tamaño y posicion del logo*/
         width: 80%;
         position: relative;

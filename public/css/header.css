@@ -2,7 +2,7 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: content-box;
 }
 /********HEADER*******/
 .header{
@@ -11,6 +11,7 @@
     z-index:10;
     top: 0;
     left:0;
+    width: 100%;
 }
 header.header-opacity{
     opacity: 0%;
@@ -34,13 +35,13 @@ li{
 .img-menú1 .fas{
     color: black;
 }
+#contenedor-menú #cerrar{
+    display: none;
+}
 /*******************CELULAR********************/
 @media all and (min-width:320px){
 
     /*********HEADER*********/
-    .header{
-        width: 100%; /*ancho header*/   
-    }
 
     img{ /*controla que no desborde la imágen del logo*/
         width: 15%;
@@ -72,13 +73,13 @@ li{
     }
 
     #contenedor-menú #cerrar{ /*oculta imagen de la equis*/
-        display: block;
+        display: none;
     }
 
     #contenedor-menú #contenedor-enlaces{
         height: 0; /*cambia altura a 0*/
         overflow: hidden; /*oculta lo que sobresalga del menú*/
-        transition: height 2s ease; /*efecto de transicion*/
+        transition: height 0.1s ease; /*efecto de transicion*/
     }
     
     #contenedor-menú:target #abrir{
@@ -91,7 +92,7 @@ li{
 
     #contenedor-menú:target #contenedor-enlaces{
         height: 20%; /*altura del menú*/
-        transition: height 3s ease;
+        transition: height 0.5s ease-in-out;
     }
 
     /***************BUSCADOR******************/
@@ -99,16 +100,21 @@ li{
         height: 5%;
         display: flex;
         flex-direction: row;
+        position:relative;
     }
     .search-bar input{
         width: 90%;
         height: 5%;
         padding: 0.3em;
     }
-    .lupa-search{
-        position: relative;
-        bottom: 20px;
+    .search-bar .search-form{
+        display: contents;
     }
+    .search-bar button{
+        position: relative;
+        bottom: 17px;
+    }
+    
 
 }
 /*******************TABLET********************/
@@ -129,14 +135,13 @@ li{
     li{
         border-bottom: none;
     }
-    .search-bar input{
-        width: 80%;
-    } 
-
-    #contenedor-menú nav{
+    .search-bar{
         display: flex;
-        flex-direction: row;
+        justify-content: flex-end;
     }
+    .search-bar input{
+        width: 50%;
+    } 
 }
     
 /*****************ESCRITORIO********************/
