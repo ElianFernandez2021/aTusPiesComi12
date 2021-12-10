@@ -1,0 +1,182 @@
+[
+    {
+        "id": 1,
+        "first_name": "Orin",
+        "last_name": "Fransson",
+        "email": "ofransson0@washingtonpost.com",
+        "password": "5skkanzqC",
+        "category": "user",
+        "avatar": "user_1.jpg"
+    },
+    {
+        "id": 2,
+        "first_name": "Amii",
+        "last_name": "Thundercliffe",
+        "email": "athundercliffe1@washingtonpost.com",
+        "password": "Dx8IQeds4aq",
+        "category": "user",
+        "avatar": "user_2.jpg"
+    },
+    {
+        "id": 3,
+        "first_name": "Konstantin",
+        "last_name": "Aspling",
+        "email": "kaspling2@cmu.edu",
+        "password": "hoZZpS0LleO",
+        "category": "user",
+        "avatar": "user_3.jpg"
+    },
+    {
+        "id": 4,
+        "first_name": "Arman",
+        "last_name": "Aplin",
+        "email": "aaplin3@biglobe.ne.jp",
+        "password": "14YI4h7V4x4e",
+        "category": "user",
+        "avatar": "user_4.jpg"
+    },
+    {
+        "id": 5,
+        "first_name": "Garnet",
+        "last_name": "Dederick",
+        "email": "gdederick4@yelp.com",
+        "password": "zOfAv9ayyvb",
+        "category": "user",
+        "avatar": "user_5.jpg"
+    },
+    {
+        "id": 6,
+        "first_name": "Padraic",
+        "last_name": "Hoodspeth",
+        "email": "phoodspeth5@google.ca",
+        "password": "Ya6fyRFr2",
+        "category": "user",
+        "avatar": "user_6.jpg"
+    },
+    {
+        "id": 7,
+        "first_name": "Lindsey",
+        "last_name": "Tremain",
+        "email": "ltremain6@nationalgeographic.com",
+        "password": "kz6Mx4h772o",
+        "category": "user",
+        "avatar": "user_7.jpg"
+    },
+    {
+        "id": 8,
+        "first_name": "Jobye",
+        "last_name": "Davers",
+        "email": "jdavers7@nih.gov",
+        "password": "Kj3vSEJzW",
+        "category": "user",
+        "avatar": "user_8.jpg"
+    },
+    {
+        "id": 9,
+        "first_name": "Kath",
+        "last_name": "Corro",
+        "email": "kcorro8@bloomberg.com",
+        "password": "ezyO7iZNklaE",
+        "category": "user",
+        "avatar": "user_9.jpg"
+    },
+    {
+        "id": 10,
+        "first_name": "Carce",
+        "last_name": "Tomlinson",
+        "email": "ctomlinson9@bravesites.com",
+        "password": "iLTC8BU2",
+        "category": "user",
+        "avatar": "user_10.jpg"
+    },
+    {
+        "id": 11,
+        "first_name": "Skippie",
+        "last_name": "Kelner",
+        "email": "skelnera@addtoany.com",
+        "password": "3JQbcTc",
+        "category": "user",
+        "avatar": "user_11.jpg"
+    },
+    {
+        "id": 12,
+        "first_name": "Erasmus",
+        "last_name": "Corley",
+        "email": "ecorleyb@google.it",
+        "password": "uGyspkY",
+        "category": "user",
+        "avatar": "user_12.jpg"
+    },
+    {
+        "id": 13,
+        "first_name": "Chase",
+        "last_name": "Yurikov",
+        "email": "cyurikovc@china.com.cn",
+        "password": "RTLsKSHedk",
+        "category": "user",
+        "avatar": "user_13.jpg"
+    },
+    {
+        "id": 14,
+        "first_name": "Franni",
+        "last_name": "Kindon",
+        "email": "fkindond@domainmarket.com",
+        "password": "9b2QR1Z9",
+        "category": "user",
+        "avatar": "user_14.jpg"
+    },
+    {
+        "id": 15,
+        "first_name": "Wilfred",
+        "last_name": "Fawks",
+        "email": "wfawkse@nhs.uk",
+        "password": "FT8Pfqe6",
+        "category": "user",
+        "avatar": "user_15.jpg"
+    },
+    {
+        "id": 16,
+        "first_name": "Joni",
+        "last_name": "Sherel",
+        "email": "jsherelf@europa.eu",
+        "password": "FS8SoLvXR4",
+        "category": "user",
+        "avatar": "user_16.jpg"
+    },
+    {
+        "id": 17,
+        "first_name": "Norri",
+        "last_name": "Climar",
+        "email": "nclimarg@macromedia.com",
+        "password": "5ywF51Ha",
+        "category": "user",
+        "avatar": "user_17.jpg"
+    },
+    {
+        "id": 18,
+        "first_name": "Abdel",
+        "last_name": "Cherrington",
+        "email": "acherringtonh@hexun.com",
+        "password": "hbUNRd1Yavl",
+        "category": "user",
+        "avatar": "user_18.jpg"
+    },
+    {
+        "id": 19,
+        "first_name": "Kissee",
+        "last_name": "Backhurst",
+        "email": "kbackhursti@census.gov",
+        "password": "SUtnLDnkXx",
+        "category": "user",
+        "avatar": "user_19.jpg"
+    },
+    {
+        "id": 20,
+        "first_name": "Aylmar",
+        "last_name": "Tradewell",
+        "email": "atradewellj@angelfire.com",
+        "password": "YebpxuhTnK3",
+        "category": "user",
+        "avatar": "user_20.jpg"
+    }
+]
