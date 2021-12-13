@@ -1,0 +1,181 @@
+[{
+    "id": 1,
+    "name": "Zapatillas Allstar Blancas",
+    "price": "8000",
+    "discount": "10",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "1",
+    "color": "Blanco",
+    "size": "42",
+    "subcategory": "deportivas",
+    "image": ["ZapatillasBlancas1.jpg"]
+},{
+    "id": 2,
+    "name": "zapatillas casuales marrones",
+    "price": "6000",
+    "discount": "",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "3",
+    "color": "Marrón",
+    "size": "36",
+    "subcategory": "casual",
+    "image": ["ZapatillasMarrones2.jpg"]
+
+},{
+    "id": 3,
+    "name": "Zapatilla casual Naranja",
+    "price": "10000",
+    "discount": "5",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "3",
+    "color": "Naranja",
+    "size": "42",
+    "subcategory": "casual",
+    "image": ["ZapatillasNaranjas3.jpg"]
+
+},{
+    "id": 4,
+    "name": "Zapatilla deportiva",
+    "price": "9000",
+    "discount": "",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "1",
+    "color": "Verde",
+    "size": "38",
+    "subcategory": "deportivas",
+    "image": ["ZapatillasVerdes4.jpg"]
+
+},{
+    "id": 5,
+    "name": "Zapatillas casuales camufladas",
+    "price": "8000",
+    "discount": "15",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "3",
+    "color": "verde",
+    "size": "36",
+    "subcategory": "casual",
+    "image": ["ZapasCamufladas5.jpg"]
+
+},{
+    "id": 6,
+    "name": "Botas marrones",
+    "price": "7500",
+    "discount": "10",
+    "description":"La mejores botas con suela ergonomica",
+    "category": "4",
+    "color": "marrón",
+    "size": "42",
+    "subcategory": "botas",
+    "image": ["BotasMarrones6.jpg"]
+
+},{
+    "id": 7,
+    "name": "Zapatillas camufladas",
+    "price": "6500",
+    "discount": "10",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "3",
+    "color": "verde",
+    "size": "42",
+    "subcategory": "casual",
+    "image": ["ZapasCamufladas7.jpg"]
+
+},{
+    "id": 8,
+    "name": "Zapatillas camufladas",
+    "price": "8600",
+    "discount": "",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "1",
+    "color": "bancas",
+    "size": "36",
+    "subcategory": "deportivas",
+    "image": ["ZapasCamufladas8.jpg"]
+
+},{
+    "id": 9,
+    "name": "Zapatillas AllStar",
+    "price": "12500",
+    "discount": "10",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "3",
+    "color": "negro",
+    "size": "37",
+    "subcategory": "casual",
+    "image": ["ZapasAllStar9.jpg"]
+
+},{
+    "id": 10,
+    "name": "Zapatillas casuales Allstar",
+    "price": "5500",
+    "discount": "10",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "3",
+    "color": "negro",
+    "size": "37",
+    "subcategory": "casual",
+    "image": ["ZapatillasAllStar10.jpg"]
+
+},{
+    "id": 11,
+    "name": "Zapatos chocolate",
+    "price": "6000",
+    "discount": "12",
+    "description":"La mejores zapatos con suela ergonomica",
+    "category": "2",
+    "color": "chocolate",
+    "size": "36",
+    "subcategory": "elegante",
+    "image": ["ZapatosChocolate11.jpg"]
+
+},{
+    "id": 12,
+    "name": "Zapatos ingleses",
+    "price": "8900",
+    "discount": "",
+    "description":"Los mejores zapatos con suela ergonomica",
+    "category": "3",
+    "color": "marrón",
+    "size": "40",
+    "subcategory": "elegante",
+    "image": ["ZapatosIngleses12.jpg"]
+
+},{
+    "id": 13,
+    "name": "Zapatos negros",
+    "price": "7540",
+    "discount": "",
+    "description":"Los mejores zapatos con zuela ergonomica",
+    "category": "2",
+    "color": "negro",
+    "size": "39",
+    "subcategory": "elegante",
+    "image": ["zapatosNegros13.jpg"]
+
+},{
+    "id": 14,
+    "name": "Botas negras, la mejor calidad",
+    "price": "14600",
+    "discount": "",
+    "description":"La mejores botas con suela ergonomica",
+    "category": "4",
+    "color": "negro",
+    "size": "35",
+    "subcategory": "botas",
+    "image": ["BotasNegras14.jpg"]
+
+},{
+    "id": 15,
+    "name": "Botas grises, de la mejor calidad",
+    "price": "200",
+    "discount": "10",
+    "description":"La mejores botas con suela ergonomica",
+    "category": "4",
+    "color": "gris",
+    "size": "42",
+    "subcategory": "botas",
+    "image": ["ZapatosGrises15.jpg"]
+
+}
+]
