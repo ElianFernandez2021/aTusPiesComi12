@@ -18,7 +18,7 @@ let controller={
     category: (req,res) => {
         let categoryId = +req.params.id,
             filtrado = products.filter(product => product.categoria === categoryId)
-            res.send(filtrado,category[categoryId])//Agrego 2do parametro un json category
+            res.send(filtrado)
     }
 }
 
