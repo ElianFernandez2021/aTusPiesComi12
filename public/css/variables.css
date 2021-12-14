@@ -1,5 +1,9 @@
 :root {
     --fondo: #FCF3E4;
+}
+
+/* productDetail */
+:root {
     --blue-title: #12263a;
     --blue-bg-box: #256eff;
     --black: #000;
