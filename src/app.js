@@ -3,26 +3,28 @@ const express=require('express');
 let app=express();
 const path=require('path');
 const PORT=3030; 
+const methodOverride = require('method-override');
 
 /* Middlewares */
-app.use(express.static('public'));
-app.set("view engine", "ejs")
-app.set('views', path.join(__dirname, 'views'))
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({extended:false}));
+app.use(methodOverride('_method'));
+
+app.set("view engine","ejs");//Template engine
+app.set('views', path.join(__dirname,'src/views'));//Ubicacion de vistas
+
 
 /* Enrutadores */
-let productCartRouter=require('./routes/productCart')
-let indexRouter = require("./routes/indexRouter")
-let userRoutes = require("./routes/userRoutes")
-let productDetailRouter = require("./routes/productDetail")
-let productCreateRouter = require("./routes/productCreate")
+let indexRouter = require("./src/routes/indexRouter")
+let products=require('./src/routes/products')
+let userRoutes = require("./src/routes/userRoutes")
+let productCreateRouter = require("./src/routes/adminProducts")
 
 /* Routes */
 app.use('/',indexRouter)//home
-app.use('/user',userRoutes)//Register
-app.use('/productDetail',productDetailRouter)//ProductDetail
-app.use('/productCart',productCartRouter)//ProductCart
-app.use('/productCreate',productCreateRouter)
-app.use('/productEdit',productCreateRouter)
+app.use('/user',userRoutes)//Register,Login
+app.use('/products',products)//Products,ProductDetail,ProductCart
+app.use('/admin',productCreateRouter)
 app.listen(PORT, () => console.log(`Servidor abierto en el puerto ${PORT}
 http://localhost:${PORT}`))
 

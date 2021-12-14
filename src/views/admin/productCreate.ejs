@@ -67,7 +67,7 @@
     <table>
         <tr>
             <td>
-                <form autocomplete="off" onsubmit="onFormSubmit()">
+                <form action="admin/products" autocomplete="off" onsubmit="onFormSubmit()" enctype="multipart/form-data">
                     <div>
                         <label for="productCode">Código</label>
                         <input type="text" name="productCode" id="productCode">
@@ -83,6 +83,10 @@
                     <div>
                         <label for="perPrice">Precio</label>
                         <input type="number" name="perPrice" id="perPrice">
+                    </div>
+                    <div>
+                        <label for="image">Imagen</label>
+                        <input type="file" name="image" id="image" multiple>
                     </div>
 
                     <div class="form_action--button">
