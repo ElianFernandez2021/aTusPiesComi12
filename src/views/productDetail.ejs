@@ -1,0 +1,138 @@
+  <!--  TOCAN EL CÓDIGO Y EL GATITO SE MUERE
+  /\ ___ /\                        
+ (  o   o  )                    
+  \  >#<  /            
+  /       \           
+ /         \      ^  
+|           |    //  
+ \         /   //  
+  ///  ///  --
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+    <%- include ('./partials/head.ejs')%>
+  <body>
+    <%- include ('./partials/header.ejs')%>
+    <!--  -->
+    <section class="productDetail">
+        <div class="card-wrapper">
+            <div class="card">
+                <!-- imagenes producto -->
+                <div class="product-imgs">
+                    <div class="img-display">
+                        <div class="img-showcase">
+                            <img src="/images/productDetail/zapatillas-dakota-azul/zapatilla-dakota-azul1.jpg" alt="">
+                            <img src="/images/productDetail/zapatillas-dakota-negro/zapatillas-dakota1.jpg" alt="">
+                            <img src="/images/productDetail/zapatillas-dakota-blanca.jfif" alt="">
+                            <img src="/images/productDetail/zapatillas-dakota-verde.jfif" alt="">
+                        </div>
+                    </div>
+                    <div class="img-select">
+                        <div class="img-item">
+                            <a href="#" data-id="1">
+                                <img src="/images/productDetail/zapatillas-dakota-azul/zapatilla-dakota-azul1.jpg" alt="">
+                            </a>
+    
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="2">
+                                <img src="/images/productDetail/zapatillas-dakota-negro/zapatillas-dakota1.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="3">
+                                <img src="/images/productDetail/zapatillas-dakota-blanca.jfif" alt="">
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="4">
+                                <img src="/images/productDetail/zapatillas-dakota-verde.jfif" alt="">
+                            </a>
+                        </div>
+    
+                        <!-- fin de imagenes producto -->
+                    </div>
+    
+                </div>
+                <!-- tarjeta derecha -->
+                <div class="product-content">
+                    <h2 class="product-title">Zapatilla Dakota</h2>
+                    <a href="#" class="product-link">Más productos</a>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.7(21)</span>
+                    </div>
+                    <!-- precio -->
+                    <div class="product-price">
+                        <p class="last-price">Precio normal: <span>$7999</span></p>
+                        <p class="new-price">Precio con descuento: <span>$6799,15 (15%)</span></p>
+    
+                    </div>
+                    <!-- fin precio -->
+                    <!-- descripcion del producto -->
+                    <div class="product-detail">
+                        <h2>Descripción ZAPATILLAS DAKOTA</h2>
+                        <p>El dakota llegó para quedarse.</p>
+                        <p>
+                            <li>un nuevo integrante de la familia running retro pero de look más moderno.</li>
+                            <li>capellada: de ripstop con detalles en film con tecnología skinnect y contrafuerte externo de tpu.</li>
+                            <li>suela: de eva termoformada para brindar mayor amortiguación y goma antideslizante.</li>
+                        </p>
+                        <ul>
+                            <li>Color: <span>Azul, Negro, Blanco y Verde</span></li>
+                            <li>Disponibilidad: <span>En stock</span></li>
+                            <li>Costo de envío: <span>Gratis</span></li>
+                        </ul>
+                        <!-- fin descripcion del producto -->
+                        <!-- TALLES -->
+                        <div class="size-container">
+                            <h3 class="title">Talles</h3>
+                            <div class="sizes">
+                                <span class="size">34</span>
+                                <span class="size">35</span>
+                                <span class="size active">40</span>
+                                <span class="size">42</span>
+                                <span class="size">43</span>
+                            </div>
+                            <!-- FIN TALLES -->
+    
+                        <div class="purchase-info">
+                            <input type="number" min="0" value="1">
+                            <button type = "button" class="btn">Agregar al carrito <i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                        <!-- iconos redes sociales -->
+                        <div class="social-links">
+                            <p>Compartir</p>
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <!-- fin de iconos redes sociales -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+    </section>
+    <%- include ('./partials/footer.ejs')%>  
+    <%- include ('./partials/scripts.ejs')%>
+    
+</body>
+</html>

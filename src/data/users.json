@@ -1,0 +1,182 @@
+[
+    {
+        "id": 1,
+        "first_name": "Meridel",
+        "last_name": "Beynkn",
+        "email": "mbeynkn0@ocn.ne.jp",
+        "password": "YcB6pOptI4",
+        "category": "user",
+        "avatar": "user_1.jpg"
+    },
+    {
+        "id": 2,
+        "first_name": "Dinny",
+        "last_name": "Wooder",
+        "email": "dwooder1@go.com",
+        "password": "2wLMnbyU5gcc",
+        "category": "user",
+        "avatar": "user_2.jpg"
+    },
+    {
+        "id": 3,
+        "first_name": "Abe",
+        "last_name": "Richold",
+        "email": "arichold2@npr.org",
+        "password": "uMDsQn7sZ6Q",
+        "category": "user",
+        "avatar": "user_3.jpg"
+    },
+    {
+        "id": 4,
+        "first_name": "Gregoor",
+        "last_name": "Knatt",
+        "email": "gknatt3@pinterest.com",
+        "password": "NC5i7Eg0t1e",
+        "category": "user",
+        "avatar": "user_4.jpg"
+    },
+    {
+        "id": 5,
+        "first_name": "Armstrong",
+        "last_name": "Mebs",
+        "email": "amebs4@theglobeandmail.com",
+        "password": "eUHxiseMJGi",
+        "category": "user",
+        "avatar": "user_5.jpg"
+    },
+    {
+        "id": 6,
+        "first_name": "Eden",
+        "last_name": "Pratton",
+        "email": "epratton5@lycos.com",
+        "password": "ucO2Dc9NCG",
+        "category": "user",
+        "avatar": "user_6.jpg"
+    },
+    {
+        "id": 7,
+        "first_name": "Josefina",
+        "last_name": "Hens",
+        "email": "jhens6@auda.org.au",
+        "password": "2UUsNl",
+        "category": "user",
+        "avatar": "user_7.jpg"
+    },
+    {
+        "id": 8,
+        "first_name": "Lin",
+        "last_name": "Vivyan",
+        "email": "lvivyan7@123-reg.co.uk",
+        "password": "UessTA2j",
+        "category": "user",
+        "avatar": "user_8.jpg"
+    },
+    {
+        "id": 9,
+        "first_name": "Stesha",
+        "last_name": "Terbrug",
+        "email": "sterbrug8@ebay.com",
+        "password": "etaBhcB",
+        "category": "user",
+        "avatar": "user_9.jpg"
+    },
+    {
+        "id": 10,
+        "first_name": "Abran",
+        "last_name": "Ochterlony",
+        "email": "aochterlony9@ucla.edu",
+        "password": "FduNSk9H",
+        "category": "user",
+        "avatar": "user_10.jpg"
+    },
+    {
+        "id": 11,
+        "first_name": "Delainey",
+        "last_name": "Cyples",
+        "email": "dcyplesa@bandcamp.com",
+        "password": "uSazLwvV2m",
+        "category": "user",
+        "avatar": "user_11.jpg"
+    },
+    {
+        "id": 12,
+        "first_name": "Edi",
+        "last_name": "Surman",
+        "email": "esurmanb@virginia.edu",
+        "password": "vxJJ9RMldQ",
+        "category": "user",
+        "avatar": "user_12.jpg"
+    },
+    {
+        "id": 13,
+        "first_name": "Violante",
+        "last_name": "Saggs",
+        "email": "vsaggsc@symantec.com",
+        "password": "Edz4L7nAvu",
+        "category": "user",
+        "avatar": "user_13.jpg"
+    },
+    {
+        "id": 14,
+        "first_name": "Merwin",
+        "last_name": "Brearton",
+        "email": "mbreartond@cornell.edu",
+        "password": "AuoMF4xfF",
+        "category": "user",
+        "avatar": "user_14.jpg"
+    },
+    {
+        "id": 15,
+        "first_name": "Horatio",
+        "last_name": "Giriardelli",
+        "email": "hgiriardellie@yandex.ru",
+        "password": "BpLKEnU9pZj",
+        "category": "user",
+        "avatar": "user_15.jpg"
+    },
+    {
+        "id": 16,
+        "first_name": "Juliet",
+        "last_name": "Rosettini",
+        "email": "jrosettinif@wp.com",
+        "password": "Y0NG5G",
+        "category": "user",
+        "avatar": "user_16.jpg"
+    },
+    {
+        "id": 17,
+        "first_name": "Edvard",
+        "last_name": "Drewitt",
+        "email": "edrewittg@indiegogo.com",
+        "password": "pBbiPXI2mG",
+        "category": "user",
+        "avatar": "user_17.jpg"
+    },
+    {
+        "id": 18,
+        "first_name": "Archer",
+        "last_name": "Swinnerton",
+        "email": "aswinnertonh@un.org",
+        "password": "yAZW4kaSLD1",
+        "category": "user",
+        "avatar": "user_18.jpg"
+    },
+    {
+        "id": 19,
+        "first_name": "Dina",
+        "last_name": "Noddles",
+        "email": "dnoddlesi@ca.gov",
+        "password": "9ryXHY",
+        "category": "user",
+        "avatar": "user_19.jpg"
+    },
+    {
+        "id": 20,
+        "first_name": "Barry",
+        "last_name": "Harlow",
+        "email": "bharlowj@npr.org",
+        "password": "skBlbOY",
+        "category": "user",
+        "avatar": "user_20.jpg"
+    }
+]

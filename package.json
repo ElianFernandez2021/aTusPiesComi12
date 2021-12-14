@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "multer": "^1.4.4",
+    "nodemon": "^2.0.15"
+  },
+  "name": "proyecto-integrador",
+  "description": "Esta página esta orientada a la venta de calzado para cualquier persona, se ofrecen productos con ofertas, descuentos con tarjetas y envios a todo el pais\r El equipo está conformado por 5 personas (Luciana Vanesa Lescano, Lucas Nahuel Gonza, Roberto Miranda, Bastian Fernandez, Diaz Facundo Ezequiel)\r ### Sitios de referencia:\r - [Dafiti](dafiti.com.ar \"dafiti.com.ar\") (estilo de menu).\r - [Dadoa](dadoa.com.ar \"dadoa\") (catalogo de ofertas).\r - [Sporting](sporting.com.ar \"Sporting\") (catalogo de preferencia por cliente).\r - [Montagne](montagne.com.ar \"Montagne\") (chat al soporte).\r - [Briganti](briganti.com.ar \"Briganti\") (ofertas por temporadas).\r - [Ferraro](Ferraro.com.ar \"Ferraro\") (menú traslúcido).\r - [Ringo](Ringo.com.ar \"Ringo\") (estilo de menú).",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElianFernandez2021/aTusPiesComi12.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ElianFernandez2021/aTusPiesComi12/issues"
+  },
+  "homepage": "https://github.com/ElianFernandez2021/aTusPiesComi12#readme"
+}

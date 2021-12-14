@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include ('./partials/head.ejs')%>
+<body>
+    <%- include ('./partials/header.ejs')%>
+    <!--    Product Cart    -->
+    <section class="category">
+        <article class="items"> 
+            <div class="image-position"> 
+                <img class="image" src="/images/productDetail/zapatillas-dakota-azul/zapatilla-dakota-azul1.jpg" alt="ZapaLed">
+                <a href="detail"><i class="fas fa-info-circle"></i></a>
+            </div>
+                <div class="items-descriptions">
+                    <div class="amount">
+                        <label for="cantidad">Cantidad</label>
+                        <input type="number"  id="cantidad" value=1 checked>
+                    </div>
+                    <div class="price">
+                        Precio  
+                        $<%- products.price%> 
+                    </div>
+                    <div class="subtotal">
+                        SubTotal $<%- products.price%>  
+                    </div>
+                    <div class="color">
+                        color <input class="color-text" type="text" name="color" value="Azul">
+                    </div>
+                    <div class="talle">
+                        talle
+                    </div>
+                </div>
+        </article>
+        <article class="items">  
+            <div class="image-position">
+                <img class="image" src="/images/productDetail/zapatillas-dakota-negro/zapatillas-dakota1.jpg" alt="Imagen">
+                <a href="detail"><i class="fas fa-info-circle"></i></a>
+            </div>
+            <div class="items-descriptions"> 
+                <div class="amount">
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number"  id="cantidad" value=1 checked>
+                </div>
+                <div class="price">
+                    Precio $200
+                </div>
+                <div class="subtotal">
+                    SubTotal $200
+                </div>
+                <div class="color">
+                    color <input class="color-text"type="text" name="azul" value="Negro">
+                </div>
+                <div class="talle">
+                    talle
+                </div>
+            </div>
+        </article>
+        <article class="items"> 
+            <div class="image-position">
+                <img class="image" src="/images/productDetail/zapatillas-dakota-blanca.jfif" alt="Imagen">
+                <a href="detail"><i class="fas fa-info-circle"></i></a>
+            </div>
+            <div class="items-descriptions"> 
+                <div class="amount">
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number"  id="cantidad" value=1 checked>
+                </div>
+                <div class="price">
+                    Precio $300
+                </div>
+                <div class="subtotal">
+                    SubTotal $300
+                </div>
+                <div class="color">
+                    color <input class="color-text"type="text" name="azul" value="Blanco">
+                </div>
+                <div class="talle">
+                    talle
+                </div> 
+            </div>
+        </article>
+    </section>
+    <p class="total">Total $600</p>
+    <nav class="last-option">
+        <ul>
+            <li><a href="detail">Volver</a></li>
+            <li><a class="continue">Continuar</a></li>
+        </ul>
+    </nav>
+    <!--    End Product Cart    -->
+
+    <!-- Productos en promocion -->
+    <!-- <section class="adversting">
+        <p>Probá estos super modelos de zapatillas</p>
+        <div class="product-ad">
+            <img src="/images/productCart/adidas_white.jpg" alt="">
+            <img src="/images/productCart/burguertilla.jpg" alt="">
+            <img src="/images/productCart/chon_fus.jpg" alt="">
+            <img src="/images/productCart/jojotillas.jpg" alt="">
+            <img src="/images/productCart/narutillas.jpg" alt="">
+            <img src="/images/productCart/nike_black.jpg" alt="">
+            <img src="/images/productCart/nike_blackRed.jpg" alt="">
+            <img src="/images/productCart/simpsontillas.jpg" alt="">
+            <img src="/images/productCart/vans_black.jpg" alt="">
+        </div>
+    </section> -->
+
+    <!--Seccion pago-->
+    <form class="pay" action="" method="post">
+        <div class="metodo-pago">
+            <label>
+                <h3> Seleccione metodo de pago</h3>
+                <h2>X</h2>
+            </label>
+            <section class="method">
+                <label for="debito"> Tarjeta de credito/debito<input type="radio" name="card-method"value="credito/debito" id="card"></label>
+            </section>
+            <section class="method">
+                <label for="efectivo">Efectivo<input type="radio" name="cash-method"value="Efectivo" id="cash"></label>
+            </section>
+            <section class="method">
+                <label for="escanear">QR <input type="radio" name="scan-method"value="Qr" id="scan"></label>
+            </section>        
+        </div>
+        <hr>
+        <section class="card-pay card">  <!--Tarjeta Debito/Credito-->
+            <h2>X</h2>
+            <label for="tarjeta">Numero: </label>
+            <input type="number" name="card" id="tarjeta" required>
+            <label for="code">Codigo de seguridad: </label>
+            <input type="password" name="code" id="code" required>
+            <label for="expire">Fecha de vencimiento: </label>
+            <input type="text" name="vto" id="expire" required>
+        </section>
+        <section class="cash-pay card">    <!--Efectivo-->
+            <h3>Seleccione la empresa mas cercana a realizar el pago: </h3>
+            <h2>X</h2>
+            <a href="">Pago Facil</a>
+            <a href="">Rapi Pago</a>
+            <a href="">Mercado Liebre</a>
+        </section>
+        <!--Completar con codigo de referencia para confirmar pago!-->
+        <section class="scan-pay card">  <!--Codigo QR-->
+            <h3>Por favor escanee el codigo QR para continuar el pago</h3>
+            <h2>X</h2>
+            <img src="" alt="Codigo QR">
+        </section>
+        <div class="boton">  
+            <button type="reset">Reinciar</button>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>     <!--End seccion de pago -->
+    <div class="banner">
+        <img src="/images/banners/Banner.jpg" alt="Banner  ">
+    </div>
+    <%- include ('./partials/footer.ejs')%>
+    <%- include ('./partials/scripts.ejs')%>
+</body>
+</html>

@@ -1,0 +1,203 @@
+@import url('./animation.css');
+/*  Mobile  */
+
+/*  Body    */
+*{
+    box-sizing: content-box;
+}
+body{
+    background: #fcf3e4;
+}
+
+/*  End Body    */
+
+/*  Category    */
+.category{ /*Agrego display flex a todo el cuerpo*/
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.category .items{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center    ;
+}
+.category .items .image-position{
+    display: flex;
+    align-items: center;
+}
+.category .items .image-position i{
+    position:relative;
+    bottom:-3rem;
+    right:-3px;
+    color: slateblue;
+    background-color:white;
+    border-radius:50px;
+}
+.category .items .image{
+    width: 140px;
+}
+.category .items .items-descriptions{
+    margin-left: 20px;
+}
+.category .items .items-descriptions .color-text,
+.category .items .items-descriptions #cantidad{
+    width: 50%;
+    padding:0;
+    font-size: 20px;
+}
+.category .amount #cantidad{
+    width:30px;
+}
+.total{
+    display:flex;
+    justify-content: center;
+    padding-top: 20px;
+    font-size: 23px;
+}
+/*  End Category*/
+
+/*  Last option*/
+
+.last-option ul{
+    display: flex;
+    justify-content: space-evenly;
+}
+.last-option ul {
+    list-style: none;
+    text-decoration: none;
+}
+.last-option ul li{
+    font-size: 20px;
+}
+.last-option ul li a{
+    text-decoration: none;
+    border:2.5px solid black;
+    border-radius: 16px;
+    color: black;
+    font-size: 20px;
+}
+.last-option ul li a:hover{
+    background: linear-gradient(90deg,#96894b,#bb7821);
+    transition: all 3s ease-out;
+}
+
+/* End Last option*/
+
+/*  Metodo de pago    */
+form input{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border: none;
+    border-radius:50px;
+}
+.continue{
+    cursor: pointer;
+}
+
+/* Modal // PopUp */
+form.pay{
+    position: fixed;
+    top: 7rem;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top:0;
+    left:0;
+}
+.pay .metodo-pago, .card{
+    border:solid 2px white;
+    height: 30%;
+    background-color: beige;
+    border-radius:20px;
+    position:relative;
+    animation-name: popUp;
+    animation-duration:1s;
+    animation-iteration-count: 1;
+
+}
+.pay .metodo-pago label{
+    display: flex;
+    justify-content: space-evenly;
+}
+.pay .card{
+    display: none;
+}
+.pay .card-pay,.cash-pay,.scan-pay{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    display: none;
+    animation-name: popUp;
+    animation-iteration-count: 1;
+    animation-duration: 1;
+}
+.boton{
+    display: none;
+    width:50%;
+    height:5%;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    border-radius:50px;
+    background-color: beige;
+}
+.method{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.banner{
+    display:none;
+}
+/*  End metodo de pago*/
+
+/*  Media queries   */
+
+    /*  Tablet  */
+    @media (min-width:768px){
+        .category{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .category .items{
+            width: 297px;
+            margin: 0px 5px 30px 0px;
+        }
+        .category .items .image{
+            width: 240px;
+            height: 200px;
+            margin-bottom: 15px;
+        }
+        .category .items .description{
+            font-size: 15px;
+            display: flex;
+        }
+        .adversting{
+            display:none;
+        }
+        .banner{
+            display:flex;
+            width:100%;
+        }
+        .banner img{
+            width:100%;
+        }
+    }
+
+    /*  Desktop */
+    @media(min-width:1024px){
+        .category .items .description{
+            font-size: 20px;
+        }
+    }

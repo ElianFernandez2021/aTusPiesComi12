@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+
+#boton-logueo input{
+    background-color: #8c8364;
+}
+
+.borde{
+    border-bottom: grey 0.1em solid;
+}
+.button-google{ /*detalles de boton google*/
+    background-color: #FF0000;
+}
+
+.button-face{ /*detalles de boton facebook*/
+    background-color: #3b5998;
+}
+
+
+/*******************CELULAR********************/
+@media (min-width:320px){
+    body{/*se coloca imágen en el fondo*/
+        background: url(../images/login/huella.jpg);
+        width: 100%;
+        margin-top: 3em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .tamaño-logo img{ /*tamaño y posicion del logo*/
+        width: 80%;
+        position: relative;
+        bottom: 30px;
+    }
+
+    .centrar-o {
+        position: relative;
+        left: 85px;
+        bottom: 20px;
+    }
+
+
+    .cuadro-form{ /*centra el contenido del form y pone color de fondo*/
+        width: 70%;
+        background-image: url('../images/login/huella.jpg');
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8%;
+        margin-top: 1rem;
+
+    }
+
+    .cuadro-form img{ /*asigna forma a imágen de logo que está en el formulario*/
+        width: 30%;
+        border-radius: 50%;
+    }
+    .cuadro-form h3{
+        text-align: center;
+        padding: 0.5em;
+    }
+
+    .cuadro-form div{ /*dirección de botones google y facebook, además asigna padding a todos los div del form*/
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        padding: 0.5em;
+    }
+    
+    .forma-tamaño{ /*brinda "tocabilidad" a los recuadros para escribir*/
+        padding: 0.5em;
+    } 
+
+
+    #boton-logueo input{
+        padding: 0.5em;
+    }
+
+    .orientar-p{
+        padding: 1em;
+    }
+
+}
+
+/********************TABLET********************/
+@media all and (min-width:768px){
+    body{/*se coloca imágen en el fondo*/
+        margin-top: 7em;
+    }
+    
+    .tamaño-logo img{ /*tamaño y posicion del logo*/
+        bottom: 60px;
+    }
+    .orientar-boton{
+        display:flex;
+        flex-direction: row;
+    }
+
+}
+    
+
+/*****************ESCRITORIO********************/
+@media all and (min-width:1024PX){
+    .tamaño-logo{
+        flex-direction: row;
+        justify-content: center;
+        margin-top:14rem;
+    }
+
+    .tamaño-logo img{ /*tamaño y posicion del logo*/
+        top: 5px;
+        right: 20px;
+    }
+
+}
