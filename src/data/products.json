@@ -1,0 +1,361 @@
+[{
+    "id": 1,
+    "name": "Zapatillas Allstar Blancas",
+    "price": "8000",
+    "discount": "10",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "1",
+    "color": "Blanco",
+    "size": "42",
+    "subcategory": "deportivas",
+    "image": ["ZapatillasBlancas1.jpg"]
+},{
+    "id": 2,
+    "name": "zapatillas casuales marrones",
+    "price": "6000",
+    "discount": "",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "3",
+    "color": "Marrón",
+    "size": "36",
+    "subcategory": "casual",
+    "image": ["ZapatillasMarrones2.jpg"]
+
+},{
+    "id": 3,
+    "name": "Zapatilla casual Naranja",
+    "price": "10000",
+    "discount": "5",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "3",
+    "color": "Naranja",
+    "size": "42",
+    "subcategory": "casual",
+    "image": ["ZapatillasNaranjas3.jpg"]
+
+},{
+    "id": 4,
+    "name": "Zapatilla deportiva",
+    "price": "9000",
+    "discount": "",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "1",
+    "color": "Verde",
+    "size": "38",
+    "subcategory": "deportivas",
+    "image": ["ZapatillasVerdes4.jpg"]
+
+},{
+    "id": 5,
+    "name": "Zapatillas casuales camufladas",
+    "price": "8000",
+    "discount": "15",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "3",
+    "color": "verde",
+    "size": "36",
+    "subcategory": "casual",
+    "image": ["ZapasCamufladas5.jpg"]
+
+},{
+    "id": 6,
+    "name": "Botas marrones",
+    "price": "7500",
+    "discount": "10",
+    "description":"La mejores botas con suela ergonomica",
+    "category": "4",
+    "color": "marrón",
+    "size": "42",
+    "subcategory": "botas",
+    "image": ["BotasMarrones6.jpg"]
+
+},{
+    "id": 7,
+    "name": "Zapatillas camufladas",
+    "price": "6500",
+    "discount": "10",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "3",
+    "color": "verde",
+    "size": "42",
+    "subcategory": "casual",
+    "image": ["ZapasCamufladas7.jpg"]
+
+},{
+    "id": 8,
+    "name": "Zapatillas camufladas",
+    "price": "8600",
+    "discount": "",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "1",
+    "color": "bancas",
+    "size": "36",
+    "subcategory": "deportivas",
+    "image": ["ZapasCamufladas8.jpg"]
+
+},{
+    "id": 9,
+    "name": "Zapatillas AllStar",
+    "price": "12500",
+    "discount": "10",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "3",
+    "color": "negro",
+    "size": "37",
+    "subcategory": "casual",
+    "image": ["ZapasAllStar9.jpg"]
+
+},{
+    "id": 10,
+    "name": "Zapatillas casuales Allstar",
+    "price": "5500",
+    "discount": "10",
+    "description":"La mejores zapatillas con suela ergonomica",
+    "category": "3",
+    "color": "negro",
+    "size": "37",
+    "subcategory": "casual",
+    "image": ["ZapatillasAllStar10.jpg"]
+
+},{
+    "id": 11,
+    "name": "Zapatos chocolate",
+    "price": "6000",
+    "discount": "12",
+    "description":"La mejores zapatos con suela ergonomica",
+    "category": "2",
+    "color": "chocolate",
+    "size": "36",
+    "subcategory": "elegante",
+    "image": ["ZapatosChocolate11.jpg"]
+
+},{
+    "id": 12,
+    "name": "Zapatos ingleses",
+    "price": "8900",
+    "discount": "",
+    "description":"Los mejores zapatos con suela ergonomica",
+    "category": "3",
+    "color": "marrón",
+    "size": "40",
+    "subcategory": "elegante",
+    "image": ["ZapatosIngleses12.jpg"]
+
+},{
+    "id": 13,
+    "name": "Zapatos negros",
+    "price": "7540",
+    "discount": "",
+    "description":"Los mejores zapatos con zuela ergonomica",
+    "category": "2",
+    "color": "negro",
+    "size": "39",
+    "subcategory": "elegante",
+    "image": ["zapatosNegros13.jpg"]
+
+},{
+    "id": 14,
+    "name": "Botas negras, la mejor calidad",
+    "price": "14600",
+    "discount": "",
+    "description":"La mejores botas con suela ergonomica",
+    "category": "4",
+    "color": "negro",
+    "size": "35",
+    "subcategory": "botas",
+    "image": ["BotasNegras14.jpg"]
+
+},{
+    "id": 15,
+    "name": "Botas grises, de la mejor calidad",
+    "price": "200",
+    "discount": "10",
+    "description":"La mejores botas con suela ergonomica",
+    "category": "4",
+    "color": "gris",
+    "size": "42",
+    "subcategory": "botas",
+    "image": ["ZapatosGrises15.jpg"]
+
+},
+{
+    "id": 16,
+    "name": "Bota Camel Vizzano",
+    "price": 3400,
+    "discount": 10,
+    "description": "Bota caña media, semi plataforma",
+    "category": "4",
+    "color": "Camel",
+    "size": 37,
+    "subcategory": "botas",
+    "image": ["16-camel.jpg"]
+}, 
+{
+    "id": 17,
+    "name": "Bota Euro Disonfort",
+    "price": 5200,
+    "discount": 15,
+    "description": "Bucanera, taco medio",
+    "category": "4",
+    "color": "Rosa",
+    "size": 40,
+    "subcategory": "botas",
+    "image": ["17-rosa.jpg"]
+}, 
+{
+    "id": 18,
+    "name": "Botineta Punk",
+    "price": 2100,
+    "discount": 5,
+    "description": "Botineta caña baja, con plataformas intermedias",
+    "category": "4",
+    "color": "Negro",
+    "size": 36,
+    "subcategory": "botas",
+    "image": ["18-negro.jpg"]
+
+}, 
+{  
+    "id": 19,
+    "name": "Bota Prûne",
+    "price": 4700,
+    "discount": 10,
+    "description": "Bota en punta caña baja, taco alto",
+    "category": "4",
+    "color": "Rojo",
+    "size": 39,
+    "subcategory": "botas",
+    "image": ["19-rojo.jpg"]
+}, 
+{
+    "id": 20,
+    "name": "Pancha Torppe",
+    "price": 1400,
+    "discount": 10,
+    "description": "Zapatilla tipo panchas, cómodas",
+    "category": "3",
+    "color": "Rosa pastel",
+    "size": 38,
+    "subcategory": "casual",
+    "image": ["20-rosaPastel.jpg"]
+}, {
+    "id": 21,
+    "name": "Zapatilla Supergas",
+    "price": 2500,
+    "discount": 20,
+    "description": "Zapatilla con diseño retro",
+    "category": "3",
+    "color": "Rosa Chicle",
+    "size": 39,
+    "subcategory": "casual",
+    "image": ["21-rosaChicle.jpg"]
+}, 
+{
+    "id": 22,
+    "name": "Zapatilla Sakany",
+    "price": 3100,
+    "discount": 5,
+    "description": "Zapatillas botitas, con hebilla",
+    "category": "3",
+    "color": "Blanco",
+    "size": 37,
+    "subcategory": "casual",
+    "image": ["22-blanco.jpg"]
+}, 
+{   
+    "id": 23,
+    "name": "Zapatos Briyanti",
+    "price": 8300,
+    "discount": 15,
+    "description": "Zapatos de tacón x 15cm de alto, cerrados",
+    "category": "2",
+    "color": "Rojo",
+    "size": 36,
+    "subcategory": "elegante",
+    "image": ["23-rojo.jpg"]
+}, 
+{
+    "id": 24,
+    "name": "Zapatos Saverio Di Ricki",
+    "price": 17000,
+    "discount": 10,
+    "description": "Zapatos de tacón x 10 cm de alto, con hebilla y delicado detalle de strass en talón",
+    "category": "2",
+    "color": "Blanco",
+    "size": 38,
+    "subcategory": "elegante",
+    "image": ["24-blanco.jpg"]
+}, 
+{
+    "id": 25,
+    "name": "Zapatos Roger Vivir",
+    "price": 9300,
+    "discount": 10,
+    "description": "zapatos semi cerrados, con hebilla y tacón de 15cm de alto combinado en negro",
+    "category": "2",
+    "color": "Azul",
+    "size": 38,
+    "subcategory": "elegante",
+    "image": ["25-azul.jpg"]
+}, 
+{
+    "id": 26,
+    "name": "Zapatos Parda",
+    "price": 16200,
+    "discount": 5,
+    "description": "Zapatos en punta de gamuza, con delicado diseño bordado y con strass",
+    "category": "2",
+    "color": "Negro",
+    "size": "37",
+    "subcategory": "elegante",
+    "image": ["26-negro.jpg"]
+}, 
+{
+    "id": 27,
+    "name": "Zapatillas Milley",
+    "price": 9700,
+    "discount": 15,
+    "description": "Zapatillas tipo bota hechas exclusivamente para trekking",
+    "category": "1",
+    "color": "Verde",
+    "size": 38,
+    "subcategory": "deportivas", 
+    "image": ["27-verde.jpg"]
+}, 
+{
+    "id": 28,
+    "name": "Zapatillas Ardidas",
+    "price": 16100,
+    "discount": 10,
+    "description": "Zapatillas exclusivas para Basket, diseño cómodo y adaptable a distintos suelos",
+    "category": "1",
+    "color": "Negro",
+    "size": 39,
+    "subcategory": "deportivas", 
+    "image": ["28-negro.jpg"]
+}, 
+{
+    "id": 29,
+    "name": "Zapatillas Ardidas",
+    "price": 9900,
+    "discount": 5,
+    "description": "Zapatillas de Futbol 5, buen calce y adaptabilidad a diferentes tipos de suelo",
+    "category": "1",
+    "color": "Blanco",
+    "size": 37,
+    "subcategory": "deportivas",
+    "image": ["29-blanco.jpg"]
+}, 
+{
+    "id": 30,
+    "name": "Zapatillas Nice",
+    "price": 17000,
+    "discount": 10,
+    "description": "Zapatillas ideales para Running, tela flexible y suelas con buen retorno de energía",
+    "category": "1",
+    "color": "Blanco",
+    "size": 39,
+    "subcategory": "deportivas",
+    "image": ["30-blanco.jpg"]
+}
+]
