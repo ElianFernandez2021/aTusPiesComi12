@@ -63,22 +63,27 @@
     <table>
         <tr>
             <td>
-                <form autocomplete="off" onsubmit="onFormSubmit()">
+                <form action="/admin/products/<%= products.id%>/edit" autocomplete="off" onsubmit="onFormSubmit()">
+                
                     <div>
                         <label for="productCode">Código</label>
-                        <input type="text" name="productCode" id="productCode">
+                        <input type="text" name="productCode" id="productCode" value="<%= products.id %>">
+                        <small class="text-danger">Ingresa un codigo</small>
                     </div>
                     <div>
                         <label for="product">Nombre</label>
-                        <input type="text" name="product" id="product">
+                        <input type="text" name="product" id="product" value="<%= products.name %> ">
+                        <small class="text-danger">Ingresa un nombre</small>
                     </div>
                     <div>
                         <label for="qty">Cantidad</label>
-                        <input type="number" name="qty" id="qty">
+                        <input type="number" name="qty" id="qty" value="<%= products.amount %> ">
+                        <small class="text-danger">Ingresa una cantidad</small>
                     </div>
                     <div>
                         <label for="perPrice">Precio</label>
-                        <input type="number" name="perPrice" id="perPrice">
+                        <input type="number" name="perPrice" id="perPrice" value="<%= products.price %> ">
+                        <small class="text-danger">Ingresa un precio</small>
                     </div>
 
                     <div class="form_action--button">
