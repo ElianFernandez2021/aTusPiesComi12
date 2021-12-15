@@ -1,9 +1,20 @@
 const fs = require('fs');
-const {products,writeProductsJson} = require('../data/database')
+const {products,writeProductsJson, categories} = require('../data/database')
 const {id,price,category,talle,color,image} = require('../data/products')
 let controller= {
     create:(req,res) => {
         res.render("admin/productCreate")
+    },
+    adminCategory:(req,res) => {
+        res.render('admin/adminCategory')
+    },
+    adminSelectionCategory:(req,res) => {
+        let categoryId = +req.params.category
+        let categorySelection = products.filter(category => category.category === categoryId)
+        res.send(categorySelection)
+        res.render('admin/adminProduct',{
+            categorySelection
+        })
     },
     store: (req,res) => {
         let lastId = 1;
@@ -23,7 +34,7 @@ let controller= {
         }
         products.push(newZapa);
         writeProductsJson(products);
-        res.redirect('/admin/productCreate')
+        res.redirect('/admin/product/create')
     },
     edit: (req,res) => {
         let editId = +req.params.id,
@@ -51,8 +62,8 @@ let controller= {
         let zapaId = +req.params.id;
         products.forEach( zapa => {
             if(zapa.id === zapaId){
-                if(fs.existsSync('../public/images/productos/',zapa.image[0])){
-                    fs.unlinkSync(`../public/images/productos/${zapa.image[0]}`)
+                if(fs.existsSync('../public/images/products/',zapa.image[0])){
+                    fs.unlinkSync(`../public/images/products/${zapa.image[0]}`)
                 }
                 else{
                     console.log("Archivo no encontrado")

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/adminHead')  %> 
+<body>
+    <%- include('../partials/adminHeader')  %> 
+    <h2>Categoria: <%- categorySelection.subcategory %> </h2>
+    <div class="categories">
+        <% categorySelection.forEach(product => { %>
+         <div class="products">
+            <p>Nombre: <%- product.name%> </p>
+            <img src="<%- product.image%> " alt="<%- product.id%> ">
+            <p>Descripcion: <%- product.description%> </p>
+            <p>Talle: <%- product.talle%> </p>
+            <p>Color: <%- product.color%> </p>
+            <p>Precio: <%- product.price%> </p>
+        </div>
+        <% }) %>
+    </div>
+</body>
+</html>

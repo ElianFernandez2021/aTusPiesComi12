@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-<%- include ('partials/head') %> 
+    <%- include('../partials/adminHead') %> 
+<title>Categorias</title>
 <body>
-    <%- include ('partials/header') %>
-    <h2>Nuestros productos</h2>
+    <%- include('../partials/adminHeader')%>
+    <h2>Seleccione una categoria</h2>
     <nav class="categories">
         <div class="calzado">
             <a href="/products/category/1"><img src="/images/products/zapatillas/zapatillas-nike-2020-.jpg" alt=""></a>
@@ -18,8 +19,5 @@
             <a href="/products/category/4"><img src="/images/products/botas/BotasMarrones6.jpg" alt=""></a>
         </div>
     </nav>
-    <%- include ('partials/footer') %>
-    <%- include ('partials/scripts') %>
-
 </body>
 </html>

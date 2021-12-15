@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/css/productCreate.css">
     <link rel="stylesheet" href="../public/css/productTable.css">
-    <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <title>Editar Producto</title>
 </head>
+<title>Editar Producto</title>
 
 <body>
     
@@ -63,31 +63,31 @@
     <table>
         <tr>
             <td>
-                <form action="/admin/products/<%= products.id%>/edit" autocomplete="off" onsubmit="onFormSubmit()">
+                <form action="/admin/product/edit/<%= edit.id%>" autocomplete="off" onsubmit="onFormSubmit()">
                 
                     <div>
                         <label for="productCode">Código</label>
-                        <input type="text" name="productCode" id="productCode" value="<%= products.id %>">
+                        <input type="text" name="productCode" id="productCode" value="<%= edit.id %>">
                         <small class="text-danger">Ingresa un codigo</small>
                     </div>
                     <div>
                         <label for="product">Nombre</label>
-                        <input type="text" name="product" id="product" value="<%= products.name %> ">
+                        <input type="text" name="product" id="product" value="<%= edit.name %> ">
                         <small class="text-danger">Ingresa un nombre</small>
                     </div>
                     <div>
                         <label for="qty">Cantidad</label>
-                        <input type="number" name="qty" id="qty" value="<%= products.amount %> ">
+                        <input type="number" name="qty" id="qty" value="<%= edit.amount %> ">
                         <small class="text-danger">Ingresa una cantidad</small>
                     </div>
                     <div>
                         <label for="perPrice">Precio</label>
-                        <input type="number" name="perPrice" id="perPrice" value="<%= products.price %> ">
+                        <input type="number" name="perPrice" id="perPrice" value="<%= edit.price %> ">
                         <small class="text-danger">Ingresa un precio</small>
                     </div>
 
                     <div class="form_action--button">
-                        <input type="submit" value="Enviar">
+                        <input type="submit" value="Editar">
                         <input type="reset" value="Reiniciar">
                     </div>
                 </form>

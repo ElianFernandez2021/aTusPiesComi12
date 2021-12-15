@@ -1,39 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/css/productCreate.css">
-    <link rel="stylesheet" href="../public/css/productTable.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <title>Crear Producto</title>
-</head>
-
+    <%- include('partials/adminHead')  %> 
+    <title>Agregar producto</title>
 <body>
-
-
     <!-- navbar -->
-        <!-- <div class="toggle" onclick="toggleMenu()"></div> -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<div class="topnav" id="myTopnav">
-  <a href="#inicio" class="active">Inicio</a>
-  <a href="#perfil">Perfil</a>
-  <a href="#configuraciones">Configuraciones</a>
-  <a href="productCreate">Crear Productos</a>
-  <a href="productEdit">Editar Productos</a>
-  <a href="#salir">Salir</a>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
-      <!-- fin navbar -->
-
-
-
-
+    <!-- <div class="toggle" onclick="toggleMenu()"></div> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- fin navbar -->
+    <%- include('partilas/adminHeader')%> 
     <!-- <div class="navigation">
         <ul>
             <li>
@@ -67,18 +41,18 @@
     <table>
         <tr>
             <td>
-                <form action="data/products" autocomplete="off" onsubmit="onFormSubmit()" enctype="multipart/form-data">
+                <form action="/admin/product" autocomplete="off" method="POST" enctype="multipart/form-data">
                     <div>
                         <label for="productCode">Código</label>
                         <input type="text" name="productCode" id="productCode">
                     </div>
                     <div>
                         <label for="product">Nombre</label>
-                        <input type="text" name="product" id="product">
+                        <input type="text" name="name" id="product">
                     </div>
                     <div>
                         <label for="qty">Cantidad</label>
-                        <input type="number" name="qty" id="qty">
+                        <input type="number" name="quantity" id="qty">
                     </div>
                     <div>
                         <label for="perPrice">Precio</label>

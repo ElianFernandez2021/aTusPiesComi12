@@ -1,4 +1,4 @@
-const {products}= require('../data/database')
+const {products,categories}= require('../data/database')
 let controller={
     product: (req,res) => {
         res.render('products')
@@ -17,8 +17,9 @@ let controller={
     },
     category: (req,res) => {
         let categoryId = +req.params.id,
-            filtrado = products.filter(product => product.categoria === categoryId)
-            res.send(filtrado)
+            subcategory =  categories.find(category => category.id === categoryId),
+            filtrado = products.filter(product => product.categoria === categoryId )
+            res.send(filtrado,subcategory)
     }
 }
 
