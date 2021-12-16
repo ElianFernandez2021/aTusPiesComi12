@@ -9,6 +9,6 @@ module.exports = {
         fs.writeFileSync(path.join(__dirname, "../data/products.json"),JSON.stringify(database),"utf-8")
      },
     writeUserJson: (database) => { 
-        fs.writeFileSync(path.join(__dirname, '../data//users.json'),JSON.stringify(database),"utf-8")
+        fs.writeFileSync(path.join(__dirname, '../data/users.json'),JSON.stringify(database),"utf-8")
      }
 }

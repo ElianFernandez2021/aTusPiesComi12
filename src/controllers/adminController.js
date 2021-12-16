@@ -1,6 +1,5 @@
 const fs = require('fs');
 const {products,writeProductsJson, categories} = require('../data/database')
-const {id,price,category,talle,color,image} = require('../data/products')
 let controller= {
     create:(req,res) => {
         res.render("admin/productCreate")
@@ -10,10 +9,11 @@ let controller= {
     },
     adminSelectionCategory:(req,res) => {
         let categoryId = +req.params.category
-        let categorySelection = products.filter(category => category.category === categoryId)
-        res.send(categorySelection)
+        let categorySelection = products.filter(category => +category.category === categoryId)
+        let subcategory = categories.filter(product => product.name === categorySelection.subcategory)
         res.render('admin/adminProduct',{
-            categorySelection
+            categorySelection,
+            subcategory
         })
     },
     store: (req,res) => {
@@ -28,7 +28,7 @@ let controller= {
             name: req.body.name,
             price: req.body.price,
             category: req.body.category,
-            talle: req.body.talle,
+            size: req.body.size,
             color: req.body.color,
             image: req.file ? [req.file.filename] : ["default-image.jpg"]
         }
@@ -49,21 +49,51 @@ let controller= {
         const {name,price,amount} = req.body
         products.forEach(zapaEdit => {
             if(zapaEdit.id === zapaUptdate){
-                zapaEdit.id = zapaEdit.id,
                 zapaEdit.name = name.trim(),
                 zapaEdit.price = +price.trim(),
-                zapaEdit.amount = +amount.trim()
+                zapaEdit.size = +size.trim(),
+                zapaEdit.description = description.trim(),
+                zapaEdit.color = color.trim()
+                if(req.file){
+                    if(fs.existsSync("../public/images/products/botas",prodcuts.image)){
+                        fs.unlinkSync(`../public/images/products/botas ${products.image}`)
+                    }
+                    else if(fs.existsSync("../public/images/products/casual",prodcuts.image)){
+                        fs.unlinkSync(`../public/images/products/casual ${products.image}`)
+                    }
+                    else if(fs.existsSync("../public/images/products/elegante",prodcuts.image)){
+                        fs.unlinkSync(`../public/images/products/elegante ${products.image}`)
+                    }
+                    else if(fs.existsSync("../public/images/products/zapatillas",prodcuts.image)){
+                        fs.unlinkSync(`../public/images/products/zapatillas ${products.image}`)
+                    }
+                    else{
+                        console.log("No se encontró el archivo")
+                    }
+                }
+                else{
+                    products.image=products.image;
+                }
             }
         })
         writeProductsJson(products)
-        res.redirect('admin/productEdit')
+        res.redirect('/')
     },
     fatality:(req,res) => {
         let zapaId = +req.params.id;
         products.forEach( zapa => {
             if(zapa.id === zapaId){
-                if(fs.existsSync('../public/images/products/',zapa.image[0])){
-                    fs.unlinkSync(`../public/images/products/${zapa.image[0]}`)
+                if(fs.existsSync("../public/images/products/botas",prodcuts.image)){
+                    fs.unlinkSync(`../public/images/products/botas ${products.image}`)
+                }
+                else if(fs.existsSync("../public/images/products/casual",prodcuts.image)){
+                    fs.unlinkSync(`../public/images/products/casual ${products.image}`)
+                }
+                else if(fs.existsSync("../public/images/products/elegante",prodcuts.image)){
+                    fs.unlinkSync(`../public/images/products/elegante ${products.image}`)
+                }
+                else if(fs.existsSync("../public/images/products/zapatillas",prodcuts.image)){
+                    fs.unlinkSync(`../public/images/products/zapatillas ${products.image}`)
                 }
                 else{
                     console.log("Archivo no encontrado")

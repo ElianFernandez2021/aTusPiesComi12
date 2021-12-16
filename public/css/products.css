@@ -1,6 +1,3 @@
-.categories{
-    display:flex;
-}
 .categories a img{
     width:100%;
     object-fit: cover;

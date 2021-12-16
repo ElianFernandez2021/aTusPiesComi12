@@ -38,7 +38,7 @@ li{
 
     /*********HEADER*********/
 
-    img{ /*controla que no desborde la imágen del logo*/
+    img.redondo { /*controla que no desborde la imágen del logo*/
         width: 15%;
         margin-top: 1em;
     }

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-    <%- include('partials/adminHead')  %> 
+    <%- include('../partials/adminHead')  %> 
     <title>Agregar producto</title>
 <body>
     <!-- navbar -->
     <!-- <div class="toggle" onclick="toggleMenu()"></div> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- fin navbar -->
-    <%- include('partilas/adminHeader')%> 
+    <%- include('../partials/adminHeader')%> 
     <!-- <div class="navigation">
         <ul>
             <li>
@@ -42,21 +42,30 @@
         <tr>
             <td>
                 <form action="/admin/product" autocomplete="off" method="POST" enctype="multipart/form-data">
-                    <div>
-                        <label for="productCode">Código</label>
-                        <input type="text" name="productCode" id="productCode">
-                    </div>
+                    
                     <div>
                         <label for="product">Nombre</label>
                         <input type="text" name="name" id="product">
                     </div>
                     <div>
-                        <label for="qty">Cantidad</label>
-                        <input type="number" name="quantity" id="qty">
+                        <label for="size">Talle</label>
+                        <input type="text" name="size" id="size">
                     </div>
                     <div>
                         <label for="perPrice">Precio</label>
-                        <input type="number" name="perPrice" id="perPrice">
+                        <input type="number" name="price" id="perPrice">
+                    </div>
+                    <div>
+                        <label for="description">Descripcion</label>
+                        <input type="range" name="description" id="description">
+                    </div>
+                    <div>
+                        <label for="discount">Color</label>
+                        <input type="number" name="discount" id="discount">
+                    </div>
+                    <div>
+                        <label for="discount">Descuento</label>
+                        <input type="number" name="discount" id="discount">
                     </div>
                     <div>
                         <label for="image">Imagen</label>

@@ -1,0 +1,11 @@
+.categories-product .products{
+    display:flex;
+}
+.categories-product .products .product-image{
+    width:20%;
+}
+
+/* ADMIN PRODUCTS */
+.categories .calzado{
+    display:flex;
+}

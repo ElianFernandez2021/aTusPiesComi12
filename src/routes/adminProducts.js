@@ -4,7 +4,8 @@ let controller=require('../controllers/adminController')
 let upload = require('../middlewares/uploadProductFile')
 
 /* Get - Product */
-router.get('/products/:id?',controller.adminCategory)
+router.get('/product',controller.adminCategory)
+router.get('/product/category/:id',controller.adminSelectionCategory)
 /* product create */
 router.get('/product/create',controller.create) //Renderisa la vista de carga de producto
 router.post('/product', upload.single('image'), controller.store)//Guarda la informacion que almacena en la base de datos(json)

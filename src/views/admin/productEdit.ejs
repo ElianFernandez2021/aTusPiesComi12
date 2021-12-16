@@ -30,7 +30,7 @@
 
 
 
-    <div class="navigation">
+    <!-- <div class="navigation">
         <ul>
             <li>
                 <a href="#">
@@ -57,33 +57,37 @@
                 </a>
             </li>
         </ul>
-    </div>
+    </div> -->
 
     <!-- Editor creador de productos -->
     <table>
         <tr>
             <td>
-                <form action="/admin/product/edit/<%= edit.id%>" autocomplete="off" onsubmit="onFormSubmit()">
+                <form action="/admin/product/<%= edit.id%>?_method=PUT" method="POST" autocomplete="off" >
                 
                     <div>
-                        <label for="productCode">Código</label>
-                        <input type="text" name="productCode" id="productCode" value="<%= edit.id %>">
-                        <small class="text-danger">Ingresa un codigo</small>
-                    </div>
-                    <div>
                         <label for="product">Nombre</label>
-                        <input type="text" name="product" id="product" value="<%= edit.name %> ">
-                        <small class="text-danger">Ingresa un nombre</small>
+                        <input type="text" name="name" id="product" value="<%= edit.name  %> ">
                     </div>
                     <div>
-                        <label for="qty">Cantidad</label>
-                        <input type="number" name="qty" id="qty" value="<%= edit.amount %> ">
-                        <small class="text-danger">Ingresa una cantidad</small>
+                        <label for="size">Talle</label>
+                        <input type="text" name="size" id="size" value="<%= edit.size  %> ">
                     </div>
                     <div>
                         <label for="perPrice">Precio</label>
-                        <input type="number" name="perPrice" id="perPrice" value="<%= edit.price %> ">
-                        <small class="text-danger">Ingresa un precio</small>
+                        <input type="text" name="price" id="perPrice" value="<%= edit.price  %> ">
+                    </div>
+                    <div>
+                        <label for="description">Descripcion</label>
+                        <input type="text" name="description" id="description" value="<%= edit.description  %> ">
+                    </div>
+                    <div>
+                        <label for="discount">Color</label>
+                        <input type="text" name="discount" id="discount" value="<%= edit.color  %> ">
+                    </div>
+                    <div>
+                        <label for="image">Imagen</label>
+                        <input type="file" name="image" id="image" multiple value="<%= edit.image  %> ">
                     </div>
 
                     <div class="form_action--button">
@@ -96,10 +100,7 @@
                     <table class="list" id="storeList">
                         <thead>
                             <tr>
-                                <th>Código</th>
-                                <th>Nombre</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
+                                <%= edit.image%> 
                             </tr>
                         </thead>
                         <tbody>
