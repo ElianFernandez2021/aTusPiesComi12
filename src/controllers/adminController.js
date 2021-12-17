@@ -8,7 +8,7 @@ let controller= {
         res.render('admin/adminCategory')
     },
     adminSelectionCategory:(req,res) => {
-        let categoryId = +req.params.category
+        let categoryId = +req.params.id
         let categorySelection = products.filter(category => +category.category === categoryId)
         let subcategory = categories.filter(product => product.name === categorySelection.subcategory)
         res.render('admin/adminProduct',{
@@ -83,24 +83,24 @@ let controller= {
         let zapaId = +req.params.id;
         products.forEach( zapa => {
             if(zapa.id === zapaId){
-                if(fs.existsSync("../public/images/products/botas",prodcuts.image)){
+                if(fs.existsSync("../public/images/products/botas",products.image)){
                     fs.unlinkSync(`../public/images/products/botas ${products.image}`)
                 }
-                else if(fs.existsSync("../public/images/products/casual",prodcuts.image)){
+                else if(fs.existsSync("../public/images/products/casual",products.image)){
                     fs.unlinkSync(`../public/images/products/casual ${products.image}`)
                 }
-                else if(fs.existsSync("../public/images/products/elegante",prodcuts.image)){
+                else if(fs.existsSync("../public/images/products/elegante",products.image)){
                     fs.unlinkSync(`../public/images/products/elegante ${products.image}`)
                 }
-                else if(fs.existsSync("../public/images/products/zapatillas",prodcuts.image)){
+                else if(fs.existsSync("../public/images/products/zapatillas",products.image)){
                     fs.unlinkSync(`../public/images/products/zapatillas ${products.image}`)
                 }
                 else{
                     console.log("Archivo no encontrado")
                 }
-                let zapaToEliminate = zapa.indexOf(zapa)
+                let zapaToEliminate = products.indexOf(zapa)
                 if(zapaToEliminate !== -1){
-                    zapa.splice(zapaToEliminate,1)
+                    products.splice(zapaToEliminate,1)
                 }
                 else{
                     console.log("No se encontro la zapatilla")
@@ -108,7 +108,7 @@ let controller= {
             }
         })
         writeProductsJson(products);
-        res.redirect('/index');
+        res.redirect('/admin/products/category/'+zapaId);
     }
 }
 

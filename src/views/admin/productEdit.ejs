@@ -63,7 +63,7 @@
     <table>
         <tr>
             <td>
-                <form action="/admin/product/<%= edit.id%>?_method=PUT" method="POST" autocomplete="off" >
+                <form action="/admin/products/<%= edit.id%>?_method=PUT" method="POST" autocomplete="off" >
                 
                     <div>
                         <label for="product">Nombre</label>
@@ -95,12 +95,15 @@
                         <input type="reset" value="Reiniciar">
                     </div>
                 </form>
+                <form action="/admin/products/category/<%- edit.id%>?_method=delete" method="post">
+                    <button type="submit">Eliminar <i class="far fa-trash-alt"></i></button>
+                </form>
 
                 <td>
                     <table class="list" id="storeList">
                         <thead>
                             <tr>
-                                <%= edit.image%> 
+                                <i><%= edit.image%></i>
                             </tr>
                         </thead>
                         <tbody>

@@ -13,9 +13,8 @@
             <p>Talle: <%- product.size%> </p>
             <p>Color: <%- product.color%> </p>
             <p>Precio: <%- product.price%> </p>
-            <form action="" method="get">
+            <form action="/admin/products/edit/<%- product.id%> " method="get">
                 <button type="submit">Editar <i class="fas fa-edit"></i></button>
-                <button type="submit">Eliminar <i class="far fa-trash-alt"></i></button>
             </form>
         </div>
         <% }) %>

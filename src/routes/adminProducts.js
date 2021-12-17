@@ -14,6 +14,6 @@ router.get('/products/edit/:id?',controller.edit)//Renderisa la vista de edicion
 router.put('/products/:id',upload.single('image'),controller.update)//Guarda la informacion de un parametro obligatorio y actualiza la base de datos
 
 /* product remove */
-router.delete('/products/:id',controller.fatality)
+router.delete('/products/category/:id',controller.fatality)
 
 module.exports = router
