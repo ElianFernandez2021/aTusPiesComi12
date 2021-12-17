@@ -1,11 +1,46 @@
-.categories-product .products{
+.categories-product{
+    display:flex;
+    flex-direction: column;
+}
+.categories-product .calzado{
     display:flex;
 }
-.categories-product .products .product-image{
-    width:20%;
+.categories-product .calzado img{
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
 }
 
+/* Category id */
+.categories-product .products{
+    border:2px solid black;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+    margin-bottom: 4px;
+}
+.categories-product .products img{
+    object-fit: contain;
+    width: 50%;
+    height: 100%;
+}
 /* ADMIN PRODUCTS */
 .categories .calzado{
     display:flex;
+}
+
+@media(min-width:768px){
+    .categories-product{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .categories-product .products{
+        width: 30%;
+        height: 50%;
+    }
+    .categories-product .calzado img{
+        object-fit: cover;
+        width: 60%;
+        height: 80%;
+    }
 }
