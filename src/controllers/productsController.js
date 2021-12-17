@@ -11,8 +11,9 @@ let controller={
         })
     },
     cart:(req,res)=>{
+        let carrito = products.filter(product => product.name)
         res.render('productCart',{
-            products
+            carrito
         })
     },
     category: (req,res) => {

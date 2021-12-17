@@ -4,6 +4,7 @@ let controller=require('../controllers/productsController')
 
 /* GET - Products */
 router.get('/', controller.product)
+router.get('/products/category/:id', controller.cart)
 
 /* GET - Categories */
 router.get('/category/:id',controller.category)

@@ -34,7 +34,7 @@ let controller= {
         }
         products.push(newZapa);
         writeProductsJson(products);
-        res.redirect('/admin/product/create')
+        res.redirect('/admin/products/create')
     },
     edit: (req,res) => {
         let editId = +req.params.id,
@@ -46,14 +46,14 @@ let controller= {
     },
     update: (req,res)=>{
         let zapaUptdate = +req.params.id;
-        const {name,price,amount} = req.body
+        const {name,price,size,description,color} = req.body
         products.forEach(zapaEdit => {
             if(zapaEdit.id === zapaUptdate){
                 zapaEdit.name = name.trim(),
                 zapaEdit.price = +price.trim(),
                 zapaEdit.size = +size.trim(),
                 zapaEdit.description = description.trim(),
-                zapaEdit.color = color.trim()
+                zapaEdit.color = color
                 if(req.file){
                     if(fs.existsSync("../public/images/products/botas",prodcuts.image)){
                         fs.unlinkSync(`../public/images/products/botas ${products.image}`)

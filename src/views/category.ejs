@@ -13,7 +13,9 @@
             <p>Talle: <%- product.size%> </p>
             <p>Color: <%- product.color%> </p>
             <p>Precio: <%- product.price%> </p>
-            <button type="submit">Agregar al carrito <i class="fas fa-shopping-cart"></i></button>
+            <form action="/products/category/<%- product.category %> " method="get">
+                <button type="submit">Agregar al carrito <i class="fas fa-shopping-cart"></i></button>
+            </form>
         </div>
         <% }) %>
     </div>
