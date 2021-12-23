@@ -178,5 +178,41 @@
         "password": "skBlbOY",
         "category": "user",
         "avatar": "user_20.jpg"
+    },
+    {
+        "id": 21,
+        "first_name": "Luciana",
+        "last_name": "Harlow",
+        "email": "lulululu@npr.org",
+        "password": "skBlbOY",
+        "category": "admin",
+        "avatar": "user_21.jpg"
+    },
+    {
+        "id": 22,
+        "first_name": "Roberto",
+        "last_name": "Harlow",
+        "email": "rorororo@npr.org",
+        "password": "skBlbOY",
+        "category": "admin",
+        "avatar": "user_22.jpg"
+    },
+    {
+        "id": 23,
+        "first_name": "Elian",
+        "last_name": "Harlow",
+        "email": "elelelel@npr.org",
+        "password": "skBlbOY",
+        "category": "admin",
+        "avatar": "user_23.jpg"
+    },
+    {
+        "id": 24,
+        "first_name": "Facundo",
+        "last_name": "Harlow",
+        "email": "fafafafa@npr.org",
+        "password": "skBlbOY",
+        "category": "admin",
+        "avatar": "user_24.jpg"
     }
 ]

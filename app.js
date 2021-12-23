@@ -2,13 +2,17 @@
 const express=require('express');
 let app=express();
 const path=require('path');
-const PORT=3030; 
 const methodOverride = require('method-override');
+const userLogs = require('./src/middlewares/userLogs');
+const adminLogs = require('./src/middlewares/adminUsers');
+const PORT=3030; 
 
 /* Middlewares */
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
+app.use(adminLogs);
+app.use(userLogs);
 
 app.set("view engine","ejs");//Template engine
 app.set('views', path.join(__dirname,'src/views'));//Ubicacion de vistas
