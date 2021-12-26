@@ -12,7 +12,7 @@ El equipo está conformado por 5 personas (Luciana Vanesa Lescano, Lucas Nahuel 
 - [Ringo](Ringo.com.ar "Ringo") (estilo de menú).
 
 
-Retro Sprint 4:
+Retro Sprint 3:
 -Empezar a hacer: Dias puntuales para dailys(muy importante) y weekly(retro),
 Empezar a nombrar contenedores  (div class"nombredescriptivo")
 dailys: lunes miercoles y viernes
@@ -20,4 +20,18 @@ weekly: domingos
 -Seguir haciendo: Organizacion y division de tareas
 -Dejar de hacer: procastinar, estar offline
 -Hacer mas: explicar tareas realizadas
+-Hacer menos: pisar estilos de otras paginas
+
+Retro Sprint 4:
+-Empezar a hacer:
+
+-Seguir haciendo: Organizacion y division de tareas
+
+-Dejar de hacer: procastinar, estar offline
+
+-Hacer mas: explicar tareas realizadas  Dias puntuales para dailys(muy importante) y weekly(retro),
+Empezar a nombrar contenedores  (div class"nombredescriptivo")
+dailys: lunes miercoles y viernes
+weekly: domingos
+
 -Hacer menos: pisar estilos de otras paginas

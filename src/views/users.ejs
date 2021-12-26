@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include ('partials/head') %> 
+<body>
+    <%- include ('partials/header') %> 
+
+    <div class="profile">
+        <img src="/users/<%= edit.avatar %> " alt="">
+        Nombre: <%= edit.first_name %> 
+        Apellido: <%= edit.last_name %> 
+        Email: <%= edit.last_name %> 
+        Contraseña: *************
+        <div class="edit">
+            <button type="submit">Editar perfil</button>
+        </div>
+    </div>
+
+    <%- include ('partials/footer') %> 
+    <%- include ('partials/scripts') %> 
+</body>
+</html>

@@ -27,6 +27,9 @@ let controller={
                 errors: errors.mapped()
             })
         }
+    },
+    edit:(req,res) => {
+        
     }
 }
 module.exports=controller;
