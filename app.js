@@ -4,11 +4,17 @@ let app=express();
 const path=require('path');
 const PORT=3030; 
 const methodOverride = require('method-override');
+const session = require('express-session')
 
 /* Middlewares */
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
+app.use(session({
+    secret: "aTusPies",
+    resave: false,
+    saveUninitialized: true
+}))
 
 app.set("view engine","ejs");//Template engine
 app.set('views', path.join(__dirname,'src/views'));//Ubicacion de vistas

@@ -178,5 +178,19 @@
         "password": "skBlbOY",
         "category": "user",
         "avatar": "user_20.jpg"
+    },
+    {
+        "id": 21,
+        "name": "nombre",
+        "last_name": "apellido",
+        "email": "prueba@gmail.com",
+        "pass": "$2a$10$KBJfaYuvJ8wFKcgKH5nJmO.XEpuz7JewXuXGHiC1vTlmGthcWcSBW",
+        "avatar": "1640829485756_img_.jpg",
+        "rol": "ROL_USER",
+        "tel": "",
+        "address": "",
+        "pc": "",
+        "city": "",
+        "province": ""
     }
 ]

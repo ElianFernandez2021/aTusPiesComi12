@@ -1,0 +1,203 @@
+.formRegister #boton-logueo input {
+  background-color: #8c8364;
+}
+
+.formRegister .borde {
+  border-bottom: grey 0.1em solid;
+}
+.formRegister .button-google {
+  /*detalles de boton google*/
+  background-color: #ff0000;
+}
+
+.formRegister .button-face {
+  /*detalles de boton facebook*/
+  background-color: #3b5998;
+}
+
+.formRegister .form-ad {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.formRegister .form-ad-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 0 1rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.formRegister .form-ad-input input {
+  border: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 2rem;
+  color: var(--primary);
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.formRegister .form-ad-input input::placeholder {
+  color: black;
+}
+
+.formRegister .input-file {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 40%;
+  position: relative;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 2rem;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.formRegister .input-file:hover {
+  background: #f5dfae;
+}
+
+.formRegister .input-file input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.formRegister .form-ad-input_check {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.formRegister .form-ad-input_check label {
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: gray;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.text-danger{
+  color: #ff0000;
+}
+
+/*******************CELULAR********************/
+@media (min-width: 320px) {
+  .formRegister body {
+    /*se coloca imágen en el fondo*/
+    background: url(../images/login/huella.jpg);
+    width: 100%;
+    margin-top: 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .formRegister .tamaño-logo img {
+    /*tamaño y posicion del logo*/
+    width: 80%;
+    position: relative;
+    bottom: 30px;
+  }
+
+  .formRegister .centrar-o {
+    position: relative;
+    left: 85px;
+    bottom: 20px;
+  }
+
+  .formRegister .cuadro-form {
+    /*centra el contenido del form y pone color de fondo*/
+    width: 70%;
+    background-image: url("../images/login/huella.jpg");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8%;
+    margin-top: 1rem;
+  }
+
+  .formRegister .cuadro-form img {
+    /*asigna forma a imágen de logo que está en el formulario*/
+    width: 30%;
+    border-radius: 50%;
+  }
+  .formRegister .cuadro-form h3 {
+    text-align: center;
+    padding: 0.5em;
+  }
+
+  .formRegister .cuadro-form div {
+    /*dirección de botones google y facebook, además asigna padding a todos los div del form*/
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding: 0.5em;
+    width: 100%;
+  }
+
+  .formRegister .forma-tamaño {
+    /*brinda "tocabilidad" a los recuadros para escribir*/
+    padding: 0.5em;
+  }
+
+  .formRegister #boton-logueo input {
+    padding: 0.5em;
+  }
+
+  .formRegister .orientar-p {
+    padding: 1em;
+  }
+}
+
+/********************TABLET********************/
+@media all and (min-width: 768px) {
+  .formRegister body {
+    /*se coloca imágen en el fondo*/
+    margin-top: 7em;
+  }
+
+  .formRegister .tamaño-logo img {
+    /*tamaño y posicion del logo*/
+    bottom: 60px;
+  }
+  .formRegister .orientar-boton {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .formRegister .form-ad-input input {
+    height: 2.5rem;
+  }
+}
+
+/*****************ESCRITORIO********************/
+@media all and (min-width: 1024px) {
+  .formRegister .tamaño-logo {
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 14rem;
+  }
+
+  .formRegister .tamaño-logo img {
+    /*tamaño y posicion del logo*/
+    top: 5px;
+    right: 20px;
+  }
+}
