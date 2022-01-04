@@ -11,19 +11,28 @@
                 <label for="usu">Email:</label>
             </div>      
             <div >
-                <input type="text" id="usu" name="usuario" class="forma-tamaño" placeholder="Ingrese aquí su email" required>
+                <input type="email" id="usu" name="email" class="forma-tamaño" placeholder="Ingrese aquí su email" required>
+                <% if (locals.errors && errors.email) { %>
+                <small class="text-danger">*<%= errors.email.msg %> *</small>
+                    <% } %>
             </div>
             <div>
                 <label for="clave">Contraseña:</label>
             </div>    
             <div>
-                <input type="password" id="clave" name="pass" class="forma-tamaño" placeholder="Ingrese aquí su contraseña" required>
+                <input type="password" id="clave" name="password" class="forma-tamaño" placeholder="Ingrese aquí su contraseña" required>
+                <% if (locals.errors && errors.password) { %>
+                    <small class="text-danger">*<%= errors.password.msg %> *</small>
+                        <% } %>
             </div>
             <div>
                 <label for="clave">Vuelve a escribir la contraseña:</label>
             </div>    
             <div>
-                <input type="password" id="clave" name="pass" class="forma-tamaño" placeholder="Ingrese aquí su contraseña">
+                <input type="password" id="clave" name="password1" class="forma-tamaño" placeholder="Ingrese aquí su contraseña">
+                <% if (locals.errors && errors.password1) { %>
+                    <small class="text-danger">*<%= errors.password1.msg %> *</small>
+                        <% } %>
             </div>
             <div id="boton-logueo">
                 <button type="submit" value="Registrate"> Registrate</button>

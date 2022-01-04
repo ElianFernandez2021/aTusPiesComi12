@@ -210,9 +210,18 @@
         "id": 24,
         "first_name": "Facundo",
         "last_name": "Harlow",
-        "email": "fafafafa@npr.org",
-        "password": "skBlbOY",
+        "email": "facu@mail.com",
+        "password": "123",
         "category": "admin",
         "avatar": "user_24.jpg"
+    },
+    {
+        "id": 25,
+        "first_name": "------",
+        "last": "-------",
+        "email": "new@mail.com",
+        "password": "123",
+        "category": "user",
+        "avatar": "user.jpg"
     }
 ]

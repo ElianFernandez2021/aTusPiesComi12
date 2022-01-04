@@ -1,7 +1,6 @@
 /*  Footer  */
 footer{
     background: linear-gradient(#524d3d, #8c8364 50%, #cdc4a9 ,  #f8f1df);
-    height: 200px;
     border-radius: 20px 20px 0 0 ;
     margin-top: 12px;
     bottom: 0;
@@ -10,12 +9,7 @@ footer{
 }
 footer p {
     display:flex;
-    justify-content:space-between;
-    font-size: 17px;
-    margin-top: 50px;
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-bottom: -50px;
+    justify-content:fle;
 }
 footer a{
     text-decoration: none;
@@ -29,8 +23,8 @@ footer #fb{
 footer #wpp{
     color: white;
     background-color: green;
-    border-radius: 100%;
-    font-size:23px;
+    border-radius: 1rem;
+    font-size:25px;
 }
 footer #ig{
     background:linear-gradient(#8a3ab9,#fccc63,#fbad50,#cd486b);
@@ -43,14 +37,8 @@ footer #tw{
     font-size:20px;
 }
 @media(min-width:768px){
-    footer i, footer #fb, footer #wpp, footer #ig, footer #tw{
-        font-size:50px;
+    footer i, footer #fb, footer #ig, footer #tw{
+        font-size:20px;
         justify-content: space-between;
-    }
-    footer #wpp{
-        height:50px;
-    }
-    footer p{
-        font-size: 2rem;
     }
 }

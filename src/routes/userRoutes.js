@@ -1,13 +1,18 @@
 let express = require("express")
 let router = express.Router();
 let controller = require("../controllers/userController.js")
-let adminLog = require('../middlewares/adminUsers')
+let loginValidator = require('../validations/loginValidator')
+let registerValidator = require('../validations/registerValidator')
+let adminUsers = require('../middlewares/adminUsers')
 
 /* GET/POST - Login & Register */
-router.get("/login", adminLog, controller.login )
-router.post("/login", adminLog, controller.login )
+router.get("/login", controller.login )
+router.post("/login",loginValidator, controller.processLogin )
 
 router.get('/register', controller.register)
-router.get('/register', controller.register)
+router.post('/register',registerValidator, controller.processRegister)
+
+/* GET -Profile */
+router.get('/profile', controller.profile)
 
 module.exports=router;

@@ -4,36 +4,19 @@
 <body>
     <%- include ('./partials/header.ejs')%>
     <!--    Product Cart    -->
-    <section class="category">
-        <article class="items"> 
-            <div class="image-position"> 
-                <% carrito.forEach(zapatilla => { %>
-                    <img class="image" src="/images/products/<%- zapatilla.subcategory%>/<%- zapatilla.image %>  " alt="<%- zapatilla.name%> ">
-                    <a href="detail"><i class="fas fa-info-circle"></i></a>
+        <article class="categories-product">        
+            <% carrito.forEach(zapatilla => { %>
+                <div class="products">
+                    <p><%- zapatilla.name%> </p>
+                    <img class="product-image" src="/images/products/<%- zapatilla.subcategory%>/<%- zapatilla.image%>" alt="<%- zapatilla.id%> ">
+                    <p>Descripcion: <%- zapatilla.description%> </p>
+                    <p>Talle: <%- zapatilla.size%> </p>
+                    <p>Color: <%- zapatilla.color%> </p>
+                    <p>Precio: <%- zapatilla.price%> </p>
                 </div>
-                    <div class="items-descriptions">
-                        <div class="amount">
-                            <label for="cantidad">Cantidad</label>
-                            <input type="number"  id="cantidad" value=1 checked>
-                        </div>
-                        <div class="price">
-                            Precio  
-                            $<%- zapatilla.price%> 
-                        </div>
-                        <div class="subtotal">
-                            SubTotal $<%- zapatilla.price%>  
-                        </div>
-                        <div class="color">
-                            Color: <%- zapatilla.color%> 
-                        </div>
-                        <div class="talle">
-                            Talle: <%- zapatilla.size%> 
-                        </div>
-                    </div>
-                    <p class="total">Total $ <%- zapatilla.price %>  </p>
                 <% }) %>
         </article>
-    </section>
+        <p>Total: <%= total %> </p>
     <nav class="last-option">
         <ul>
             <li><a href="detail">Volver</a></li>

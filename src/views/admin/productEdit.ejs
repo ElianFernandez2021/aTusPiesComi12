@@ -1,35 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/css/productCreate.css">
-    <link rel="stylesheet" href="../public/css/productTable.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-</head>
-<title>Editar Producto</title>
-
+    <%- include('../partials/adminHead')  %> 
 <body>
-    
-
     <!-- navbar -->
-        <div class="toggle" onclick="toggleMenu()"></div>
-        <div class="topnav" id="myTopnav">
-        <a href="#home" class="active">Inicio</a>
-        <a href="#news">Perfil</a>
-        <a href="#contact">Configuraciones</a>
-        <a href="#about">Salir</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bar"></i>
-        </a>
-      </div>
-      <!-- fin navbar -->
-
-
-
-
+    <%- include('../partials/adminHeader')%> 
+    <!-- fin navbar -->
     <!-- <div class="navigation">
         <ul>
             <li>

@@ -1,12 +1,18 @@
 const fs = require('fs');
-const {products,writeProductsJson} = require('../data/database')
+const {products,writeProductsJson, categories} = require('../data/database')
 const {id,price,category,talle,color,image} = require('../data/products')
 let controller= {
     create:(req,res) => {
-        res.render("admin/productCreate")
+        res.render("admin/productCreate",{
+            adminTitle: "Agregar producto",
+            session: req.session
+        })
     },
     adminCategory:(req,res) => {
-        res.render('admin/adminCategory')
+        res.render('admin/adminCategory',{
+            adminTitle: "Categorias",
+            session: req.session
+        })
     },
     adminSelectionCategory:(req,res) => {
         let categoryId = +req.params.id
@@ -14,7 +20,9 @@ let controller= {
         let subcategory = categories.filter(product => product.name === categorySelection.subcategory)
         res.render('admin/adminProduct',{
             categorySelection,
-            subcategory
+            subcategory,
+            adminTitle: subcategory.name,
+            session: req.session
         })
     },
     store: (req,res) => {
@@ -35,15 +43,19 @@ let controller= {
         }
         products.push(newZapa);
         writeProductsJson(products);
-        res.redirect('/admin/products/create')
+        res.redirect('/admin/products/create',{
+            session: req.session
+        })
     },
-    edit: (req,res) => {
+    adminEdit: (req,res) => {
         let editId = +req.params.id,
             edit = products.find(product => product.id === editId);
 
         res.render('admin/productEdit',{
-            edit
-        });
+            edit,
+            adminTitle: "Editar producto",
+            session: req.session
+        })
     },
     update: (req,res)=>{
         let zapaUptdate = +req.params.id;
@@ -78,7 +90,9 @@ let controller= {
             }
         })
         writeProductsJson(products)
-        res.redirect('/')
+        res.redirect('/',{
+            session: req.session
+        })
     },
     fatality:(req,res) => {
         let zapaId = +req.params.id;
@@ -109,7 +123,9 @@ let controller= {
             }
         })
         writeProductsJson(products);
-        res.redirect('/admin/products/category/'+zapaId);
+        res.redirect('/admin/products/category/'+zapaId,{
+            session: req.session
+        });
     }
 }
 

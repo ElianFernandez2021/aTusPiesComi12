@@ -5,13 +5,14 @@
     <%- include ('partials/header') %> 
 
     <div class="profile">
-        <img src="/users/<%= edit.avatar %> " alt="">
-        Nombre: <%= edit.first_name %> 
-        Apellido: <%= edit.last_name %> 
-        Email: <%= edit.last_name %> 
+        <img src="/users/<%= profile.avatar %> " alt="">
+        Nombre: <%= profile.first_name %> 
+        Apellido: <%= profile.last_name %> 
+        Email: <%= profile.email %> 
         Contraseña: *************
         <div class="edit">
-            <button type="submit">Editar perfil</button>
+            <form action="user/profile?method=PUT" method="Post"></form>
+            <button type="submit" >Editar perfil</button>
         </div>
     </div>
 
