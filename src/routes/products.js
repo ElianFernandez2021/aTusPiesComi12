@@ -1,19 +1,21 @@
 let express=require('express')
 let router=express.Router();
 let controller=require('../controllers/productsController')
+let onlyUsers = require('../middlewares/onlyUsers')
+let userLogs = require('../middlewares/userLogs')
 
 /* GET - Products */
 router.get('/', controller.product)
-router.get('/products/category/:id', controller.cart)
+router.get('/products/category/:id', onlyUsers, userLogs, controller.cart)
 
 /* GET - Categories */
-router.get('/category/:id',controller.category)
+router.get('/category/:id', userLogs,controller.category)
 
 /* GET - Product detail */
-router.get('/detail/:id?',controller.detail)
+router.get('/detail/:id?', userLogs, controller.detail)
 
 /* GET - Product cart */
-router.get('/cart',controller.cart)
+router.get('/cart', onlyUsers, userLogs, controller.cart)
 
 
 module.exports=router;
