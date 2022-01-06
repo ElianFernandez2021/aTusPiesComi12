@@ -1,0 +1,24 @@
+.profile{
+    display:flex;
+}
+.profile .avatar{
+    flex-direction: column;
+    justify-content: center;
+    width: 45%;
+}
+.profile .avatar img{
+    width: 100%;
+}
+.profile .datos{
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+@media (min-width:768px) {
+    .profile .datos{
+        flex-direction: row;
+        flex-wrap: wrap;
+        width:100%;
+    }
+}

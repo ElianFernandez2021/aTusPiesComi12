@@ -20,5 +20,6 @@
     </section>
 </header> 
 <% if (typeof session.user !== "undefined") { %>
-    <h2><%= session.user.category %> </h2>
+    <h2>Hola </h2>
+    <h2><a href="/user/profile"><%= session.user.first_name %> </h2></a>
 <% } %>

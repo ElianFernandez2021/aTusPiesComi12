@@ -6,7 +6,8 @@ const session = require('express-session')
 const PORT = 3030; 
 const path = require('path');
 const app = express();
-const activeUser = require('activeUser')
+//const userLoged = require('userLoged')
+const cookieParser = require('cookie-parser')
 
 /* Middlewares */
 app.use(express.static(path.join(__dirname, 'public')));
@@ -18,6 +19,8 @@ app.use(session({
     resave:false,
     saveUninitialized: true  
 }))
+/* app.use(userLoged) //utilizo este middleware para obtener unicas vistas en caso de que el usuario esté o no logueado*/
+app.use(cookieParser())
 
 
 app.set("view engine","ejs");//Template engine
