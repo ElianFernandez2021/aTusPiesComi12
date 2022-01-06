@@ -85,6 +85,10 @@ let controller={
     },
     editProfile:(req,res) => {
         
+    },
+    logout: (req,res) =>{
+        req.session.destroy(); //Borra todo lo que está en sesion
+        res.redirect('/')
     }
 }
 module.exports=controller;
