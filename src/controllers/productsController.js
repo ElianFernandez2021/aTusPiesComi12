@@ -1,19 +1,33 @@
 const {products,categories, writeProductsJson}= require('../data/database')
 let controller={
     product: (req,res) => {
-        res.render('products')
+        res.render('products',{
+            title:"Nuestros productos",
+            session: req.session
+        })
     },
     detail:(req,res)=>{
         let detailId = +req.params.id,
             detail = products.find(product => product.id === detailId)
         res.render('productDetail',{
-            detail
+            detail,
+            title:"Detalles",
+            session: req.session
         })
     },
     cart:(req,res)=>{
         let carrito = products.filter(product => product.name)
+        let numeros= products.map( precio => {
+            Number(precio.price)
+        })
+        console.log(numeros)
+        let total = numeros.reduce((acumulador,numero) => acumulador + numero)
+        console.log(total)
         res.render('productCart',{
-            carrito
+            carrito,
+            total,
+            title:"Carrito de compras",
+            session: req.session
         })
     },
     category: (req,res) => {
@@ -22,7 +36,9 @@ let controller={
         let subcategory = categories.filter(product => product.name === filtrado.subcategory)
         res.render('category',{
             filtrado,
-            subcategory
+            subcategory,
+            title:"Categoria "+ categories[categoryId-1].name,
+            session: req.session
         })
     }
 }

@@ -4,6 +4,7 @@
 }
 .categories-product .calzado{
     display:flex;
+    width:50%;
 }
 .categories-product .calzado img{
     width: 50%;

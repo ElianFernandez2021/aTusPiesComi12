@@ -2,12 +2,35 @@ const { users, writeUserJson } = require('../data/database');
 const { validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs')
 
-let controller = {
-    login: (req, res) => {
-        res.render('login')
+let controller={
+    login:(req,res)=>{
+        res.render('login',{
+            title: "Ingresa",
+            session: req.session
+        })
     },
-    register: (req, res) => {
-        res.render('register')
+    processLogin: (req,res) =>{
+        let errors = validationResult(req); 
+        if(errors.isEmpty()){
+            let user = users.find(user => user.email === req.body.email)
+            req.session.user = {
+                id: user.id,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email,
+                avatar: user.avatar,
+                category: user.category
+            }
+            res.locals.user = req.session.user
+                res.redirect('/')    
+        }
+        else{
+            res.render('login',{
+                title:"login",
+                errors: errors.mapped(),
+                session: req.session
+            })
+        }
     },
     processRegister: (req, res) => {
         let errors = validationResult(req);
@@ -44,9 +67,27 @@ let controller = {
 
         } else {
             res.render('register', {
-                errors: errors.mapped()
+                title:"Registrate",
+                errors: errors.mapped(),
+                session: req.session
             })
         }
-    }
+    },
+    profile:(req,res) => {
+        let user = users.find(user => user.email === req.body.email)
+        req.session.user = {
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+            avatar: user.avatar,
+            category: user.category
+        }
+        res.locals.user = req.session.user
+        res.render('users',{
+            title:"Perfil",
+            session:req.session
+        })
+    },
+    editProfile:(req,res) => {}
 }
 module.exports = controller;

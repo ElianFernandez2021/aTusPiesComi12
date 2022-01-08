@@ -4,6 +4,10 @@
     box-sizing: 0;
 }
 
+.text-danger{
+    color:red;
+}
+
 #boton-logueo input{
     background-color: #8c8364;
 }
@@ -107,7 +111,6 @@
     .tamaño-logo{
         flex-direction: row;
         justify-content: center;
-        margin-top:14rem;
     }
 
     .tamaño-logo img{ /*tamaño y posicion del logo*/
