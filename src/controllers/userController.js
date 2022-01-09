@@ -1,5 +1,6 @@
 const {validationResult} = require('express-validator')
 const {users,writeUserJson} = require('../data/database')
+const bcrypt = require('bcryptjs')
 let controller={
     login:(req,res)=>{
         res.render('login',{
@@ -20,7 +21,7 @@ let controller={
                 category: user.category
             }
             res.locals.user = req.session.user
-            res.redirect('/')    
+            res.redirect('/')
         }
         else{
             console.log(errors.mapped())
@@ -63,7 +64,7 @@ let controller={
                first_name: "name",
                last_name: "name",
                email,
-               password,
+               password: bcrypt.hashSync(password,10),
                category:"user",
                avatar:req.file ? req.file.filename : "Jake_Sully.jpg"
 

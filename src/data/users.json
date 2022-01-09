@@ -223,5 +223,14 @@
         "password": "123",
         "category": "user",
         "avatar": "Jake_Sully.jpg"
+    },
+    {
+        "id": 26,
+        "first_name": "name",
+        "last_name": "name",
+        "email": "new2@mail.com",
+        "password": "$2a$10$vrTOUODC8PQ7aJ4Y3NFcUOHHg.J2q5P/9BnTzp7A/dTuvTLbgmtRy",
+        "category": "user",
+        "avatar": "Jake_Sully.jpg"
     }
 ]
