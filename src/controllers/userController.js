@@ -1,6 +1,8 @@
-const {validationResult} = require('express-validator')
-const {users,writeUserJson} = require('../data/database')
+const { users, writeUserJson } = require('../data/database');
+const { validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs')
+const fs = require('fs')
+
 let controller={
     login:(req,res)=>{
         res.render('login',{
@@ -8,26 +10,79 @@ let controller={
             session: req.session
         })
     },
-    processLogin: (req,res) =>{
+    processLogin: (req, res) => {
+        
         let errors = validationResult(req);
         if(errors.isEmpty()){
             let user = users.find(user => user.email === req.body.email)
             req.session.user = {
-                first_name: user.first_name,
+                id: user.id,
+                name: user.name,
                 last_name: user.last_name,
-                password: user.password,
                 email: user.email,
                 avatar: user.avatar,
-                category: user.category
+                rol: user.rol,
+                tel: user.tel,
+                address: user.address,
+                pc: user.pc,
+                city: user.city,
+                province: user.province
             }
             res.locals.user = req.session.user
             res.redirect('/')
         }
         else{
-            console.log(errors.mapped())
             res.render('login',{
                 title:"login",
                 errors: errors.mapped(),
+                session: req.session
+            })
+          
+        }
+    },
+    register:(req,res)=>{
+        res.render('register',{
+            title: "Registrate",
+            session: req.session
+        })
+    },
+    processRegister: (req, res) => {
+        let errors = validationResult(req);
+        if(errors.isEmpty()){
+           let lastId = 1;
+           users.forEach(user => {
+               if(user.id > lastId){
+                   lastId = user.id
+               }
+           });
+            let { name, last_name, email, pass1 } = req.body
+
+            let newUser = {
+                id: lastId + 1,
+                name,
+                last_name,
+                email,
+                pass: bcrypt.hashSync(pass1, 10),
+                avatar: req.file ? req.file.filename : "default-image.png",
+                rol: "ROL_USER",
+                tel: "",
+                address: "",
+                pc: "",
+                city: "",
+                province: ""
+            }
+
+            users.push(newUser)
+
+            writeUserJson(users)
+
+            res.redirect('/user/login')
+
+        } else {
+            res.render('register', {
+                title:"Registrate",
+                errors: errors.mapped(),
+                old: req.body,
                 session: req.session
             })
         }
@@ -39,51 +94,50 @@ let controller={
             user,
             session:req.session
         })
+
     },
     editProfile:(req,res) => {
-        
-    },
-    register:(req,res)=>{
-        res.render('register',{
-            title: "Registrate",
-            session: req.session
+        let user = users.find(user => user.email === req.session.user.email)
+        res.render('userEditProfile',{
+            title:"Edicion de perfil",
+            user,
+            session:req.session
         })
     },
-    processRegister: (req,res) =>{
-        let errors = validationResult(req);
-        if(errors.isEmpty()){
-           let lastId = 1;
-           users.forEach(user => {
-               if(user.id > lastId){
-                   lastId = user.id
-               }
-           });
-           let {email,password} =req.body
-           let newUser = {
-               id: lastId+1,
-               first_name: "name",
-               last_name: "name",
-               email,
-               password: bcrypt.hashSync(password,10),
-               category:"user",
-               avatar:req.file ? req.file.filename : "Jake_Sully.jpg"
-
-           }
-           users.push(newUser)
-           writeUserJson(users)
-           res.redirect('/user/login')
-        }
-        else{
-            res.render('register',{
-                title:"Registrate",
-                errors: errors.mapped(),
-                session: req.session
+    uptateProfile:(req,res) => {
+        let userId = +req.params.id
+        let {name,last_name,email,pass,avatar,teladdress,pc,city,province} = req.body
+        users.forEach(usuario => {
+            if(usuario.id === userId){
+                usuario.id = userId
+                usuario.name = name
+                usuario.last_name = last_name
+                usuario.email = email
+                usuario.pass = pass
+                usuario.teladdress =teladdress
+                usuario.pc =pc
+                usuario.province = province
+                usuario.city = city
+                if(req.file){
+                    if(fs.existsSync("./public/images/users/",usuario.avatar)){
+                        fs.unlinkSync(`./public/images/users/${usuario.avatar}`)
+                    }
+                    else{
+                        console.log("No se encontró el avatar")
+                    }
+                    usuario.image = req.file.filename
+                }
+                else{
+                    usuario.image = usuario.image
+                }
+            }
             })
-        }
-    },
+            writeUserJson(users)
+            res.redirect('/user/profile')
+        },
     logout: (req,res) =>{
         req.session.destroy(); //Borra todo lo que está en sesion
         res.redirect('/')
     }
 }
-module.exports=controller;
+module.exports = controller;

@@ -1,24 +1,45 @@
-const {check,body} = require('express-validator')
-const {users} = require('../data/database')
+const { check, body } = require('express-validator');
+const { users } = require('../data/database')
+
 
 module.exports = [
-    check('email').notEmpty().withMessage('Debes ingresar email').bail()
-    .isEmail().withMessage("Debes ingresar un email valido"),
+    check('name')
+    .notEmpty()
+    .withMessage('El nombre es requerido'),
+
+    check('last_name')
+    .notEmpty()
+    .withMessage('El apellido es requerido'),
+
+    check('email')
+    .isEmail()
+    .withMessage('Debes ingresar un email válido'),
 
     body('email').custom((value) => {
-        let user = users.find(user=>{ 
-             return user.email == value 
-         })
- 
-         if(user){
-             return false
-         }else{
-             return true
-         }
-     }).withMessage('Email ya registrado'),
+       let user = users.find(user=>{ 
+            return user.email == value 
+        })
 
-    check('password').notEmpty().withMessage('Debes ingresar una contraseña').bail(),
+        if(user){
+            return false
+        }else{
+            return true
+        }
+    }).withMessage('Email ya registrado'),
 
-    body('password1').custom((value, {req}) => value !== req.body.password ? false : true)
-    .withMessage('Las contraseñas no coinciden')
+    check('pass1')
+    .notEmpty()
+    .withMessage('Debes escribir tu contraseña')
+    .isLength({
+        min: 6,
+        max: 12
+    })
+    .withMessage('La contraseña debe tener entre 6 y 12 caracteres'),
+
+    body('pass2').custom((value, {req}) => value !== req.body.pass1 ? false : true)
+    .withMessage('Las contraseñas no coinciden'),
+
+    check('terms')
+    .isString('on')
+    .withMessage('Debes aceptar las bases y condiciones')
 ]

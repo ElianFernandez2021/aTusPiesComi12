@@ -1,5 +1,5 @@
 function adminUsers ( req,res,next){
-    if(req.session.user.category === 'admin'){
+    if(req.session.user && req.session.user.rol === 'ROL_ADMIN'){
         next()
     }
     else{

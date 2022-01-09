@@ -11,7 +11,7 @@ a {
     text-decoration: none;
 }
 body{
-    max-width: 78.125rem;
+    max-width: 100%; /* estaba en 78.125rem, pero desarma el css */
     padding: 15px 10px 0;
     margin: auto;
     font-weight: 300;

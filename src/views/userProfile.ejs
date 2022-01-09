@@ -7,16 +7,18 @@
     <div class="profile">
         <div class="avatar"><img src="/images/users/<%= user.avatar%>" alt="avatar"></div>
         <div class="datos">
-            <div> Nombre: <%= user.first_name%> </div>
+            <div> Nombre: <%= user.name%> </div>
             <div>Apellido: <%= user.last_name%> </div>
             <div>Email: <%= user.email%> </div>
             <div>Contraseña: *************</div>
+            <!-- <div>Contraseña: <%#= user.pass%><div> -->
+            <div>Direccion: <%= user.teladdres%></div>
+            <div>Codigo Postal: <%= user.pc%></div>
+            <div>Provincia: <%= user.province%></div>
+            <div>Ciudad: <%= user.city%></div>
         </div>
     </div>
-    <div class="edit">
-        <form action="user/profile?method=PUT" method="Post"></form>
-        <button type="submit" >Editar perfil</button>
-    </div>
+    <a href="/user/profile/edit/<%= user.id %> "><button type="submit" >Editar perfil</button></a>
     <%- include ('partials/footer') %>
     <%- include ('partials/scripts') %> 
 </body>

@@ -1,52 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
     <%- include ('./partials/head.ejs')%>
-<body >
+<body class="formRegister" >
     <%- include ('./partials/header.ejs')%>
     <div class="cuadro-form tamaño-logo">
         <img src="/images/login/logo.png" alt="logo" >
-        <form action="/user/register" method="post">
-            <h3>Registrate</h3>
-            <div>
-                <label for="usu">Email:</label>
-            </div>      
-            <div >
-                <input type="email" id="usu" name="email" class="forma-tamaño" placeholder="Ingrese aquí su email" required>
+        <form class="cuadro-form tamaño-logo" action="/user/register" method="POST" enctype="multipart/form-data" class="form-ad" >
+            <div class="form-ad-input">
+                <input class="forma-tamaño" type="text" name="name" placeholder="Nombre" value="<%= locals.old && old.name %>">
+                <% if (locals.errors && errors.name) { %>
+                    <small class="text-danger"><%= errors.name.msg %> </small>
+                <% } %>
+            </div>
+            <div class="form-ad-input">
+                <input class="forma-tamaño" type="text" name="last_name" placeholder="Apellido" value="<%= locals.old && old.last_name %>">
+                <% if (locals.errors && errors.last_name) { %>
+                    <small class="text-danger"><%= errors.last_name.msg %> </small>
+                <% } %>
+            </div>
+            <div class="form-ad-input">
+                <input class="forma-tamaño" type="email" name="email" placeholder="Ingresá tu email" value="<%= locals.old && old.email  %>">
                 <% if (locals.errors && errors.email) { %>
-                <small class="text-danger">*<%= errors.email.msg %> *</small>
-                    <% } %>
+                    <small class="text-danger"><%= errors.email.msg %> </small>
+                <% } %>
             </div>
-            <div>
-                <label for="clave">Contraseña:</label>
-            </div>    
-            <div>
-                <input type="password" id="clave" name="password" class="forma-tamaño" placeholder="Ingrese aquí su contraseña" required>
-                <% if (locals.errors && errors.password) { %>
-                    <small class="text-danger">*<%= errors.password.msg %> *</small>
-                        <% } %>
+            <div class="form-ad-input">
+                <input class="forma-tamaño" type="password" name="pass1" placeholder="Contraseña">
+                <% if (locals.errors && errors.pass1) { %>
+                    <small class="text-danger"><%= errors.pass1.msg %> </small>
+                <% } %>
             </div>
-            <div>
-                <label for="clave">Vuelve a escribir la contraseña:</label>
-            </div>    
-            <div>
-                <input type="password" id="clave" name="password1" class="forma-tamaño" placeholder="Ingrese aquí su contraseña">
-                <% if (locals.errors && errors.password1) { %>
-                    <small class="text-danger">*<%= errors.password1.msg %> *</small>
-                        <% } %>
+            <div class="form-ad-input">
+                <input class="forma-tamaño" type="password" name="pass2" placeholder="Repetir contraseña">
+                <% if (locals.errors && errors.pass2) { %>
+                    <small class="text-danger"><%= errors.pass2.msg %> </small>
+                <% } %>
             </div>
-            <div id="boton-logueo">
-                <button type="submit" value="Registrate"> Registrate</button>
+            <div class="input-file">
+                <p>Agregar foto</p>
+                <input type="file" name="avatar">
+                <% if (locals.errors && errors.image) { %>
+                    <small class="text-danger"><%= errors.image.msg %> </small>
+                <% } %>
             </div>
-            <div class="borde">
+            <div class="form-ad-input_check">
+                <input type="checkbox" name="terms" id="check">
+                <label for="check">Acepto los términos y condiciones</label>
+                <% if (locals.errors && errors.terms) { %>
+                    <small class="text-danger"><%= errors.terms.msg %> </small>
+                <% } %>
             </div>
-            <div class="centrar-o">
-            <p>o</p>
-            </div>
-            <section class="orientar-boton">
-               <div><button class="button-google forma-tamaño" >GOOGLE</button></div>
-                <div><button class="button-face forma-tamaño">FACEBOOK</button></div> 
-            </section>
-            
+            <button type="submit" class="btn btn-ad-primary">
+                REGISTRATE
+            </button>
+            <a href="/user/login" class="userLink">Ya tengo cuenta</a>
         </form>
         <div ><a href="">¿Olvidaste tu contraseña?</a> </div>
     </div>
