@@ -40,6 +40,18 @@ let controller={
             title:"Categoria "+ categories[categoryId-1].name,
             session: req.session
         })
+    },
+    search: (req, res) => {
+        let keywords = req.query.keywords.trim()
+        let result = products.filter(product => product.name.toLowerCase().includes(keywords))
+        
+        res.render('searchResult', {
+            title:"Resultado de la busqueda",
+            result,
+            search: keywords,
+            session: req.session
+        })
+
     }
 }
 

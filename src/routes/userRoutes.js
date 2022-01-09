@@ -25,10 +25,6 @@ router.put('/profile/edit/:id', users.activeUser,registerValidator,uploadFile.si
 router.get('/logout', controller.logout)
 
 
-/* POST - Register Data */
-router.post('/register', uploadFile.single('avatar'), registerValidator, controller.processRegister)
-
-
 
 
 module.exports=router;

@@ -8,6 +8,9 @@ let userLogs = require('../middlewares/userLogs')
 router.get('/', controller.product)
 router.get('/products/category/:id', onlyUsers, userLogs, controller.cart)
 
+/* GET - Search product */
+router.get('/search',userLogs, controller.search)
+
 /* GET - Categories */
 router.get('/category/:id', userLogs,controller.category)
 
@@ -16,6 +19,7 @@ router.get('/detail/:id?', userLogs, controller.detail)
 
 /* GET - Product cart */
 router.get('/cart', onlyUsers, userLogs, controller.cart)
+
 
 
 module.exports=router;
