@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include ('partials/head') %> 
+<body>
+    <%- include ('partials/header') %> 
+
+    <div class="profile">
+        <div class="avatar"><img src="/images/users/<%= user.avatar%>" alt="avatar"></div>
+        <div class="datos">
+            <div> Nombre: <%= user.name%> </div>
+            <div>Apellido: <%= user.last_name%> </div>
+            <div>Email: <%= user.email%> </div>
+            <div>Contraseña: *************</div>
+        </div>
+    </div>
+    <div class="edit">
+        <form action="user/profile?method=PUT" method="Post"></form>
+        <button type="submit" >Editar perfil</button>
+    </div>
+    <%- include ('partials/footer') %>
+    <%- include ('partials/scripts') %> 
+</body>
+</html>

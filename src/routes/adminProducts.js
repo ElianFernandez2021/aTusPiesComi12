@@ -3,10 +3,11 @@ let router=express.Router();
 let controller=require('../controllers/adminController')
 let upload = require('../middlewares/uploadProductFile')
 let admin = require ('../middlewares/adminUsers')
+let userLogs = require('../middlewares/userLogs')
 
 /* Get - Product */
-router.get('/products',admin,controller.adminCategory)
-router.get('/products/category/:id',admin,controller.adminSelectionCategory)
+router.get('/products',admin, controller.adminCategory)
+router.get('/products/category/:id',admin, controller.adminSelectionCategory)
 /* product create */
 router.get('/products/create', admin, controller.create) //Renderisa la vista de carga de producto
 router.post('/products', upload.single('image'), controller.store)//Guarda la informacion que almacena en la base de datos(json)

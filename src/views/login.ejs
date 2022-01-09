@@ -13,7 +13,7 @@
             <div >
                 <input type="email" id="usu" name="email" class="forma-tamaño" placeholder="Ingrese aquí su email" required>
                 <% if (locals.errors && errors.email) { %>
-                    <small class="text-danger">*<%= errors.email.msg %> *</small>
+                    <small class="text-danger">*<%= errors.email.msg %>*</small>
                 <% } %>
             </div>
             <div>
@@ -21,8 +21,8 @@
             </div>    
             <div>
                 <input type="password" id="clave" name="password" class="forma-tamaño" placeholder="Ingrese aquí su contraseña" required>
-                <% if (locals.errors && errors.pass) { %>
-                    <small class="text-danger">*<%= errors.password.msg %> *</small>
+                <% if (locals.errors && errors.custom) { %>
+                    <small class="text-danger">*<%= errors.custom.msg %>*</small>
                 <% } %>
             </div>
             <div id="boton-logueo">

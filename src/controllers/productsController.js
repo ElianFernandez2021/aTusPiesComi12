@@ -20,15 +20,15 @@ let controller={
         let numeros= products.map( precio => {
             Number(precio.price)
         })
-        console.log(numeros)
         let total = numeros.reduce((acumulador,numero) => acumulador + numero)
-        console.log(total)
         res.render('productCart',{
             carrito,
             total,
             title:"Carrito de compras",
             session: req.session
         })
+        console.log(numeros)
+        console.log(total)
     },
     category: (req,res) => {
         let categoryId = +req.params.id
