@@ -21,6 +21,7 @@ let controller={
                 last_name: user.last_name,
                 email: user.email,
                 avatar: user.avatar,
+                rol: user.rol,
                 tel: user.tel,
                 address: user.address,
                 pc: user.pc,
