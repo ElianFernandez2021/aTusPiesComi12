@@ -44,12 +44,14 @@ let controller={
     search: (req, res) => {
         let keywords = req.query.keywords.trim()
         let result = products.filter(product => product.name.toLowerCase().includes(keywords))
+        let subCategory = products.find(product => product.subcategory === keywords.subcategory)
         
         res.render('searchResult', {
             title:"Resultado de la busqueda",
             result,
             search: keywords,
-            session: req.session
+            session: req.session,
+            subCategory
         })
 
     }
