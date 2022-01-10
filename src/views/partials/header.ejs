@@ -7,10 +7,26 @@
         <nav>
             <ul id="contenedor-enlaces">
                 <li><a href="/products" ><i class="fas fa-shoe-prints"></i>Productos</a></li>
-                <li><a href="/user/login"><i class="fas fa-user-circle"></i>Login</a></li>
                 <li><a href="/products/cart"><i class="fas fa-shopping-cart"></i>Carrito</a></li>
+                <li>
+                    <div class="user-icons-desktop">
+                    <div class="user">
+                        <% if (typeof session.user != "undefined") { %>
+                            <i class="fas fa-user"></i><span class="session"></span>
+                            <div class="menu-user">
+                                <a href="/user/profile">Mis datos</a><hr>
+                                <a href="/user/logout">Cerrar sesión</a>
+                                <% if (session.user.rol === "ROL_ADMIN") { %>
+                                    <a href="/admin/products/create">ADMIN</a>
+                                <% } %>
+                            </div>
+                        <% } else {%>
+                            <a href="/user/login"><i class="fas fa-user"></i>Login</a>
+                        <% } %>
+                </div></li>
+                
             </ul>
-            <div class="search-bar">
+             <div class="search-bar">
                 <form action="" class="search-form" id="search">
                     <input type="search" name="" id="" placeholder="Buscar productos">
                     <button class="lupa"type="submit"><i class="fas fa-search"></i></button>

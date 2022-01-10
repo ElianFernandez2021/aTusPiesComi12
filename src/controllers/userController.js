@@ -28,6 +28,15 @@ let controller={
                 city: user.city,
                 province: user.province
             }
+
+            if (req.body.remember) {
+                const TIME_IN_MILISECONDS = 60000
+                res.cookie("userATusPies", req.session.user, {
+                    expires: new Date(Date.now() + TIME_IN_MILISECONDS),
+                    httpOnly: true,
+                    secure:true
+                })
+            }
             res.locals.user = req.session.user;
             res.redirect('/')
             
@@ -101,6 +110,9 @@ let controller={
     editProfile:(req,res) => {},
     logout: (req,res) =>{
         req.session.destroy(); //Borra todo lo que está en sesion
+        if (req.cookies.userATusPies) { 
+            res.cookie('userATusPies', "", { maxAge: -1 })
+        }
         res.redirect('/')
     }
 }
