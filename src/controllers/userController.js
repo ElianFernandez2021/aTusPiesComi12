@@ -28,21 +28,18 @@ let controller={
                 city: user.city,
                 province: user.province
             }
-
-            if (req.body.remember) {
+            if(req.body.remember){
                 const TIME_IN_MILISECONDS = 60000
-                res.cookie("userATusPies", req.session.user, {
+                res.cookie("aTusPies", req.session.user, {
                     expires: new Date(Date.now() + TIME_IN_MILISECONDS),
                     httpOnly: true,
-                    secure:true
+                    secure: true
                 })
             }
-            res.locals.user = req.session.user;
+            res.locals.user = req.session.user
             res.redirect('/')
-            
         }
         else{
-            console.log(errors.mapped())
             res.render('login',{
                 title:"login",
                 errors: errors.mapped(),
@@ -59,14 +56,13 @@ let controller={
     },
     processRegister: (req, res) => {
         let errors = validationResult(req);
-        if (errors.isEmpty()) {
-            let lastId = 1;
-
-            users.forEach(user => {
-                if (user.id > lastId) {
-                    lastId = user.id
-                }
-            });
+        if(errors.isEmpty()){
+           let lastId = 1;
+           users.forEach(user => {
+               if(user.id > lastId){
+                   lastId = user.id
+               }
+           });
             let { name, last_name, email, pass1 } = req.body
 
             let newUser = {
@@ -94,6 +90,7 @@ let controller={
             res.render('register', {
                 title:"Registrate",
                 errors: errors.mapped(),
+                old: req.body,
                 session: req.session
             })
         }
@@ -107,7 +104,45 @@ let controller={
         })
 
     },
-    editProfile:(req,res) => {},
+    editProfile:(req,res) => {
+        let user = users.find(user => user.email === req.session.user.email)
+        res.render('userEditProfile',{
+            title:"Edicion de perfil",
+            user,
+            session:req.session
+        })
+    },
+    uptateProfile:(req,res) => {
+        let userId = +req.params.id
+        let {name,last_name,email,pass,avatar,teladdress,pc,city,province} = req.body
+        users.forEach(usuario => {
+            if(usuario.id === userId){
+                usuario.id = userId
+                usuario.name = name
+                usuario.last_name = last_name
+                usuario.email = email
+                usuario.pass = pass
+                usuario.teladdress =teladdress
+                usuario.pc =pc
+                usuario.province = province
+                usuario.city = city
+                if(req.file){
+                    if(fs.existsSync("./public/images/users/",usuario.avatar)){
+                        fs.unlinkSync(`./public/images/users/${usuario.avatar}`)
+                    }
+                    else{
+                        console.log("No se encontró el avatar")
+                    }
+                    usuario.image = req.file.filename
+                }
+                else{
+                    usuario.image = usuario.image
+                }
+            }
+            })
+            writeUserJson(users)
+            res.redirect('/user/profile')
+        },
     logout: (req,res) =>{
         req.session.destroy(); //Borra todo lo que está en sesion
         if (req.cookies.userATusPies) { 

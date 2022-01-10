@@ -8,6 +8,7 @@ const path = require('path');
 const app = express();
 //const userLoged = require('userLoged')
 const cookieParser = require('cookie-parser')
+const cookieSession = require('./src/middlewares/cookieSession');
 
 /* Middlewares */
 app.use(express.static(path.join(__dirname, 'public')));
@@ -21,6 +22,7 @@ app.use(session({
 }))
 /* app.use(userLoged) //utilizo este middleware para obtener unicas vistas en caso de que el usuario esté o no logueado*/
 app.use(cookieParser())
+app.use(cookieSession)
 
 
 app.set("view engine","ejs");//Template engine
@@ -31,7 +33,7 @@ app.set('views', path.join(__dirname,'src/views'));//Ubicacion de vistas
 let indexRouter = require("./src/routes/indexRouter")
 let products=require('./src/routes/products')
 let userRoutes = require("./src/routes/userRoutes")
-let productCreateRouter = require("./src/routes/adminProducts")
+let productCreateRouter = require("./src/routes/adminProducts");
 
 /* Routes */
 app.use('/',indexRouter)//home

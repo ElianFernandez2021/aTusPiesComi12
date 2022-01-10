@@ -19,7 +19,7 @@
                 <% } %>
             </div>
             <div class="form-ad-input">
-                <input class="forma-tamaño" type="email" name="email" placeholder="Ingresá tu email" >
+                <input class="forma-tamaño" type="email" name="email" placeholder="Ingresá tu email" value="<%= locals.old && old.email  %>">
                 <% if (locals.errors && errors.email) { %>
                     <small class="text-danger"><%= errors.email.msg %> </small>
                 <% } %>
@@ -53,7 +53,7 @@
             <button type="submit" class="btn btn-ad-primary">
                 REGISTRATE
             </button>
-            <a href="/users/login" class="userLink">Ya tengo cuenta</a>
+            <a href="/user/login" class="userLink">Ya tengo cuenta</a>
         </form>
         <div ><a href="">¿Olvidaste tu contraseña?</a> </div>
     </div>

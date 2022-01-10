@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include ('partials/head') %> 
+<body>
+    <%- include ('partials/header') %> 
+    <main class="categories">
+        <div class="container products-container">
+            <% if (result.length > 0) { %>
+                <h2 class="subtitle">Resultados de la búsqueda de <%- search %></h2>
+                <section class="categories-product">
+                    <% result.forEach(product => { %>
+                        <div class="products">
+                            <a href="/products/detail/<%- product.id %>">
+                                <img src="/images/products/<%- product.image[0]%>" alt="ID: <%= product.id %> ">
+                                <p class="productName"> 
+                                    <% if (product.name.length > 30) { %>
+                                        <%- `${product.name.slice(0,30)}...` %>
+                                    <% } else { %>
+                                        <%= product.name %>
+                                    <% } %></p>
+                                <h4 class="productPrice">$<%- product.price %></h4>
+                            </a>
+                        </div>
+                    <% }) %> 
+                </section> 
+            <% }else{%>
+                <h2 class="subtitle">No hay resultados de la búsqueda de <%- search %></h2>
+            <% } %>
+        </div>
+    </main> 
+    <%- include ('partials/footer') %>
+    <%- include ('partials/scripts') %> 
+</body>
+</html>
