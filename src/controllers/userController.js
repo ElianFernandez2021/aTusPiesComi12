@@ -145,6 +145,9 @@ let controller={
         },
     logout: (req,res) =>{
         req.session.destroy(); //Borra todo lo que está en sesion
+        if (req.cookies.userATusPies) { 
+            res.cookie('userATusPies', "", { maxAge: -1 })
+        }
         res.redirect('/')
     }
 }

@@ -58,3 +58,15 @@ Retro Sprint 4:
 -Hacer mas: explicar tareas realizadas
 
 -Hacer menos: pisar estilos de otras paginas
+
+
+Retro Sprint 5:
+Empezar a hacer: Pedir ayuda si hay problemas al realizar tareas.
+
+-Seguir haciendo: Organizacion y division de tareas
+
+-Dejar de hacer: no conectarse a las dailys
+
+-Hacer mas: explicar tareas realizadas
+
+-Hacer menos: procastinar
