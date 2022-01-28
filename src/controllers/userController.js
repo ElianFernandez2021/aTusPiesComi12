@@ -2,6 +2,9 @@ const { users, writeUserJson } = require('../data/database');
 const { validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs')
 const fs = require('fs')
+const db = require('../data/models');
+
+const Users = db.User
 
 let controller={
     login:(req,res)=>{
