@@ -1,5 +1,3 @@
-const { FOREIGNKEYS } = require("sequelize/dist/lib/query-types");
-
 module.exports = (sequelize, dataTypes) => {
     let alias = "Product";
     let cols = {
@@ -34,31 +32,28 @@ module.exports = (sequelize, dataTypes) => {
         tableName: "products",
         timestamps: true
     }
-
     const Product = sequelize.define(alias, cols, config)
-
     Product.associate = models => {
         Product.belongsToMany(models.Products_size), {
             as: "size",
-            foreignkeys: "sizeId"
+            foreignKey: "sizeId"
         },
             Product.hasMany(models.Categories), {
             as: "categories",
-            foreignkeys: "nameId"
+            foreignKey: "nameId"
         },
             Product.hasMany(models.Products_cart), {
             as: "products",
-            foreignkeys: "productsCart"
+            foreignKey: "productsCart"
         },
             Product.hasMany(models.Products_trade_mark), {
             as: "products",
-            foreignkeys: "productId"
+            foreignKey: "productId"
         },
             Product.belongsToMany(models.Products_color), {
             as: "products",
-            foreignkeys: "productId"
+            foreignKey: "productId"
         }
     }
-
     return Product;
 }
