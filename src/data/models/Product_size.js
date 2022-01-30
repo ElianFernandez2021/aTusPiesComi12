@@ -2,18 +2,18 @@ module.exports = (sequelize, dataTypes) => {
     let alias = 'Product_size';
     let cols = {
         id: {
-            type: dataTypes.int.UNSIGNED,
+            type: dataTypes.INTEGER.UNSIGNED,
             primaryKey: true,
             allowNull: false,
             autoIncrement: true
         },
         product_id: {
-            type: dataTypes.INT,
+            type: dataTypes.INTEGER,
             allowNull: false,
             through:"products"
         },
         size_id: {
-            type: dataTypes.INT.UNSIGNED,
+            type: dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
             trhough:"size"
         },

@@ -9,13 +9,11 @@ module.exports = (sequelize,dataTypes) => {
         },
         cart_id:{
             type: dataTypes.INTEGER(100).UNSIGNED,
-            autoIncrement:true,
             allowNull:false,
 
         },
         product_id: {
             type: dataTypes.INTEGER(100).UNSIGNED,
-            autoIncrement:true,
             allowNull:false,
         },
         quantity:{
@@ -32,7 +30,7 @@ module.exports = (sequelize,dataTypes) => {
     let products_cart = sequelize.define(alias,cols,config)
     
      products_cart.associate = models => {
-         products_cart.hasMany(models.cart,{
+         products_cart.hasOne(models.cart,{
              as: "cart",
              foreignKey:"cart_id"
          })

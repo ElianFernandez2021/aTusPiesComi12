@@ -1,4 +1,4 @@
-const {products,categories, writeProductsJson}= require('../data/database')
+const {products,categories, writeProductsJson}= require('../data/filesJson/database')
 let controller={
     product: (req,res) => {
         res.render('products',{

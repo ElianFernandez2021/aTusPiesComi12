@@ -1,6 +1,6 @@
 const fs = require('fs');
-const {products,writeProductsJson, categories} = require('../data/database')
-const {id,price,category,talle,color,image} = require('../data/products')
+const {products,writeProductsJson, categories} = require('../data/filesJson/database')
+const {id,price,category,talle,color,image} = require('../data/filesJson/products')
 let controller= {
     create:(req,res) => {
         res.render("admin/productCreate",{

@@ -2,10 +2,9 @@ module.exports = (sequelize,dataTypes) => {
     let alias = 'Size'
     let col = {
         id: {
-            type: dataTypes.INT
-            .UNSIGNED
-            .PRIMARYKEY
-            .AUTO_INCREMENT
+            type: dataTypes.INTEGER.UNSIGNED,
+            primaryKey:true,
+            autoIncrement:true
         }
     }
     let config ={
