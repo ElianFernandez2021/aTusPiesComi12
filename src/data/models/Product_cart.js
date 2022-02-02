@@ -23,22 +23,20 @@ module.exports = (sequelize,dataTypes) => {
     }
     let config = {
         tableName:"products_cart",
-        createdAt:"created_at",
-        updatedAt:"updated_at",
         timestamps:true
     }
-    let products_cart = sequelize.define(alias,cols,config)
+    let Products_cart = sequelize.define(alias,cols,config)
     
-     products_cart.associate = models => {
-         products_cart.hasOne(models.cart,{
+     Products_cart.associate = models => {
+         Products_cart.hasMany(models.Cart,{
              as: "cart",
              foreignKey:"cart_id"
          })
-         products_cart.hasMany(models.product,{
+         Products_cart.belongsTo(models.Product,{
              as:"products",
              foreignKey:"product_id"
          })
      }
     
-    return products_cart
+    return Products_cart
 } 

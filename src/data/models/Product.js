@@ -34,25 +34,25 @@ module.exports = (sequelize, dataTypes) => {
     }
     const Product = sequelize.define(alias, cols, config)
     Product.associate = models => {
-        Product.belongsToMany(models.Products_size), {
-            as: "size",
-            foreignKey: "sizeId"
-        },
-            Product.hasMany(models.Categories), {
+        Product.hasMany(models.Product_size), {
+            as: "sizes",
+            foreignKey: "product_id"
+        }
+            Product.hasMany(models.Category), {
             as: "categories",
-            foreignKey: "nameId"
-        },
-            Product.hasMany(models.Products_cart), {
+            foreignKey: "name_id"
+        }
+            Product.hasMany(models.Product_cart), {
             as: "products",
-            foreignKey: "productsCart"
-        },
-            Product.hasMany(models.Products_trade_mark), {
-            as: "products",
-            foreignKey: "productId"
-        },
-            Product.belongsToMany(models.Products_color), {
-            as: "products",
-            foreignKey: "productId"
+            foreignKey: "product_id"
+        }
+            Product.hasMany(models.Trade_mark), {
+            as: "mark",
+            foreignKey: "trade_mark"
+        }
+            Product.hasMany(models.products_color), {
+            as: "color",
+            foreignKey: "product_id"
         }
     }
     return Product;
