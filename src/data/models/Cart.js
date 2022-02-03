@@ -1,4 +1,3 @@
-const models = require('../models')
 module.exports = (sequelize,dataTypes) => {
     let alias= "Cart"
     let cols={
@@ -20,8 +19,8 @@ module.exports = (sequelize,dataTypes) => {
 
     let Cart = sequelize.define(alias,cols,config)
     Cart.associate = models =>{
-        Cart.hasMany(models.Products_cart,{
-            as:"product_cart",
+        Cart.hasMany(models.Product_cart,{
+            as:"ProductCarts",
             foreignKey:"cart_id"
         }),
         Cart.belongsTo(models.User,{

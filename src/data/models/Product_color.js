@@ -1,11 +1,11 @@
 module.exports = (sequelize, dataTypes) => {
-    const alias = "products_color";
-    const cols = {
+    let alias = "products_color";
+    let cols = {
         id: {
-        type: dataTypes.INTEGER().UNSIGNED,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull:false,
+            type: dataTypes.INTEGER().UNSIGNED,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false,
         },
         product_id: {
             type: dataTypes.INTEGER(),
@@ -20,7 +20,7 @@ module.exports = (sequelize, dataTypes) => {
        
     };
     
-    const config = {
+    let config = {
         tableName: "products_color",
         createdAt: "created_at",
         updatedAt: "update_at"

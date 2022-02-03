@@ -13,13 +13,10 @@ module.exports = (sequelize, dataTypes) => {
         },
        
     };
-    
     const config = {
         tableName: "trade_mark",
         timestamps: false
     };
-    
-    
     const Trade_mark = sequelize.define(alias, cols, config);
     Trade_mark.associate = models => {
         Trade_mark.belongsTo(models.Product,{
