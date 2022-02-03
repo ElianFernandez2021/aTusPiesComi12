@@ -25,12 +25,20 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         trade_mark: {
-            type: dataTypes.STRING(30)
+            type: dataTypes.INTEGER(10)
+        },
+        created_at:{
+            type: dataTypes.DATE
+        },
+        uptdated_at:{
+            type: dataTypes.DATE
         }
     }
     let config = {
         tableName: "products",
-        timestamps: true
+        timestamps: true,
+        createdAt:"created_at",
+        updatedAt:"updated_at",
     }
     const Product = sequelize.define(alias, cols, config)
     Product.associate = models => {

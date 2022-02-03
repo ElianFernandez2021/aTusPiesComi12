@@ -2,18 +2,18 @@ module.exports = (sequelize,dataTypes) => {
     let alias= "Product_cart"
     let cols = {
         id:{
-            type: dataTypes.INTEGER(100).UNSIGNED,
+            type: dataTypes.INTEGER(10).UNSIGNED,
             autoIncrement:true,
             allowNull:false,
             primaryKey:true
         },
         cart_id:{
-            type: dataTypes.INTEGER(100).UNSIGNED,
+            type: dataTypes.INTEGER(10).UNSIGNED,
             allowNull:false,
 
         },
         product_id: {
-            type: dataTypes.INTEGER(100).UNSIGNED,
+            type: dataTypes.INTEGER(10).UNSIGNED,
             allowNull:false,
         },
         quantity:{
@@ -29,7 +29,7 @@ module.exports = (sequelize,dataTypes) => {
     
      Products_cart.associate = models => {
          Products_cart.hasMany(models.Cart,{
-             as: "cart",
+             as: "carts",
              foreignKey:"cart_id"
          })
          Products_cart.belongsTo(models.Product,{
