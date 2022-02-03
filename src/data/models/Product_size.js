@@ -2,18 +2,18 @@ module.exports = (sequelize, dataTypes) => {
     let alias = 'Product_size';
     let cols = {
         id: {
-            type: dataTypes.INTEGER.UNSIGNED,
+            type: dataTypes.INTEGER().UNSIGNED,
             primaryKey: true,
             allowNull: false,
             autoIncrement: true
         },
         product_id: {
-            type: dataTypes.INTEGER,
+            type: dataTypes.INTEGER(),
             allowNull: false,
             through:"Product"
         },
         size_id: {
-            type: dataTypes.INTEGER.UNSIGNED,
+            type: dataTypes.INTEGER().UNSIGNED,
             allowNull: false,
             trhough:"Size"
         },
@@ -26,7 +26,7 @@ module.exports = (sequelize, dataTypes) => {
     const Product_size = sequelize.define(alias, cols, config);
 
     Product_size.associate = models => {
-        Product_size.belongsToMany(models.Product,{
+        Product_size.hasMany(models.Product,{
             as:"product_size",
             foreignKey:"product_id"
         })

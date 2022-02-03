@@ -20,7 +20,7 @@ module.exports = (sequelize,dataTypes) => {
 
     let Cart = sequelize.define(alias,cols,config)
     Cart.associate = models =>{
-        Cart.hasMany(models.Products_cart,{
+        Cart.hasMany(models.Product_cart,{
             as:"ProductCarts",
             foreignKey:"cart_id"
         }),

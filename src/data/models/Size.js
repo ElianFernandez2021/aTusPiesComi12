@@ -5,6 +5,9 @@ module.exports = (sequelize,dataTypes) => {
             type: dataTypes.INTEGER.UNSIGNED,
             primaryKey:true,
             autoIncrement:true
+        },
+        number: {
+            type: dataTypes.INTEGER,
         }
     }
     let config ={
@@ -14,7 +17,7 @@ module.exports = (sequelize,dataTypes) => {
     const Size = sequelize.define(alias,col,config)
 
     Size.associate = models => {
-        Size.belongsTo(models.products_size,{
+        Size.hasMany(models.Product_size,{
             as:"size",
             foreignKey:"size_id"
         })
