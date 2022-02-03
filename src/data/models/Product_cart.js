@@ -2,18 +2,18 @@ module.exports = (sequelize,dataTypes) => {
     let alias= "Product_cart"
     let cols = {
         id:{
-            type: dataTypes.INTEGER(10).UNSIGNED,
+            type: dataTypes.INTEGER(100).UNSIGNED,
             autoIncrement:true,
             allowNull:false,
             primaryKey:true
         },
         cart_id:{
-            type: dataTypes.INTEGER(10).UNSIGNED,
+            type: dataTypes.INTEGER(100).UNSIGNED,
             allowNull:false,
 
         },
         product_id: {
-            type: dataTypes.INTEGER(10).UNSIGNED,
+            type: dataTypes.INTEGER(100).UNSIGNED,
             allowNull:false,
         },
         quantity:{

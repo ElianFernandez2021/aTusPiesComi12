@@ -115,7 +115,7 @@ let controller={
             session:req.session
         })
     },
-    uptateProfile:(req,res) => {
+    updateProfile:(req,res) => {
         let userId = +req.params.id
         let {name,last_name,email,pass,avatar,teladdress,pc,city,province} = req.body
         users.forEach(usuario => {
