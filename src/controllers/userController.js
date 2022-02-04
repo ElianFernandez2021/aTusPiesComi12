@@ -14,41 +14,42 @@ let controller={
         })
     },
     processLogin: (req, res) => {
-        
         let errors = validationResult(req);
+        
         if(errors.isEmpty()){
-            let user = users.find(user => user.email === req.body.email)
-            req.session.user = {
-                id: user.id,
-                name: user.name,
-                last_name: user.last_name,
-                email: user.email,
-                avatar: user.avatar,
-                rol: user.rol,
-                tel: user.tel,
-                address: user.address,
-                pc: user.pc,
-                city: user.city,
-                province: user.province
-            }
-            if(req.body.remember){
-                const TIME_IN_MILISECONDS = 600000
-                res.cookie("aTusPies", req.session.user, {
-                    expires: new Date(Date.now() + TIME_IN_MILISECONDS),
-                    httpOnly: true,
-                    secure: true
-                })
-            }
-            res.locals.user = req.session.user
-            res.redirect('/')
-        }
-        else{
-            res.render('login',{
-                title:"login",
+            Users.findOne({
+                where: {
+                    email: req.body.email
+                }
+            })
+            .then(user => {
+                req.session.user = {
+                    id: user.id,
+                    first_name: user.name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    avatar: user.avatar,
+                    rol: user.rol
+                }
+    
+               if(req.body.remember){
+                   const TIME_IN_MILISECONDS = 60000
+                   res.cookie("aTusPies", req.session.user, {
+                       expires: new Date(Date.now() + TIME_IN_MILISECONDS),
+                       httpOnly: true,
+                       secure: true
+                   })
+               }
+    
+                res.locals.user = req.session.user;
+    
+                res.redirect('/')
+            })
+        }else{
+            res.render('login', {
                 errors: errors.mapped(),
                 session: req.session
             })
-          
         }
     },
     register:(req,res)=>{
@@ -61,29 +62,24 @@ let controller={
         let errors = validationResult(req);
        
         if(errors.isEmpty()){
-            let {  last_name, email, pass1 } = req.body;
+            let { first_name, last_name, email, pass1 } = req.body;
             Users.create({
-                
+                first_name, 
                 last_name,
                 email,
                 password: bcrypt.hashSync(pass1, 10),
-                
+                avatar: req.file ? req.file.filename : 'Jake_Sully.jpg',
                 rol: 0
             })
             .then(() => {
-                res.redirect('/user/login')
+                res.redirect('/users/login')
             })
-            .catch(error => console.log(error))
-
-        } else {
-            res.send(errors)
-            /* res.render('register', {
+        }else{
+            res.render('register', {
                 errors: errors.mapped(),
                 old: req.body,
                 session: req.session
-            }) */
-            
-
+            })
         }
     },
     profile:(req,res) => {
