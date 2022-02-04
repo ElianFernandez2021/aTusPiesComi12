@@ -1,4 +1,3 @@
-const models = require('../models')
 module.exports = (sequelize,dataTypes) => {
     let alias= "Cart"
     let cols={

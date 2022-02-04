@@ -74,12 +74,16 @@ let controller={
             .then(() => {
                 res.redirect('/users/login')
             })
-        }else{
-            res.render('register', {
+            .catch(error => console.log(error))
+
+        } else {
+                res.render('register', {
                 errors: errors.mapped(),
                 old: req.body,
                 session: req.session
             })
+            
+
         }
     },
     profile:(req,res) => {
@@ -99,7 +103,7 @@ let controller={
             session:req.session
         })
     },
-    uptateProfile:(req,res) => {
+    updateProfile:(req,res) => {
         let userId = +req.params.id
         let {name,last_name,email,pass,avatar,teladdress,pc,city,province} = req.body
         users.forEach(usuario => {
