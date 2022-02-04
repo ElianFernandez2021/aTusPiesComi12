@@ -17,6 +17,9 @@ module.exports = (sequelize, dataTypes) => {
         size: {
             type: dataTypes.INTEGER(2)
         },
+        category_id:{
+            type: dataTypes.INTEGER(10),
+        },
         description: {
             type: dataTypes.STRING(800),
         },
@@ -30,7 +33,7 @@ module.exports = (sequelize, dataTypes) => {
         created_at:{
             type: dataTypes.DATE
         },
-        uptdated_at:{
+        updated_at:{
             type: dataTypes.DATE
         }
     }
@@ -46,9 +49,9 @@ module.exports = (sequelize, dataTypes) => {
             as: "sizes",
             foreignKey: "product_id"
         }
-            Product.hasMany(models.Category), {
+            Product.belongsTo(models.Category), {
             as: "categories",
-            foreignKey: "name_id"
+            foreignKey: "category_id"
         }
             Product.hasMany(models.Product_cart), {
             as: "products",

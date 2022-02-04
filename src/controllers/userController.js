@@ -74,26 +74,23 @@ let controller={
             .then(() => {
                 res.redirect('/users/login')
             })
-            .catch(error => console.log(error))
-
-        } else {
-                res.render('register', {
+        }else{
+            res.render('register', {
                 errors: errors.mapped(),
                 old: req.body,
                 session: req.session
             })
-            
-
         }
     },
     profile:(req,res) => {
-        let user = users.find(user => user.email === req.session.user.email)
-        res.render('userProfile',{
-            title:"Perfil",
-            user,
-            session:req.session
+        Users.findByPk(req.session.user.id)
+        .then((user)=>{
+            res.render('userProfile',{
+                title:"Perfil",
+                user,
+                session:req.session
+            })
         })
-
     },
     editProfile:(req,res) => {
         let user = users.find(user => user.email === req.session.user.email)
@@ -131,7 +128,6 @@ let controller={
                 }
             }
             })
-            writeUserJson(users)
             res.redirect('/user/profile')
         },
     logout: (req,res) =>{
