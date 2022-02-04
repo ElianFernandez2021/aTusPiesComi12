@@ -50,14 +50,15 @@ let controller= {
             })
         }
         if(errors.isEmpty()){
-            const{name,size,price,description,color,discount,image} = req.body
+            const{name,color,size,description,price,image,category_id} = req.body
             Products.create({
                 name,
-                price,
-                description,
                 color,
-                discount,
-                image
+                size,
+                description,
+                price,
+                image,
+                category_id,
             })
             .then((newProduct)=> {
                 if(arrayImages.length > 0){
