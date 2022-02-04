@@ -7,9 +7,9 @@ module.exports = (sequelize, dataTypes) => {
             autoIncrement: true,
             allowNull: false,
         },
-        name: {
+        first_name: {
             type: dataTypes.STRING(45),
-            allowNull: false,
+            
         },
         last_name: {
             type: dataTypes.STRING(45),
@@ -20,27 +20,24 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false,
             unique: true
         },
-        pass: {
+        avatar: {
+            type: dataTypes.STRING(100),
+        },
+        password: {
             type: dataTypes.STRING(70),
             allowNull: false,
-        },
-        phone: {
-            type: dataTypes.STRING(30),
         },
         rol: {
             type: dataTypes.INTEGER(2).UNSIGNED,
             allowNull: false
-        },
-        avatar: {
-            type: dataTypes.STRING(100),
         }
     }
     const config = {
-        tableName: 'users',
+        tableName: 'user',
     }
     const User = sequelize.define(alias, cols, config)
     User.associate = (models) => {
-        User.belongsTo(models.Cart, {
+        User.hasMany(models.Cart, {
             as: 'cart',
             foreignKey: 'user_id'
         })

@@ -1,7 +1,7 @@
-const { users, writeUserJson } = require('../data/filesJson/database');
+/* const { users, writeUserJson } = require('../data/filesJson/database'); */
 const { validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs')
-const fs = require('fs')
+/* const fs = require('fs') */
 const db = require('../data/models');
 
 const Users = db.User
@@ -59,43 +59,31 @@ let controller={
     },
     processRegister: (req, res) => {
         let errors = validationResult(req);
+       
         if(errors.isEmpty()){
-           let lastId = 1;
-           users.forEach(user => {
-               if(user.id > lastId){
-                   lastId = user.id
-               }
-           });
-            let { name, last_name, email, pass1 } = req.body
-
-            let newUser = {
-                id: lastId + 1,
-                name,
+            let {  last_name, email, pass1 } = req.body;
+            Users.create({
+                
                 last_name,
                 email,
-                pass: bcrypt.hashSync(pass1, 10),
-                avatar: req.file ? req.file.filename : "default-image.png",
-                rol: "ROL_USER",
-                tel: "",
-                address: "",
-                pc: "",
-                city: "",
-                province: ""
-            }
-
-            users.push(newUser)
-
-            writeUserJson(users)
-
-            res.redirect('/user/login')
+                password: bcrypt.hashSync(pass1, 10),
+                
+                rol: 0
+            })
+            .then(() => {
+                res.redirect('/user/login')
+            })
+            .catch(error => console.log(error))
 
         } else {
-            res.render('register', {
-                title:"Registrate",
+            res.send(errors)
+            /* res.render('register', {
                 errors: errors.mapped(),
                 old: req.body,
                 session: req.session
-            })
+            }) */
+            
+
         }
     },
     profile:(req,res) => {

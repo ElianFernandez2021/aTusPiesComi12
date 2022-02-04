@@ -321,8 +321,11 @@ CREATE TABLE `user` (
   `email` varchar(100) NOT NULL,
   `avatar` varchar(100) NOT NULL,
   `rol` tinyint(2) NOT NULL,
+  `password` varchar(75) NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -331,6 +334,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'','user','user@mail.com','',0,'$2a$10$ctbyiFiafwcc61W8gblh9uFjEs5Zy9mjeCrkes4ZCP8bGQ7nB9vdG','2022-02-04 03:25:33','2022-02-04 03:25:33'),(2,'','user1','user1@mail.com','',0,'$2a$10$XPuHYCAQPj3slFN0dklNrOwJF2F5StRB5OTQ5yiRh1dyEaU.Y.Gkm','2022-02-04 03:26:29','2022-02-04 03:26:29');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,4 +351,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-30  0:50:25
+-- Dump completed on 2022-02-04  0:33:49
