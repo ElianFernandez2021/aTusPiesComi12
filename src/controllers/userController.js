@@ -76,12 +76,11 @@ let controller={
             .catch(error => console.log(error))
 
         } else {
-            res.send(errors)
-            /* res.render('register', {
+                res.render('register', {
                 errors: errors.mapped(),
                 old: req.body,
                 session: req.session
-            }) */
+            })
             
 
         }
