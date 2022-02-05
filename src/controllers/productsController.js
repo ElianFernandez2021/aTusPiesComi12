@@ -1,6 +1,70 @@
-const {products,categories, writeProductsJson}= require('../data/filesJson/database')
+//const {products,categories, writeProductsJson}= require('../data/filesJson/database')
+
+const { Op } = require('sequelize');
+const db = require('../data/models');
+
+const Products = db.Product;
+const Categories = db.Category;
+const Subcategories = db.Subcategory;
+
+
+
+
+
 let controller={
-    product: (req,res) => {
+    detail: (req, res) => {
+        Products.findOne({
+            where: {
+                id: req.params.id,
+            },
+            include: [{association: 'Product_image'}]
+        })
+        .then((relatedProducts) => {
+            res.render("productDetail", {
+                product,
+                sliderTitle: "Productos relacionados",
+                sliderProducts: relatedProducts,
+                session: req.session
+            })
+        })
+    },
+    category: (req, res) => {
+        Categories.findOne({
+            where:{
+                id: req.params.id
+            },
+            include:[{
+                association: "products",
+                include:[{
+                    association: "product_image"
+                }]
+            }] 
+        })
+        .catch(error => console.log(error))
+
+    },
+    search: (req, res) => {
+        Products.findAll({
+            where:{
+                name:{
+                    [Op.substring]: req.query.keywords
+                }
+            },
+            include: [{association: "Product_image"}]
+        })
+        .then((result) => {
+            res.render("searchResult",{
+                result,
+                search: req.query.keywords,
+                session: req.session
+            })
+        })
+    }
+    
+} 
+module.exports=controller;
+
+/* product: (req,res) => {
         res.render('products',{
             title:"Nuestros productos",
             session: req.session
@@ -54,10 +118,4 @@ let controller={
             subCategory
         })
 
-    }
-}
-
-
-
-
-module.exports=controller;
+    } */
