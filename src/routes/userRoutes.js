@@ -19,7 +19,7 @@ router.post('/register', uploadFile.single('avatar'), registerValidator, control
 router.get('/profile',userLogs , users.activeUser, controller.profile)
 
 router.get('/profile/edit/:id',userLogs , users.activeUser, controller.editProfile)
-router.put('/profile/edit/:id', users.activeUser,registerValidator,uploadFile.single('avatar'),controller.uptateProfile)
+router.put('/profile/edit/:id', users.activeUser,registerValidator,uploadFile.single('avatar'),controller.updateProfile)
 
 /* Get -Logout */
 router.get('/logout', controller.logout)

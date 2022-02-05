@@ -1,51 +1,47 @@
-module.exports = (sequelize,dataTypes) => {
-    let alias= "user"
-    let cols={
-        id:{
-            type:dataTypes.INTEGER(100).UNSIGNED,
-            allowNull:false,
-            primaryKey:true,
-            autoIncrement:true
+module.exports = (sequelize, dataTypes) => {
+    const alias = "User";
+    const cols = {
+        id: {
+            type: dataTypes.INTEGER(11).UNSIGNED,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false,
         },
-        first_name:{
-            type:dataTypes.STRING(50),
-            allowNull:false
+        first_name: {
+            type: dataTypes.STRING(45),
+            
         },
-        last_name:{
-            type:dataTypes.STRING(50),
-            allowNull:false
+        last_name: {
+            type: dataTypes.STRING(45),
+            allowNull: false,
         },
-        email:{
-            type:dataTypes.STRING(50),
-            allowNull:false,
-            unique:true
-        },
-        password: {
-            type:dataTypes.STRING(100),
-            allowNull:false
+        email: {
+            type: dataTypes.STRING(60),
+            allowNull: false,
+            unique: true
         },
         avatar: {
-            type:dataTypes.STRING(100)
+            type: dataTypes.STRING(100),
         },
-        rol:{
-            type:dataTypes.INTEGER(2),
-            allowNull:false
+        password: {
+            type: dataTypes.STRING(70),
+            allowNull: false,
+        },
+        rol: {
+            type: dataTypes.INTEGER(2).UNSIGNED,
+            allowNull: false
         }
     }
-    let config= {
-        tableName:"user",
-        timestamps:true,
-        createdAt:"created_at",
-        updatedAt:"updated_at"
+    const config = {
+        tableName: 'user',
+        tablestamp:true
     }
-
-    let user = sequelize.define(alias,cols,config)
-
-    user.associate= models =>{
-        user.hasOne(models.cart,{
-            as:"cart",
-            foreignKey:"user_id"
+    const User = sequelize.define(alias, cols, config)
+    User.associate = (models) => {
+        User.hasMany(models.Cart, {
+            as: 'cart',
+            foreignKey: 'user_id'
         })
     }
-    return user
+    return User
 }

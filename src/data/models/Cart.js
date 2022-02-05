@@ -1,5 +1,5 @@
 module.exports = (sequelize,dataTypes) => {
-    let alias= "cart"
+    let alias= "Cart"
     let cols={
         id:{
             type: dataTypes.INTEGER(100).UNSIGNED,
@@ -17,16 +17,16 @@ module.exports = (sequelize,dataTypes) => {
         timestamps:false
     }
 
-    let cart = sequelize.define(alias,cols,config)
-    cart.associate = models => {
-        cart.hasMany(models.product_cart,{
-            as:"cart",
+    let Cart = sequelize.define(alias,cols,config)
+    Cart.associate = models =>{
+        Cart.hasMany(models.Product_cart,{
+            as:"ProductCarts",
             foreignKey:"cart_id"
         }),
-        cart.hasOne(models.user,{
-            as:"user",
+        Cart.belongsTo(models.User,{
+            as:"user-cart",
             foreignKey:"user_id"
         })
     }
-    return cart
+    return Cart
 }

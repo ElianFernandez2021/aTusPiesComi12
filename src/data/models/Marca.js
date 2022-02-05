@@ -1,5 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
-    const alias = "products_trade_mark";
+    const alias = "Trade_mark";
     const cols = {
         id: {
         type: dataTypes.INTEGER().UNSIGNED,
@@ -7,32 +7,22 @@ module.exports = (sequelize, dataTypes) => {
         autoIncrement: true,
         allowNull:false,
         },
-        product_id: {
-            type: dataTypes.INTEGER(),
+        mark: {
+            type: dataTypes.STRING(),
             allowNull: false,
-
-        },
-        trade_mark_id: {
-            type: dataTypes.INTEGER().UNSIGNED,
-            allowNull: false,
-            unique: true,
         },
        
     };
-    
     const config = {
-        tableName: "products_trade_mark",
-        createdAt: "created_at",
-        updatedAt: "update_at"
+        tableName: "trade_mark",
+        timestamps: false
     };
-    
-    
-    const products_trade_mark = sequelize.define(alias, cols, config);
-    products_trade_mark.asociate = products => {
-        products_trade_mark.hasMany(products.id,{
-            as:"products_trade_mark",
-            foreignKey:"trade_mark_id",
+    const Trade_mark = sequelize.define(alias, cols, config);
+    Trade_mark.associate = models => {
+        Trade_mark.belongsTo(models.Product,{
+            as:"product_mark",
+            foreignKey:"trade_mark",
         })
     }
-    return products_trade_mark
+    return Trade_mark
 }
