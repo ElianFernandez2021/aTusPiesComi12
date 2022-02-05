@@ -72,7 +72,7 @@ let controller={
                 rol: 0
             })
             .then(() => {
-                res.redirect('/users/login')
+                res.redirect('/user/login')
             })
         }else{
             res.render('register', {

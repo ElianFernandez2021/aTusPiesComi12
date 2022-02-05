@@ -50,7 +50,7 @@ let controller= {
             })
         }
         if(errors.isEmpty()){
-            const{name,color,size,description,price,image,category_id} = req.body
+            const{name,color,size,description,price,image,category} = req.body
             Products.create({
                 name,
                 color,
@@ -58,7 +58,7 @@ let controller= {
                 description,
                 price,
                 image,
-                category_id,
+                category_id: category,
             })
             .then((newProduct)=> {
                 if(arrayImages.length > 0){
@@ -74,7 +74,7 @@ let controller= {
                 }
                 else{
                     Images.create({
-                        image: 'JakeSully.jpg',
+                        image: 'Jake_Sully.jpg',
                         productId: newProduct.id
                     })
                     .then(() => res.redirect('/admin/products'))
