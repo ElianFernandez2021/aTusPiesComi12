@@ -28,7 +28,11 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         trade_mark: {
-            type: dataTypes.INTEGER(10)
+            type: dataTypes.INTEGER(10),
+            allowNull:false
+        },
+        images:{
+            type: dataTypes.STRING
         },
         created_at:{
             type: dataTypes.DATE
@@ -57,7 +61,7 @@ module.exports = (sequelize, dataTypes) => {
             as: "products",
             foreignKey: "product_id"
         }
-            Product.hasMany(models.Trade_mark), {
+            Product.belongsTo(models.Trade_mark), {
             as: "mark",
             foreignKey: "trade_mark"
         }

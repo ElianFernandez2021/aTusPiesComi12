@@ -2,7 +2,7 @@ module.exports = (sequelize, dataTypes) => {
     const alias = "Trade_mark";
     const cols = {
         id: {
-        type: dataTypes.INTEGER().UNSIGNED,
+        type: dataTypes.INTEGER(10).UNSIGNED,
         primaryKey: true,
         autoIncrement: true,
         allowNull:false,
@@ -19,7 +19,7 @@ module.exports = (sequelize, dataTypes) => {
     };
     const Trade_mark = sequelize.define(alias, cols, config);
     Trade_mark.associate = models => {
-        Trade_mark.belongsTo(models.Product,{
+        Trade_mark.hasMany(models.Product,{
             as:"product_mark",
             foreignKey:"trade_mark",
         })

@@ -5,13 +5,31 @@ const db = require('../data/models');
 
 const Products = db.Product;
 const Categories = db.Category;
-const Subcategories = db.Subcategory;
 
 
 
 
 
 let controller={
+    product: (req,res) => {
+        res.render('products',{
+            title:"Nuestros productos",
+            session: req.session    
+    })
+    },
+    cart:(req,res)=>{
+        let carrito = products.filter(product => product.name)
+        let numeros= products.map( precio => {
+            Number(precio.price)
+        })
+        let total = numeros.reduce((acumulador,numero) => acumulador + numero)
+        res.render('productCart',{
+            carrito,
+            total,
+            title:"Carrito de compras",
+            session: req.session
+        })
+    },
     detail: (req, res) => {
         Products.findOne({
             where: {
@@ -40,6 +58,13 @@ let controller={
                 }]
             }] 
         })
+        .then((filtrado) => {
+            res.render('category',{
+                filtrado,
+                title:"Categoria "+ filtrado[filtrado.id-1].name,
+                session: req.session
+            })
+        })
         .catch(error => console.log(error))
 
     },
@@ -64,12 +89,7 @@ let controller={
 } 
 module.exports=controller;
 
-/* product: (req,res) => {
-        res.render('products',{
-            title:"Nuestros productos",
-            session: req.session
-        })
-    },
+/* 
     detail:(req,res)=>{
         let detailId = +req.params.id,
             detail = products.find(product => product.id === detailId)
@@ -79,21 +99,7 @@ module.exports=controller;
             session: req.session
         })
     },
-    cart:(req,res)=>{
-        let carrito = products.filter(product => product.name)
-        let numeros= products.map( precio => {
-            Number(precio.price)
-        })
-        let total = numeros.reduce((acumulador,numero) => acumulador + numero)
-        res.render('productCart',{
-            carrito,
-            total,
-            title:"Carrito de compras",
-            session: req.session
-        })
-        console.log(numeros)
-        console.log(total)
-    },
+    
     category: (req,res) => {
         let categoryId = +req.params.id
         let filtrado = products.filter(product => +product.category === categoryId )

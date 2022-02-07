@@ -10,6 +10,12 @@ module.exports = (sequelize, dataTypes) => {
         name: {
             type: dataTypes.STRING(45),
             allowNull: false,
+        },
+        createdAt:{
+            type: dataTypes.DATE
+        },
+        updatedAt:{
+            type:dataTypes.DATE
         }
     }
 
@@ -22,8 +28,8 @@ module.exports = (sequelize, dataTypes) => {
     
     Category.associate = (models) => {
         Category.hasMany(models.Product, {
-            as: 'products',
-            foreignKey: 'name'
+            as: "products",
+            foreignKey: "category_id"
         })
     }
     return Category
