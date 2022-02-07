@@ -10,12 +10,19 @@ module.exports = (sequelize, dataTypes) => {
         name: {
             type: dataTypes.STRING(45),
             allowNull: false,
+        },
+        created_at: {
+            type: dataTypes.DATE
+        },
+        updated_at: {
+            type: dataTypes.DATE
         }
     }
 
     const config = {
         tableName: 'categories',
-        timestaps: false
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
     }
 
     const Category = sequelize.define(alias, cols, config)

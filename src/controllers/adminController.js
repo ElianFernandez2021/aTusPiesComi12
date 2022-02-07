@@ -5,7 +5,7 @@ let {validationResult} = require('express-validator')
 const fs = require('fs');
 const db = require('../data/models');
 const Products = db.Product;
-const Images = db.Image;
+const Images = db.Product_image;
 const Categories = db.Category
 let controller= {
     create:(req,res) => {
@@ -26,17 +26,19 @@ let controller= {
         .catch(error => console.log(error))
     },
     adminSelectionCategory:(req,res) => {
-        Products.findByOne({
-            where:{
-                id: req.params.id
-            }
-        })
-        .then(category => {
-            res.render('admin/adminProduct',{
-                category,
-                adminTitle: category.name,
-                session: req.session
-            })
+        Categories.findByPk()
+            .then(category => {
+                Products.findAll()
+                
+                    .then(categorySelection => {
+                        
+                        res.render('admin/adminProduct',{
+                            category,
+                            categorySelection,
+                            session: req.session,
+                        })
+                })
+                .catch(error => console.log(error))
 
         })
         .catch(error => console.log(error))
@@ -72,14 +74,7 @@ let controller= {
                     .then(() => res.redirect('/admin/products'))
                     .catch(error => console.log(error))
                 }
-                else{
-                    Images.create({
-                        image: 'Jake_Sully.jpg',
-                        productId: newProduct.id
-                    })
-                    .then(() => res.redirect('/admin/products'))
-                    .catch(error => console.log(error))
-                }
+                res.render('/admin/products/')
 
             })
             .catch(error => console.log(error))
@@ -110,7 +105,7 @@ let controller= {
         let errors = validationResult(req)
         if(errors.isEmpty()){
             const {name,price,size,description,color} = req.body
-            Products.uptdate({
+            Products.update({
                     name : name.trim(),
                     price : +price.trim(),
                     size : +size.trim(),
@@ -125,9 +120,10 @@ let controller= {
                 .then(() => {
                     Images.findAll({
                         where:{
-                            productId: req.params.id
+                            product_id: req.params.id
                         }
                     })
+                        
                     .then((productImages) => {
                         if(req.file){
                             if(fs.existsSync("../public/images/products/botas",productImages.image)){
@@ -153,16 +149,19 @@ let controller= {
                         })
                         .then(()=> {
                             Images.create({
-                                image:req.file ? req.file.filename: 'JakeSully.jpg',
+                                image:req.file ? req.file.filename: 'Jake_Sully.jpg',
                                 productId: req.params.id
                             })
                             .then(() => {
                                 res.redirect('/admin/products')
                             })
+                            .catch(error => console.log(error))  
                         })
+                        .catch(error => console.log(error))  
                     })
                     .catch(error => console.log(error))                
                 })
+                .catch(error => console.log(error))  
             }
             else{
                  Products.findByPk(req.params.id)
@@ -180,27 +179,33 @@ let controller= {
     fatality:(req,res) => {
         let zapaId = +req.params.id;
         Products.findByPk(zapaId)
-            if(zapaId){
-                if(fs.existsSync("../public/images/products/botas",Products.image)){
-                    fs.unlinkSync(`../public/images/products/botas ${Products.image}`)
+            .then(result => {
+                if (zapaId) {
+                    if (fs.existsSync("../public/images/products/botas", Products.image)) {
+                        fs.unlinkSync(`../public/images/products/botas ${Products.image}`)
+                    }
+                    else if (fs.existsSync("../public/images/products/casual", Products.image)) {
+                        fs.unlinkSync(`../public/images/products/casual ${Products.image}`)
+                    }
+                    else if (fs.existsSync("../public/images/products/elegante", Products.image)) {
+                        fs.unlinkSync(`../public/images/products/elegante ${Products.image}`)
+                    }
+                    else if (fs.existsSync("../public/images/products/zapatillas", Products.image)) {
+                        fs.unlinkSync(`../public/images/products/zapatillas ${Products.image}`)
+                    }
+                    else {
+                        console.log("Archivo no encontrado")
+                    }
                 }
-                else if(fs.existsSync("../public/images/products/casual",Products.image)){
-                    fs.unlinkSync(`../public/images/products/casual ${Products.image}`)
-                }
-                else if(fs.existsSync("../public/images/products/elegante",Products.image)){
-                    fs.unlinkSync(`../public/images/products/elegante ${Products.image}`)
-                }
-                else if(fs.existsSync("../public/images/products/zapatillas",Products.image)){
-                    fs.unlinkSync(`../public/images/products/zapatillas ${Products.image}`)
-                }
-                else{
-                    console.log("Archivo no encontrado")
-                }
+        })
+        
                 Products.destroy({where:{id:req.params.id}})
                 .then(res.redirect('/admin/category',{
                     session:req.session
                 }))
-            }
+                .catch(error => console.log(error)) 
+        
+        
     }
 }
 
