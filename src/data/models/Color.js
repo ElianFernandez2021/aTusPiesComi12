@@ -3,8 +3,8 @@ module.exports = (sequelize,dataType) => {
     let cols={
         id:{
             type: dataType.INTEGER.UNSIGNED,
-            allowNull:false,
             autoIncrement:true,
+            primaryKey:true
         },
         name:{
             type: dataType.STRING,
@@ -18,7 +18,7 @@ module.exports = (sequelize,dataType) => {
         },
     }
     let config= {
-        tablename:'color'
+        tableName:'color'
     }
     const Color= sequelize.define(alias,cols,config)
     Color.associate = models => {

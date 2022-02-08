@@ -3,8 +3,8 @@ module.exports = (sequelize,dataType) => {
     let cols={
         id:{
             type: dataType.INTEGER.UNSIGNED,
-            allowNull:false,
             autoIncrement:true,
+            primaryKey:true
         },
         product_id:{
             type: dataType.INTEGER.UNSIGNED,
@@ -16,7 +16,7 @@ module.exports = (sequelize,dataType) => {
         }
     }
     let config= {
-        tablename:'products_image',
+        tableName:'products_image',
         timestamp:false
     }
     const Product_image= sequelize.define(alias,cols,config)

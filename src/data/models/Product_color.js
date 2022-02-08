@@ -1,10 +1,11 @@
 module.exports = (sequelize,dataType) => {
+
     let alias='Product_color'
     let cols={
         id:{
             type: dataType.INTEGER.UNSIGNED,
-            allowNull:false,
             autoIncrement:true,
+            primaryKey:true
         },
         product_id:{
             type: dataType.INTEGER.UNSIGNED,
@@ -16,12 +17,12 @@ module.exports = (sequelize,dataType) => {
         }
     }
     let config= {
-        tablename:'products_color',
+        tableName:'products_color',
         timestamp:false
     }
     const Product_color= sequelize.define(alias,cols,config)
     Product_color.associate = models => {
-        Product_color.hasMany(models.Produc,{
+        Product_color.hasMany(models.Product,{
             as:'product',
             foreignKey:'product_id'
         })

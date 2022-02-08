@@ -3,8 +3,8 @@ module.exports = (sequelize,dataType) => {
     let cols={
         id:{
             type: dataType.INTEGER.UNSIGNED,
-            allowNull:false,
             autoIncrement:true,
+            primaryKey:true
         },
         cart_id:{
             type: dataType.INTEGER.UNSIGNED,
@@ -26,7 +26,7 @@ module.exports = (sequelize,dataType) => {
         }
     }
     let config= {
-        tablename:'products_cart',
+        tableName:'products_cart',
         createdAt:'create_at',
         updatedAt:'update_at',
     }

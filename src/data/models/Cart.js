@@ -3,7 +3,7 @@ module.exports = (sequelize,dataType) => {
     let cols={
         id:{
             type: dataType.INTEGER.UNSIGNED,
-            allowNull:false,
+            primaryKey:true,
             autoIncrement:true,
         },
         user_id:{
@@ -12,7 +12,7 @@ module.exports = (sequelize,dataType) => {
             }
     }
     let config= {
-        tablename:'cart',
+        tableName:'cart',
         timestamp:false
     }
     const Cart= sequelize.define(alias,cols,config)
@@ -21,10 +21,6 @@ module.exports = (sequelize,dataType) => {
             as:'cart',
             foreignKey:'user_id'
         })
-        Cart.hasMany(models.Product_cart,{
-            as:'cart',
-            foreignKey:'cart_id'
-        })
-    }
+    }           
     return Cart
 }

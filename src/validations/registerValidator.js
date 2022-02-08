@@ -1,10 +1,10 @@
 const { check, body } = require('express-validator');
 const db = require('../data/models')
 
-const Users = db.User
+const User = db.User
 
 module.exports = [
-    check('name')
+    check('first_name')
     .notEmpty()
     .withMessage('El nombre es requerido'),
 
@@ -17,7 +17,7 @@ module.exports = [
     .withMessage('Debes ingresar un email válido'),
 
     body('email').custom((value) => {
-        return Users.findOne({
+        return User.findOne({
             where: {
                 email: value,
             }

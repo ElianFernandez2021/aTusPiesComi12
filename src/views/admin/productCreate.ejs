@@ -2,41 +2,8 @@
 <html lang="es">
     <%- include('../partials/adminHead')  %> 
 <body>
-    <!-- navbar -->
-    <!-- <div class="toggle" onclick="toggleMenu()"></div> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- fin navbar -->
     <%- include('../partials/adminHeader')%> 
-    <!-- <div class="navigation">
-        <ul>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-home"></i></i></span>
-                    <span class="title" >Inicio</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-user"></i></span>
-                    <span class="title">Perfil</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-cog"></i></span>
-                    <span class="title">Configuraciones</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
-                    <span class="title">Salir</span>
-                </a>
-            </li>
-        </ul>
-    </div> -->
-
-    <!-- Editor creador de productos -->
     <table>
         <tr>
             <td>
@@ -53,7 +20,9 @@
                     <div>
                         <label for="category">Categoria</label>
                         <select name="category" id="" >
-                            <option value="1">Casual</option>
+                            <option value="<% array.forEach(element => { %>
+                             
+                            <% }) %>">Casual</option>
                             <option value="2">Deportivas</option>
                             <option value="3">Elegante</option>
                             <option value="4">Botas</option>

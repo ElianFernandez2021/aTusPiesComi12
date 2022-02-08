@@ -75,6 +75,7 @@ let controller={
                 res.redirect('/user/login')
             })
         }else{
+         
             res.render('register', {
                 errors: errors.mapped(),
                 old: req.body,

@@ -1,6 +1,3 @@
-/* ViejoJSON
-const {products,writeProductsJson, categories} = require('../data/filesJson/database')
-const {id,price,category,talle,color,image} = require('../data/filesJson/products') */
 let {validationResult} = require('express-validator')
 const fs = require('fs');
 const db = require('../data/models');

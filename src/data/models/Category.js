@@ -3,9 +3,8 @@ module.exports = (sequelize,dataType) => {
     let cols = {
         id: {
             type: dataType.INTEGER.UNSIGNED,
-            allowNull:false,
             autoIncrement:true,
-            unique:true
+            primaryKey:true
         },
         name: {
             type:dataType.STRING(50),

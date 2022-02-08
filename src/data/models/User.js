@@ -3,8 +3,8 @@ module.exports = (sequelize,dataType) => {
     let cols={
         id:{
             type: dataType.INTEGER.UNSIGNED,
-            allowNull:false,
             autoIncrement:true,
+            primaryKey:true
         },
         first_name:{
             type: dataType.STRING,
@@ -38,14 +38,9 @@ module.exports = (sequelize,dataType) => {
         }
     }
     let config= {
-        tablename:'user',
+        tableName:'user',
     }
     const User= sequelize.define(alias,cols,config)
-    User.associate = models => {
-        User.belongsTo(models.Cart,{
-            as:'cart',
-            foreignKey:'user_id'
-        })
-    }
+    
     return User
 }

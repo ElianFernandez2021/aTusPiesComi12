@@ -3,9 +3,8 @@ module.exports = (sequelize,dataType) => {
     let cols = {
         id: {
             type: dataType.INTEGER.UNSIGNED,
-            allowNull:false,
             autoIncrement:true,
-            unique:true
+            primaryKey:true
         },
         name: {
             type:dataType.STRING(50),
@@ -47,7 +46,7 @@ module.exports = (sequelize,dataType) => {
         })
 
         Product.belongsTo(models.Trade_mark,{
-            as:'trade_mark',
+            as:'mark',
             foreignKey: 'trade_mark'
         })        
     }

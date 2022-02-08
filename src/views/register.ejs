@@ -7,7 +7,7 @@
         <img src="/images/login/logo.png" alt="logo" >
         <form class="cuadro-form tamaño-logo" action="/user/register" method="POST" enctype="multipart/form-data" class="form-ad" >
             <div class="form-ad-input">
-                <input class="forma-tamaño" type="text" name="name" placeholder="Nombre" value="<%= locals.old && old.name %>">
+                <input class="forma-tamaño" type="text" name="first_name" placeholder="Nombre" value="<%= locals.old && old.name %>">
                 <% if (locals.errors && errors.name) { %>
                     <small class="text-danger"><%= errors.name.msg %> </small>
                 <% } %>
