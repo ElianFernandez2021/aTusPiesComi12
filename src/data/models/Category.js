@@ -1,21 +1,21 @@
-module.exports = (sequelize,dataTypes) => {
+module.exports = (sequelize,dataType) => {
     let alias = 'Category'
     let cols = {
         id: {
-            type: dataTypes.INTEGER.UNSIGNED,
+            type: dataType.INTEGER.UNSIGNED,
             allowNull:false,
             autoIncrement:true,
             unique:true
         },
         name: {
-            type:dataTypes.STRING(50),
+            type:dataType.STRING(50),
             allowNull:false
        },
-        created_at:{
-            type: dataTypes.DATE
+        createdAt:{
+            type: dataType.DATE
         },
-        updated_at:{
-            type: dataTypes.DATE
+        updatedAt:{
+            type: dataType.DATE
         }
     }
     let config = {
