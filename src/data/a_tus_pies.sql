@@ -79,7 +79,7 @@ CREATE TABLE `color` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,6 +88,7 @@ CREATE TABLE `color` (
 
 LOCK TABLES `color` WRITE;
 /*!40000 ALTER TABLE `color` DISABLE KEYS */;
+INSERT INTO `color` VALUES (1,'Rojo',NULL,NULL),(2,'Verde',NULL,NULL),(3,'Azul',NULL,NULL),(4,'Blanco',NULL,NULL),(5,'Negro',NULL,NULL),(6,'Amarillo',NULL,NULL),(7,'Gris',NULL,NULL);
 /*!40000 ALTER TABLE `color` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +199,7 @@ CREATE TABLE `products_image` (
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),
   CONSTRAINT `products_image_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,6 +208,7 @@ CREATE TABLE `products_image` (
 
 LOCK TABLES `products_image` WRITE;
 /*!40000 ALTER TABLE `products_image` DISABLE KEYS */;
+INSERT INTO `products_image` VALUES (1,'chon_fus.jpg',54);
 /*!40000 ALTER TABLE `products_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,7 +253,7 @@ CREATE TABLE `size` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -260,6 +262,7 @@ CREATE TABLE `size` (
 
 LOCK TABLES `size` WRITE;
 /*!40000 ALTER TABLE `size` DISABLE KEYS */;
+INSERT INTO `size` VALUES (1,30,NULL,NULL),(2,31,NULL,NULL),(3,32,NULL,NULL),(4,33,NULL,NULL),(5,34,NULL,NULL),(6,35,NULL,NULL),(7,36,NULL,NULL),(8,37,NULL,NULL),(9,38,NULL,NULL),(10,39,NULL,NULL),(11,40,NULL,NULL),(12,41,NULL,NULL),(13,42,NULL,NULL),(14,43,NULL,NULL),(15,44,NULL,NULL),(16,45,NULL,NULL),(17,46,NULL,NULL),(18,47,NULL,NULL),(19,48,NULL,NULL);
 /*!40000 ALTER TABLE `size` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -331,4 +334,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-08 10:47:43
+-- Dump completed on 2022-02-08 10:59:12
