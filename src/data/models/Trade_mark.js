@@ -13,12 +13,12 @@ module.exports = (sequelize,dataTypes) => {
     }
     let config = {
         tableName: 'trade_mark',
-        timestamp:false
+        timestamps:false
     }
     const Trade_mark = sequelize.define(alias,cols,config)
     Trade_mark.associate = (models) => {
-        Trade_mark.belongsTo(models.Product,{
-            as:'Marca',
+        Trade_mark.hasMany(models.Product,{
+            as:'products',
             foreignKey: 'trade_mark'
         })        
     }

@@ -36,7 +36,8 @@ module.exports = (sequelize,dataType) => {
     let config = {
         tableName: 'products',
         createdAt: 'created_at',
-        updatedAt: 'updated_at'
+        updatedAt: 'updated_at',
+        timestamps: true
     }
     const Product = sequelize.define(alias,cols,config)
     Product.associate = (models) => {
@@ -44,11 +45,33 @@ module.exports = (sequelize,dataType) => {
             as:'category',
             foreignKey: 'category_id'
         })
+        Product.hasMany(models.Product_cart,{
+            as:'cart',
+            foreignKey: 'product_id'
+        })   
 
         Product.belongsTo(models.Trade_mark,{
-            as:'mark',
+            as:'marca',
             foreignKey: 'trade_mark'
         })        
+        Product.belongsToMany(models.Color,{
+            as:'colors',
+            through: 'products_color',
+            foreignKey:'product_id',
+            otherKey:'color_id',
+            timestamps:false
+        })
+        Product.belongsToMany(models.Size,{
+            as:'sizes',
+            through: 'products_size',
+            foreignKey:'product_id',
+            otherKey:'size_id',
+            timestamps:false
+        })
+        Product.hasMany(models.Product_image,{
+            as:'images',
+            foreignKey: 'product_id'
+        }) 
     }
     return Product
 }

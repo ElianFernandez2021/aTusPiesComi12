@@ -15,17 +15,23 @@
                     </div>
                     <div>
                         <label for="size">Talle</label>
-                        <input type="number" name="size" id="size">
+                        <select name="size" id="">
+                            <% sizes.forEach(talles => { %>
+                                <option value="<%-talles.id%> "><%- talles.num %> </option>
+                            <% }) %>
+                        </select>
                     </div>
                     <div>
                         <label for="category">Categoria</label>
                         <select name="category" id="" >
-                            <option value="<% array.forEach(element => { %>
-                             
-                            <% }) %>">Casual</option>
-                            <option value="2">Deportivas</option>
-                            <option value="3">Elegante</option>
-                            <option value="4">Botas</option>
+                            <% categories.forEach(category => { %>
+                                <option value="<%- category.id %>" <%= locals.old && old.category == category.id ? "selected" : "" %> ><%- category.name %> </option>
+                            <% }) %>
+                            </select>
+                            <% if (locals.errors && errors.category) { %>
+                                <small class="text-danger"><%= errors.category.msg %> </small>
+                            <% } %>
+        
                         </select>
 
                     </div>
@@ -36,10 +42,9 @@
                     <div>
                         <label for="trade_mark">Marca</label>
                         <select name="trade_mark" id="">
-                            <option value="1">Nike</option>
-                            <option value="2">Salomon</option>
-                            <option value="3">Puma</option>
-                            <option value="4">Topper</option>
+                            <% marks.forEach(marca => { %>
+                                <option value="<%- marca.id %> "><%- marca.mark%> </option>                             
+                            <% }) %>
                         </select>
                     </div>
                     <div>
@@ -48,7 +53,11 @@
                     </div>
                     <div>
                         <label for="discount">Color</label>
-                        <input type="text" name="color" id="color">
+                        <select name="color" id="">
+                            <% colors.forEach(color => { %>
+                             <option value="<%- color.id%> "><%- color.name %> </option>
+                            <% }) %>
+                        </select>
                     </div>
                     <div>
                         <label for="image">Imagen</label>

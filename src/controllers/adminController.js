@@ -4,12 +4,27 @@ const db = require('../data/models');
 const Products = db.Product;
 const Images = db.Product_image;
 const Categories = db.Category
+const Sizes = db.Size
+const Marks = db.Trade_mark
+const Color = db.Color
 let controller= {
     create:(req,res) => {
-        res.render("admin/productCreate",{
-            adminTitle: "Agregar producto",
-            session: req.session
+        let categories = Categories.findAll()
+        let sizes = Sizes.findAll()
+        let marks = Marks.findAll()
+        let colors = Color.findAll()
+        Promise.all([categories,sizes,marks,colors])
+        .then(([categories,sizes,marks,colors]) => {
+            res.render("admin/productCreate",{
+                adminTitle: "Agregar producto",
+                session: req.session,
+                categories,
+                sizes,
+                marks,
+                colors
+            })
         })
+        .catch(errors => console.log(errors))    
     },
     adminCategory:(req,res) => {
         Categories.findAll()
@@ -23,11 +38,26 @@ let controller= {
         .catch(error => console.log(error))
     },
     adminSelectionCategory:(req,res) => {
-        Categories.findByPk(req.params.id,{
+
+        Products.findAll({
+            include:[
+                {association: 'category'},
+                {association:'colors'},
+                {association:'sizes'},
+                {association:'marca'}
+            ]
+        })
+        .then(products => {
+            res.render('admin/adminProduct',{
+                products
+            })
+        })
+        .catch(error => console.log(error))
+     /*    Categories.findByPk(req.params.id,{
             include:[{association: 'products'}]
         })
             .then(category => {
-                res.send(category)
+                res.send(category) */
                /*  Products.findAll()
                     .then(products => {
                         /* 
@@ -38,8 +68,8 @@ let controller= {
                         }) */
                 //}) 
                 //.catch(error => console.log(error))
-        })
-        .catch(error => console.log(error))
+        //})
+        //.catch(error => console.log(error))
     },
     store: (req,res) => {
         let errors = validationResult(req);

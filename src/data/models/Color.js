@@ -18,13 +18,17 @@ module.exports = (sequelize,dataType) => {
         },
     }
     let config= {
-        tableName:'color'
+        tableName:'color',
+        timestamps:true
     }
     const Color= sequelize.define(alias,cols,config)
     Color.associate = models => {
-        Color.hasMany(models.Product_color,{
-            as:'color',
-            foreignKey:'color_id'
+        Color.belongsToMany(models.Product,{
+            as:'products',
+            through: 'products_color',
+            foreignKey:'color_id',
+            otherKey:'product_id',
+            timestamps:false
         })
     }
     return Color

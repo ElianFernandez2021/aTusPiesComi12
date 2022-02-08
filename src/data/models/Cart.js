@@ -13,13 +13,17 @@ module.exports = (sequelize,dataType) => {
     }
     let config= {
         tableName:'cart',
-        timestamp:false
+        timestamps:false
     }
     const Cart= sequelize.define(alias,cols,config)
     Cart.associate = models => {
         Cart.belongsTo(models.User,{
             as:'cart',
             foreignKey:'user_id'
+        })
+        Cart.hasMany(models.Product_cart,{
+            as:'products_cart',
+            foreignKey:'cart_id'
         })
     }           
     return Cart

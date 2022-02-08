@@ -21,7 +21,7 @@ module.exports = (sequelize,dataType) => {
         timestamp:false
     }
     const Product_color= sequelize.define(alias,cols,config)
-    Product_color.associate = models => {
+    /* Product_color.associate = models => {
         Product_color.hasMany(models.Product,{
             as:'product',
             foreignKey:'product_id'
@@ -30,6 +30,6 @@ module.exports = (sequelize,dataType) => {
             as:'color',
             foreignKey:'color_id'
         })
-    }
+    } */
     return Product_color
 }
