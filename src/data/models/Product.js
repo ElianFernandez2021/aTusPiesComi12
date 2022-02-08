@@ -40,4 +40,16 @@ module.exports = (sequelize,dataTypes) => {
         updatedAt: 'updated_at'
     }
     const Product = sequelize.define(alias,cols,config)
+    Product.associate = (models) => {
+        Product.belongsTo(models.Category,{
+            as:'category',
+            foreignKey: 'category_id'
+        })
+
+        Product.belongsTo(models.Trade_mark,{
+            as:'trade_mark',
+            foreignKey: 'trade_mark'
+        })        
+    }
+    return Product
 }
