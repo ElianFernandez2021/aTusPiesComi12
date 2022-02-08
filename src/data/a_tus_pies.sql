@@ -76,6 +76,8 @@ DROP TABLE IF EXISTS `color`;
 CREATE TABLE `color` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -110,7 +112,7 @@ CREATE TABLE `products` (
   KEY `trade_markFk` (`trade_mark`),
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
   CONSTRAINT `trade_markFk` FOREIGN KEY (`trade_mark`) REFERENCES `trade_mark` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +121,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Zapatillas Allstar Blancas','La mejores zapatillas con suela ergonomica','8000',NULL,NULL,1,1),(2,'Zapatillas Allstar Blancas','La mejores zapatillas con suela ergonomica','8000',NULL,NULL,1,1),(3,'zapatillas casuales marrones','La mejores zapatillas con suela ergonomica','6000',NULL,NULL,3,2),(4,'Zapatilla casual Naranja','La mejores zapatillas con suela ergonomica','10000',NULL,NULL,3,3),(5,'Zapatilla deportiva','La mejores zapatillas con suela ergonomica','9000',NULL,NULL,1,4),(6,'Zapatillas casuales camufladas','La mejores zapatillas con suela ergonomica','8000',NULL,NULL,3,1),(7,'Botas marrones','La mejores zapatillas con suela ergonomica','7500',NULL,NULL,4,2),(8,'Zapatillas camufladas','La mejores zapatillas con suela ergonomica','6500',NULL,NULL,3,3),(9,'Zapatillas camufladas','La mejores zapatillas con suela ergonomica','8600',NULL,NULL,1,4),(10,'Zapatillas AllStar','La mejores zapatillas con suela ergonomica','12500',NULL,NULL,3,1),(11,'Zapatillas casuales Allstar','La mejores zapatillas con suela ergonomica','5500',NULL,NULL,3,2),(12,'Zapatos chocolate','La mejores zapatillas con suela ergonomica','6000',NULL,NULL,2,3),(13,'Zapatos ingleses','La mejores zapatillas con suela ergonomica','8900',NULL,NULL,2,4),(53,'nombre','asdasd','99999','2022-02-06 21:44:27','2022-02-06 21:44:27',1,1);
+INSERT INTO `products` VALUES (54,'Zapa','asdas','22',NULL,NULL,1,1);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,6 +248,8 @@ DROP TABLE IF EXISTS `size`;
 CREATE TABLE `size` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `num` tinyint(2) unsigned DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -327,4 +331,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-07 21:31:50
+-- Dump completed on 2022-02-08 10:47:43
