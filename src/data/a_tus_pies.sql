@@ -50,8 +50,10 @@ DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,6 +62,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'casual',NULL,NULL),(2,'deportivas',NULL,NULL),(3,'elegante',NULL,NULL),(4,'botas',NULL,NULL);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,19 +99,18 @@ DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `color` varchar(100) NOT NULL,
-  `size` int(11) NOT NULL,
   `description` varchar(100) DEFAULT NULL,
   `price` varchar(100) NOT NULL,
-  `trade_mark` varchar(100) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `category_id` int(10) unsigned NOT NULL,
-  `images` int(11) NOT NULL,
+  `trade_mark` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
-  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `trade_markFk` (`trade_mark`),
+  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  CONSTRAINT `trade_markFk` FOREIGN KEY (`trade_mark`) REFERENCES `trade_mark` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,6 +119,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,'Zapatillas Allstar Blancas','La mejores zapatillas con suela ergonomica','8000',NULL,NULL,1,1),(2,'Zapatillas Allstar Blancas','La mejores zapatillas con suela ergonomica','8000',NULL,NULL,1,1),(3,'zapatillas casuales marrones','La mejores zapatillas con suela ergonomica','6000',NULL,NULL,3,2),(4,'Zapatilla casual Naranja','La mejores zapatillas con suela ergonomica','10000',NULL,NULL,3,3),(5,'Zapatilla deportiva','La mejores zapatillas con suela ergonomica','9000',NULL,NULL,1,4),(6,'Zapatillas casuales camufladas','La mejores zapatillas con suela ergonomica','8000',NULL,NULL,3,1),(7,'Botas marrones','La mejores zapatillas con suela ergonomica','7500',NULL,NULL,4,2),(8,'Zapatillas camufladas','La mejores zapatillas con suela ergonomica','6500',NULL,NULL,3,3),(9,'Zapatillas camufladas','La mejores zapatillas con suela ergonomica','8600',NULL,NULL,1,4),(10,'Zapatillas AllStar','La mejores zapatillas con suela ergonomica','12500',NULL,NULL,3,1),(11,'Zapatillas casuales Allstar','La mejores zapatillas con suela ergonomica','5500',NULL,NULL,3,2),(12,'Zapatos chocolate','La mejores zapatillas con suela ergonomica','6000',NULL,NULL,2,3),(13,'Zapatos ingleses','La mejores zapatillas con suela ergonomica','8900',NULL,NULL,2,4),(53,'nombre','asdasd','99999','2022-02-06 21:44:27','2022-02-06 21:44:27',1,1);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,34 +237,6 @@ LOCK TABLES `products_size` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `products_trade_mark`
---
-
-DROP TABLE IF EXISTS `products_trade_mark`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `products_trade_mark` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `product_id` int(10) unsigned NOT NULL,
-  `trade_mark_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `prodMarkFK` (`product_id`),
-  KEY `trade_markFK` (`trade_mark_id`),
-  CONSTRAINT `prodMarkFK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-  CONSTRAINT `trade_markFK` FOREIGN KEY (`trade_mark_id`) REFERENCES `trade_mark` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products_trade_mark`
---
-
-LOCK TABLES `products_trade_mark` WRITE;
-/*!40000 ALTER TABLE `products_trade_mark` DISABLE KEYS */;
-/*!40000 ALTER TABLE `products_trade_mark` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `size`
 --
 
@@ -295,7 +270,7 @@ CREATE TABLE `trade_mark` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `mark` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -304,6 +279,7 @@ CREATE TABLE `trade_mark` (
 
 LOCK TABLES `trade_mark` WRITE;
 /*!40000 ALTER TABLE `trade_mark` DISABLE KEYS */;
+INSERT INTO `trade_mark` VALUES (1,'Nike'),(2,'Salomon'),(3,'Puma'),(4,'Topper');
 /*!40000 ALTER TABLE `trade_mark` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,8 +298,8 @@ CREATE TABLE `user` (
   `avatar` varchar(100) NOT NULL,
   `rol` tinyint(2) NOT NULL,
   `password` varchar(75) NOT NULL,
-  `createdAt` datetime DEFAULT NULL,
-  `updatedAt` datetime DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -334,7 +310,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'','user','user@mail.com','',0,'$2a$10$ctbyiFiafwcc61W8gblh9uFjEs5Zy9mjeCrkes4ZCP8bGQ7nB9vdG','2022-02-04 03:25:33','2022-02-04 03:25:33'),(2,'','user1','user1@mail.com','',0,'$2a$10$XPuHYCAQPj3slFN0dklNrOwJF2F5StRB5OTQ5yiRh1dyEaU.Y.Gkm','2022-02-04 03:26:29','2022-02-04 03:26:29');
+INSERT INTO `user` VALUES (1,'','Diaz','facu@mail.com','Jake_Sully.jpg',1,'$2a$10$3XM.Md2KGX8SR18liP5wjuWOk6cxleSW2vZ/ViEPAo49R9pDUTagi','2022-02-04 03:52:03','2022-02-04 03:52:03'),(2,'','usuario','prueba@mail.com','1644097686793_img_.jpg',0,'$2a$10$t60iGpMKNBde6txdG/uHHOEG78PHOAZRHbavwhzJHhCmm.U24r8x.','2022-02-05 21:48:09','2022-02-05 21:48:09');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -351,4 +327,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-04  0:33:49
+-- Dump completed on 2022-02-07 21:31:50

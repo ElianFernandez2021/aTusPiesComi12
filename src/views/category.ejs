@@ -3,12 +3,12 @@
 <%- include('./partials/head')  %> 
 <body>
     <%- include('./partials/header')  %> 
-    <h2>Categoria: <%- filtrado.subgategory %>  </h2>
+    <h2>Categoria: <%- filtrado.name %>  </h2>
     <div class="categories-product">
         <% filtrado.forEach(product => { %>
-         <div class="products">
+         <div class="products"> 
             <p><%- product.name%> </p>
-            <img class="product-image" src="/images/products/<%- product.subcategory%>/<%- product.image%>" alt="<%- product.id%> ">
+            <img class="product-image" src="/images/products/<%- filtrado.name%>/<%- product.image%>" alt="<%- product.id%> ">
             <p>Descripcion: <%- product.description%> </p>
             <p>Talle: <%- product.size%> </p>
             <p>Color: <%- product.color%> </p>

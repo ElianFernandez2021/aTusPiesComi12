@@ -38,31 +38,31 @@
     <table>
         <tr>
             <td>
-                <form action="/admin/products/<%= edit.id%>?_method=PUT" method="POST" autocomplete="off" >
+                <form action="/admin/products/<%= product.id%>?_method=PUT" method="POST" autocomplete="off" >
                 
                     <div>
                         <label for="product">Nombre</label>
-                        <input type="text" name="name" id="product" value="<%= edit.name  %> ">
+                        <input type="text" name="name" id="product" value="<%= product.name  %> ">
                     </div>
                     <div>
                         <label for="size">Talle</label>
-                        <input type="text" name="size" id="size" value="<%= edit.size  %> ">
+                        <input type="text" name="size" id="size" value="<%= product.size  %> ">
                     </div>
                     <div>
                         <label for="perPrice">Precio</label>
-                        <input type="text" name="price" id="perPrice" value="<%= edit.price  %> ">
+                        <input type="text" name="price" id="perPrice" value="<%= product.price  %> ">
                     </div>
                     <div>
                         <label for="description">Descripcion</label>
-                        <input type="text" name="description" id="description" value="<%= edit.description  %> ">
+                        <input type="text" name="description" id="description" value="<%= product.description  %> ">
                     </div>
                     <div>
                         <label for="discount">Color</label>
-                        <input type="text" name="discount" id="discount" value="<%= edit.color  %> ">
+                        <input type="text" name="discount" id="discount" value="<%= product.color  %> ">
                     </div>
                     <div>
                         <label for="image">Imagen</label>
-                        <input type="file" name="image" id="image" multiple value="<%= edit.image  %> ">
+                        <input type="file" name="image" id="image" multiple value="<%= product.image  %> ">
                     </div>
 
                     <div class="form_action--button">
@@ -70,7 +70,7 @@
                         <input type="reset" value="Reiniciar">
                     </div>
                 </form>
-                <form action="/admin/products/category/<%- edit.id%>?_method=delete" method="post">
+                <form action="/admin/products/category/<%- product.id%>?_method=delete" method="post">
                     <button type="submit">Eliminar <i class="far fa-trash-alt"></i></button>
                 </form>
 
@@ -78,7 +78,7 @@
                     <table class="list" id="storeList">
                         <thead>
                             <tr class="image-rightSide">
-                               <img src="/images/products/<%- edit.subcategory %>/<%-edit.image%>  " alt="">
+                               <img src="/images/products/<%- product.subcategory %>/<%-product.image%>  " alt="">
                             </tr>
                         </thead>
                         <tbody>

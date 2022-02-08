@@ -47,16 +47,8 @@ let controller={
         })
     },
     category: (req, res) => {
-        Categories.findOne({
-            where:{
-                id: req.params.id
-            },
-            include:[{
-                association: "products",
-                include:[{
-                    association: "product_image"
-                }]
-            }] 
+        Categories.findByPk(req.params.id,{
+            include:[{association:'products'}]
         })
         .then((filtrado) => {
             res.render('category',{
@@ -66,7 +58,6 @@ let controller={
             })
         })
         .catch(error => console.log(error))
-
     },
     search: (req, res) => {
         Products.findAll({
