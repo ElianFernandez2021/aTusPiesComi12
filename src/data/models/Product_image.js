@@ -17,7 +17,7 @@ module.exports = (sequelize,dataType) => {
     }
     let config= {
         tableName:'products_image',
-        timestamp:false
+        timestamps:false
     }
     const Product_image= sequelize.define(alias,cols,config)
     Product_image.associate = models => {

@@ -2,39 +2,8 @@
 <html lang="es">
     <%- include('../partials/adminHead')  %> 
 <body>
-    <!-- navbar -->
     <%- include('../partials/adminHeader')%> 
-    <!-- fin navbar -->
-    <!-- <div class="navigation">
-        <ul>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-home"></i></i></span>
-                    <span class="title" >Inicio</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-user"></i></span>
-                    <span class="title">Perfil</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-cog"></i></span>
-                    <span class="title">Configuraciones</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
-                    <span class="title">Salir</span>
-                </a>
-            </li>
-        </ul>
-    </div> -->
-
-    <!-- Editor creador de productos -->
+    
     <table>
         <tr>
             <td>
@@ -42,27 +11,57 @@
                 
                     <div>
                         <label for="product">Nombre</label>
-                        <input type="text" name="name" id="product" value="<%= product.name  %> ">
+                        <input type="text" name="name" id="product" value="<%= locals.old ? old.name : product.name %>">
                     </div>
                     <div>
                         <label for="size">Talle</label>
-                        <input type="text" name="size" id="size" value="<%= product.size  %> ">
+                        <select name="size" id="">
+                            <% sizes.forEach(talles => { %>
+                                <option value="<%-talles.id%> " <%= locals.old && old.talles == talles.id ? "selected" : ""  %>><%- talles.num %> </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="category">Categoria</label>
+                        <select name="category" id="" >
+                            <% categories.forEach(category => { %>
+                                <option value="<%- category.id %>" <%= locals.old && old.category == category.id ? "selected" : "" %> ><%- category.name %> </option>
+                            <% }) %>
+                            </select>
+                            <% if (locals.errors && errors.category) { %>
+                                <small class="text-danger"><%= errors.category.msg %> </small>
+                            <% } %>
+        
+                        </select>
+
                     </div>
                     <div>
                         <label for="perPrice">Precio</label>
-                        <input type="text" name="price" id="perPrice" value="<%= product.price  %> ">
+                        <input type="number" name="price" id="perPrice" value="<%= locals.old ? old.price : product.price %>">
+                    </div>
+                    <div>
+                        <label for="trade_mark">Marca</label>
+                        <select name="trade_mark" id="">
+                            <% marks.forEach(marca => { %>
+                                <option value="<%= locals.old ? old.marca : product.marca %>"><%- marca.mark%> </option>                             
+                            <% }) %>
+                        </select>
                     </div>
                     <div>
                         <label for="description">Descripcion</label>
-                        <input type="text" name="description" id="description" value="<%= product.description  %> ">
+                        <input type="text" name="description" id="description" value="<%= locals.old ? old.description : product.description %>">
                     </div>
                     <div>
                         <label for="discount">Color</label>
-                        <input type="text" name="discount" id="discount" value="<%= product.color  %> ">
+                        <select name="color" id="">
+                            <% colors.forEach(color => { %>
+                             <option value="<%- color.id%> "><%- color.name %> </option>
+                            <% }) %>
+                        </select>
                     </div>
                     <div>
                         <label for="image">Imagen</label>
-                        <input type="file" name="image" id="image" multiple value="<%= product.image  %> ">
+                        <input type="file" name="image" id="image" multiple>
                     </div>
 
                     <div class="form_action--button">
