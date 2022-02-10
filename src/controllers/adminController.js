@@ -7,6 +7,8 @@ const Categories = db.Category
 const Sizes = db.Size
 const Marks = db.Trade_mark
 const Color = db.Color
+const Products_size = db.Product_size
+const Products_color = db.Product_color
 let controller= {
     create:(req,res) => {
         let categories = Categories.findAll()
@@ -43,7 +45,7 @@ let controller= {
 
         Products.findAll({
             include:[
-                {association: 'category'},
+                {association:'category'},
                 {association:'colors'},
                 {association:'sizes'},
                 {association:'images'},
@@ -51,8 +53,11 @@ let controller= {
             ]
         })
         .then(products => {
+            //res.send(products)
             res.render('admin/adminProduct',{
-                products
+                products,
+                category_id:+req.params.id,
+                
             })
         })
         .catch(error => console.log(error))
@@ -60,41 +65,45 @@ let controller= {
     store: (req,res) => {
         let errors = validationResult(req);
         let arrayImages=[];
+        let arrayColors=[];
+        let arraySizes=[];
         if(req.files){
-            req.fles.forEach((image) => {
+            req.files.forEach((image) => {
                 arrayImages.push(image.filename)
             })
         }
         if(errors.isEmpty()){
-            const{name,color,size,description,price,category,trade_mark} = req.body
+            const{name,color,size,description,price,category,trade_mark,image} = req.body
             Products.create({
-                name,
-                color,
-                size,
-                description,
-                price,
+                name:name,
+                description:description,
+                price:price,
                 category_id: category,
-                trade_mark
+                trade_mark:trade_mark,
+                image:image,
+                color:color,
+                size:size
             })
             .then((newProduct)=> {
                 if(arrayImages.length > 0){
                     let images = arrayImages.map((image) => {
                         return{
                             image:image,
-                            productId: newProduct.id
+                            product_id: newProduct.id
                         }
                     })
-                    Images.bulkCreate(images)
-                    .then(() => res.redirect('/admin/products'))
-                    .catch(error => console.log(error))
+                        Images.bulkCreate(images)
+                        .then(() => res.redirect('/admin/products'))
+                        .catch(error => console.log(error))
                 }
                 else{
                     Images.create({
                         image:'default.png',
-                        productId: newProduct.id
+                        product_id: newProduct.id
                     })
                     .then(()=> {res.redirect('/admin/products/') })
                     .catch(error => console.log(error))
+
                 }
             })
             .catch(error => console.log(error))
@@ -111,14 +120,15 @@ let controller= {
     adminEdit: (req,res) => {
         let editId = +req.params.id;
         Promise.all([ Products.findByPk(editId), Categories.findAll(),
-        Color.findAll(),Sizes.findAll(),Marks.findAll()])
-        .then(([product,categories,colors,sizes,marks])=> {
+        Color.findAll(),Sizes.findAll(),Marks.findAll(),Images.findAll()])
+        .then(([product,categories,colors,sizes,marks,images])=> {
             res.render('admin/productEdit',{
                 product,
                 categories,
                 colors,
                 sizes,
                 marks,
+                images,
                 adminTitle: "Editar producto",
                 session: req.session
             })
@@ -168,13 +178,13 @@ let controller= {
                         }
                         Images.destroy({
                             where:{
-                                productId:req.params.id
+                                product_id:req.params.id
                             }
                         })
                         .then(()=> {
                             Images.create({
                                 image:req.file ? req.file.filename: 'default.png',
-                                productId: req.params.id
+                                product_id: req.params.id
                             })
                             .then(() => {
                                 res.redirect('/admin/products')
@@ -188,7 +198,15 @@ let controller= {
                 .catch(error => console.log(error))  
             }
             else{
-                 Products.findByPk(req.params.id)
+                 Products.findByPk(req.params.id,{
+                    include:[
+                        {association:'category'},
+                        {association:'colors'},
+                        {association:'sizes'},
+                        {association:'images'},
+                        {association:'marca'}
+                    ]
+                 })
                  .then((product)=> {
                      res.redirect(`/admin/products/edit/:${req.params.id}`,{
                          session: req.session,
@@ -226,9 +244,16 @@ let controller= {
                 Products.destroy({
                     where:{
                         id:req.params.id
-                    }
+                    },
+                    include:[
+                        {association:'category'},
+                        {association:'colors'},
+                        {association:'sizes'},
+                        {association:'images'},
+                        {association:'marca'}
+                    ]
                 })
-                .then(res.redirect('/admin/products/'))
+                .then(res.redirect(`/admin/products/category/${req.params.id}`))
                 .catch(error => console.log(error)) 
         
         

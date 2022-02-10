@@ -7,33 +7,25 @@
     <table>
         <tr>
             <td>
-                <form action="/admin/products" autocomplete="off" method="POST" enctype="multipart/form-data">
-                    
+                <form class="categories-product" action="/admin/products" autocomplete="off" method="POST" enctype="multipart/form-data">
                     <div>
                         <label for="product">Nombre</label>
                         <input type="text" name="name" id="product">
                     </div>
-                    <div>
-                        <label for="size">Talle</label>
-                        <select name="size" id="">
-                            <% sizes.forEach(talles => { %>
-                                <option value="<%-talles.id%> "><%- talles.num %> </option>
+                    <div class="products">
+                        <p>Talle: </p>
+                        <% sizes.forEach(talles => { %>
+                            <label for="category"><%- talles.num%> </label>
+                            <input  type="checkbox" value="<%- talles.num %>">
                             <% }) %>
-                        </select>
                     </div>
-                    <div>
-                        <label for="category">Categoria</label>
-                        <select name="category" id="" >
+                    <div class="products">
+                        <p>Categoria: </p>
+                        <select name="category" id="">
                             <% categories.forEach(category => { %>
-                                <option value="<%- category.id %>" <%= locals.old && old.category == category.id ? "selected" : "" %> ><%- category.name %> </option>
+                             <option value="<%- category.id %> "> <%- category.name %> </option>
                             <% }) %>
-                            </select>
-                            <% if (locals.errors && errors.category) { %>
-                                <small class="text-danger"><%= errors.category.msg %> </small>
-                            <% } %>
-        
                         </select>
-
                     </div>
                     <div>
                         <label for="perPrice">Precio</label>
@@ -51,13 +43,12 @@
                         <label for="description">Descripcion</label>
                         <input type="text" name="description" id="description">
                     </div>
-                    <div>
-                        <label for="discount">Color</label>
-                        <select name="color" id="">
-                            <% colors.forEach(color => { %>
-                             <option value="<%- color.id%> "><%- color.name %> </option>
+                    <div class="products">
+                        <p>Color: </p>
+                        <% colors.forEach(color => { %>
+                            <label for="color"><%- color.name %> </label>
+                            <input  type="checkbox" value="<%- color.name %>">
                             <% }) %>
-                        </select>
                     </div>
                     <div>
                         <label for="image">Imagen</label>

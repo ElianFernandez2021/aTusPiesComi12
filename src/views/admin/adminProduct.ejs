@@ -3,18 +3,34 @@
 <%- include('../partials/adminHead')  %> 
 <body>
     <%- include ('../partials/adminHeader') %> 
-    <h2>Categoria: <%- products.category %>  </h2>
+    <h2>Categoria: <%= products[category_id-1].category.name %></h2>
+    <small>'' </small>
     <div class="categories-product">
         <% products.forEach(product => { %>
+            <h1>'<%= product.sizes.num %>'</h1>
          <div class="products">
             <p>Nombre: <%- product.name%> </p>
-            <img class="product-image" src="/images/products/<%- product.category%>/<%- product.image%>" alt="<%- product.id%> ">
+            <img class="product-image" src="/images/products/<%- products[3].images.image%>" alt="ID:<%= product.id%> ">
             <p>Descripcion: <%- product.description%> </p>
-            <p>Talle: <%- product.size%> </p>
-            <p>Color: <%- product.color%> </p>
+            <p>Talle: 
+                <% product.sizes.forEach(talle => { %>
+                    <%=talle.product_id%>
+                <%  }) %>
+            </p>
+            <p>Color: 
+                <% product.colors.forEach(color => { %>
+                    <%= color.product_id%> 
+                <% }) %>
+            </p>
             <p>Precio: <%- product.price%> </p>
+            <p>Marca:  
+                <%= product.marca.mark %>
+            </p>
             <form action="/admin/products/edit/<%- product.id%> " method="get">
                 <button type="submit">Editar <i class="fas fa-edit"></i></button>
+            </form>
+            <form action="/admin/products/category/<%- product.id%>?_method=delete" method="post">
+                <button type="submit">Eliminar <i class="far fa-trash-alt"></i></button>
             </form>
         </div>
         <% }) %>

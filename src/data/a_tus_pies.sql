@@ -109,11 +109,10 @@ CREATE TABLE `products` (
   `category_id` int(10) unsigned NOT NULL,
   `trade_mark` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `category_id` (`category_id`),
-  KEY `trade_markFk` (`trade_mark`),
-  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  CONSTRAINT `trade_markFk` FOREIGN KEY (`trade_mark`) REFERENCES `trade_mark` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4;
+  KEY `products_FK` (`trade_mark`),
+  KEY `products_FK_1` (`category_id`),
+  CONSTRAINT `products_FK_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +121,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (54,'Zapa','asdas','22',NULL,NULL,1,1);
+INSERT INTO `products` VALUES (72,'DEFAULT','DESCRIPTION','8900','2022-02-10 01:56:55','2022-02-10 01:56:55',2,2);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,10 +169,10 @@ CREATE TABLE `products_color` (
   `color_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `product_colorFK` (`product_id`),
-  KEY `colorFK` (`color_id`),
-  CONSTRAINT `colorFK` FOREIGN KEY (`color_id`) REFERENCES `color` (`id`),
-  CONSTRAINT `product_colorFK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `products_color_FK` (`color_id`),
+  CONSTRAINT `product_colorFK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  CONSTRAINT `products_color_FK` FOREIGN KEY (`color_id`) REFERENCES `color` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,9 +196,8 @@ CREATE TABLE `products_image` (
   `image` varchar(50) NOT NULL,
   `product_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`),
-  CONSTRAINT `products_image_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  KEY `product_id` (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -208,7 +206,7 @@ CREATE TABLE `products_image` (
 
 LOCK TABLES `products_image` WRITE;
 /*!40000 ALTER TABLE `products_image` DISABLE KEYS */;
-INSERT INTO `products_image` VALUES (1,'chon_fus.jpg',54);
+INSERT INTO `products_image` VALUES (10,'default.png',69),(11,'1644443182347_img_.jpg',70),(12,'1644446197800_img_.jpg',71),(13,'1644458215708_img_.jpg',72);
 /*!40000 ALTER TABLE `products_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,7 +226,7 @@ CREATE TABLE `products_size` (
   KEY `sizeFK` (`size_id`),
   CONSTRAINT `products_sizeFK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   CONSTRAINT `sizeFK` FOREIGN KEY (`size_id`) REFERENCES `size` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -308,7 +306,7 @@ CREATE TABLE `user` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -317,7 +315,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'','Diaz','facu@mail.com','Jake_Sully.jpg',1,'$2a$10$3XM.Md2KGX8SR18liP5wjuWOk6cxleSW2vZ/ViEPAo49R9pDUTagi','2022-02-04 03:52:03','2022-02-04 03:52:03'),(2,'','usuario','prueba@mail.com','1644097686793_img_.jpg',0,'$2a$10$t60iGpMKNBde6txdG/uHHOEG78PHOAZRHbavwhzJHhCmm.U24r8x.','2022-02-05 21:48:09','2022-02-05 21:48:09');
+INSERT INTO `user` VALUES (1,'','Diaz','facu@mail.com','Jake_Sully.jpg',1,'$2a$10$3XM.Md2KGX8SR18liP5wjuWOk6cxleSW2vZ/ViEPAo49R9pDUTagi','2022-02-04 03:52:03','2022-02-04 03:52:03'),(2,'','usuario','prueba@mail.com','1644097686793_img_.jpg',0,'$2a$10$t60iGpMKNBde6txdG/uHHOEG78PHOAZRHbavwhzJHhCmm.U24r8x.','2022-02-05 21:48:09','2022-02-05 21:48:09'),(3,'asd','asd','asd@mail.com','Jake_Sully.jpg',0,'$2a$10$ghNU5lAVnoRqwLFHUkNGqeMoqvpxeARqDZghMfUpm6ajmF63YPXki','2022-02-08 21:06:06','2022-02-08 21:06:06');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -334,4 +332,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-08 10:59:12
+-- Dump completed on 2022-02-09 23:21:37
