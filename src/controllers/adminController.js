@@ -43,20 +43,14 @@ let controller= {
     },
     adminSelectionCategory:(req,res) => {
 
-        Products.findAll({
-            include:[
-                {association:'category'},
-                {association:'colors'},
-                {association:'sizes'},
-                {association:'images'},
-                {association:'marca'}
-            ]
+        Categories.findAll({
+            include:[{association:'products'}]
         })
         .then(products => {
             //res.send(products)
             res.render('admin/adminProduct',{
                 products,
-                category_id:+req.params.id,
+                category_id:req.params.id,
                 
             })
         })
@@ -71,6 +65,12 @@ let controller= {
             req.files.forEach((image) => {
                 arrayImages.push(image.filename)
             })
+            req.body.colors.forEach((color)=>{
+                arrayColors.push(color)
+            })
+            req.body.sizes.forEach((size)=>{
+                arraySizes.push(size)
+            })
         }
         if(errors.isEmpty()){
             const{name,color,size,description,price,category,trade_mark,image} = req.body
@@ -80,20 +80,39 @@ let controller= {
                 price:price,
                 category_id: category,
                 trade_mark:trade_mark,
-                image:image,
-                color:color,
-                size:size
             })
             .then((newProduct)=> {
                 if(arrayImages.length > 0){
+                    let sizes = arraySizes.map(size)
+                    let colors = arrayColors.map(color)
                     let images = arrayImages.map((image) => {
                         return{
                             image:image,
+                            size:size,
+                            color:color,
                             product_id: newProduct.id
                         }
                     })
-                        Images.bulkCreate(images)
-                        .then(() => res.redirect('/admin/products'))
+                        Promise.all([
+                            Sizes.bulkCreate(sizes,{
+                                include:[{association:'products'}]
+                            }),
+                            Color.bulkCreate(colors,{
+                                include:[{association:'products'}]
+                            }),
+                            Images.bulkCreate(images)])
+                        .then(([product,color,size,image]) => {
+                            res.redirect('/admin/products',{
+                                name,
+                                colors:color.setColors(product.colors),
+                                sizes: sizes.setSizes(product.sizes),
+                                description,
+                                price,
+                                category,
+                                trade_mark,
+                                images
+                            })
+                        })
                         .catch(error => console.log(error))
                 }
                 else{

@@ -5,10 +5,8 @@ const db = require('../data/models');
 
 const Products = db.Product;
 const Categories = db.Category;
-
-
-
-
+const Cart = db.Cart;
+const Products_cart = db.Product_cart
 
 let controller={
     product: (req,res) => {
@@ -18,7 +16,10 @@ let controller={
     })
     },
     cart:(req,res)=>{
-        let carrito = products.filter(product => product.name)
+        Products_cart.findAll({
+            include:[{association:'cart'},{association:'product'}]
+        })
+       /*  let carrito = products.filter(product => product.name)
         let numeros= products.map( precio => {
             Number(precio.price)
         })
@@ -28,7 +29,7 @@ let controller={
             total,
             title:"Carrito de compras",
             session: req.session
-        })
+        }) */
     },
     detail: (req, res) => {
         Products.findOne({
@@ -53,7 +54,6 @@ let controller={
         .then((filtrado) => {
             res.render('category',{
                 filtrado,
-                title:"Categoria "+ filtrado[filtrado.id-1].name,
                 session: req.session
             })
         })

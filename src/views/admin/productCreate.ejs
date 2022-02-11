@@ -15,8 +15,8 @@
                     <div class="products">
                         <p>Talle: </p>
                         <% sizes.forEach(talles => { %>
-                            <label for="category"><%- talles.num%> </label>
-                            <input  type="checkbox" value="<%- talles.num %>">
+                            <label for="sizes"><%- talles.num%> </label>
+                            <input name="sizes" type="checkbox" value="<%- talles.num %>">
                             <% }) %>
                     </div>
                     <div class="products">
@@ -46,8 +46,8 @@
                     <div class="products">
                         <p>Color: </p>
                         <% colors.forEach(color => { %>
-                            <label for="color"><%- color.name %> </label>
-                            <input  type="checkbox" value="<%- color.name %>">
+                            <label for="colors"><%- color.name %> </label>
+                            <input name="colors" type="checkbox" value="<%- color.name %>">
                             <% }) %>
                     </div>
                     <div>

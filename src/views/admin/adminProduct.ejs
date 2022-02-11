@@ -3,14 +3,12 @@
 <%- include('../partials/adminHead')  %> 
 <body>
     <%- include ('../partials/adminHeader') %> 
-    <h2>Categoria: <%= products[category_id-1].category.name %></h2>
-    <small>'' </small>
+    <h2>Categoria: <%- products.category%></h2>
     <div class="categories-product">
         <% products.forEach(product => { %>
-            <h1>'<%= product.sizes.num %>'</h1>
          <div class="products">
             <p>Nombre: <%- product.name%> </p>
-            <img class="product-image" src="/images/products/<%- products[3].images.image%>" alt="ID:<%= product.id%> ">
+            <img class="product-image" src="/images/products/<%- products[0].images.image%>" alt="ID:<%= product.id%> ">
             <p>Descripcion: <%- product.description%> </p>
             <p>Talle: 
                 <% product.sizes.forEach(talle => { %>
