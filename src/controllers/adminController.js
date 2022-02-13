@@ -121,7 +121,12 @@ let controller= {
                         image:'default.png',
                         product_id: newProduct.id
                     })
-                    .then(()=> {res.redirect('/admin/products/') })
+                    .then(()=> {
+                        res.redirect('/admin/products/',{
+                            errors:errors.mapped(),
+                            old:req.body
+                        }) 
+                    })
                     .catch(error => console.log(error))
 
                 }
@@ -138,24 +143,18 @@ let controller= {
         } 
     },
     adminEdit: (req,res) => {
-        let categories = Categories.findAll()
-        let sizes = Sizes.findAll()
-        let marks = Marks.findAll()
-        let colors = Color.findAll()
-        Promise.all([categories,sizes,marks,colors])
-        .then((categories,sizes,marks,colors) => {
-            console.log(marks)
-            Products.findByPk(req.params.id,{
+        let productId = req.params.id
+        Promise.all([Products.findByPk(productId,{
                 include:[
-                    {association:'category'},
-                    {association:'colors'},
-                    {association:'sizes'},
-                    {association:'images'},
-                    {association:'marca'}
-                    ]
-                })
-            .then((product)=> {
-                
+                {association:'category'},
+                {association:'colors'},
+                {association:'sizes'},
+                {association:'images'},
+                {association:'marca'},]}
+                ),
+            Categories.findAll(),Sizes.findAll(),Marks.findAll(),Color.findAll()])
+        .then(([product,categories,sizes,marks,colors]) => {   
+            //res.send(product)         
             res.render('admin/productEdit',{
                 product,
                 categories,
@@ -166,19 +165,17 @@ let controller= {
                 session: req.session
             })
         })
-        .catch(error => console.log(error))
-    })
     .catch(error => console.log(error))
     },
     update: (req,res)=>{
         let errors = validationResult(req)
         if(errors.isEmpty()){
-            const {name,price,size,description,color,trade_mark} = req.body
+            const {name,price,description,trade_mark} = req.body
             Products.update({
                     name : name.trim(),
                     price : +price.trim(),
-                    description : description.trim(),
-                    trade_mark : trade_mark,
+                    description :description.trim(),
+                    trade_mark,
                 },
                 {
                     where:{
@@ -222,26 +219,27 @@ let controller= {
                                 product_id: req.params.id
                             })
                             .then(() => {
-                                res.redirect('/admin/products')
-                            })
+                                Promise.all([Products_color.destroy({where:{product_id:req.params.id}}),
+                                            Products_size.destroy({where:{product_id:req.params.id}})])
+                                .then(() => {
+                                   Promise.all([Products_color.update({product_id:req.body.colors},{where:{product_id:req.params.id}}),
+                                                Products_size.update({product_id:req.body.size},{where:{product_id:req.params.id}})]) 
+                                })
+                                .then(()=> {
+                                    res.redirect('/admin/products')
+                                })
+
                             .catch(error => console.log(error))  
                         })
-                        .catch(error => console.log(error))  
                     })
-                    .catch(error => console.log(error))                
+                    .catch(error => console.log(error))  
                 })
+                .catch(error => console.log(error))                
+            })
                 .catch(error => console.log(error))  
             }
             else{
-                 Products.findByPk(req.params.id,{
-                    include:[
-                        {association:'category'},
-                        {association:'colors'},
-                        {association:'sizes'},
-                        {association:'images'},
-                        {association:'marca'}
-                    ]
-                 })
+                 Products.findByPk(req.params.id,)
                  .then((product)=> {
                      res.redirect(`/admin/products/edit/:${req.params.id}`,{
                          session: req.session,
@@ -258,17 +256,17 @@ let controller= {
         Products.findByPk(zapaId)
             .then(result => {
                 if (zapaId) {
-                    if (fs.existsSync("../public/images/products/botas", Products.image)) {
-                        fs.unlinkSync(`../public/images/products/botas ${Products.image}`)
+                    if (fs.existsSync("../public/images/products/botas", result.image.name)) {
+                        fs.unlinkSync(`../public/images/products/botas ${result.image.name}`)
                     }
-                    else if (fs.existsSync("../public/images/products/casual", Products.image)) {
-                        fs.unlinkSync(`../public/images/products/casual ${Products.image}`)
+                    else if (fs.existsSync("../public/images/products/casual", result.image.name)) {
+                        fs.unlinkSync(`../public/images/products/casual ${result.image.name}`)
                     }
-                    else if (fs.existsSync("../public/images/products/elegante", Products.image)) {
-                        fs.unlinkSync(`../public/images/products/elegante ${Products.image}`)
+                    else if (fs.existsSync("../public/images/products/elegante", result.image.name)) {
+                        fs.unlinkSync(`../public/images/products/elegante ${result.image.name}`)
                     }
-                    else if (fs.existsSync("../public/images/products/zapatillas", Products.image)) {
-                        fs.unlinkSync(`../public/images/products/zapatillas ${Products.image}`)
+                    else if (fs.existsSync("../public/images/products/zapatillas", result.image.name)) {
+                        fs.unlinkSync(`../public/images/products/zapatillas ${result.image.name}`)
                     }
                     else {
                         console.log("Archivo no encontrado")
