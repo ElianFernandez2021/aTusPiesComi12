@@ -18,10 +18,6 @@ module.exports = (sequelize,dataType) => {
             type: dataType.INTEGER.UNSIGNED,
             allowNull:false,
         },
-        image_id:{
-            type:dataType.INTEGER.UNSIGNED,
-            allowNull:false
-        },  
         category_id:{
             type: dataType.INTEGER.UNSIGNED,
             allowNull:false
@@ -74,7 +70,7 @@ module.exports = (sequelize,dataType) => {
         })
         Product.hasMany(models.Product_image,{
             as:'images',
-            foreignKey: 'image_id'
+            foreignKey: 'product_id'
         }) 
     }
     return Product

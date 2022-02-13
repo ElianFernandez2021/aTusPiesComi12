@@ -18,7 +18,8 @@ module.exports = (sequelize,dataType) => {
         },
     }
     let config={
-        tableName:'size'
+        tableName:'size',
+        timestamps:true
     }
     const Size = sequelize.define(alias,cols,config)
     Size.associate = models => {

@@ -18,7 +18,7 @@ module.exports = (sequelize,dataType) => {
     }
     let config= {
         tableName:'products_color',
-        timestamp:false
+        timestamps:false
     }
     const Product_color= sequelize.define(alias,cols,config)
     /* Product_color.associate = models => {

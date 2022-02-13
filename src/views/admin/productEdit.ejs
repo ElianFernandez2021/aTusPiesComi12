@@ -14,26 +14,22 @@
                         <input type="text" name="name" id="product" value="<%= locals.old ? old.name : product.name %>">
                     </div>
                     <div>
-                        <label for="size">Talle</label>
-                        <select name="size" id="">
-                            <% sizes.forEach(talles => { %>
-                                <option value="<%-talles.id%> " <%= locals.old && old.talles == talles.id ? "selected" : ""  %>><%- talles.num %> </option>
-                            <% }) %>
-                        </select>
+                       <p>Talle:</p>
+                        <% sizes.forEach(talles => { %>
+                            <label for="sizes"><%- talles.num%> </label>
+                            <input name="sizes" type="checkbox" value="<%= locals.old ? old.talle : talles.id %>">
+                        <% }) %>
                     </div>
                     <div>
                         <label for="category">Categoria</label>
                         <select name="category" id="" >
                             <% categories.forEach(category => { %>
-                                <option value="<%- category.id %>" <%= locals.old && old.category == category.id ? "selected" : "" %> ><%- category.name %> </option>
-                            <% }) %>
-                            </select>
-                            <% if (locals.errors && errors.category) { %>
-                                <small class="text-danger"><%= errors.category.msg %> </small>
-                            <% } %>
-        
+                                <option value="<%- category.id %> "> <%= locals.old && old.product.category == category.id ? "selected" : "" %> <%- category.name %> </option>
+                               <% }) %>
+                        <% if (locals.errors && errors.category) { %>
+                            <small class="text-danger"><%= errors.category.msg %> </small>
+                        <% } %>        
                         </select>
-
                     </div>
                     <div>
                         <label for="perPrice">Precio</label>
@@ -54,14 +50,15 @@
                     <div>
                         <label for="discount">Color</label>
                         <select name="color" id="">
-                            <% colors.forEach(color => { %>
-                             <option value="<%- color.id%> "><%- color.name %> </option>
-                            <% }) %>
+                            <% product.colors.forEach(color => { %>
+                                <label for="colors"><%- color.name %> </label>
+                                <input name="colors" type="checkbox" value="<%= locals.old ? old.colors : colors.name %>">
+                                <% }) %>
                         </select>
                     </div>
                     <div>
                         <label for="image">Imagen</label>
-                        <input type="file" name="image" id="image" multiple>
+                        <input type="file" name="image" id="image" multiple value="<%= locals.old ? old.product.images.image : product.images.image %>">
                     </div>
 
                     <div class="form_action--button">
@@ -77,7 +74,9 @@
                     <table class="list" id="storeList">
                         <thead>
                             <tr class="image-rightSide">
-                               <img name="image" src="/images/products/<%- categories.name%>/<%-images.image%>  " alt="<%- images.id %> ">
+                                <% product.images.forEach(imagenes => { %>
+                                   <img class="product-image" src="/images/products/<%- imagenes.image %> " alt="ID:<%= product.id%> ">
+                                <% }) %>
                             </tr>
                         </thead>
                         <tbody>

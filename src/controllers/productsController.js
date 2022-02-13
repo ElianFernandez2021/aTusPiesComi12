@@ -16,8 +16,14 @@ let controller={
     })
     },
     cart:(req,res)=>{
-        Products_cart.findAll({
-            include:[{association:'cart'},{association:'product'}]
+        Products.findAll({
+            include:[{association:'cart'},{association:'category'},
+        {association:'sizes'},{association:'colors'}]
+        })
+        .then((products)=>{
+            res.render('productCart',{
+                products
+            })
         })
        /*  let carrito = products.filter(product => product.name)
         let numeros= products.map( precio => {
@@ -48,12 +54,14 @@ let controller={
         })
     },
     category: (req, res) => {
-        Categories.findByPk(req.params.id,{
-            include:[{association:'products'}]
+        Products.findAll({
+            include:[{association:'category'},{association:'colors'},
+            {association:'sizes'},{association:'images'},{association:'marca'},]
         })
         .then((filtrado) => {
             res.render('category',{
                 filtrado,
+                category_id:req.params.id,
                 session: req.session
             })
         })

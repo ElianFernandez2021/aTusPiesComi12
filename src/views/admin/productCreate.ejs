@@ -16,7 +16,7 @@
                         <p>Talle: </p>
                         <% sizes.forEach(talles => { %>
                             <label for="sizes"><%- talles.num%> </label>
-                            <input name="sizes" type="checkbox" value="<%- talles.num %>">
+                            <input name="sizes" type="checkbox" value="<%- talles.id %>">
                             <% }) %>
                     </div>
                     <div class="products">
@@ -47,7 +47,7 @@
                         <p>Color: </p>
                         <% colors.forEach(color => { %>
                             <label for="colors"><%- color.name %> </label>
-                            <input name="colors" type="checkbox" value="<%- color.name %>">
+                            <input name="colors" type="checkbox" value="<%- color.id %>">
                             <% }) %>
                     </div>
                     <div>
@@ -92,14 +92,5 @@
   }
 }
     </script>
-
-    <!-- <script type="text/javascript">
-        function toggleMenu(){
-            let navigation = document.querySelector('.navigation')
-            let toggle = document.querySelector('.toggle')
-            navigation.classList.toggle('active')
-            toggle.classList.toggle('active')
-        }
-    </script> -->
 </body>
 </html>
