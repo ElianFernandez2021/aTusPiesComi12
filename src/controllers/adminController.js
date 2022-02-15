@@ -1,131 +1,344 @@
+let {validationResult} = require('express-validator')
 const fs = require('fs');
-const {products,writeProductsJson, categories} = require('../data/filesJson/database')
-const {id,price,category,talle,color,image} = require('../data/filesJson/products')
+const db = require('../data/models');
+const Products = db.Product;
+const Images = db.Product_image;
+const Categories = db.Category
+const Sizes = db.Size
+const Marks = db.Trade_mark
+const Color = db.Color
+const Products_size = db.Product_size
+const Products_color = db.Product_color
 let controller= {
     create:(req,res) => {
-        res.render("admin/productCreate",{
-            adminTitle: "Agregar producto",
-            session: req.session
+        let categories = Categories.findAll()
+        let sizes = Sizes.findAll()
+        let marks = Marks.findAll()
+        let colors = Color.findAll()
+        let images = Images.findAll()
+        Promise.all([categories,sizes,marks,colors,images])
+        .then(([categories,sizes,marks,colors,images]) => {
+            res.render("admin/productCreate",{
+                adminTitle: "Agregar producto",
+                session: req.session,
+                categories,
+                sizes,
+                marks,
+                colors,
+                images
+            })
         })
+        .catch(errors => console.log(errors))    
     },
     adminCategory:(req,res) => {
-        res.render('admin/adminCategory',{
-            adminTitle: "Categorias",
-            session: req.session
+        Categories.findAll()
+        .then(products => {
+            res.render('admin/adminCategory',{
+                adminTitle: "Categorias",
+                session: req.session,
+                products
+            })
         })
+        .catch(error => console.log(error))
     },
     adminSelectionCategory:(req,res) => {
-        let categoryId = +req.params.id
-        let categorySelection = products.filter(category => +category.category === categoryId)
-        let subcategory = categories.filter(product => product.name === categorySelection.subcategory)
-        res.render('admin/adminProduct',{
-            categorySelection,
-            subcategory,
-            adminTitle: subcategory.name,
-            session: req.session
+
+        Products.findAll({
+            include:[{association:'category'},{association:'colors'},
+            {association:'sizes'},{association:'images'},{association:'marca'},]
         })
+        .then(products => {
+            //res.send(products)
+            Categories.findAll()
+            .then((categories)=> {
+                res.render('admin/adminProduct',{
+                    products,
+                    category_id:req.params.id,
+                    categories,  
+                })
+
+            })
+        })
+        .catch(error => console.log(error))
     },
     store: (req,res) => {
-        let lastId = 1;
-        products.forEach(zapaStore => {
-            if(zapaStore.id > lastId){
-                lastId = zapaStore.id;
-            }
-        })
-        let newZapa = {
-            id: lastId+1,
-            name: req.body.name,
-            price: req.body.price,
-            category: req.body.category,
-            size: req.body.size,
-            color: req.body.color,
-            image: req.file ? [req.file.filename] : ["default-image.jpg"]
+        const{name,description,price,category,trade_mark,} = req.body
+        let errors = validationResult(req);
+        let arrayImages=[];
+        let arrayColors= [];
+        let arraySizes= [];
+        if(req.files){
+            req.files.forEach((image) => {
+                arrayImages.push(image.filename)
+            })
+        } 
+        if(errors.isEmpty()){
+            Products.create({
+                name:name,
+                description:description,
+                price:price,
+                category_id:category,
+                trade_mark:trade_mark
+            })
+            .then((newProduct)=> {
+                if(arrayImages.length > 0 ){
+                    let colors = req.body.colors.map((color) => {
+                        return {
+                            color_id:+color,
+                            product_id:newProduct.id           
+                        }
+                    })
+                    let sizes = req.body.sizes.map((size) => {
+                        return {
+                            size_id: +size,
+                            product_id:newProduct.id
+                        }
+                    })
+                    let images = arrayImages.map((image) => {
+                        return{
+                            image:image,
+                            product_id: newProduct.id
+                        }
+                    })
+                    Images.bulkCreate(images)
+                    .then(()=>{
+                        Products_color.bulkCreate(colors)
+                        .then(()=>{
+                            Products_size.bulkCreate(sizes)
+                            .then(()=>{
+                                res.redirect('/admin/products')
+                            })
+                            .catch(error =>console.log(error))
+                        })
+                        .catch(error => console.log(error))
+                    })
+                    .catch(error => console.log(error))              
+                    
+                }
+                else{                    
+                    Images.create({
+                        image:'default.png',
+                        product_id: newProduct.id
+                    })
+                    .then(()=> {
+                            Products_color.bulkCreate(colors)
+                            .then(()=> {
+                                    Products_size.bulkCreate(sizes)
+                                    .then(()=>{
+                                        res.redirect('/admin/products')
+                                    })
+                                    .catch(error => console.log(error))
+                            })
+                            .catch(error => console.log(error))
+                })
+                .catch(error => console.log(error))
+                }
+            })
+            .catch(error => console.log(error))
         }
-        products.push(newZapa);
-        writeProductsJson(products);
-        res.redirect('/admin/products/create',{
-            session: req.session
-        })
+        else{
+            Promise.all([Categories.findAll(),Sizes.findAll(),Marks.findAll(),Color.findAll()])
+            .then(([categories,sizes,marks,colors]) => {
+                
+                res.render('admin/productCreate',{
+                    categories,
+                    sizes,
+                    marks,
+                    colors,
+                    errors: errors.mapped(),
+                    session:req.session,
+                    old:req.body,
+                })
+            })
+            .catch(error => console.log(error))
+        } 
     },
     adminEdit: (req,res) => {
-        let editId = +req.params.id,
-            edit = products.find(product => product.id === editId);
-
-        res.render('admin/productEdit',{
-            edit,
-            adminTitle: "Editar producto",
-            session: req.session
+        let productId = req.params.id
+        Promise.all([Products.findByPk(productId,{
+                include:[
+                {association:'category'},
+                {association:'colors'},
+                {association:'sizes'},
+                {association:'images'},
+                {association:'marca'},]}
+                ),
+            Categories.findAll(),Sizes.findAll(),Marks.findAll(),Color.findAll()])
+        .then(([product,categories,sizes,marks,colors]) => {   
+            //res.send(product)         
+            res.render('admin/productEdit',{
+                product,
+                categories,
+                sizes,
+                marks,
+                colors,
+                adminTitle: "Editar producto",
+                session: req.session,
+            })
         })
+    .catch(error => console.log(error))
     },
     update: (req,res)=>{
-        let zapaUptdate = +req.params.id;
-        const {name,price,size,description,color} = req.body
-        products.forEach(zapaEdit => {
-            if(zapaEdit.id === zapaUptdate){
-                zapaEdit.name = name.trim(),
-                zapaEdit.price = +price.trim(),
-                zapaEdit.size = +size.trim(),
-                zapaEdit.description = description.trim(),
-                zapaEdit.color = color
-                if(req.file){
-                    if(fs.existsSync("../public/images/products/botas",prodcuts.image)){
-                        fs.unlinkSync(`../public/images/products/botas ${products.image}`)
+        let errors = validationResult(req)
+        if(errors.isEmpty()){
+            const {name,description,price,trade_mark,category} = req.body
+            Products.update({
+                    name,
+                    price,
+                    description,
+                    category_id:category,
+                    marca:trade_mark,
+                },
+                {
+                    where:{
+                        id: req.params.id
                     }
-                    else if(fs.existsSync("../public/images/products/casual",prodcuts.image)){
-                        fs.unlinkSync(`../public/images/products/casual ${products.image}`)
-                    }
-                    else if(fs.existsSync("../public/images/products/elegante",prodcuts.image)){
-                        fs.unlinkSync(`../public/images/products/elegante ${products.image}`)
-                    }
-                    else if(fs.existsSync("../public/images/products/zapatillas",prodcuts.image)){
-                        fs.unlinkSync(`../public/images/products/zapatillas ${products.image}`)
-                    }
-                    else{
-                        console.log("No se encontró el archivo")
-                    }
-                }
-                else{
-                    products.image=products.image;
-                }
+                })
+                .then(() => {
+                    Images.findAll({
+                        where:{
+                            product_id: req.params.id
+                        }
+                    })                        
+                    .then((productImages) => {
+                        if(req.file){
+                            if(fs.existsSync("../public/images/products/botas/",productImages.image)){
+                                fs.unlinkSync(`../public/images/products/botas/${productImages.image}`)
+                            }
+                            else if(fs.existsSync("../public/images/products/casual/",productImages.image)){
+                                fs.unlinkSync(`../public/images/products/casual/${productImages.image}`)
+                            }
+                            else if(fs.existsSync("../public/images/products/elegante/",productImages.image)){
+                                fs.unlinkSync(`../public/images/products/elegante/${productImages.image}`)
+                            }
+                            else if(fs.existsSync("../public/images/products/zapatillas/",productImages.image)){
+                                fs.unlinkSync(`../public/images/products/zapatillas/${productImages.image}`)
+                            }else if(fs.existsSync("../public/images/products/",productImages.image)){
+                                fs.unlinkSync(`../public/images/products/${productImages.image}`)
+                            }
+                            else{
+                                console.log("No se encontró el archivo")
+                            }
+                        }
+                        Images.destroy({
+                            where:{
+                                product_id:req.params.id
+                            }
+                        })
+                        .then(()=> {
+                            Images.bulkCreate({
+                                image:req.file ? req.file.filename: 'default.png',
+                                product_id: req.params.id
+                            })
+                            .then((product) => {
+                                let colors = req.body.colors.map((color) => {
+                                    return {
+                                        color_id:+color,
+                                        product_id:product.id           
+                                    }
+                                })
+                                let sizes = req.body.sizes.map((size) => {
+                                    return {
+                                        size_id: +size,
+                                        product_id:product.id
+                                    }
+                                })
+                                Promise.all([Products_color.update(
+                                    {
+                                        color_id:+colors
+                                    },
+                                    {
+                                        where:{
+                                            product_id:req.params.id}
+                                        }),
+                                Products_size.update(
+                                    {
+                                        size_id:req.body.size
+                                    },
+                                    {
+                                        where:{
+                                            product_id:req.params.id
+                                        }})
+                                    ])
+                                .then(()=> {
+                                    res.redirect('/admin/products')
+                                })
+
+                            .catch(error => console.log(error))  
+                        })
+                    })
+                    .catch(error => console.log(error))  
+                })
+                .catch(error => console.log(error))                
+            })
+                .catch(error => console.log(error))  
             }
-        })
-        writeProductsJson(products)
-        res.redirect('/',{
-            session: req.session
-        })
+            else{
+                 Products.findByPk(req.params.id,)
+                 .then((product)=> {
+                     res.redirect(`/admin/products/edit/:${req.params.id}`,{
+                         session: req.session,
+                         product,
+                         errors:errors.mapped(),
+                         old:req.body     
+                     })
+                 })
+                 .catch(error => console.log(error)) 
+             }
     },
     fatality:(req,res) => {
         let zapaId = +req.params.id;
-        products.forEach( zapa => {
-            if(zapa.id === zapaId){
-                if(fs.existsSync("../public/images/products/botas",products.image)){
-                    fs.unlinkSync(`../public/images/products/botas ${products.image}`)
+        Products.findByPk(zapaId)
+            .then(result => {
+                if (zapaId) {
+                    if (fs.existsSync("../public/images/products/botas", result.image.name)) {
+                        fs.unlinkSync(`../public/images/products/botas ${result.image.name}`)
+                    }
+                    else if (fs.existsSync("../public/images/products/casual", result.image.name)) {
+                        fs.unlinkSync(`../public/images/products/casual ${result.image.name}`)
+                    }
+                    else if (fs.existsSync("../public/images/products/elegante", result.image.name)) {
+                        fs.unlinkSync(`../public/images/products/elegante ${result.image.name}`)
+                    }
+                    else if (fs.existsSync("../public/images/products/zapatillas", result.image.name)) {
+                        fs.unlinkSync(`../public/images/products/zapatillas ${result.image.name}`)
+                    }
+                    else {
+                        console.log("Archivo no encontrado")
+                    }
                 }
-                else if(fs.existsSync("../public/images/products/casual",products.image)){
-                    fs.unlinkSync(`../public/images/products/casual ${products.image}`)
-                }
-                else if(fs.existsSync("../public/images/products/elegante",products.image)){
-                    fs.unlinkSync(`../public/images/products/elegante ${products.image}`)
-                }
-                else if(fs.existsSync("../public/images/products/zapatillas",products.image)){
-                    fs.unlinkSync(`../public/images/products/zapatillas ${products.image}`)
-                }
-                else{
-                    console.log("Archivo no encontrado")
-                }
-                let zapaToEliminate = products.indexOf(zapa)
-                if(zapaToEliminate !== -1){
-                    products.splice(zapaToEliminate,1)
-                }
-                else{
-                    console.log("No se encontro la zapatilla")
-                }
+        })
+        
+        Products_color.destroy({
+            where:{
+                product_id:req.params.id
             }
         })
-        writeProductsJson(products);
-        res.redirect('/admin/products/category/'+zapaId,{
-            session: req.session
-        });
+        .then(()=> {
+            Products_size.destroy({
+                where:{
+                    product_id:req.params.id
+                }
+            })
+            .then(()=> {
+                Images.destroy({
+                    where:{
+                        product_id:req.params.id
+                    }
+                })
+                .then(()=>{
+                    Products.destroy({
+                        where:{
+                            id:req.params.id
+                        }
+                    })
+                    .then(res.redirect(`/admin/products`))
+                        })                    
+                    })
+                })
+                .catch(error => console.log(error)) 
+        
+        
     }
 }
 

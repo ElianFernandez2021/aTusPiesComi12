@@ -1,30 +1,35 @@
-module.exports = (sequelize, dataTypes) => {
-    let alias = 'Product_size';
-    let cols = {
-        id: {
-            type: dataTypes.INTEGER.UNSIGNED,
-            primaryKey: true,
-            allowNull: false,
-            autoIncrement: true
+module.exports = (sequelize,dataType) => {
+    let alias='Product_size'
+    let cols={
+        id:{
+            type: dataType.INTEGER.UNSIGNED,
+            autoIncrement:true,
+            primaryKey:true
         },
-        product_id: {
-            type: dataTypes.INTEGER,
-            allowNull: false,
-            through:"products"
+        product_id:{
+            type: dataType.INTEGER.UNSIGNED,
+            allowNull:false
         },
-        size_id: {
-            type: dataTypes.INTEGER.UNSIGNED,
-            allowNull: false,
-            trhough:"size"
-        },
-    };
-
-    let config = {
-        timestamps: false,
-        tableName:"products_size"
+        size_id:{
+            type:dataType.INTEGER.UNSIGNED,
+            allowNull:false
+        }
     }
-    const Product_size = sequelize.define(alias, cols, config);
+    let config= {
+        tableName:'products_size',
+        timestamps:false
+    }
+    const Product_size= sequelize.define(alias,cols,config)
+    /* Product_size.associate = models => {
+        Product_size.hasMany(models.Product,{
+            as:'Product_size',
+            foreignKey:'product_id'
+        })
 
-    
+        Product_size.hasMany(models.Size,{
+            as:'Size',
+            foreignKey:'size_id'
+        })
+    } */
     return Product_size
-};
+}

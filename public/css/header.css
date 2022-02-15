@@ -6,19 +6,9 @@
 }
 /********HEADER*******/
 .header{
-    background: linear-gradient(#524d3d, #8c8364 50%, #cdc4a9 ,  #f8f1df);
-    position: sticky;
-    z-index:10;
-    top: 0;
-    left:0;
+    background: linear-gradient(#524d3d, #8c8364 50%, #cdc4a9 ,  #f8f1df);  
     width: 100%;
 }
-header.header-opacity{
-    opacity: 0%;
-    transition: all 0.5s ease-in-out;
-}
-
-
 .posicion-logo{
     display: flex;
     flex-direction: row;
@@ -74,7 +64,6 @@ li{
 
     img.redondo { /*controla que no desborde la imágen del logo*/
         width: 15%;
-        margin-top: 1em;
     }
 
     .redondo{ /*forma redondeada de logo*/

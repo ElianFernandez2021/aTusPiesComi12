@@ -1,6 +1,5 @@
 module.exports = (sequelize,dataType) => {
-
-    let alias='Product_color'
+    let alias='Product_image'
     let cols={
         id:{
             type: dataType.INTEGER.UNSIGNED,
@@ -11,25 +10,21 @@ module.exports = (sequelize,dataType) => {
             type: dataType.INTEGER.UNSIGNED,
             allowNull:false
         },
-        color_id:{
-            type: dataType.INTEGER.UNSIGNED,
+        image:{
+            type: dataType.STRING,
             allowNull:false
         }
     }
     let config= {
-        tableName:'products_color',
+        tableName:'products_image',
         timestamps:false
     }
-    const Product_color= sequelize.define(alias,cols,config)
-    /* Product_color.associate = models => {
-        Product_color.hasMany(models.Product,{
+    const Product_image= sequelize.define(alias,cols,config)
+    Product_image.associate = models => {
+        Product_image.belongsTo(models.Product,{
             as:'product',
             foreignKey:'product_id'
         })
-        Product_color.hasMany(models.Color,{
-            as:'color',
-            foreignKey:'color_id'
-        })
-    } */
-    return Product_color
+    }
+    return Product_image
 }

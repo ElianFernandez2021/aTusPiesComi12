@@ -2,67 +2,61 @@
 <html lang="es">
     <%- include('../partials/adminHead')  %> 
 <body>
-    <!-- navbar -->
     <%- include('../partials/adminHeader')%> 
-    <!-- fin navbar -->
-    <!-- <div class="navigation">
-        <ul>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-home"></i></i></span>
-                    <span class="title" >Inicio</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-user"></i></span>
-                    <span class="title">Perfil</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-cog"></i></span>
-                    <span class="title">Configuraciones</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
-                    <span class="title">Salir</span>
-                </a>
-            </li>
-        </ul>
-    </div> -->
-
-    <!-- Editor creador de productos -->
+    
     <table>
         <tr>
             <td>
-                <form action="/admin/products/<%= edit.id%>?_method=PUT" method="POST" autocomplete="off" >
+                <form class="categories-product" action="/admin/products/<%=product.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
                 
                     <div>
                         <label for="product">Nombre</label>
-                        <input type="text" name="name" id="product" value="<%= edit.name  %> ">
+                        <input type="text" name="name" id="product" value="<%= locals.old ? old.name : product.name %>">
+                    </div>
+                    <div class="products">
+                       <p>Talle:</p>
+                        <% sizes.forEach(talles => { %>
+                            <label for="sizes"><%- talles.num%> </label>
+                            <input name="sizes" type="checkbox" value="<%= locals.old ? old.talles : talles.id %>">
+                        <% }) %>
                     </div>
                     <div>
-                        <label for="size">Talle</label>
-                        <input type="text" name="size" id="size" value="<%= edit.size  %> ">
+                        <label for="category">Categoria</label>
+                        <select name="category" id="" >
+                            <% categories.forEach(categorias => { %>
+                                <option value="<%- categorias.id %> "> <%= locals.old && old.product.categorias == categorias.id ? "selected" : "" %> <%- categorias.name %> </option>
+                               <% }) %>
+                        <% if (locals.errors && errors.category) { %>
+                            <small class="text-danger"><%= errors.category.msg %> </small>
+                        <% } %>        
+                        </select>
                     </div>
                     <div>
                         <label for="perPrice">Precio</label>
-                        <input type="text" name="price" id="perPrice" value="<%= edit.price  %> ">
+                        <input type="number" name="price" id="perPrice" value="<%= locals.old ? old.price : product.price %>">
+                    </div>
+                    <div>
+                        <label for="trade_mark">Marca</label>
+                        <select name="trade_mark" id="">
+                            <% marks.forEach(marca => { %>
+                                <option value="<%= locals.old ? old.marca : product.marca %>"><%- marca.mark%> </option>                             
+                            <% }) %>
+                        </select>
                     </div>
                     <div>
                         <label for="description">Descripcion</label>
-                        <input type="text" name="description" id="description" value="<%= edit.description  %> ">
+                        <input type="text" name="description" id="description" value="<%= locals.old ? old.description : product.description %>">
                     </div>
-                    <div>
-                        <label for="discount">Color</label>
-                        <input type="text" name="discount" id="discount" value="<%= edit.color  %> ">
+                    <div class="products">
+                      <p>Color:</p>
+                            <% colors.forEach(color => { %>
+                                <label for="colors"><%- color.name %> </label>
+                                <input name="colors" type="checkbox" value= <%= locals.old ? old.color : color.name%>>
+                                <% }) %>
                     </div>
                     <div>
                         <label for="image">Imagen</label>
-                        <input type="file" name="image" id="image" multiple value="<%= edit.image  %> ">
+                        <input type="file" name="image" id="image" multiple value="<%= locals.old ? old.product.images.image : product.images.image %>">
                     </div>
 
                     <div class="form_action--button">
@@ -70,7 +64,7 @@
                         <input type="reset" value="Reiniciar">
                     </div>
                 </form>
-                <form action="/admin/products/category/<%- edit.id%>?_method=delete" method="post">
+                <form action="/admin/products/category/<%- product.id%>?_method=delete" method="post">
                     <button type="submit">Eliminar <i class="far fa-trash-alt"></i></button>
                 </form>
 
@@ -78,7 +72,9 @@
                     <table class="list" id="storeList">
                         <thead>
                             <tr class="image-rightSide">
-                               <img src="/images/products/<%- edit.subcategory %>/<%-edit.image%>  " alt="">
+                                <% product.images.forEach(imagenes => { %>
+                                   <img class="product-image" src="/images/products/<%- imagenes.image %> " alt="ID:<%= product.id%> ">
+                                <% }) %>
                             </tr>
                         </thead>
                         <tbody>

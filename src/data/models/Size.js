@@ -1,16 +1,35 @@
-module.exports = (sequelize,dataTypes) => {
+module.exports = (sequelize,dataType) => {
     let alias = 'Size'
-    let col = {
-        id: {
-            type: dataTypes.INTEGER.UNSIGNED,
-            primaryKey:true,
-            autoIncrement:true
-        }
+    let cols = {
+        id:{
+            type: dataType.INTEGER.UNSIGNED,
+            autoIncrement:true,
+            primaryKey:true
+        },
+        num:{
+            type: dataType.INTEGER.UNSIGNED,
+            allowNull:false
+        },
+        createdAt:{
+            type:dataType.DATE
+        },
+        updatedAt:{
+            type:dataType.DATE
+        },
     }
-    let config ={
-        timeStamps: false,
-        tableName:"products_cart",
+    let config={
+        tableName:'size',
+        timestamps:true
     }
-    const Size = sequelize.define(alias,col,config)
+    const Size = sequelize.define(alias,cols,config)
+    Size.associate = models => {
+        Size.belongsToMany(models.Product,{
+            as:'products',
+            through: 'products_size',
+            foreignKey:'size_id',
+            otherKey:'product_id',
+            timestamps:false
+        })
+    }
     return Size
 }

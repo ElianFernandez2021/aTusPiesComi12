@@ -1,44 +1,46 @@
-module.exports = (sequelize,dataTypes) => {
-    let alias= "Product_cart"
-    let cols = {
+module.exports = (sequelize,dataType) => {
+    let alias='Product_cart'
+    let cols={
         id:{
-            type: dataTypes.INTEGER(100).UNSIGNED,
+            type: dataType.INTEGER.UNSIGNED,
             autoIncrement:true,
-            allowNull:false,
             primaryKey:true
         },
         cart_id:{
-            type: dataTypes.INTEGER(100).UNSIGNED,
-            allowNull:false,
-
+            type: dataType.INTEGER.UNSIGNED,
+            allowNull:false
         },
-        product_id: {
-            type: dataTypes.INTEGER(100).UNSIGNED,
-            allowNull:false,
+        product_id:{
+            type: dataType.INTEGER.UNSIGNED,
+            allowNull:false
         },
         quantity:{
-            type: dataTypes.INTEGER(100).UNSIGNED,
+            type: dataType.INTEGER.UNSIGNED,
             allowNull:false
+        },
+        create_at:{
+            type: dataType.DATE,
+        },
+        update_at:{
+            type: dataType.DATE,
         }
     }
-    let config = {
-        tableName:"products_cart",
-        createdAt:"created_at",
-        updatedAt:"updated_at",
-        timestamps:true
+    let config= {
+        tableName:'products_cart',
+        timestamps:true,
+        createdAt:'create_at',
+        updatedAt:'update_at',
     }
-    let products_cart = sequelize.define(alias,cols,config)
-    
-     products_cart.associate = models => {
-         products_cart.hasOne(models.cart,{
-             as: "cart",
-             foreignKey:"cart_id"
-         })
-         products_cart.hasMany(models.product,{
-             as:"products",
-             foreignKey:"product_id"
-         })
-     }
-    
-    return products_cart
-} 
+    const Product_cart= sequelize.define(alias,cols,config)
+    Product_cart.associate = models => {
+        Product_cart.belongsTo(models.Product,{
+            as:'product',
+            foreignKey:'product_id'
+        })
+        Product_cart.belongsTo(models.Cart,{
+            as:'cart',
+            foreignKey:'cart_id'
+        })
+    }
+    return Product_cart
+}

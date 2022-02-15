@@ -50,8 +50,10 @@ DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,6 +62,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'casual',NULL,NULL),(2,'deportivas',NULL,NULL),(3,'elegante',NULL,NULL),(4,'botas',NULL,NULL);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -73,8 +76,10 @@ DROP TABLE IF EXISTS `color`;
 CREATE TABLE `color` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,6 +88,7 @@ CREATE TABLE `color` (
 
 LOCK TABLES `color` WRITE;
 /*!40000 ALTER TABLE `color` DISABLE KEYS */;
+INSERT INTO `color` VALUES (1,'Rojo',NULL,NULL),(2,'Verde',NULL,NULL),(3,'Azul',NULL,NULL),(4,'Blanco',NULL,NULL),(5,'Negro',NULL,NULL),(6,'Amarillo',NULL,NULL),(7,'Gris',NULL,NULL);
 /*!40000 ALTER TABLE `color` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,19 +102,17 @@ DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `color` varchar(100) NOT NULL,
-  `size` int(11) NOT NULL,
   `description` varchar(100) DEFAULT NULL,
   `price` varchar(100) NOT NULL,
-  `trade_mark` varchar(100) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `category_id` int(10) unsigned NOT NULL,
-  `images` int(11) NOT NULL,
+  `trade_mark` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `category_id` (`category_id`),
-  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `products_FK` (`trade_mark`),
+  KEY `products_FK_1` (`category_id`),
+  CONSTRAINT `products_FK_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,6 +121,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (72,'DEFAULT','DESCRIPTION','8900','2022-02-10 01:56:55','2022-02-10 01:56:55',2,2);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,10 +169,10 @@ CREATE TABLE `products_color` (
   `color_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `product_colorFK` (`product_id`),
-  KEY `colorFK` (`color_id`),
-  CONSTRAINT `colorFK` FOREIGN KEY (`color_id`) REFERENCES `color` (`id`),
-  CONSTRAINT `product_colorFK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `products_color_FK` (`color_id`),
+  CONSTRAINT `product_colorFK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  CONSTRAINT `products_color_FK` FOREIGN KEY (`color_id`) REFERENCES `color` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,9 +196,8 @@ CREATE TABLE `products_image` (
   `image` varchar(50) NOT NULL,
   `product_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`),
-  CONSTRAINT `products_image_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `product_id` (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -202,6 +206,7 @@ CREATE TABLE `products_image` (
 
 LOCK TABLES `products_image` WRITE;
 /*!40000 ALTER TABLE `products_image` DISABLE KEYS */;
+INSERT INTO `products_image` VALUES (10,'default.png',69),(11,'1644443182347_img_.jpg',70),(12,'1644446197800_img_.jpg',71),(13,'1644458215708_img_.jpg',72);
 /*!40000 ALTER TABLE `products_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +226,7 @@ CREATE TABLE `products_size` (
   KEY `sizeFK` (`size_id`),
   CONSTRAINT `products_sizeFK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   CONSTRAINT `sizeFK` FOREIGN KEY (`size_id`) REFERENCES `size` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,34 +239,6 @@ LOCK TABLES `products_size` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `products_trade_mark`
---
-
-DROP TABLE IF EXISTS `products_trade_mark`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `products_trade_mark` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `product_id` int(10) unsigned NOT NULL,
-  `trade_mark_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `prodMarkFK` (`product_id`),
-  KEY `trade_markFK` (`trade_mark_id`),
-  CONSTRAINT `prodMarkFK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-  CONSTRAINT `trade_markFK` FOREIGN KEY (`trade_mark_id`) REFERENCES `trade_mark` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products_trade_mark`
---
-
-LOCK TABLES `products_trade_mark` WRITE;
-/*!40000 ALTER TABLE `products_trade_mark` DISABLE KEYS */;
-/*!40000 ALTER TABLE `products_trade_mark` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `size`
 --
 
@@ -271,8 +248,10 @@ DROP TABLE IF EXISTS `size`;
 CREATE TABLE `size` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `num` tinyint(2) unsigned DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,6 +260,7 @@ CREATE TABLE `size` (
 
 LOCK TABLES `size` WRITE;
 /*!40000 ALTER TABLE `size` DISABLE KEYS */;
+INSERT INTO `size` VALUES (1,30,NULL,NULL),(2,31,NULL,NULL),(3,32,NULL,NULL),(4,33,NULL,NULL),(5,34,NULL,NULL),(6,35,NULL,NULL),(7,36,NULL,NULL),(8,37,NULL,NULL),(9,38,NULL,NULL),(10,39,NULL,NULL),(11,40,NULL,NULL),(12,41,NULL,NULL),(13,42,NULL,NULL),(14,43,NULL,NULL),(15,44,NULL,NULL),(16,45,NULL,NULL),(17,46,NULL,NULL),(18,47,NULL,NULL),(19,48,NULL,NULL);
 /*!40000 ALTER TABLE `size` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,7 +275,7 @@ CREATE TABLE `trade_mark` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `mark` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -304,6 +284,7 @@ CREATE TABLE `trade_mark` (
 
 LOCK TABLES `trade_mark` WRITE;
 /*!40000 ALTER TABLE `trade_mark` DISABLE KEYS */;
+INSERT INTO `trade_mark` VALUES (1,'Nike'),(2,'Salomon'),(3,'Puma'),(4,'Topper');
 /*!40000 ALTER TABLE `trade_mark` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -321,8 +302,11 @@ CREATE TABLE `user` (
   `email` varchar(100) NOT NULL,
   `avatar` varchar(100) NOT NULL,
   `rol` tinyint(2) NOT NULL,
+  `password` varchar(75) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -331,6 +315,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'','Diaz','facu@mail.com','Jake_Sully.jpg',1,'$2a$10$3XM.Md2KGX8SR18liP5wjuWOk6cxleSW2vZ/ViEPAo49R9pDUTagi','2022-02-04 03:52:03','2022-02-04 03:52:03'),(2,'','usuario','prueba@mail.com','1644097686793_img_.jpg',0,'$2a$10$t60iGpMKNBde6txdG/uHHOEG78PHOAZRHbavwhzJHhCmm.U24r8x.','2022-02-05 21:48:09','2022-02-05 21:48:09'),(3,'asd','asd','asd@mail.com','Jake_Sully.jpg',0,'$2a$10$ghNU5lAVnoRqwLFHUkNGqeMoqvpxeARqDZghMfUpm6ajmF63YPXki','2022-02-08 21:06:06','2022-02-08 21:06:06');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,4 +332,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-30  0:50:25
+-- Dump completed on 2022-02-09 23:21:37

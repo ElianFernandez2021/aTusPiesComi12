@@ -1,59 +1,77 @@
-module.exports = (sequelize, dataTypes) => {
-    let alias = "Product";
+module.exports = (sequelize,dataType) => {
+    let alias = 'Product'
     let cols = {
         id: {
-            type: dataTypes.INTEGER(100).UNSIGNED,
-            primaryKey: true,
-            autoIncrement: true,
-            allowNull: false
+            type: dataType.INTEGER.UNSIGNED,
+            autoIncrement:true,
+            primaryKey:true
         },
         name: {
-            type: dataTypes.STRING(50),
-            allowNull: false
-        },
-        color: {
-            type: dataTypes.STRING(30)
-        },
-        size: {
-            type: dataTypes.INTEGER(2)
+            type:dataType.STRING(50),
+            allowNull:false
         },
         description: {
-            type: dataTypes.STRING(800),
+            type:dataType.STRING(50),
+            allowNull:false
         },
         price: {
-            type: dataTypes.INTEGER(10),
-            allowNull: false
+            type: dataType.INTEGER.UNSIGNED,
+            allowNull:false,
         },
-        trade_mark: {
-            type: dataTypes.STRING(30)
+        category_id:{
+            type: dataType.INTEGER.UNSIGNED,
+            allowNull:false
+        },
+        trade_mark:{
+            type: dataType.INTEGER.UNSIGNED,
+            allowNull:false
+        },
+        created_at:{
+            type: dataType.DATE
+        },
+        updated_at:{
+            type: dataType.DATE
         }
     }
     let config = {
-        tableName: "products",
+        tableName: 'products',
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
         timestamps: true
     }
-    const Product = sequelize.define(alias, cols, config)
-    Product.associate = models => {
-        Product.belongsToMany(models.Products_size), {
-            as: "size",
-            foreignKey: "sizeId"
-        },
-            Product.hasMany(models.Categories), {
-            as: "categories",
-            foreignKey: "nameId"
-        },
-            Product.hasMany(models.Products_cart), {
-            as: "products",
-            foreignKey: "productsCart"
-        },
-            Product.hasMany(models.Products_trade_mark), {
-            as: "products",
-            foreignKey: "productId"
-        },
-            Product.belongsToMany(models.Products_color), {
-            as: "products",
-            foreignKey: "productId"
-        }
+    const Product = sequelize.define(alias,cols,config)
+    Product.associate = (models) => {
+        Product.belongsTo(models.Category,{
+            as:'category',
+            foreignKey: 'category_id'
+        })
+        Product.hasMany(models.Product_cart,{
+            as:'cart',
+            foreignKey: 'product_id'
+        })   
+
+        Product.belongsTo(models.Trade_mark,{
+            as:'marca',
+            foreignKey: 'trade_mark'
+        })        
+        Product.belongsToMany(models.Color,{
+            as:'colors',
+            through: 'products_color',
+            foreignKey:'product_id',
+            otherKey:'color_id',
+            timestamps:false
+        })
+        Product.belongsToMany(models.Size,{
+            as:'sizes',
+            through: 'products_size',
+            foreignKey:'product_id',
+            otherKey:'size_id',
+            timestamps:false
+        })
+        Product.hasMany(models.Product_image,{
+            as:'images',
+            foreignKey: 'product_id'
+        }) 
     }
-    return Product;
+    return Product
 }
