@@ -4,6 +4,7 @@ let controller=require('../controllers/adminController')
 let upload = require('../middlewares/uploadProductFile')
 let admin = require ('../middlewares/adminUsers')
 let userLogs = require('../middlewares/userLogs')
+let createValidator = require('../validations/createValidator')
 
 /* Get - Product */
 router.get('/products', controller.adminCategory)
