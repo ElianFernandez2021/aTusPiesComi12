@@ -230,13 +230,36 @@ let controller= {
                                 image:req.file ? req.file.filename: 'default.png',
                                 product_id: req.params.id
                             })
-                            .then(() => {
-                                Promise.all([Products_color.destroy({where:{product_id:req.params.id}}),
-                                            Products_size.destroy({where:{product_id:req.params.id}})])
-                                .then(() => {
-                                   Promise.all([Products_color.update({product_id:req.body.colors},{where:{product_id:req.params.id}}),
-                                                Products_size.update({product_id:req.body.size},{where:{product_id:req.params.id}})]) 
+                            .then((product) => {
+                                let colors = req.body.colors.map((color) => {
+                                    return {
+                                        color_id:+color,
+                                        product_id:product.id           
+                                    }
                                 })
+                                let sizes = req.body.sizes.map((size) => {
+                                    return {
+                                        size_id: +size,
+                                        product_id:product.id
+                                    }
+                                })
+                                Promise.all([Products_color.update(
+                                    {
+                                        color_id:+colors
+                                    },
+                                    {
+                                        where:{
+                                            product_id:req.params.id}
+                                        }),
+                                Products_size.update(
+                                    {
+                                        size_id:req.body.size
+                                    },
+                                    {
+                                        where:{
+                                            product_id:req.params.id
+                                        }})
+                                    ])
                                 .then(()=> {
                                     res.redirect('/admin/products')
                                 })
