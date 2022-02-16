@@ -62,25 +62,38 @@ let controller= {
         .catch(error => console.log(error))
     },
     store: (req,res) => {
+        const{name,description,price,category,trade_mark,} = req.body
         let errors = validationResult(req);
         let arrayImages=[];
+        let arrayColors= [];
+        let arraySizes= [];
         if(req.files){
             req.files.forEach((image) => {
                 arrayImages.push(image.filename)
             })
-        }
+        } 
         if(errors.isEmpty()){
-            const{name,color,size,description,price,category,trade_mark,image} = req.body
-            console.log(req.body)
             Products.create({
                 name:name,
                 description:description,
                 price:price,
-                category_id: category,
-                trade_mark:trade_mark,
+                category_id:category,
+                trade_mark:trade_mark
             })
             .then((newProduct)=> {
-                if(arrayImages.length > 0){
+                if(arrayImages.length > 0 ){
+                    let colors = req.body.colors.map((color) => {
+                        return {
+                            color_id:+color,
+                            product_id:newProduct.id           
+                        }
+                    })
+                    let sizes = req.body.sizes.map((size) => {
+                        return {
+                            size_id: +size,
+                            product_id:newProduct.id
+                        }
+                    })
                     let images = arrayImages.map((image) => {
                         return{
                             image:image,
@@ -89,21 +102,6 @@ let controller= {
                     })
                     Images.bulkCreate(images)
                     .then(()=>{
-                        let colors = req.body.colors.map((color) => {
-                            return {
-                                color_id:+color,
-                                product_id:newProduct.id           
-                            }
-                        })
-                        console.log(colors)
-                        let sizes = req.body.sizes.map((size) => {
-                            return {
-                                size_id: +size,
-                                product_id:newProduct.id
-                            }
-                        })
-                        console.log(sizes)
-                        
                         Products_color.bulkCreate(colors)
                         .then(()=>{
                             Products_size.bulkCreate(sizes)
@@ -112,34 +110,47 @@ let controller= {
                             })
                             .catch(error =>console.log(error))
                         })
-                        .catch(error =>console.log(error))
+                        .catch(error => console.log(error))
                     })
-                    .catch(error =>console.log(error))
+                    .catch(error => console.log(error))              
+                    
                 }
-                else{
+                else{                    
                     Images.create({
                         image:'default.png',
                         product_id: newProduct.id
                     })
                     .then(()=> {
-                        res.redirect('/admin/products/',{
-                            errors:errors.mapped(),
-                            old:req.body
-                        }) 
-                    })
-                    .catch(error => console.log(error))
-
+                            Products_color.bulkCreate(colors)
+                            .then(()=> {
+                                    Products_size.bulkCreate(sizes)
+                                    .then(()=>{
+                                        res.redirect('/admin/products')
+                                    })
+                                    .catch(error => console.log(error))
+                            })
+                            .catch(error => console.log(error))
+                })
+                .catch(error => console.log(error))
                 }
             })
             .catch(error => console.log(error))
         }
         else{
-            res.render('/admin/products/create',{
-            errors: errors.mapped(),
-            old: req.body,
-            session:req.session
-        })
-        .catch(error => console.log(error))
+            Promise.all([Categories.findAll(),Sizes.findAll(),Marks.findAll(),Color.findAll()])
+            .then(([categories,sizes,marks,colors]) => {
+                
+                res.render('admin/productCreate',{
+                    categories,
+                    sizes,
+                    marks,
+                    colors,
+                    errors: errors.mapped(),
+                    session:req.session,
+                    old:req.body,
+                })
+            })
+            .catch(error => console.log(error))
         } 
     },
     adminEdit: (req,res) => {
@@ -162,7 +173,7 @@ let controller= {
                 marks,
                 colors,
                 adminTitle: "Editar producto",
-                session: req.session
+                session: req.session,
             })
         })
     .catch(error => console.log(error))
@@ -170,12 +181,13 @@ let controller= {
     update: (req,res)=>{
         let errors = validationResult(req)
         if(errors.isEmpty()){
-            const {name,price,description,trade_mark} = req.body
+            const {name,description,price,trade_mark,category} = req.body
             Products.update({
-                    name : name.trim(),
-                    price : +price.trim(),
-                    description :description.trim(),
-                    trade_mark,
+                    name,
+                    price,
+                    description,
+                    category_id:category,
+                    marca:trade_mark,
                 },
                 {
                     where:{
@@ -214,17 +226,40 @@ let controller= {
                             }
                         })
                         .then(()=> {
-                            Images.create({
+                            Images.bulkCreate({
                                 image:req.file ? req.file.filename: 'default.png',
                                 product_id: req.params.id
                             })
-                            .then(() => {
-                                Promise.all([Products_color.destroy({where:{product_id:req.params.id}}),
-                                            Products_size.destroy({where:{product_id:req.params.id}})])
-                                .then(() => {
-                                   Promise.all([Products_color.update({product_id:req.body.colors},{where:{product_id:req.params.id}}),
-                                                Products_size.update({product_id:req.body.size},{where:{product_id:req.params.id}})]) 
+                            .then((product) => {
+                                let colors = req.body.colors.map((color) => {
+                                    return {
+                                        color_id:+color,
+                                        product_id:product.id           
+                                    }
                                 })
+                                let sizes = req.body.sizes.map((size) => {
+                                    return {
+                                        size_id: +size,
+                                        product_id:product.id
+                                    }
+                                })
+                                Promise.all([Products_color.update(
+                                    {
+                                        color_id:+colors
+                                    },
+                                    {
+                                        where:{
+                                            product_id:req.params.id}
+                                        }),
+                                Products_size.update(
+                                    {
+                                        size_id:req.body.size
+                                    },
+                                    {
+                                        where:{
+                                            product_id:req.params.id
+                                        }})
+                                    ])
                                 .then(()=> {
                                     res.redirect('/admin/products')
                                 })

@@ -10,7 +10,10 @@
                 <form class="categories-product" action="/admin/products" autocomplete="off" method="POST" enctype="multipart/form-data">
                     <div>
                         <label for="product">Nombre</label>
-                        <input type="text" name="name" id="product">
+                        <input type="text" name="name" id="product" value="<%= locals.old && old.name %> ">
+                        <% if (locals.errors && errors.name) { %>
+                            <small class="text-danger"><%= errors.name.msg %></small>
+                        <% } %>
                     </div>
                     <div class="products">
                         <p>Talle: </p>
@@ -18,6 +21,9 @@
                             <label for="sizes"><%- talles.num%> </label>
                             <input name="sizes" type="checkbox" value="<%- talles.id %>">
                             <% }) %>
+                            <% if (locals.errors && errors.sizes) { %>
+                            <small class="text-danger"><%= errors.sizes.msg %></small>
+                        <% } %>
                     </div>
                     <div class="products">
                         <p>Categoria: </p>
@@ -29,7 +35,10 @@
                     </div>
                     <div>
                         <label for="perPrice">Precio</label>
-                        <input type="number" name="price" id="perPrice">
+                        <input type="number" name="price" id="perPrice" value="<%= locals.old && old.price %> ">
+                        <% if (locals.errors && errors.price) { %>
+                            <small class="text-danger"><%= errors.price.msg %></small>
+                        <% } %>
                     </div>
                     <div>
                         <label for="trade_mark">Marca</label>
@@ -49,6 +58,9 @@
                             <label for="colors"><%- color.name %> </label>
                             <input name="colors" type="checkbox" value="<%- color.id %>">
                             <% }) %>
+                            <% if (locals.errors && errors.colors) { %>
+                            <small class="text-danger"><%= errors.colors.msg %></small>
+                        <% } %>
                     </div>
                     <div>
                         <label for="image">Imagen</label>
@@ -60,22 +72,6 @@
                         <input type="reset" value="Reiniciar">
                     </div>
                 </form>
-
-                <td>
-                    <table class="list" id="storeList">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nombre</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </td>
             </td>
         </tr>
     </table>
