@@ -42,16 +42,24 @@ let controller={
             where: {
                 id: req.params.id,
             },
-            include: [{association: 'Product_image'}]
+            include: [{ association: 'images' }]
         })
-        .then((relatedProducts) => {
-            res.render("productDetail", {
-                product,
-                sliderTitle: "Productos relacionados",
-                sliderProducts: relatedProducts,
-                session: req.session
-            })
-        })
+            .then(((product) => {
+                Products.findAll({
+                    include: [{ association: 'images' }],
+                    where: {
+                        id: req.params.id,
+                    }
+                })
+                    .then((relatedProducts) => {
+                        res.render("productDetail", {
+                            product,
+                            sliderTitle: "Productos relacionados",
+                            sliderProducts: relatedProducts,
+                            session: req.session
+                        })
+                    })
+            }))
     },
     category: (req, res) => {
         Products.findAll({

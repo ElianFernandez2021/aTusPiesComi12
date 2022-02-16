@@ -24,10 +24,8 @@
                 <div class="product-imgs">
                     <div class="img-display">
                         <div class="img-showcase">
-                            <img src="/images/productDetail/zapatillas-dakota-azul/zapatilla-dakota-azul1.jpg" alt="">
-                            <img src="/images/productDetail/zapatillas-dakota-negro/zapatillas-dakota1.jpg" alt="">
-                            <img src="/images/productDetail/zapatillas-dakota-blanca.jfif" alt="">
-                            <img src="/images/productDetail/zapatillas-dakota-verde.jfif" alt="">
+                            <img src=/images/products/<%- product.images[0].image %> " alt="ID:<%= product.id%> ">
+                            
                         </div>
                     </div>
                     <div class="img-select">
@@ -59,7 +57,7 @@
                 </div>
                 <!-- tarjeta derecha -->
                 <div class="product-content">
-                    <h2 class="product-title">Zapatilla Dakota</h2>
+                    <h2 class="product-title"><%= product.name %></h2>
                     <a href="#" class="product-link">Más productos</a>
                     <div class="product-rating">
                         <i class="fas fa-star"></i>
@@ -71,15 +69,15 @@
                     </div>
                     <!-- precio -->
                     <div class="product-price">
-                        <p class="last-price">Precio normal: <span>$7999</span></p>
-                        <p class="new-price">Precio con descuento: <span>$6799,15 (15%)</span></p>
+                        <p class="last-price">Precio: $<span><%= product.price %></span></p>
+                        <!-- <p class="new-price">Precio con descuento: <span>$6799,15 (15%)</span></p> -->
     
                     </div>
                     <!-- fin precio -->
                     <!-- descripcion del producto -->
                     <div class="product-detail">
-                        <h2>Descripción ZAPATILLAS DAKOTA</h2>
-                        <p>El dakota llegó para quedarse.</p>
+                        <p><%= product.description %></p>
+                        <!-- <p>El dakota llegó para quedarse.</p>
                         <p>
                             <li>un nuevo integrante de la familia running retro pero de look más moderno.</li>
                             <li>capellada: de ripstop con detalles en film con tecnología skinnect y contrafuerte externo de tpu.</li>
@@ -89,7 +87,7 @@
                             <li>Color: <span>Azul, Negro, Blanco y Verde</span></li>
                             <li>Disponibilidad: <span>En stock</span></li>
                             <li>Costo de envío: <span>Gratis</span></li>
-                        </ul>
+                        </ul> -->
                         <!-- fin descripcion del producto -->
                         <!-- TALLES -->
                         <div class="size-container">
