@@ -5,18 +5,27 @@
     <%- include ('./partials/header.ejs')%>
     <!--    Product Cart    -->
         <article class="categories-product">        
-            <% carrito.forEach(zapatilla => { %>
+            <% products.forEach(zapatilla => { %>
                 <div class="products">
                     <p><%- zapatilla.name%> </p>
                     <img class="product-image" src="/images/products/<%- zapatilla.subcategory%>/<%- zapatilla.image%>" alt="<%- zapatilla.id%> ">
                     <p>Descripcion: <%- zapatilla.description%> </p>
-                    <p>Talle: <%- zapatilla.size%> </p>
-                    <p>Color: <%- zapatilla.color%> </p>
+                    <p>Talle:
+                        <% zapatilla.sizes.forEach(talle => { %>
+                            <%- talle.num %> 
+                            <% }) %>
+                    </p>
+                    <p>Color:
+                        <% zapatilla.colors.forEach(color => { %>
+                            <%- color.name %> 
+                            <% }) %>
+                        </p>    
                     <p>Precio: <%- zapatilla.price%> </p>
+                    
                 </div>
+                <p>Total: <% let total = zapatilla.price++ %> </p>
                 <% }) %>
         </article>
-        <p>Total: <%= total %> </p>
     <nav class="last-option">
         <ul>
             <li><a href="detail">Volver</a></li>

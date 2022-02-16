@@ -65,12 +65,14 @@ let controller= {
         const{name,description,price,category,trade_mark,} = req.body
         let errors = validationResult(req);
         let arrayImages=[];
-        let arrayColors= [];
         let arraySizes= [];
+        let arrayColors= [];
         if(req.files){
             req.files.forEach((image) => {
                 arrayImages.push(image.filename)
             })
+                arraySizes.push(req.body.sizes)
+                arrayColors.push(req.body.colors)
         } 
         if(errors.isEmpty()){
             Products.create({
@@ -81,19 +83,19 @@ let controller= {
                 trade_mark:trade_mark
             })
             .then((newProduct)=> {
+                let colors = arrayColors.map((color) => {
+                    return {
+                        color_id:+color,
+                        product_id:newProduct.id           
+                    }
+                })
+                let sizes = arraySizes.map((size) => {
+                    return {
+                        size_id: +size,
+                        product_id:newProduct.id
+                    }
+                })
                 if(arrayImages.length > 0 ){
-                    let colors = req.body.colors.map((color) => {
-                        return {
-                            color_id:+color,
-                            product_id:newProduct.id           
-                        }
-                    })
-                    let sizes = req.body.sizes.map((size) => {
-                        return {
-                            size_id: +size,
-                            product_id:newProduct.id
-                        }
-                    })
                     let images = arrayImages.map((image) => {
                         return{
                             image:image,
@@ -115,26 +117,62 @@ let controller= {
                     .catch(error => console.log(error))              
                     
                 }
-                else{                    
-                    Images.create({
+                else if(arrayColors.length > 1 && arraySizes.length > 1){
+                    Promise.all([Images.create({
                         image:'default.png',
                         product_id: newProduct.id
-                    })
+                    }),Products_color.bulkCreate(colors),
+                    Products_size.bulkCreate(sizes)])
                     .then(()=> {
-                            Products_color.bulkCreate(colors)
-                            .then(()=> {
-                                    Products_size.bulkCreate(sizes)
-                                    .then(()=>{
-                                        res.redirect('/admin/products')
-                                    })
-                                    .catch(error => console.log(error))
-                            })
-                            .catch(error => console.log(error))
-                })
-                .catch(error => console.log(error))
+                        res.redirect('/admin/products')
+                    })
+                    .catch(error => console.log(error))
+                }
+                else if(arrayColors.length > 1 && arraySizes.length <2) {
+                    Promise.all([Images.create({
+                        image:'default.png',
+                        product_id: newProduct.id
+                    }),Products_color.bulkCreate(colors),
+                    Products_size.create({
+                        size_id: req.body.sizes,
+                        product_id:newProduct.id
+                    })])
+                    .then(()=> {
+                        res.redirect('/admin/products')
+                    })
+                    .catch(error => console.log(error))
+                }
+                else if(arraySizes.length > 1 && arrayColors.length < 2){
+                    Promise.all([Images.create({
+                        image:'default.png',
+                        product_id: newProduct.id
+                    }),Products_color.create({
+                        color_id:req.body.colors,
+                        product_id: newProduct.id
+                    }),Products_size.bulkCreate(sizes)])
+                    .then(()=> {
+                        res.redirect('/admin/products')
+                    })
+                    .catch(error => console.log(error))
+                }
+                else{
+                    Promise.all([Images.create({
+                        image:'default.png',
+                        product_id: newProduct.id
+                    }),Products_color.create({
+                        color_id:req.body.colors,
+                        product_id: newProduct.id
+                    }),Products_size.create({
+                        size_id: req.body.sizes,
+                        product_id:newProduct.id
+                    })])
+                    .then(()=> {
+                        res.redirect('/admin/products')
+                    })
+                    .catch(error => console.log(error))
                 }
             })
-            .catch(error => console.log(error))
+            .catch(errors => console.log(errors))
         }
         else{
             Promise.all([Categories.findAll(),Sizes.findAll(),Marks.findAll(),Color.findAll()])
@@ -288,22 +326,27 @@ let controller= {
     },
     fatality:(req,res) => {
         let zapaId = +req.params.id;
-        Products.findByPk(zapaId)
+        Products.findByPk(zapaId,{
+            include:[{association:'images'}]
+        })
             .then(result => {
-                if (zapaId) {
-                    if (fs.existsSync("../public/images/products/botas", result.image.name)) {
-                        fs.unlinkSync(`../public/images/products/botas ${result.image.name}`)
+                if (zapaId && req.file) {
+                    if (fs.existsSync("../public/images/products/botas", result.images.image)) {
+                        fs.unlinkSync(`../public/images/products/botas ${result.images.image}`)
                     }
-                    else if (fs.existsSync("../public/images/products/casual", result.image.name)) {
-                        fs.unlinkSync(`../public/images/products/casual ${result.image.name}`)
+                    else if (fs.existsSync("../public/images/products/casual", result.images.image)) {
+                        fs.unlinkSync(`../public/images/products/casual ${result.images.image}`)
                     }
-                    else if (fs.existsSync("../public/images/products/elegante", result.image.name)) {
-                        fs.unlinkSync(`../public/images/products/elegante ${result.image.name}`)
+                    else if (fs.existsSync("../public/images/products/elegante", result.images.image)) {
+                        fs.unlinkSync(`../public/images/products/elegante ${result.images.image}`)
                     }
-                    else if (fs.existsSync("../public/images/products/zapatillas", result.image.name)) {
-                        fs.unlinkSync(`../public/images/products/zapatillas ${result.image.name}`)
+                    else if (fs.existsSync("../public/images/products/zapatillas", result.images.image)) {
+                        fs.unlinkSync(`../public/images/products/zapatillas ${result.images.image}`)
                     }
                     else {
+                        if (fs.existsSync("../public/images/products/", result.images.image)) {
+                            fs.unlinkSync(`../public/images/products/ ${result.images.image}`)
+                        }
                         console.log("Archivo no encontrado")
                     }
                 }
