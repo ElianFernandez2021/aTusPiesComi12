@@ -65,8 +65,8 @@ let controller= {
         const{name,description,price,category,trade_mark,} = req.body
         let errors = validationResult(req);
         let arrayImages=[];
-        let arraySizes= [];
-        let arrayColors= [];
+        let arraySizes= typeof req.body.sizes !== 'string' ? req.body.sizes : [req.body.sizes];
+        let arrayColors= typeof req.body.colors !== 'string' ? req.body.colors : [req.body.colors];
         if(req.files){
             req.files.forEach((image) => {
                 arrayImages.push(image.filename)
@@ -116,8 +116,22 @@ let controller= {
                     })
                     .catch(error => console.log(error))              
                     
+                } else {
+                    Images.create({
+                        image: 'default.png',
+                        product_id: newProduct.id
+                    }).then(
+                        Products_color.bulkCreate(colors)
+                    .then(()=>{
+                        Products_size.bulkCreate(sizes)
+                        .then(()=>{
+                            res.redirect('/admin/products')
+                        })
+                        .catch(error =>console.log(error))
+                    })
+                    .catch(error => console.log(error)))
                 }
-                else if(arrayColors.length > 1 && arraySizes.length > 1){
+                /* else if(arrayColors.length > 1 && arraySizes.length > 1){
                     Promise.all([Images.create({
                         image:'default.png',
                         product_id: newProduct.id
@@ -170,7 +184,7 @@ let controller= {
                         res.redirect('/admin/products')
                     })
                     .catch(error => console.log(error))
-                }
+                } */
             })
             .catch(errors => console.log(errors))
         }
@@ -268,14 +282,16 @@ let controller= {
                                 image:req.file ? req.file.filename: 'default.png',
                                 product_id: req.params.id
                             })
-                            .then((product) => {
-                                let colors = req.body.colors.map((color) => {
+                                .then((product) => {
+                                    let arraySizes= typeof req.body.sizes !== 'string' ? req.body.sizes : [req.body.sizes];
+                                    let arrayColors= typeof req.body.colors !== 'string' ? req.body.colors : [req.body.colors];
+                                let colors = arrayColors.map((color) => {
                                     return {
                                         color_id:+color,
                                         product_id:product.id           
                                     }
                                 })
-                                let sizes = req.body.sizes.map((size) => {
+                                let sizes = arraySizes.map((size) => {
                                     return {
                                         size_id: +size,
                                         product_id:product.id

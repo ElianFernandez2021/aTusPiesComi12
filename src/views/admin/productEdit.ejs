@@ -39,7 +39,7 @@
                         <label for="trade_mark">Marca</label>
                         <select name="trade_mark" id="">
                             <% marks.forEach(marca => { %>
-                                <option value="<%= locals.old ? old.marca : product.marca %>"><%- marca.mark%> </option>                             
+                                <option value="<%= marca.id %>" <%- locals.old && old.trade_mark == mark.id ? "selected" : marca.id == product.trade_mark ? "selected" : "" %> ><%- marca.mark%> </option>                             
                             <% }) %>
                         </select>
                     </div>
