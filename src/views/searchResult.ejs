@@ -11,7 +11,7 @@
                     <% result.forEach(product => { %>
                         <div class="products">
                             <a href="/products/detail/<%- product.id %>">
-                                <img src="/images/products/<%-subCategory%> /<%- product.image[0]%>" alt="ID: <%= product.id %> ">
+                                <img src="/images/products/<%-product.category%> /<%- product.image%>" alt="ID: <%= product.id %> ">
                                 <p class="productName"> 
                                     <% if (product.name.length > 30) { %>
                                         <%- `${product.name.slice(0,30)}...` %>
