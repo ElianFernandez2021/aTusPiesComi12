@@ -30,10 +30,10 @@ let controller= {
         })
         .catch(errors => console.log(errors))    
     },
-    adminCategory:(req,res) => {
-        Categories.findAll()
+    adminCategory: (req, res) => {
+        Products.findAll()
         .then(products => {
-            res.render('admin/adminCategory',{
+            res.render('admin/adminProduct',{
                 adminTitle: "Categorias",
                 session: req.session,
                 products
@@ -62,7 +62,7 @@ let controller= {
         .catch(error => console.log(error))
     },
     store: (req,res) => {
-        const{name,description,price,category,trade_mark,} = req.body
+        const{name,description,price,category,trade_mark,colors,sizes} = req.body
         let errors = validationResult(req);
         let arrayImages=[];
         let arraySizes= typeof req.body.sizes !== 'string' ? req.body.sizes : [req.body.sizes];
@@ -70,9 +70,9 @@ let controller= {
         if(req.files){
             req.files.forEach((image) => {
                 arrayImages.push(image.filename)
-            })
                 arraySizes.push(req.body.sizes)
                 arrayColors.push(req.body.colors)
+            })
         } 
         if(errors.isEmpty()){
             Products.create({
@@ -80,7 +80,7 @@ let controller= {
                 description:description,
                 price:price,
                 category_id:category,
-                trade_mark:trade_mark
+                trade_mark: trade_mark
             })
             .then((newProduct)=> {
                 let colors = arrayColors.map((color) => {
