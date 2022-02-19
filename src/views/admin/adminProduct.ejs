@@ -14,9 +14,7 @@
                    <% }) %>
                    <p>Descripcion: <%= product.description%> </p>
                    <p>Talle: 
-                       <% product.sizes.forEach(talle => { %>
-                           <%= talle.num %>
-                       <%  }) %>
+                       <%- product.size %> 
                    </p> 
                    <p>Color: 
                        <% product.colors.forEach(color => { %>

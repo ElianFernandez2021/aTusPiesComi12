@@ -17,8 +17,7 @@ let controller={
     },
     cart:(req,res)=>{
         Products.findAll({
-            include:[{association:'cart'},{association:'category'},
-        {association:'sizes'},{association:'colors'}]
+            include:[{association:'cart'},{association:'category'},{association:'colors'}]
         })
         .then((products)=>{
             res.render('productCart',{
@@ -46,7 +45,7 @@ let controller={
     category: (req, res) => {
         Products.findAll({
             include:[{association:'category'},{association:'colors'},
-            {association:'sizes'},{association:'images'},{association:'marca'},]
+            {association:'images'},{association:'marca'},]
         })
         .then((filtrado) => {
             res.render('category',{

@@ -62,7 +62,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,'casual',NULL,NULL),(2,'deportivas',NULL,NULL),(3,'elegante',NULL,NULL),(4,'botas',NULL,NULL);
+INSERT INTO `categories` VALUES (1,'deportivas',NULL,NULL),(2,'elegante',NULL,NULL),(3,'casual',NULL,NULL),(4,'botas',NULL,NULL);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,16 +103,18 @@ CREATE TABLE `products` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `description` varchar(100) DEFAULT NULL,
-  `price` varchar(100) NOT NULL,
+  `price` int(10) unsigned NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `category_id` int(10) unsigned NOT NULL,
   `trade_mark` int(10) unsigned NOT NULL,
+  `size` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `products_FK` (`trade_mark`),
   KEY `products_FK_1` (`category_id`),
+  KEY `products_FK` (`trade_mark`),
+  CONSTRAINT `products_FK` FOREIGN KEY (`trade_mark`) REFERENCES `trade_mark` (`id`),
   CONSTRAINT `products_FK_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=282 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +123,6 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (72,'DEFAULT','DESCRIPTION','8900','2022-02-10 01:56:55','2022-02-10 01:56:55',2,2);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,7 +173,7 @@ CREATE TABLE `products_color` (
   KEY `products_color_FK` (`color_id`),
   CONSTRAINT `product_colorFK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   CONSTRAINT `products_color_FK` FOREIGN KEY (`color_id`) REFERENCES `color` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,8 +197,9 @@ CREATE TABLE `products_image` (
   `image` varchar(50) NOT NULL,
   `product_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+  KEY `products_image_FK` (`product_id`),
+  CONSTRAINT `products_image_FK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,62 +208,7 @@ CREATE TABLE `products_image` (
 
 LOCK TABLES `products_image` WRITE;
 /*!40000 ALTER TABLE `products_image` DISABLE KEYS */;
-INSERT INTO `products_image` VALUES (10,'default.png',69),(11,'1644443182347_img_.jpg',70),(12,'1644446197800_img_.jpg',71),(13,'1644458215708_img_.jpg',72);
 /*!40000 ALTER TABLE `products_image` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `products_size`
---
-
-DROP TABLE IF EXISTS `products_size`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `products_size` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `product_id` int(10) unsigned NOT NULL,
-  `size_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `products_sizeFK` (`product_id`),
-  KEY `sizeFK` (`size_id`),
-  CONSTRAINT `products_sizeFK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-  CONSTRAINT `sizeFK` FOREIGN KEY (`size_id`) REFERENCES `size` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products_size`
---
-
-LOCK TABLES `products_size` WRITE;
-/*!40000 ALTER TABLE `products_size` DISABLE KEYS */;
-/*!40000 ALTER TABLE `products_size` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `size`
---
-
-DROP TABLE IF EXISTS `size`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `size` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `num` tinyint(2) unsigned DEFAULT NULL,
-  `createdAt` datetime DEFAULT NULL,
-  `updatedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `size`
---
-
-LOCK TABLES `size` WRITE;
-/*!40000 ALTER TABLE `size` DISABLE KEYS */;
-INSERT INTO `size` VALUES (1,30,NULL,NULL),(2,31,NULL,NULL),(3,32,NULL,NULL),(4,33,NULL,NULL),(5,34,NULL,NULL),(6,35,NULL,NULL),(7,36,NULL,NULL),(8,37,NULL,NULL),(9,38,NULL,NULL),(10,39,NULL,NULL),(11,40,NULL,NULL),(12,41,NULL,NULL),(13,42,NULL,NULL),(14,43,NULL,NULL),(15,44,NULL,NULL),(16,45,NULL,NULL),(17,46,NULL,NULL),(18,47,NULL,NULL),(19,48,NULL,NULL);
-/*!40000 ALTER TABLE `size` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -332,4 +279,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-09 23:21:37
+-- Dump completed on 2022-02-19  0:20:48
