@@ -27,9 +27,9 @@ let controller= {
         .catch(errors => console.log(errors))    
     },
     adminCategory:(req,res) => {
-        Categories.findAll()
+        Products.findAll()
         .then(products => {
-            res.render('admin/adminCategory',{
+            res.render('admin/adminProduct',{
                 adminTitle: "Categorias",
                 session: req.session,
                 products
