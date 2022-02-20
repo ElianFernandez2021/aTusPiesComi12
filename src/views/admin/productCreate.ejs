@@ -16,11 +16,8 @@
                         <% } %>
                     </div>
                     <div class="products">
-                        <p>Talle: </p>
-                        <input type="text" name="size" id="">
-                        <% if (locals.errors && errors.sizes) { %>
-                        <small class="text-danger"><%= errors.sizes.msg %></small>
-                        <% } %>
+                        <label for="size">Talle</label>
+                        <input type="text" name="size" id="size">
                     </div>
                     <div class="products">
                         <p>Categoria: </p>

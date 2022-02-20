@@ -76,7 +76,8 @@ let controller= {
                 price:price,
                 category_id:category,
                 trade_mark:trade_mark,
-                arraySizes
+                arraySizes,
+                size:size
             })
             .then((newProduct)=> {
                 let colors = arrayColors.map((color) => {
