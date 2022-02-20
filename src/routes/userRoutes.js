@@ -1,12 +1,13 @@
-let express = require("express")
+let express = require("express");
 let router = express.Router();
-let controller = require("../controllers/userController.js")
-let loginValidator = require('../validations/loginValidator')
-let registerValidator = require('../validations/registerValidator')
-let uploadFile = require('../middlewares/uploadAvatar')
+let controller = require("../controllers/userController.js");
+let loginValidator = require('../validations/loginValidator');
+let registerValidator = require('../validations/registerValidator');
+let editValidator= require('../validations/editValidator');
+let uploadFile = require('../middlewares/uploadAvatar');
 
-let userLogs = require('../middlewares/userLogs')
-let users = require('../middlewares/users')
+let userLogs = require('../middlewares/userLogs');
+let users = require('../middlewares/users');
 
 /* GET/POST - Login & Register */
 router.get("/login",userLogs , users.isOffline, controller.login )
@@ -19,7 +20,7 @@ router.post('/register', uploadFile.single('avatar'), registerValidator, control
 router.get('/profile',userLogs , users.activeUser, controller.profile)
 
 router.get('/profile/edit/:id',userLogs , users.activeUser, controller.editProfile)
-router.put('/profile/edit/:id', users.activeUser,registerValidator,uploadFile.single('avatar'),controller.updateProfile)
+router.put('/profile/edit/:id', users.activeUser,editValidator,uploadFile.single('avatar'),controller.updateProfile)
 
 /* Get -Logout */
 router.get('/logout', controller.logout)

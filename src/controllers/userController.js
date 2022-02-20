@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs')
 const db = require('../data/models');
 
 const Users = db.User
+const Image = db.Product_image;
 
 let controller={
     login:(req,res)=>{
@@ -94,43 +95,71 @@ let controller={
         })
     },
     editProfile:(req,res) => {
-        let user = users.find(user => user.email === req.session.user.email)
-        res.render('userEditProfile',{
-            title:"Edicion de perfil",
-            user,
-            session:req.session
+        Users.findByPk(req.params.id)
+        .then((user)=>{
+            res.render('userEditProfile',{
+                title:"Edicion de perfil",
+                user,
+                session:req.session,
+                old:req.body
+            })
         })
     },
-    updateProfile:(req,res) => {
-        let userId = +req.params.id
-        let {name,last_name,email,pass,avatar,teladdress,pc,city,province} = req.body
-        users.forEach(usuario => {
-            if(usuario.id === userId){
-                usuario.id = userId
-                usuario.name = name
-                usuario.last_name = last_name
-                usuario.email = email
-                usuario.pass = pass
-                usuario.teladdress =teladdress
-                usuario.pc =pc
-                usuario.province = province
-                usuario.city = city
-                if(req.file){
-                    if(fs.existsSync("./public/images/users/",usuario.avatar)){
-                        fs.unlinkSync(`./public/images/users/${usuario.avatar}`)
+    updateProfile:(req,res) => {       
+            Users.findByPk(req.params.id)
+            .then((user)=>{
+                const {name,last_name,pass,avatar} = req.body
+                Users.update({
+                    first_name:name,
+                    last_name:last_name,
+                    password:pass,
+                    avatar
+                },{
+                    where:{
+                        id : req.params.id
+                    }
+                })
+                .then(() => {
+                    if(req.file){
+                        if(fs.existsSync("./public/images/users/",user.avatar)){
+                            fs.unlinkSync(`./public/images/users/${user.avatar}`)
+                        }
+                        else{
+                            console.log("No se encontró el avatar")
+                        }
+                        user.avatar = req.file.filename
+                        Image.destroy({
+                            where:{
+                                id:req.params.id
+                            }
+                        })
+                        .then(()=>{
+                            Image.create({
+                                image:req.body.avatar
+                            },{
+                                where:{
+                                    id:req.params.id
+                                }
+                            })
+                            res.redirect('/user/profile/',{
+                                session:req.session,
+                            })
+                        })
                     }
                     else{
-                        console.log("No se encontró el avatar")
+                        user.avatar = req.body.avatar
+                        Image.update({
+                            avatar: 'default-image.png'
+                        },{where:{
+                            id:req.params.id
+                        }})
+                        .then(()=>{
+                            res.redirect('/user/profile/')
+                        })
                     }
-                    usuario.image = req.file.filename
-                }
-                else{
-                    usuario.image = usuario.image
-                }
-            }
-            })
-            res.redirect('/user/profile')
-        },
+                })
+            })        
+    },
     logout: (req,res) =>{
         req.session.destroy(); //Borra todo lo que está en sesion
         if (req.cookies.userATusPies) { 
