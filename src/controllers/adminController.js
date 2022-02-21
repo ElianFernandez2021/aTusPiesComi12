@@ -26,10 +26,10 @@ let controller= {
         })
         .catch(errors => console.log(errors))    
     },
-    adminCategory:(req,res) => {
-        Categories.findAll()
+    adminCategory: (req, res) => {
+        Products.findAll({ include:[{association:'category'},{association:'colors'},{association:'images'},{association:'marca'},]})
         .then(products => {
-            res.render('admin/adminCategory',{
+            res.render('admin/adminProduct',{
                 adminTitle: "Categorias",
                 session: req.session,
                 products
@@ -55,37 +55,35 @@ let controller= {
         .catch(error => console.log(error))
     },
     store: (req,res) => {
-        const{name,description,price,category,trade_mark,size,colors} = req.body
+        const{name,description,price,category,trade_mark,colors,size} = req.body
         let errors = validationResult(req);
         let arrayImages=[];
-        let arrayColors= req.body.colors ? [req.body.colors] :  colors;
-        let arraySizes = size.split(',');
-
+        let arraySizes= typeof req.body.size !== 'string' ? req.body.size : [req.body.size];
+        let arrayColors= typeof req.body.colors !== 'string' ? req.body.colors : [req.body.colors];
+        arraySizes=size.split(',')
+        arrayColors.push(req.body.colors)
         if(req.files){
             req.files.forEach((image) => {
                 arrayImages.push(image.filename)
             })
-        }         
+        } 
         if(errors.isEmpty()){
             Products.create({
                 name:name,
                 description:description,
                 price:price,
                 category_id:category,
-                trade_mark:trade_mark,
+                trade_mark: trade_mark,
                 size:size
             })
             .then((newProduct)=> {
                 let colors = arrayColors.map((color) => {
                     return {
-                        color_id:+color,
-                        product_id:+newProduct.id           
+                        color_id:color,
+                        product_id:newProduct.id           
                     }
                 })
-                Products_color.bulkCreate({
-                    color_id: req.body.colors,
-                    product_id: +newProduct.id
-                })
+                Products_color.bulkCreate(colors)
                 .then(()=>{
                     if(arrayImages.length > 0 ){
                         let images = arrayImages.map((image) => {
@@ -101,14 +99,10 @@ let controller= {
                         .catch(error => console.log(error))
                     }
                     else {
-                        Promise.all([Images.create({
+                        Images.create({
                         image:'default.png',
                         product_id: newProduct.id
-                        }),
-                    Products_color.bulkCreate({
-                        color_id: req.body.colors,
-                        product_id: +newProduct.id
-                    })])
+                        })
                     .then(()=> {
                         res.redirect('/admin/products')
                     })
@@ -226,12 +220,39 @@ let controller= {
                                     product_id:req.params.id
                                 }
                             })
-                            .then(()=> {
-                                Images.bulkCreate({
-                                    image:req.file ? req.file.filename: 'default.png',
-                                    product_id: req.params.id
+                                .then((product) => {
+                                    let arraySizes= typeof req.body.sizes !== 'string' ? req.body.sizes : [req.body.sizes];
+                                    let arrayColors= typeof req.body.colors !== 'string' ? req.body.colors : [req.body.colors];
+                                let colors = arrayColors.map((color) => {
+                                    return {
+                                        color_id:+color,
+                                        product_id:product.id           
+                                    }
                                 })
-                                .then(() => {
+                                let sizes = arraySizes.map((size) => {
+                                    return {
+                                        size_id: +size,
+                                        product_id:product.id
+                                    }
+                                })
+                                Promise.all([Products_color.update(
+                                    {
+                                        color_id:+colors
+                                    },
+                                    {
+                                        where:{
+                                            product_id:req.params.id}
+                                        }),
+                                Products_size.update(
+                                    {
+                                        size_id:req.body.size
+                                    },
+                                    {
+                                        where:{
+                                            product_id:req.params.id
+                                        }})
+                                    ])
+                                .then(()=> {
                                     res.redirect('/admin/products')
                                 })
                                 .catch(error => console.log(error))  
@@ -304,7 +325,7 @@ let controller= {
                             id:req.params.id
                         }
                     })
-                    .then(res.redirect(`/admin/products/category/1`))
+                    .then(res.redirect(`/admin/products/`))
                         })                    
                 })
                 .catch(error => console.log(error)) 

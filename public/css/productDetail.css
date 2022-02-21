@@ -132,8 +132,9 @@ body {
 }
 
 .productDetail .last-price span {
-  color: var(--red);
-  text-decoration: line-through;
+  /* color: var(--red);
+  text-decoration: line-through; */
+  font-weight: bold;
 }
 
 .productDetail .new-price {
