@@ -15,10 +15,7 @@
                     </div>
                     <div class="products">
                        <p>Talle:</p>
-                        <% sizes.forEach(talles => { %>
-                            <label for="sizes"><%- talles.num%> </label>
-                            <input name="sizes" type="checkbox" value="<%= locals.old ? old.talles : talles.id %>">
-                        <% }) %>
+                        <input type="text" name="size" id="" value="<%- product.size %>">
                     </div>
                     <div>
                         <label for="category">Categoria</label>
@@ -50,8 +47,9 @@
                     <div class="products">
                       <p>Color:</p>
                             <% colors.forEach(color => { %>
+                                <% let checked = product.colors.color_id ? "checked" : "" %>
                                 <label for="colors"><%- color.name %> </label>
-                                <input name="colors" type="checkbox" value= <%= locals.old ? old.color : color.name%>>
+                                <input name="colors" type="checkbox" <%= checked %>>
                                 <% }) %>
                     </div>
                     <div>

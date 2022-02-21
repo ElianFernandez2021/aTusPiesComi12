@@ -43,7 +43,6 @@ let controller= {
             include:[{association:'category'},{association:'colors'},{association:'images'},{association:'marca'},]
         })
         .then(products => {
-            //res.send(products)
             Categories.findAll()
             .then((categories)=> {
                 res.render('admin/adminProduct',{
@@ -51,24 +50,22 @@ let controller= {
                     category_id:req.params.id,
                     categories,  
                 })
-
             })
         })
         .catch(error => console.log(error))
     },
     store: (req,res) => {
-        const{name,description,price,category,trade_mark,size} = req.body
+        const{name,description,price,category,trade_mark,size,colors} = req.body
         let errors = validationResult(req);
         let arrayImages=[];
-        let arrayColors= [];
+        let arrayColors= req.body.colors ? [req.body.colors] :  colors;
         let arraySizes = size.split(',');
 
         if(req.files){
             req.files.forEach((image) => {
                 arrayImages.push(image.filename)
             })
-        } 
-        
+        }         
         if(errors.isEmpty()){
             Products.create({
                 name:name,
@@ -76,39 +73,42 @@ let controller= {
                 price:price,
                 category_id:category,
                 trade_mark:trade_mark,
-                arraySizes
+                size:size
             })
             .then((newProduct)=> {
                 let colors = arrayColors.map((color) => {
                     return {
                         color_id:+color,
-                        product_id:newProduct.id           
+                        product_id:+newProduct.id           
                     }
                 })
-                if(arrayImages.length > 0 ){
-                    let images = arrayImages.map((image) => {
-                        return{
-                            image:image,
-                            product_id: newProduct.id
-                        }
-                    })
-                    Images.bulkCreate(images)
-                    .then(()=>{
-                        Products_color.bulkCreate(colors)
+                Products_color.bulkCreate({
+                    color_id: req.body.colors,
+                    product_id: +newProduct.id
+                })
+                .then(()=>{
+                    if(arrayImages.length > 0 ){
+                        let images = arrayImages.map((image) => {
+                            return{
+                                image:image,
+                                product_id: newProduct.id
+                            }
+                        })
+                        Images.bulkCreate(images)
                         .then(()=>{
                             res.redirect('/admin/products')
                         })
                         .catch(error => console.log(error))
-                    })
-                    .catch(error => console.log(error))              
-                    
-                }
-                else {
-                    Promise.all([Images.create({
+                    }
+                    else {
+                        Promise.all([Images.create({
                         image:'default.png',
                         product_id: newProduct.id
                         }),
-                    Products_color.bulkCreate(colors)])
+                    Products_color.bulkCreate({
+                        color_id: req.body.colors,
+                        product_id: +newProduct.id
+                    })])
                     .then(()=> {
                         res.redirect('/admin/products')
                     })
@@ -116,6 +116,8 @@ let controller= {
                 }
             })
             .catch(errors => console.log(errors))
+        })
+            .catch(error => console.log(error))              
         }
         else{
             Promise.all([Categories.findAll(),Marks.findAll(),Color.findAll()])
@@ -158,84 +160,90 @@ let controller= {
     },
     update: (req,res)=>{
         let errors = validationResult(req)
+        const {name,description,price,trade_mark,category,size,colors} = req.body
         if(errors.isEmpty()){
-            const {name,description,price,trade_mark,category,size} = req.body
-            Products.update({
-                    name,
-                    price,
-                    description,
-                    category_id:category,
-                    marca:trade_mark,
-                    size
-                },
-                {
-                    where:{
-                        id: req.params.id
-                    }
-                })
-                .then(() => {
-                    Images.findAll({
+            let arrayColors= colors;
+            Products.findByPk(req.params.id)
+            .then((product)=> {
+                product.update({
+                        name,
+                        price,
+                        description,
+                        category_id:category,
+                        size,
+                        trade_mark,
+                    },
+                    {
                         where:{
-                            product_id: req.params.id
+                            id: req.params.id
                         }
-                    })                        
-                    .then((productImages) => {
-                        if(req.file){
-                            if(fs.existsSync("../public/images/products/botas/",productImages.image)){
-                                fs.unlinkSync(`../public/images/products/botas/${productImages.image}`)
+                    })
+                    .then((product) => {
+                        res.send(req.body)
+                        /* let colors = arrayColors.map((color) => {
+                            return {
+                                color_id:color.id,
+                                product_id:product.id           
                             }
-                            else if(fs.existsSync("../public/images/products/casual/",productImages.image)){
-                                fs.unlinkSync(`../public/images/products/casual/${productImages.image}`)
-                            }
-                            else if(fs.existsSync("../public/images/products/elegante/",productImages.image)){
-                                fs.unlinkSync(`../public/images/products/elegante/${productImages.image}`)
-                            }
-                            else if(fs.existsSync("../public/images/products/zapatillas/",productImages.image)){
-                                fs.unlinkSync(`../public/images/products/zapatillas/${productImages.image}`)
-                            }else if(fs.existsSync("../public/images/products/",productImages.image)){
-                                fs.unlinkSync(`../public/images/products/${productImages.image}`)
-                            }
-                            else{
-                                console.log("No se encontró el archivo")
-                            }
-                        }
-                        Images.destroy({
-                            where:{
-                                product_id:req.params.id
-                            }
-                        })
-                        .then(()=> {
-                            Images.bulkCreate({
-                                image:req.file ? req.file.filename: 'default.png',
-                                product_id: req.params.id
-                            })
-                            .then((product) => {
-                                let colors = req.body.colors.map((color) => {
-                                    return {
-                                        color_id:+color,
-                                        product_id:product.id           
-                                    }
+                        }) */
+                        Products_color.update({
+                            color_id:+colors.id,
+                            product_id:product.id
+                        },
+                            {
+                                where:{
+                                    product_id:req.params.id}
                                 })
-                                Products_color.update(
-                                    {
-                                        color_id:+colors
-                                    },
-                                    {
-                                        where:{
-                                            product_id:req.params.id}
-                                        })
-                                .then(()=> {
+                        .then(()=> {
+                        Images.findAll({
+                            where:{
+                                product_id: req.params.id
+                            }
+                        })                        
+                        .then((productImages) => {
+                            if(req.file){
+                                if(fs.existsSync("../public/images/products/botas/",productImages.image)){
+                                    fs.unlinkSync(`../public/images/products/botas/${productImages.image}`)
+                                }
+                                else if(fs.existsSync("../public/images/products/casual/",productImages.image)){
+                                    fs.unlinkSync(`../public/images/products/casual/${productImages.image}`)
+                                }
+                                else if(fs.existsSync("../public/images/products/elegante/",productImages.image)){
+                                    fs.unlinkSync(`../public/images/products/elegante/${productImages.image}`)
+                                }
+                                else if(fs.existsSync("../public/images/products/zapatillas/",productImages.image)){
+                                    fs.unlinkSync(`../public/images/products/zapatillas/${productImages.image}`)
+    
+                                }else if(fs.existsSync("../public/images/products/",productImages.image)){
+                                    fs.unlinkSync(`../public/images/products/${productImages.image}`)
+                                }
+                                else{
+                                    console.log("No se encontró el archivo")
+                                }
+                            }
+                            Images.destroy({
+                                where:{
+                                    product_id:req.params.id
+                                }
+                            })
+                            .then(()=> {
+                                Images.bulkCreate({
+                                    image:req.file ? req.file.filename: 'default.png',
+                                    product_id: req.params.id
+                                })
+                                .then(() => {
                                     res.redirect('/admin/products')
                                 })
-
+                                .catch(error => console.log(error))  
+                            })
                             .catch(error => console.log(error))  
                         })
+                        .catch(error => console.log(error))                
                     })
-                    .catch(error => console.log(error))  
-                })
-                .catch(error => console.log(error))                
+                        .catch(error => console.log(error))  
+                }) 
+                .catch(error => console.log(error))               
             })
-                .catch(error => console.log(error))  
             }
             else{
                  Products.findByPk(req.params.id,)
@@ -296,7 +304,7 @@ let controller= {
                             id:req.params.id
                         }
                     })
-                    .then(res.redirect(`/admin/products`))
+                    .then(res.redirect(`/admin/products/category/1`))
                         })                    
                 })
                 .catch(error => console.log(error)) 
