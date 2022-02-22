@@ -31,13 +31,12 @@ let controller={
             where: {
                 id: req.params.id,
             },
-            include: [{association: 'Product_image'}]
+            include: [{association: 'images'}]
         })
-        .then((relatedProducts) => {
+        .then((product) => {
             res.render("productDetail", {
                 product,
                 sliderTitle: "Productos relacionados",
-                sliderProducts: relatedProducts,
                 session: req.session
             })
         })
