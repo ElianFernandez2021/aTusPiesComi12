@@ -8,7 +8,6 @@ let createValidator = require('../validations/createValidator')
 
 /* Get - Product */
 router.get('/products', controller.adminCategory)
-router.get('/products/category/:id', controller.adminSelectionCategory)
 /* product create */
 router.get('/products/create', controller.create) //Renderisa la vista de carga de producto
 router.post('/products', upload.array('image'), controller.store)//Guarda la informacion que almacena en la base de datos(json)

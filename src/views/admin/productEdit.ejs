@@ -47,14 +47,18 @@
                     <div class="products">
                       <p>Color:</p>
                             <% colors.forEach(color => { %>
-                                <% let checked = product.colors.color_id ? "checked" : "" %>
                                 <label for="colors"><%- color.name %> </label>
-                                <input name="colors" type="checkbox" <%= checked %>>
+                                <input name="colors" type="checkbox" value="<%- color.id %>"
+                                <%product.colors.forEach(colorId => { %>
+                                <% if (colorId.id == +color.id) { %>
+                                    checked 
+                                <% } %> 
+                                <% }) %>> 
                                 <% }) %>
                     </div>
                     <div>
                         <label for="image">Imagen</label>
-                        <input type="file" name="image" id="image" multiple value="<%= locals.old ? old.product.images.image : product.images.image %>">
+                        <input type="file" name="image" id="image" multiple value="<%= locals.old ? old.product.image : product.image %> selected">
                     </div>
 
                     <div class="form_action--button">
