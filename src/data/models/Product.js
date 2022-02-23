@@ -11,8 +11,7 @@ module.exports = (sequelize,dataType) => {
             allowNull:false
         },
         size:{
-            type: dataType.STRING(100),
-            allowNull:false
+            type: dataType.STRING(100)
         },
         description: {
             type:dataType.STRING(50),

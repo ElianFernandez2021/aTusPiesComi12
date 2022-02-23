@@ -44,7 +44,7 @@
                 <br>
                 <div class="form-check form-check-inline">
                     <% colors.forEach(color => { %>
-                        <label for="colors"><%- color.name.id %> </label>
+                        <label for="colors"><%- color.name %> </label>
                         <input name="colors" type="checkbox" value="<%- color.id %>">
                         <% }) %>
                         <% if (locals.errors && errors.colors) { %>
@@ -61,14 +61,14 @@
                     <% } %>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
-                <div class="col-12 mb-3">
-                    <label for="size" class="form-label">Talle</label>
-                    <input type="text" class="form-control" id="size" name="size" value="<%= locals.old ? old.size : 0 %>">
-                    <% if (locals.errors && errors.size) { %>
-                        <small class="text-danger"><%= errors.size.msg %> </small>
-                    <% } %>
-                </div> 
+            <div class="col-12 mb-3">
+                <div class="products">
+                    <p>Talle:</p>
+                     <% sizes.forEach(talles => { %>
+                         <label for="sizes"><%- talles.num%> </label>
+                         <input name="sizes" type="checkbox" value="<%= locals.old ? old.talles : talles.id %>">
+                     <% }) %>
+                 </div>
                 <div class="col-12 mb-3">
                     <label for="image" class="form-label">Imagen</label>
                     <input type="file" name="image" class="form-control" aria-label="file example" id="image" multiple>

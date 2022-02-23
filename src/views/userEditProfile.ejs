@@ -3,28 +3,23 @@
     <%- include ('partials/head') %> 
 <body>
     <%- include ('partials/header') %> 
-    <form action="/user/profile/edit/<%= user.id %>?method=PUT" enctype="multipart/form-data" method="post">
+    <form action="/user/profile/edit/<%= user.id %>?_method=PUT" method="POST">
         <div class="profile">
             <div class="avatar"><img src="/images/users/<%= user.avatar%>" alt="avatar"></div>
             <div class="datos">
             <label for="name"> <div> Ingrese nombre:</div></label>
-            <input class="forma-tamaño" type="text" name="name" placeholder="Nombre" value="<%= locals.old && old.name %>">
+            <input class="forma-tamaño" type="text" name="name" value="<%= user.first_name %>">
                     <% if (locals.errors && errors.name) { %>
                         <small class="text-danger"><%= errors.name.msg %> </small>
                     <% } %>
                 </div>
                 <div class="form-ad-input">
-                    <input class="forma-tamaño" type="text" name="last_name" placeholder="Apellido" value="<%= locals.old && old.last_name %>">
+                    <label for="last_name">Apellido</label>
+                    <input class="forma-tamaño" type="text" name="last_name" value="<%= user.last_name %>">
                     <% if (locals.errors && errors.last_name) { %>
                         <small class="text-danger"><%= errors.last_name.msg %> </small>
                     <% } %>
                 </div>
-                <!-- <div class="form-ad-input">
-                    <input class="forma-tamaño" type="email" name="email" placeholder="Ingresá tu email" value="<%= locals.old && old.email  %>">
-                    <%# if (locals.errors && errors.email) { %>
-                        <small class="text-danger"><%#= errors.email.msg %> </small>
-                    <%# } %>
-                </div> -->
                 <div class="form-ad-input">
                     <input class="forma-tamaño" type="password" name="pass1" placeholder="Contraseña">
                     <% if (locals.errors && errors.pass1) { %>
@@ -39,21 +34,10 @@
                 </div>
                 <div class="input-file">
                     <p>Agregar foto</p>
-                    <input type="file" name="avatar">
+                    <input type="file" name="avatar" value ="<%= user.avatar %> ">
                     <% if (locals.errors && errors.image) { %>
                         <small class="text-danger"><%= errors.image.msg %> </small>
                     <% } %>
-                </div>
-                <div>Ingrese Nombre: <%= user.name%> </div>
-                <div>Ingrese apellido: <%= user.last_name%> </div>
-                <div>Ingrese Email: <%= user.email%> </div>
-                <div>Contraseña: *************</div>
-                <!-- <div>Contraseña: <%#= user.pass%><div> -->
-                <div>Direccion: <%= user.teladdres%></div>
-                <div>Codigo Postal: <%= user.pc%></div>
-                <div>Provincia: <%= user.province%></div>
-                <div>Ciudad: <%= user.city%></div>
-            </div>
         </div>
         <div class="edit">
             <button type="submit" >Editar</button>
