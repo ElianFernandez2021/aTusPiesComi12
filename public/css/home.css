@@ -10,7 +10,7 @@ a {
     font-weight: bold;
     text-decoration: none;
 }
-body{
+.body-home{
     max-width: 100%; /* estaba en 78.125rem, pero desarma el css */
     padding: 15px 10px 0;
     margin: auto;
