@@ -8,7 +8,7 @@
         <div class="row">
           <%- include('../partials/adminSidebar') %>
         <form class="col-md-9 ms-sm-auto col-lg-10 px-md-4 row p-3 justify-content-center" action="/admin/products" method="POST" enctype="multipart/form-data">
-            <div class="col-12 col-md-6">
+            <div>
                 <div class="col-12 mb-3">
                     <label for="inputName" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="product" name="name" value="<%= locals.old && old.name %>">
@@ -62,13 +62,12 @@
                 </div>
             </div>
             <div class="col-12 mb-3">
-                <div class="products">
-                    <p>Talle:</p>
-                     <% sizes.forEach(talles => { %>
-                         <label for="sizes"><%- talles.num%> </label>
-                         <input name="sizes" type="checkbox" value="<%= locals.old ? old.talles : talles.id %>">
-                     <% }) %>
-                 </div>
+                <label for="sizes" class="form-label">Talle</label>
+                    <input class="form-control" type="text" name="size" id="" placeholder="Separados por coma( , )" >
+                        <% if (locals.errors && errors.sizes) { %>
+                        <small class="text-danger"><%= errors.sizes.msg %></small>
+                        <% } %>
+                    </div>
                 <div class="col-12 mb-3">
                     <label for="image" class="form-label">Imagen</label>
                     <input type="file" name="image" class="form-control" aria-label="file example" id="image" multiple>
@@ -84,10 +83,11 @@
                     <% } %>
                 </div>
             </div>
-
-            <button type="submit" class="btn btn-outline-primary col-3 mt-3">
+            <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="submit" class="btn btn-primary">
                 CREAR
             </button>
+        </div>
         </form>
       </div>
     </div>
