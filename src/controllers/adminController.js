@@ -44,7 +44,6 @@ let controller= {
         let arraySizes= typeof req.body.size !== 'string' ? req.body.size : [req.body.size];
         let arrayColors= typeof req.body.colors !== 'string' ? req.body.colors : [req.body.colors];
         arraySizes=size.split(',')
-        arrayColors.push(req.body.colors)
         let arrayImages=[];
         if(req.files){
             req.files.forEach((image) => {
@@ -138,8 +137,20 @@ let controller= {
     update: (req,res)=>{
         let errors = validationResult(req)
         const {name,description,price,trade_mark,category,size,colors} = req.body
+        let arrayColors= typeof req.body.colors !== 'string' ? req.body.colors : [req.body.colors];
+        let colores = arrayColors.map((color) => {
+            return {
+                color_id:color.id,
+                product_id:req.params.id           
+            }
+        })
+         Products_color.destroy({
+            where:{
+                product_id:req.params.id
+            }
+        })
+        .then(() => {  
         if(errors.isEmpty()){
-            let arrayColors= typeof req.body.colors !== 'string' ? req.body.colors : [req.body.colors];
             Products.findByPk(req.params.id)
             .then((product)=> {
                 product.update({
@@ -155,23 +166,18 @@ let controller= {
                             id: req.params.id
                         }
                     })
-                    .then(() => {
-                        let colors = arrayColors.map((color) => {
-                            return {
-                                color_id:color.id,
-                                product_id:req.params.id           
-                            }
-                        })       
-                        Products_color.update(colors,{
-                            where:{id:req.params.id}
-                        })
-                        .then(()=> {                            
-                        Images.findAll({
-                            where:{
-                                product_id: req.params.id
-                            }
-                        })                        
-                        .then((productImages) => {
+                        /* let indices = arrayColors.keys()
+                        console.log("indices: ", indices," FIN")          
+                        console.log("arrayColor: ", arrayColors," FIN")          
+                        console.log("colores: ", colors," FIN")   */        
+                        Products_color.bulkCreate(colores)
+                        .then(()=> {
+                            Images.findAll({
+                                where:{
+                                    product_id: req.params.id
+                                }
+                            })                        
+                            .then(() => {
                             Images.destroy({
                                 where:{
                                     product_id:req.params.id
@@ -208,14 +214,17 @@ let controller= {
                                             product_id: req.params.id
                                         }
                                     })
-                                    Images.create(images)
+                                    Images.bulkCreate(images,{
+                                        where:{
+                                            product_id: req.params.id
+                                        }
+                                    })
                                     .then(()=>{
                                         res.redirect('/admin/products')
                                     })               
                                     .catch(error => console.log(error))  
-                                }      
-                            }
-                            else{
+                                }
+                            }else {
                                 Images.create({
                                     image:"deafult.png",
                                     product_id: req.params.id
@@ -226,27 +235,25 @@ let controller= {
                                 .catch(error => console.log(error))               
                             }
                         })                      
-                    })
-                    .catch(error => console.log(error))  
-                }) 
+                     })
+                    .catch(error => console.log(error)) 
+                })
                 .catch(error => console.log(error))               
             })
             .catch(error => console.log(error))               
+        }else{
+                Products.findByPk(req.params.id,)
+                .then((product)=> {
+                    res.redirect(`/admin/products/edit/:${req.params.id}`,{
+                        session: req.session,
+                        product,
+                        errors:errors.mapped(),
+                        old:req.body     
+                    })
+                })
+                .catch(error => console.log(error)) 
+            }
         })
-        .catch(error => console.log(error))               
-    }
-            else{
-                 Products.findByPk(req.params.id,)
-                 .then((product)=> {
-                     res.redirect(`/admin/products/edit/:${req.params.id}`,{
-                         session: req.session,
-                         product,
-                         errors:errors.mapped(),
-                         old:req.body     
-                     })
-                 })
-                 .catch(error => console.log(error)) 
-             }
     },
     fatality:(req,res) => {
         let zapaId = +req.params.id;
