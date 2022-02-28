@@ -22,7 +22,7 @@ window.addEventListener('load', function () {
         $sexErrors = qs('#sexErrors'),
         $terms = qs('#check'),
         $termsErrors = qs('#termsErrors'),
-        $file = qs('#formFile'),
+        $file = qs('#avatar'),
         $fileErrors = qs('#fileErrors'),
         $imgPreview = qs('#img-preview'),
         regExAlpha = /^[a-zA-Z\sñáéíóúü ]*$/,
@@ -177,7 +177,7 @@ window.addEventListener('load', function () {
         let filePath = $file.value; // Captura el valor del input
         let allowedExtensions = /(.jpg|.jpeg|.png|.gif|.web)$/i;
         if(!allowedExtensions.exec(filePath)){ //El método exec() ejecuta una busqueda sobre las coincidencias de una expresión regular en una cadena especifica. Devuelve el resultado como array, o null.
-            $fileErrors.innerHTML = 'Carga un archivo de imagen válido, con las extensiones (.jpg - .jpeg - .png - .gif)'
+            $fileErrors.innerHTML = 'Archivos permitidos .jpg/.jpeg/.png/.gif'
             $file.value = '';
             $imgPreview.innerHTML = '';
             return false;

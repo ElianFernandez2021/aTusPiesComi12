@@ -46,13 +46,13 @@
                 <span id="pass2Errors"></span>
             </div>
             <div class="input-file">
-                <p>Agregar foto</p>
+                <p id="file-text">Agregar foto</p>
                 <input class="form-control" id="avatar" type="file" name="avatar">
                 <% if (locals.errors && errors.image) { %>
                     <small class="text-danger"><%= errors.image.msg %> </small>
-                <% } %>
+                    <% } %>
+                </div>
                 <span id="fileErrors"></span>
-            </div>
             <div class="form-ad-input_check">
                 <input type="checkbox" name="terms" id="check">
                 <label for="check">Acepto los términos y condiciones</label>

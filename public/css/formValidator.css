@@ -27,6 +27,10 @@
 
 .formRegister span {
     color: red;
+    background: #fcf3e4;
+}
+#file-text {
+    margin-top: 16px;
 }
 
 @media (max-width: 426px){
