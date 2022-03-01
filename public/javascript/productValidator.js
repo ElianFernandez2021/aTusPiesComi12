@@ -3,18 +3,18 @@ function qs (element){
 }
 
 window.addEventListener('load',function (){
-    let $productName = ('#productName'),
-        $productErrors = ('#productErrors'),
-        $productSize = ('#productSize'),
-        $sizeErrors = ('#sizeErrors'),
-        $perPrice = ('#perPrce'),
-        $priceErrors = ('#priceErrors'),
-        $productColor = ('#productColor'),
-        $colorErrors = ('#colorErrors'),
-        $image = ('#image'),
-        $imageErrors = ('#imageErrors'),
-        $form = ('#form'),
-        $submitErrors = ('#submitErrors'),
+    let $productName = qs('#productName'),
+        $productErrors = qs('#productErrors'),
+        $productSize = qs('#productSize'),
+        $sizeErrors = qs('#sizeErrors'),
+        $perPrice = qs('#perPrce'),
+        $priceErrors = qs('#priceErrors'),
+        $productColor = qs('#productColor'),
+        $colorErrors = qs('#colorErrors'),
+        $image = qs('#image'),
+        $imageErrors = qs('#imageErrors'),
+        $form = qs('#form'),
+        $submitErrors = qs('#submitErrors'),
         regExAlpha = /^[a-zA-Z\sñáéíóúü ]*$/,
         regExSize = /^[0-9]{7,8}$/,
 
@@ -60,8 +60,10 @@ window.addEventListener('load',function (){
         }
     })
 
-    $perPrice.addEventListener('blur', function() { //blur cuando sale del campo
-        switch(true){
+    if($perPrice){
+
+        $perPrice.addEventListener('blur', function() { //blur cuando sale del campo
+            switch(true){
             case !$perPrice.value.trim(): //Si esta vacio devuelve false
                 $priceErrors.innerHTML = 'El precio es obligatorio';//muestre el error debajo del input
                 $perPrice.classList.add('is-invalid');
@@ -79,10 +81,11 @@ window.addEventListener('load',function (){
                 break;
         }
     })
+    }
 
     if(!$productColor.checked){
             $productColor.classList.add('is-invalid');
-            $colorErrors.innerHTML = 'Ingresa al menos un color';
+            $colorErrors.innerHTML= 'Ingresa al menos un color';
             error = true;
         }
 

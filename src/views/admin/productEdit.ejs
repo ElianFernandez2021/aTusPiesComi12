@@ -76,6 +76,7 @@
                             <tr class="image-rightSide">
                                 <% product.images.forEach(imagenes => { %>
                                    <img class="product-image" src="/images/products/<%- imagenes.image %> " alt="ID:<%= product.id%> ">
+                                   <%-imagenes.image %> 
                                 <% }) %>
                             </tr>
                         </thead>

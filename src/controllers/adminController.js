@@ -140,14 +140,11 @@ let controller= {
         let arrayColors= typeof req.body.colors !== 'string' ? req.body.colors : [req.body.colors];
         let colores = arrayColors.map((color) => {
             return {
-                color_id:color.id,
+                color_id:color,
                 product_id:req.params.id           
             }
         })
-         Products_color.destroy({
-            where:{
-                product_id:req.params.id
-            }
+         Products_color.destroy({where:{product_id:req.params.id}
         })
         .then(() => {  
         if(errors.isEmpty()){
@@ -161,81 +158,56 @@ let controller= {
                         trade_mark,
                         size:size
                     },
-                    {
-                        where:{
-                            id: req.params.id
-                        }
-                    })
-                        /* let indices = arrayColors.keys()
-                        console.log("indices: ", indices," FIN")          
-                        console.log("arrayColor: ", arrayColors," FIN")          
-                        console.log("colores: ", colors," FIN")   */        
-                        Products_color.bulkCreate(colores)
-                        .then(()=> {
-                            Images.findAll({
-                                where:{
-                                    product_id: req.params.id
-                                }
-                            })                        
-                            .then(() => {
-                            Images.destroy({
-                                where:{
-                                    product_id:req.params.id
-                                }
-                            })
-                            .then((productImages) => {
-                                if(req.file){
-                                    if(fs.existsSync("../public/images/products/botas/",productImages.image)){
-                                        fs.unlinkSync(`../public/images/products/botas/${productImages.image}`)
-                                    }
-                                    else if(fs.existsSync("../public/images/products/casual/",productImages.image)){
-                                        fs.unlinkSync(`../public/images/products/casual/${productImages.image}`)
-                                    }
-                                    else if(fs.existsSync("../public/images/products/elegante/",productImages.image)){
-                                        fs.unlinkSync(`../public/images/products/elegante/${productImages.image}`)
-                                    }
-                                    else if(fs.existsSync("../public/images/products/zapatillas/",productImages.image)){
-                                        fs.unlinkSync(`../public/images/products/zapatillas/${productImages.image}`)
-        
-                                    }else if(fs.existsSync("../public/images/products/",productImages.image)){
-                                        fs.unlinkSync(`../public/images/products/${productImages.image}`)
-                                    }
-                                    else{
-                                        console.log("No se encontró el archivo")
-                                    }
-                                let arrayImages=[];
-                                req.files.forEach((image) => {
-                                    arrayImages.push(image.filename)
-                                })
-                                if(arrayImages.length > 0 ){
-                                    let images = arrayImages.map((image) => {
-                                        return{
-                                            image:image,
-                                            product_id: req.params.id
-                                        }
-                                    })
-                                    Images.bulkCreate(images,{
-                                        where:{
-                                            product_id: req.params.id
-                                        }
-                                    })
-                                    .then(()=>{
-                                        res.redirect('/admin/products')
-                                    })               
-                                    .catch(error => console.log(error))  
-                                }
-                            }else {
-                                Images.create({
-                                    image:"deafult.png",
-                                    product_id: req.params.id
-                                })
-                                .then(()=>{
-                                    res.redirect('/admin/products')
-                                })
-                                .catch(error => console.log(error))               
+                    {where:{id: req.params.id}})
+                Products_color.bulkCreate(colores)
+                .then(()=> {
+                    Images.findAll({where:{product_id: req.params.id}})                        
+                    .then((oldImage) => {
+                        productImages=req.files                        
+                        if(req.files){
+                            if(fs.existsSync("../public/images/products/",oldImage.image)){
+                                fs.unlinkSync(`../public/images/products/${oldImage.image}`)
                             }
-                        })                      
-                     })
+                            else if(fs.existsSync("../public/images/products/botas/",oldImage.image)){
+                                fs.unlinkSync(`../public/images/products/botas/${oldImage.image}`)
+                            }
+                            else if(fs.existsSync("../public/images/products/casual/",oldImage.image)){
+                                fs.unlinkSync(`../public/images/products/casual/${oldImage.image}`)
+                            }
+                            else if(fs.existsSync("../public/images/products/elegante/",oldImage.image)){
+                                fs.unlinkSync(`../public/images/products/elegante/${oldImage.image}`)
+                            }
+                            else if(fs.existsSync("../public/images/products/zapatillas/",oldImage.image)){
+                                fs.unlinkSync(`../public/images/products/zapatillas/${oldImage.image}`)
+                            }
+                            let arrayImages=[];
+                            productImages.forEach((image) => {
+                                arrayImages.push(image.filename)
+                            })
+                            if(arrayImages.length > 0 ){
+                                let images = arrayImages.map((image) => {
+                                    return{
+                                        image:image,
+                                        product_id: req.params.id
+                                    }
+                                })
+                                //console.log(images) //Miro que trae la variable images
+                                Images.destroy({
+                                    where:{product_id:req.params.id}
+                                })
+                                .then(() => {
+                                    Images.bulkCreate(images)
+                                    .then(()=>{res.redirect('/admin/products')})               
+                                    .catch(error => console.log(error))
+                                })
+                                .catch(error => console.log(error))
+                            }
+                            else{
+                                console.log("No se encontró el archivo")
+                                res.redirect('/admin/products')
+                            }
+                        }           
+                    })
                     .catch(error => console.log(error)) 
                 })
                 .catch(error => console.log(error))               

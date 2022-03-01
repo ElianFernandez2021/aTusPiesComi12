@@ -10,9 +10,17 @@ const Products_cart = db.Product_cart
 
 let controller={
     product: (req,res) => {
-        res.render('products',{
-            title:"Nuestros productos",
-            session: req.session    
+        Products.findAll({
+            include:[{association:'category'},
+                    {association:'colors'},
+                    {association:'images'}]
+        })
+        .then((products)=> {
+            res.render('products',{
+                products,
+                title:"Nuestros productos",
+                session: req.session    
+        })
     })
     },
     cart:(req,res)=>{
