@@ -12,12 +12,10 @@ module.exports = [
     
     check('price')
         .notEmpty()
-        .withMessage('Debes ingresar un precio').bail()
-        .isNumeric()
-        .withMessage('Solo numeros'),
-    
+        .withMessage('Debes ingresar un precio').bail(),
+
     check('colors')
-        .notEmpty()
+        .isIn()
         .withMessage('Debes ingresar como minimo un color'),
 
 ]

@@ -51,6 +51,7 @@ let controller= {
             })
         } 
         if(errors.isEmpty()){
+            res.send(validationResult(req))
             Products.create({
                 name:name,
                 description:description,

@@ -32,6 +32,10 @@ window.addEventListener('load',function (){
                 $productErrors.innerHTML = 'Ingrese un nombre válido';//muestre el error debajo del input
                 $productName.classList.add('text-danger');
                 break;
+            case $productName.length<5:
+                $productErrors.innerHTML = 'El nombre debe contener al menos 5 letras'
+                $productName.classList.add('text-danger')
+                break;
             default:
                 $productName.classList.remove('text-danger');
                 $productErrors.innerHTML = "";
