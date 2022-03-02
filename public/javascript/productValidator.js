@@ -16,7 +16,8 @@ window.addEventListener('load',function (){
         $form = qs('#form'),
         $submitErrors = qs('#submitErrors'),
         regExAlpha = /^[a-zA-Z\sñáéíóúü ]*$/,
-        regExSize = /^[0-9]{7,8}$/,
+        regExSize = /^[0-9]+(,[0-9]+)*$/,
+        regExPrice = /^[0-9]$/,
 
     validationsErrors = false
 
@@ -24,17 +25,16 @@ window.addEventListener('load',function (){
         switch(true){
             case !$productName.value.trim(): //Si esta vacio devuelve false
                 $productErrors.innerHTML = 'El campo nombre es obligatorio';//muestre el error debajo del input
-                $productName.classList.add('is-invalid');
+                $productName.classList.add('text-danger');
                 validationsErrors = true;
                 break;
             case !regExAlpha.test($productName.value):
                 $productErrors.innerHTML = 'Ingrese un nombre válido';//muestre el error debajo del input
-                $productName.classList.add('is-invalid');
+                $productName.classList.add('text-danger');
                 break;
             default:
-                $productName.classList.remove('is-invalid');
-                $productName.classList.add('is-valid');
-                $nameErrors.innerHTML = "";
+                $productName.classList.remove('text-danger');
+                $productErrors.innerHTML = "";
                 validationsErrors = false;
                 break;
         }
@@ -47,8 +47,8 @@ window.addEventListener('load',function (){
                 $productSize.classList.add('is-invalid');
                 validationsErrors = true;
                 break;
-            case !regExAlpha.test($productSize.value):
-                $sizeErrors.innerHTML = 'Ingrese un talle válido separados por coma (,)';//muestre el error debajo del input
+            case !regExSize.test($productSize.value):
+                $sizeErrors.innerHTML = 'Ingrese numeros separados por coma (,)';//muestre el error debajo del input
                 $productSize.classList.add('is-invalid');
                 break;
             default:
@@ -61,15 +61,14 @@ window.addEventListener('load',function (){
     })
 
     if($perPrice){
-
         $perPrice.addEventListener('blur', function() { //blur cuando sale del campo
             switch(true){
-            case !$perPrice.value.trim(): //Si esta vacio devuelve false
+            case !$perPrice.value: //Si esta vacio devuelve false
                 $priceErrors.innerHTML = 'El precio es obligatorio';//muestre el error debajo del input
                 $perPrice.classList.add('is-invalid');
                 validationsErrors = true;
                 break;
-            case !regExSize.test($perPrice.value):
+            case !regExPrice.test($perPrice.value):
                 $priceErrors.innerHTML = 'Ingrese solo numeros';//muestre el error debajo del input
                 $perPrice.classList.add('is-invalid');
                 break;
@@ -86,7 +85,11 @@ window.addEventListener('load',function (){
     if(!$productColor.checked){
             $productColor.classList.add('is-invalid');
             $colorErrors.innerHTML= 'Ingresa al menos un color';
-            error = true;
+            validationsErrors = true;
+        }else if ($productColor.checked){
+            $productColor.classList.add('is-valid');
+            $colorErrors.innerHTML= '';
+            validationsErrors = false;
         }
 
         $image.addEventListener('change', function fileValidation(){

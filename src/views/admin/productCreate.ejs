@@ -10,11 +10,12 @@
                 <form id="form" class="categories-product" action="/admin/products" autocomplete="off" method="POST" enctype="multipart/form-data">
                     <div>
                         <label for="product">Nombre</label>
-                        <input type="text" name="name" id="productName" value="<%= locals.old && old.name %> ">
+                        <input type="text" name="name" id="productName" value="<%= locals.old && old.name %>">
                         <% if (locals.errors && errors.name) { %>
                             <small id="productErrors" class="text-danger"><%= errors.name.msg %></small>
-                        <% } %>
-                    </div>
+                            <% } %>
+                        </div>
+                        <small id="productErrors" class="text-danger"></small>
                     <div class="products">
                         <p>Talle: </p>
                         <input type="text" name="size" id="productSize" placeholder="Separados por coma( , )" >
@@ -22,6 +23,7 @@
                         <small id="sizeErrors" class="text-danger"><%= errors.sizes.msg %></small>
                         <% } %>
                     </div>
+                    <small id="sizeErrors" class="text-danger"></small>
                     <div class="products">
                         <p>Categoria: </p>
                         <select name="category" id="">
@@ -36,6 +38,7 @@
                         <% if (locals.errors && errors.price) { %>
                             <small id="priceErrors" class="text-danger"><%= errors.price.msg %></small>
                         <% } %>
+                        <small id="priceErrors" class="text-danger"></small>
                     </div>
                     <div>
                         <label for="trade_mark">Marca</label>
@@ -59,6 +62,7 @@
                             <small id="colorErrors" class="text-danger"><%= errors.colors.msg %></small>
                         <% } %>
                     </div>
+                    <small id="colorErrors" class="text-danger"></small>
                     <div>
                         <label for="image">Imagen</label>
                         <input id="imageErrors" type="file" name="image" id="image" multiple>

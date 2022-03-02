@@ -9,7 +9,12 @@ body {
     min-height: 100vh;
     background: #fcf3e4;
 }
-
+.is-invalid{
+    display: block;
+}
+.is-valid{
+    display: none;
+}
 .navigation {
     position: fixed;
     width: 77px;
