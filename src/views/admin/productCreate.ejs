@@ -4,81 +4,93 @@
 <body>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <%- include('../partials/adminHeader')%> 
-    <table>
-        <tr>
-            <td>
-                <form class="categories-product" action="/admin/products" autocomplete="off" method="POST" enctype="multipart/form-data">
-                    <div>
-                        <label for="product">Nombre</label>
-                        <input type="text" name="name" id="product">
-                    </div>
-                    <div class="products">
-                        <p>Talle: </p>
-                        <% sizes.forEach(talles => { %>
-                            <label for="sizes"><%- talles.num%> </label>
-                            <input name="sizes" type="checkbox" value="<%- talles.num %>">
-                            <% }) %>
-                    </div>
-                    <div class="products">
-                        <p>Categoria: </p>
-                        <select name="category" id="">
-                            <% categories.forEach(category => { %>
-                             <option value="<%- category.id %> "> <%- category.name %> </option>
-                            <% }) %>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="perPrice">Precio</label>
-                        <input type="number" name="price" id="perPrice">
-                    </div>
-                    <div>
-                        <label for="trade_mark">Marca</label>
-                        <select name="trade_mark" id="">
-                            <% marks.forEach(marca => { %>
-                                <option value="<%- marca.id %> "><%- marca.mark%> </option>                             
-                            <% }) %>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="description">Descripcion</label>
-                        <input type="text" name="description" id="description">
-                    </div>
-                    <div class="products">
-                        <p>Color: </p>
-                        <% colors.forEach(color => { %>
-                            <label for="colors"><%- color.name %> </label>
-                            <input name="colors" type="checkbox" value="<%- color.name %>">
-                            <% }) %>
-                    </div>
-                    <div>
-                        <label for="image">Imagen</label>
-                        <input type="file" name="image" id="image" multiple>
-                    </div>
+    <div class="container-fluid" >
+        <div class="row">
+          <%- include('../partials/adminSidebar') %>
+        <form class="col-md-9 ms-sm-auto col-lg-10 px-md-4 row p-3 justify-content-center" action="/admin/products" method="POST" enctype="multipart/form-data">
+            <div>
+                <div class="col-12 mb-3">
+                    <label for="inputName" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="product" name="name" value="<%= locals.old && old.name %>">
+                    <% if (locals.errors && errors.name) { %>
+                        <small class="text-danger"><%= errors.name.msg %> </small>
+                    <% } %>
+                </div>
 
-                    <div class="form_action--button">
-                        <input type="submit" value="Enviar">
-                        <input type="reset" value="Reiniciar">
+                <div class="col-12 mb-3">
+                    <select class="form-select categorySelect" id="specificSizeSelect" name="category">
+                      <option selected hidden value="">Categorias</option>
+                    <% categories.forEach(category => { %>
+                        <option value="<%- category.id %>" <%= locals.old && old.category == category.id ? "selected" : "" %> ><%- category.name %> </option>
+                    <% }) %>
+                    </select>
+                    <% if (locals.errors && errors.category) { %>
+                        <small class="text-danger"><%= errors.category.msg %> </small>
+                    <% } %>
+                </div>
+                <div class="col-12 mb-3">
+                    <select class="form-select categorySelect" id="" name="trade_mark">
+                      <option selected hidden value="">Marca</option>
+                      <% marks.forEach(marca => { %>
+                        <option value="<%- marca.id %> "><%- marca.mark%> </option>                             
+                    <% }) %>
+                    </select>
+                    <% if (locals.errors && errors.category) { %>
+                        <small class="text-danger"><%= errors.marca.msg %> </small>
+                    <% } %>
+                </div>
+            <div class="col-12 mb-3">
+                <label for="colors" class="form-label">Color</label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <% colors.forEach(color => { %>
+                        <label for="colors"><%- color.name %> </label>
+                        <input name="colors" type="checkbox" value="<%- color.id %>">
+                        <% }) %>
+                        <% if (locals.errors && errors.colors) { %>
+                        <small class="text-danger"><%= errors.colors.msg %></small>
+                    <% } %>
+                  </div>
+                </div>
+                
+                <div class="col-12 mb-3">
+                    <label for="perPrice" class="form-label">Precio</label>
+                    <input type="number" class="form-control" id="perPrice" name="price" value="<%= locals.old && old.price %>">
+                    <% if (locals.errors && errors.price) { %>
+                        <small class="text-danger"><%= errors.price.msg %> </small>
+                    <% } %>
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <label for="sizes" class="form-label">Talle</label>
+                    <input class="form-control" type="text" name="size" id="" placeholder="Separados por coma( , )" >
+                        <% if (locals.errors && errors.sizes) { %>
+                        <small class="text-danger"><%= errors.sizes.msg %></small>
+                        <% } %>
                     </div>
-                </form>
-
-                <td>
-                    <table class="list" id="storeList">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nombre</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </td>
-            </td>
-        </tr>
-    </table>
+                <div class="col-12 mb-3">
+                    <label for="image" class="form-label">Imagen</label>
+                    <input type="file" name="image" class="form-control" aria-label="file example" id="image" multiple>
+                    <% if (locals.errors && errors.image) { %>
+                        <small class="text-danger"><%= errors.image.msg %> </small>
+                    <% } %>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="description class="form-label">Descripción</label>
+                    <textarea class="form-control" id="description" name="description"> <%= locals.old && old.description %>" </textarea>
+                    <% if (locals.errors && errors.description) { %>
+                        <small class="text-danger"><%= errors.description.msg %> </small>
+                    <% } %>
+                </div>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="submit" class="btn btn-primary">
+                CREAR
+            </button>
+        </div>
+        </form>
+      </div>
+    </div>
     <script type="text/javascript" src="/javascript/productCreate.js"></script>
 
 
@@ -92,14 +104,5 @@
   }
 }
     </script>
-
-    <!-- <script type="text/javascript">
-        function toggleMenu(){
-            let navigation = document.querySelector('.navigation')
-            let toggle = document.querySelector('.toggle')
-            navigation.classList.toggle('active')
-            toggle.classList.toggle('active')
-        }
-    </script> -->
 </body>
 </html>

@@ -10,6 +10,9 @@ module.exports = (sequelize,dataType) => {
             type:dataType.STRING(50),
             allowNull:false
         },
+        size:{
+            type: dataType.STRING(100)
+        },
         description: {
             type:dataType.STRING(50),
             allowNull:false
@@ -18,10 +21,6 @@ module.exports = (sequelize,dataType) => {
             type: dataType.INTEGER.UNSIGNED,
             allowNull:false,
         },
-        image_id:{
-            type:dataType.INTEGER.UNSIGNED,
-            allowNull:false
-        },  
         category_id:{
             type: dataType.INTEGER.UNSIGNED,
             allowNull:false
@@ -65,16 +64,10 @@ module.exports = (sequelize,dataType) => {
             otherKey:'color_id',
             timestamps:false
         })
-        Product.belongsToMany(models.Size,{
-            as:'sizes',
-            through: 'products_size',
-            foreignKey:'product_id',
-            otherKey:'size_id',
-            timestamps:false
-        })
+        
         Product.hasMany(models.Product_image,{
             as:'images',
-            foreignKey: 'image_id'
+            foreignKey: 'product_id'
         }) 
     }
     return Product
