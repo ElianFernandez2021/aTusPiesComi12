@@ -56,10 +56,10 @@
                         <p>Color: </p>
                         <% colors.forEach(color => { %>
                             <label for="colors"><%- color.name %> </label>
-                            <input name="colors" id="productColor" type="checkbox" value="<%- color.id %>">
+                            <input name="colors" class="productColor" type="checkbox" value="<%- color.id %>">
                             <% }) %>
                             <% if (locals.errors && errors.colors) { %>
-                            <small id="colorErrors" class="text-danger"><%= errors.colors.msg %></small>
+                            <small class="colorErrors" class="text-danger"><%= errors.colors.msg %></small>
                         <% } %>
                     </div>
                     <small id="colorErrors" class="text-danger"></small>

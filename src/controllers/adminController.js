@@ -137,6 +137,7 @@ let controller= {
     },
     update: (req,res)=>{
         let errors = validationResult(req)
+        console.log(errors)
         const {name,description,price,trade_mark,category,size,colors} = req.body
         let arrayColors= typeof req.body.colors !== 'string' ? req.body.colors : [req.body.colors];
         let colores = arrayColors.map((color) => {
@@ -145,6 +146,7 @@ let controller= {
                 product_id:req.params.id           
             }
         })
+        
          Products_color.destroy({where:{product_id:req.params.id}
         })
         .then(() => {  
@@ -215,15 +217,28 @@ let controller= {
             })
             .catch(error => console.log(error))               
         }else{
-                Products.findByPk(req.params.id,)
-                .then((product)=> {
-                    res.redirect(`/admin/products/edit/:${req.params.id}`,{
-                        session: req.session,
-                        product,
-                        errors:errors.mapped(),
-                        old:req.body     
-                    })
+            let productId = req.params.id
+            Promise.all([Products.findByPk(productId,{
+                    include:[
+                    {association:'category'},
+                    {association:'colors'},
+                    {association:'images'},
+                    {association:'marca'},]}
+                    ),
+                Categories.findAll(),Marks.findAll(),Color.findAll()])
+            .then(([product,categories,marks,colors]) => {  
+                
+                res.render('admin/productEdit',{
+                    product,
+                    categories,
+                    marks,
+                    colors,
+                    adminTitle: "Editar producto",
+                    session: req.session,
+                    errors:errors.mapped(),
+                    old:req.body
                 })
+            })
                 .catch(error => console.log(error)) 
             }
         })

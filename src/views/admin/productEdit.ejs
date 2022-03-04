@@ -12,31 +12,37 @@
                     <div>
                         <label for="product">Nombre</label>
                         <input type="text" name="name" id="product" value="<%= locals.old ? old.name : product.name %>">
+                        <% if (locals.errors && errors.name) { %>
+                            <small class="text-danger"><%= errors.name.msg %> </small>
+                        <% } %>
                     </div>
                     <div class="products">
                        <p>Talle:</p>
                         <input type="text" name="size" id="" value="<%- product.size %>">
+                        <% if (locals.errors && errors.size) { %>
+                            <small class="text-danger"><%= errors.size.msg %> </small>
+                        <% } %>
                     </div>
                     <div>
                         <label for="category">Categoria</label>
                         <select name="category" id="" >
                             <% categories.forEach(categorias => { %>
-                                <option value="<%- categorias.id %> "> <%= locals.old && old.product.categorias == categorias.id ? "selected" : "" %> <%- categorias.name %> </option>
-                               <% }) %>
-                        <% if (locals.errors && errors.category) { %>
-                            <small class="text-danger"><%= errors.category.msg %> </small>
-                        <% } %>        
+                                <option value="<%- categorias.id %>"><%= locals.old && old.category == categorias.id ? "selected" : "" %><%- categorias.name %></option>
+                               <% }) %>        
                         </select>
                     </div>
                     <div>
                         <label for="perPrice">Precio</label>
                         <input type="number" name="price" id="perPrice" value="<%= locals.old ? old.price : product.price %>">
+                        <% if (locals.errors && errors.price) { %>
+                            <small class="text-danger"><%= errors.price.msg %> </small>
+                        <% } %>
                     </div>
                     <div>
                         <label for="trade_mark">Marca</label>
                         <select name="trade_mark" id="">
                             <% marks.forEach(marca => { %>
-                                <option value="<%= marca.id %>" <%- locals.old && old.trade_mark == mark.id ? "selected" : marca.id == product.trade_mark ? "selected" : "" %> ><%- marca.mark%> </option>                             
+                                <option value="<%= marca.id %>" <%- locals.old && old.trade_mark == marca.id ? "selected" : marca.id == product.trade_mark ? "" : "" %> ><%- marca.mark%> </option>                             
                             <% }) %>
                         </select>
                     </div>
@@ -50,15 +56,15 @@
                                 <label for="colors"><%- color.name %> </label>
                                 <input name="colors" type="checkbox" value="<%- color.id %>"
                                 <%product.colors.forEach(colorId => { %>
-                                <% if (colorId.id == +color.id) { %>
-                                    checked 
-                                <% } %> 
+                                    <% if (colorId.id == +color.id) { %>
+                                        checked 
+                                    <% } %> 
                                 <% }) %>> 
-                                <% }) %>
+                            <% }) %>
                     </div>
                     <div>
                         <label for="image">Imagen</label>
-                        <input type="file" name="image" id="image" multiple value="<%= locals.old ? old.product.image : product.image %> selected">
+                        <input type="file" name="image" id="image" multiple value="<%= locals.old ? old.image : product.image %> selected">
                     </div>
 
                     <div class="form_action--button">

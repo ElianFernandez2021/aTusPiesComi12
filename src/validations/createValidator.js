@@ -15,7 +15,7 @@ module.exports = [
         .withMessage('Debes ingresar un precio').bail(),
 
     check('colors')
-        .isIn()
+        .notEmpty()
         .withMessage('Debes ingresar como minimo un color'),
 
 ]

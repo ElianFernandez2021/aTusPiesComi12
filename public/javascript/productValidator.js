@@ -7,9 +7,9 @@ window.addEventListener('load',function (){
         $productErrors = qs('#productErrors'),
         $productSize = qs('#productSize'),
         $sizeErrors = qs('#sizeErrors'),
-        $perPrice = qs('#perPrce'),
+        $perPrice = qs('#perPrice'),
         $priceErrors = qs('#priceErrors'),
-        $productColor = qs('#productColor'),
+        $productColor = document.querySelectorAll('.productColor'),
         $colorErrors = qs('#colorErrors'),
         $image = qs('#image'),
         $imageErrors = qs('#imageErrors'),
@@ -17,7 +17,7 @@ window.addEventListener('load',function (){
         $submitErrors = qs('#submitErrors'),
         regExAlpha = /^[a-zA-Z\sñáéíóúü ]*$/,
         regExSize = /^[0-9]+(,[0-9]+)*$/,
-        regExPrice = /^[0-9]$/,
+        regExPrice = /^[0-9]{1,10}$/,
 
     validationsErrors = false
 
@@ -28,11 +28,7 @@ window.addEventListener('load',function (){
                 $productName.classList.add('text-danger');
                 validationsErrors = true;
                 break;
-            case !regExAlpha.test($productName.value):
-                $productErrors.innerHTML = 'Ingrese un nombre válido';//muestre el error debajo del input
-                $productName.classList.add('text-danger');
-                break;
-            case $productName.length<5:
+            case $productName.length < 5:
                 $productErrors.innerHTML = 'El nombre debe contener al menos 5 letras'
                 $productName.classList.add('text-danger')
                 break;
@@ -64,8 +60,8 @@ window.addEventListener('load',function (){
         }
     })
 
-    if($perPrice){
-        $perPrice.addEventListener('blur', function() { //blur cuando sale del campo
+        console.log($perPrice)
+        $perPrice.addEventListener('blur', function(event) { //blur cuando sale del campo
             switch(true){
             case !$perPrice.value: //Si esta vacio devuelve false
                 $priceErrors.innerHTML = 'El precio es obligatorio';//muestre el error debajo del input
@@ -84,9 +80,14 @@ window.addEventListener('load',function (){
                 break;
         }
     })
-    }
-
-    if(!$productColor.checked){
+    
+    console.log($productColor)
+    $productColor.forEach(color => {
+        color.addEventListener('change',function(event){
+            console.log(event.target.value)
+        })
+    })
+    if(!$productColor){
             $productColor.classList.add('is-invalid');
             $colorErrors.innerHTML= 'Ingresa al menos un color';
             validationsErrors = true;
@@ -118,7 +119,7 @@ window.addEventListener('load',function (){
                 }
             }
         })
-            // PREGUNTAR EL FOR!//
+
         $form.addEventListener('submit', function(event) {
             event.preventDefault();
             
@@ -126,11 +127,7 @@ window.addEventListener('load',function (){
             let elementsForm = this.elements;
     
             for (let index = 0; index< elementsForm.length - 1;index++){
-                if(elementsForm[index].name ==''
-                && elementsForm[index].name == ''
-                && elementsForm[index].value !== 'number'  
-                && elementsForm[index].value ==''
-                && elementsForm[index].type !== 'file'){
+                if(elementsForm[index].value ==''){
                     elementsForm[index].classList.add('is-invalid');
                     $submitErrors.innerHTML = 'Los campos señalados son obligatorios';
                     error = true;
