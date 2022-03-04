@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <%- include('./partials/head.ejs')%>
+    <link rel="stylesheet" href="/css/loginValidator.css">
 <body >
     <%- include('./partials/header.ejs')%>
     <div class="cuadro-form tamaño-logo">
@@ -8,23 +9,25 @@
         <h3>Bienvenido :)</h3>
         <form action="/user/login" method="post">
             <div>
-                <label for="usu">Email:</label>
+                <label for="email">Email:</label>
             </div>      
             <div class="email" >
-                <input type="email" id="usu" name="email" class="forma-tamaño" placeholder="Ingrese aquí su email" required>
-                <% if (locals.errors && errors.email) { %>
-                    <small class="text-danger">*<%= errors.email.msg %>*</small>
-                <% } %>
+                <input type="email" id="email" name="email" class="forma-tamaño" placeholder="Ingrese aquí su email" required>
             </div>
+            <% if (locals.errors && errors.email) { %>
+                <small class="text-danger"><%= errors.email.msg %> </small>
+            <% } %>
+            <span class="error" id="emailErrors"></span>
             <div >
                 <label for="clave">Contraseña:</label>
             </div>    
             <div class="clave">
-                <input type="password" id="clave" name="password" class="forma-tamaño" placeholder="Ingrese aquí su contraseña" required>
-                <% if (locals.errors && errors.custom) { %>
-                    <small class="text-danger">*<%= errors.custom.msg %>*</small>
-                <% } %>
+                <input type="password" id="pass1" name="password" class="forma-tamaño" placeholder="Ingrese aquí su contraseña" required>
             </div>
+            <% if (locals.errors && errors.pass1) { %>
+                <small class="text-danger"><%= errors.pass1.msg %> </small>
+            <% } %>
+            <span id="passErrors"></span>
             <div class="remember">
                 <div class="recorda"><input type="checkbox" name="remember" id="check"></div>
                 <div class="recorda2"><label for="check">Recordar</label> </div>
@@ -42,9 +45,10 @@
     </div>
     <div class="cuadro-form orientar-p">
         <p>¿No tienes cuenta?</p>
-        <a href="register" class="registrate"></a><button>Registrate</button></a>
+        <a href="../views/register.ejs" class="registrate"></a><button>Registrate</button></a>
     </div>
     <%- include('./partials/footer.ejs')%>
     <%- include('./partials/scripts.ejs')%>
+    <script src="/javascript/login.js"></script>
 </body>
 </html>
