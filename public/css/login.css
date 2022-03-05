@@ -1,27 +1,33 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: 0;
-}
 
 .text-danger{
     color:red;
 }
 
-#boton-logueo input{
-    background-color: #8c8364;
-}
 
 .borde{
     border-bottom: grey 0.1em solid;
+    
 }
 .button-google{ /*detalles de boton google*/
-    background-color: #FF0000;
+    box-shadow: 0px 0px 12px rgba(173, 173, 67, 0.575);
 }
 
 .button-face{ /*detalles de boton facebook*/
-    background-color: #3b5998;
+    box-shadow: 0px 0px 12px rgba(25, 0, 255, 0.5);
 }
+
+.remember{
+    position: relative;
+    left: 25px;
+
+    
+    
+}
+.recorda2{
+    position: relative;
+    top: -5px;
+}
+
 
 
 /*******************CELULAR********************/
@@ -34,6 +40,12 @@
         flex-direction: column;
         align-items: center;
     }
+    .orientar-boton{
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
     .tamaño-logo img{ /*tamaño y posicion del logo*/
         width: 80%;
         position: relative;
@@ -54,7 +66,7 @@
         flex-direction: column;
         align-items: center;
         border-radius: 8%;
-        margin-top: 1rem;
+        margin-top: 3rem;
 
     }
 
@@ -69,18 +81,41 @@
 
     .cuadro-form div{ /*dirección de botones google y facebook, además asigna padding a todos los div del form*/
         display: flex;
-        flex-direction: column;
+        
         align-content: center;
         padding: 0.5em;
     }
     
     .forma-tamaño{ /*brinda "tocabilidad" a los recuadros para escribir*/
-        padding: 0.5em;
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
     } 
 
 
-    #boton-logueo input{
-        padding: 0.5em;
+    #boton-logueo{
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.575);
+        background-color: transparent;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .olvidaste{
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .email{
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.575);
+        border-radius: 30px;
+    }
+
+    .clave{
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.575);
+        border-radius: 30px;
     }
 
     .orientar-p{
@@ -101,6 +136,8 @@
     .orientar-boton{
         display:flex;
         flex-direction: row;
+        position: relative;
+        
     }
 
 }
@@ -115,7 +152,8 @@
 
     .tamaño-logo img{ /*tamaño y posicion del logo*/
         top: 5px;
-        right: 20px;
+        right: 2px;
+        
     }
 
 }

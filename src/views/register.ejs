@@ -1,59 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <%- include ('./partials/head.ejs')%>
+    <link rel="stylesheet" href="/css/formValidator.css">
 <body class="formRegister" >
     <%- include ('./partials/header.ejs')%>
     <div class="cuadro-form tamaño-logo">
         <img src="/images/login/logo.png" alt="logo" >
-        <form class="cuadro-form tamaño-logo" action="/user/register" method="POST" enctype="multipart/form-data" class="form-ad" >
+        <form id="form" class="cuadro-form tamaño-logo" action="/user/register" method="POST" enctype="multipart/form-data" class="form-ad" >
+            
             <div class="form-ad-input">
-                <input class="forma-tamaño" type="text" name="first_name" placeholder="Nombre" value="<%= locals.old && old.name %>">
+                <input class="form-control" id="first_name" class="forma-tamaño" type="text" name="first_name" placeholder="Nombre" value="<%= locals.old && old.name %>">
                 <% if (locals.errors && errors.name) { %>
                     <small class="text-danger"><%= errors.name.msg %> </small>
                 <% } %>
+                <span class="error" id="nameErrors"></span>
+
             </div>
             <div class="form-ad-input">
-                <input class="forma-tamaño" type="text" name="last_name" placeholder="Apellido" value="<%= locals.old && old.last_name %>">
+                <input class="form-control" id="last_name" class="forma-tamaño" type="text" name="last_name" placeholder="Apellido" value="<%= locals.old && old.last_name %>">
                 <% if (locals.errors && errors.last_name) { %>
                     <small class="text-danger"><%= errors.last_name.msg %> </small>
                 <% } %>
+                <span id="lastnameErrors"></span>
             </div>
             <div class="form-ad-input">
-                <input class="forma-tamaño" type="email" name="email" placeholder="Ingresá tu email" value="<%= locals.old && old.email  %>">
+                <input class="form-control" id="email" class="forma-tamaño" type="email" name="email" placeholder="Ingresá tu email" value="<%= locals.old && old.email  %>">
                 <% if (locals.errors && errors.email) { %>
                     <small class="text-danger"><%= errors.email.msg %> </small>
                 <% } %>
+                <span class="error" id="emailErrors"></span>
             </div>
             <div class="form-ad-input">
-                <input class="forma-tamaño" type="password" name="pass1" placeholder="Contraseña">
+                <input class="form-control" id="pass1" class="forma-tamaño" type="password" name="pass1" placeholder="Contraseña">
                 <% if (locals.errors && errors.pass1) { %>
                     <small class="text-danger"><%= errors.pass1.msg %> </small>
                 <% } %>
+                <span id="passErrors"></span>
             </div>
             <div class="form-ad-input">
-                <input class="forma-tamaño" type="password" name="pass2" placeholder="Repetir contraseña">
+                <input class="form-control" id="pass2" class="forma-tamaño" type="password" name="pass2" placeholder="Repetir contraseña">
                 <% if (locals.errors && errors.pass2) { %>
                     <small class="text-danger"><%= errors.pass2.msg %> </small>
                 <% } %>
+                <span id="pass2Errors"></span>
             </div>
             <div class="input-file">
-                <p>Agregar foto</p>
-                <input type="file" name="avatar">
+                <p id="file-text">Agregar foto</p>
+                <input class="form-control" id="avatar" type="file" name="avatar">
                 <% if (locals.errors && errors.image) { %>
                     <small class="text-danger"><%= errors.image.msg %> </small>
-                <% } %>
-            </div>
+                    <% } %>
+                </div>
+                <span id="fileErrors"></span>
             <div class="form-ad-input_check">
                 <input type="checkbox" name="terms" id="check">
                 <label for="check">Acepto los términos y condiciones</label>
                 <% if (locals.errors && errors.terms) { %>
                     <small class="text-danger"><%= errors.terms.msg %> </small>
                 <% } %>
+                <span id="termsErrors"></span>
             </div>
+            <span id="submitErrors"></span>
             <button type="submit" class="btn btn-ad-primary">
                 REGISTRATE
             </button>
             <a href="/user/login" class="userLink">Ya tengo cuenta</a>
+        
         </form>
         <div ><a href="">¿Olvidaste tu contraseña?</a> </div>
     </div>
@@ -63,5 +76,6 @@
     </div>
     <%- include ('./partials/footer.ejs')%>
     <%- include ('./partials/scripts.ejs')%>
+    <script src="/javascript/registro.js"></script>
 </body>
 </html>

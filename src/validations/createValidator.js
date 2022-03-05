@@ -6,7 +6,7 @@ module.exports = [
         .isLength({min:5})
         .withMessage('La descripcion tiene que tener al menos 5 caracteres'),
     
-    check('sizes')
+    check('size')
         .notEmpty()
         .withMessage('Debes ingresar como minimo un talle, separados por coma (,)'),
     

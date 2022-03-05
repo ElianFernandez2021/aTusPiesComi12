@@ -20,7 +20,7 @@
                         <p>Talle: </p>
                         <input type="text" name="size" id="productSize" placeholder="Separados por coma( , )" value="<%= locals.old && old.size %> ">
                     </div>
-                    <% if (locals.errors && errors.sizes) { %>
+                    <% if (locals.errors && errors.size) { %>
                     <small id="sizeErrors" class="text-danger"><%= errors.sizes.msg %></small>
                     <% } %>
                     <small id="sizeErrors" class="text-danger"></small>
@@ -58,10 +58,10 @@
                             <label for="colors"><%- color.name %> </label>
                             <input name="colors" class="productColor" type="checkbox" value="<%- color.id %>">
                             <% }) %>
-                            <% if (locals.errors && errors.colors) { %>
+                        </div>
+                        <% if (locals.errors && errors.colors) { %>
                             <small class="colorErrors" class="text-danger"><%= errors.colors.msg %></small>
                         <% } %>
-                    </div>
                     <small id="colorErrors" class="text-danger"></small>
                     <div>
                         <label for="image">Imagen</label>

@@ -20,7 +20,7 @@ window.addEventListener('load',function (){
         regExPrice = /^[0-9]{1,10}$/,
 
     validationsErrors = false
-
+    //console.log($productName)
     $productName.addEventListener('blur', function() { //blur cuando sale del campo
         switch(true){
             case !$productName.value.trim(): //Si esta vacio devuelve false
@@ -39,7 +39,7 @@ window.addEventListener('load',function (){
                 break;
         }
     })
-
+    //console.log($productSize)
     $productSize.addEventListener('blur', function() { //blur cuando sale del campo
         switch(true){
             case !$productSize.value.trim(): //Si esta vacio devuelve false
@@ -60,7 +60,7 @@ window.addEventListener('load',function (){
         }
     })
 
-        console.log($perPrice)
+        //console.log($perPrice)
         $perPrice.addEventListener('blur', function(event) { //blur cuando sale del campo
             switch(true){
             case !$perPrice.value: //Si esta vacio devuelve false
@@ -85,17 +85,17 @@ window.addEventListener('load',function (){
     $productColor.forEach(color => {
         color.addEventListener('change',function(event){
             console.log(event.target.value)
+            if(!event.target.value){
+                    $productColor.classList.add('is-invalid');
+                    $colorErrors.innerHTML= 'Ingresa al menos un color';
+                    validationsErrors = true;
+                }else {
+                    $productColor.classList.add('is-valid');
+                    $colorErrors.innerHTML= '';
+                    validationsErrors = false;
+                }
         })
     })
-    if(!$productColor){
-            $productColor.classList.add('is-invalid');
-            $colorErrors.innerHTML= 'Ingresa al menos un color';
-            validationsErrors = true;
-        }else if ($productColor.checked){
-            $productColor.classList.add('is-valid');
-            $colorErrors.innerHTML= '';
-            validationsErrors = false;
-        }
 
         $image.addEventListener('change', function fileValidation(){
             let filePath = $image.value; //Captura el value del input (imagen)

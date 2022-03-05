@@ -51,7 +51,6 @@ let controller= {
             })
         } 
         if(errors.isEmpty()){
-            res.send(validationResult(req))
             Products.create({
                 name:name,
                 description:description,
@@ -120,7 +119,8 @@ let controller= {
                 {association:'category'},
                 {association:'colors'},
                 {association:'images'},
-                {association:'marca'},]}
+                {association:'marca'},
+            ]}
                 ),
             Categories.findAll(),Marks.findAll(),Color.findAll()])
         .then(([product,categories,marks,colors]) => {   
@@ -146,14 +146,13 @@ let controller= {
                 product_id:req.params.id           
             }
         })
-        
-         Products_color.destroy({where:{product_id:req.params.id}
+        Products_color.destroy({where:{product_id:req.params.id}
         })
         .then(() => {  
-        if(errors.isEmpty()){
-            Products.findByPk(req.params.id)
-            .then((product)=> {
-                product.update({
+            if(errors.isEmpty()){
+                Products.findByPk(req.params.id)
+                .then((product)=> {
+                    product.update({
                         name,
                         price,
                         description,
@@ -162,8 +161,9 @@ let controller= {
                         size:size
                     },
                     {where:{id: req.params.id}})
-                Products_color.bulkCreate(colores)
-                .then(()=> {
+                    Products_color.bulkCreate(colores)
+                    .then(() => {
+                    console.log(colores)
                     Images.findAll({where:{product_id: req.params.id}})                        
                     .then((oldImage) => {
                         productImages=req.files                        
@@ -262,39 +262,34 @@ let controller= {
                     else if (fs.existsSync("../public/images/products/zapatillas", result.images.image)) {
                         fs.unlinkSync(`../public/images/products/zapatillas ${result.images.image}`)
                     }
-                    else {
-                        if (fs.existsSync("../public/images/products/", result.images.image)) {
+                    else if (fs.existsSync("../public/images/products/", result.images.image)) {
                             fs.unlinkSync(`../public/images/products/ ${result.images.image}`)
                         }
+                    }else{
                         console.log("Archivo no encontrado")
                     }
-                }
-        })
-        
+                })        
         Products_color.destroy({
             where:{
                 product_id:req.params.id
             }
         })
         .then(()=> {
-            
-                Images.destroy({
+            Images.destroy({
+                where:{
+                    product_id:req.params.id
+                }
+            })
+            .then(()=>{
+                Products.destroy({
                     where:{
-                        product_id:req.params.id
+                        id:req.params.id
                     }
                 })
-                .then(()=>{
-                    Products.destroy({
-                        where:{
-                            id:req.params.id
-                        }
-                    })
-                    .then(res.redirect(`/admin/products/`))
-                        })                    
-                })
-                .catch(error => console.log(error)) 
-        
-        
+                .then(res.redirect('/admin/products/'))
+                    })                    
+        })
+        .catch(error => console.log(error))        
     }
 }
 
