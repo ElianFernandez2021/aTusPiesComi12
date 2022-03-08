@@ -9,12 +9,13 @@
     
 }
 
+
 .contenedor-google::after{
     content: "";
     position: absolute;
     background:linear-gradient(45deg, #0082fb, #fb2600, #fbb800, #42b948);
     background-size: 400%;
-    opacity: 0;
+    opacity: 5;
     filter: blur(5px);
     transition: 0.5s;
     animation: animate 20s linear infinite;
@@ -86,6 +87,92 @@
 .button-google{ /*detalles de boton google*/
     box-shadow: 0px 0px 12px rgba(173, 173, 67, 0.575);
 }
+
+
+-----------
+.contenedor-faceboock::after{
+    content: "";
+    position: absolute;
+    background:linear-gradient(45deg, #0082fb, #fb2600, #fbb800, #42b948);
+    background-size: 400%;
+    opacity: 5;
+    filter: blur(5px);
+    transition: 0.5s;
+    animation: animate 20s linear infinite;
+}
+
+.contenedor-faceboock{
+    text-transform: uppercase;
+    line-height: 48px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-decoration: none;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.2);
+    transition: 0.5s;
+    
+}
+.contenedor-faceboock::before{
+    content: "";
+    left: 0%;
+    position:absolute ;
+    width: 20%;
+    height: 10%;
+    background:linear-gradient(45deg, #0082fb, #fb2600, #fbb800, #42b948);
+    background-size: 400%;
+    opacity: 0;
+    filter: blur(20px);
+    transition: 0.5s;
+    animation: animate 20s linear infinite;
+}
+
+.contenedor-faceboock:hover::before,
+.contenedor-faceboock:hover::after{
+    opacity: 2.5;
+}
+@keyframes animate 
+{
+    0%
+    {
+        background-position: 0 0;
+    }
+    50%
+    {
+        background-position: 300% 0;
+    }
+    100%
+    {
+        background-position: 0 0;
+    }
+}
+.contenedor-faceboock .button-faceboock {
+    z-index: 2;
+    box-shadow: 0px 0px 12px rgb(0, 0, 0);
+    margin-right: 5px;
+
+}
+.contenedor-faceboock:hover .button-faceboock {
+    color: white;
+    background-color: black;
+}
+.contenedor-faceboock .button-faceboock::before{
+    content: "";
+    width: 0%;
+    height: 0%;
+    top: 0;
+    margin: 0px;
+    padding: 0px;
+}
+
+.button-faceboock{ /*detalles de boton google*/
+    box-shadow: 0px 0px 12px rgba(173, 173, 67, 0.575);
+}
+
+-------------
+
+
+
+
 .containerDeContainerBtn{
     display:flex;
     
@@ -135,13 +222,17 @@
         align-items: center;
     }
 
+    body{
+        margin-left:auto auto;
+        margin-right:auto;
+    }
     .contenedor-google::after{
         content: "";
         position: absolute;
         background:linear-gradient(45deg, #0082fb, #fb2600, #fbb800, #42b948);
         background-size: 400%;
         opacity: 0;
-        filter: blur(5px);
+        filter: blur(20px);
         transition: 0.5s;
         animation: animate 20s linear infinite;
     }
@@ -165,7 +256,7 @@
         height: 50%;
         background:linear-gradient(45deg, #0082fb, #fb2600, #fbb800, #42b948);
         background-size: 400%;
-        opacity: 3;
+        opacity: 0;
         filter: blur(20px);
         transition: 0.5s;
         animation: animate 20s linear infinite;
@@ -245,7 +336,7 @@
     }
 
 
-    .cuadro-form{ /*centra el contenido del form y pone color de fondo*/
+    .cuadro-form-login{ /*centra el contenido del form y pone color de fondo*/
         width: 70%;
         background-image: url('../images/login/huella.jpg');
         display: flex;
@@ -255,17 +346,20 @@
         margin-top: 3rem;
 
     }
+    .formulario-login{
+        margin-top: 1.5rem;
+    }
 
-    .cuadro-form img{ /*asigna forma a imágen de logo que está en el formulario*/
+    .cuadro-form-login img{ /*asigna forma a imágen de logo que está en el formulario*/
         width: 30%;
         border-radius: 50%;
     }
-    .cuadro-form h3{
+    .cuadro-form-login h3{
         text-align: center;
         padding: 0.5em;
     }
 
-    .cuadro-form div{ /*dirección de botones google y facebook, además asigna padding a todos los div del form*/
+    .cuadro-form-login div{ /*dirección de botones google y facebook, además asigna padding a todos los div del form*/
         display: flex;
         
         align-content: center;
@@ -273,9 +367,87 @@
     }
     
     
-    .contenedor-facebook{
-        margin-bottom: 1px;
+   
+    ---------------------------
+    .contenedor-faceboock::after{
+        content: "";
+        position: relative;
+        background:linear-gradient(45deg, #0082fb, #fb2600, #fbb800, #42b948);
+        background-size: 400%;
+        opacity: 0;
+        filter: blur(5px);
+        transition: 0.5s;
+        animation: animate 20s linear infinite;
     }
+    
+    .contenedor-faceboock{
+        text-transform: uppercase;
+        line-height: 48px;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        text-decoration: none;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.2);
+        transition: 0.5s;
+        
+    }
+    .contenedor-faceboock::before{
+        content: "";
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        left: 100px;
+        bottom: 0px;
+        background:linear-gradient(45deg, #0082fb, #8200fb, #120775, #6f87f0);
+        background-size: 400%;
+        opacity: 0;
+        filter: blur(20px);
+        transition: 0.5s;
+        animation: animate 20s linear infinite;
+    }
+    
+    .contenedor-faceboock:hover::before,
+    .contenedor-faceboock:hover::after{
+        opacity: 2.5;
+    }
+    @keyframes animate 
+    {
+        0%
+        {
+            background-position: 0 0;
+        }
+        50%
+        {
+            background-position: 300% 0;
+        }
+        100%
+        {
+            background-position: 0 0;
+        }
+    }
+    .contenedor-faceboock {
+        height: 50px;
+    }
+    
+    .contenedor-faceboock .button-faceboock {
+        z-index: 2;
+        box-shadow: 0px 0px 12px rgb(0, 0, 0);
+        
+    
+    }
+    .contenedor-faceboock:hover .button-faceboock {
+        color: white;
+        background-color: black;
+    }
+    .contenedor-faceboock .button-faceboock::before{
+        content: "";
+        
+    }
+    
+    .button-faceboock{ /*detalles de boton google*/
+        box-shadow: 0px 0px 12px rgba(173, 173, 67, 0.575);
+    }
+    ---------------
 
     #boton-logueo{
         display:flex;
@@ -286,13 +458,23 @@
         margin: 0px;
         padding: 0px;
     }
+
+    #boton-logueo:hover{
+        color: black;
+    }
     
 
+    
     .olvidaste{
         display:flex;
-        flex-direction: row;
+        margin: 0px;
+        padding: 0px;
         justify-content: center;
+        margin-top: 70px;
+        background-color: white;
     }
+
+    
     .email{
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.575);
         border-radius: 30px;
@@ -317,7 +499,10 @@
     body{/*se coloca imágen en el fondo*/
         margin-top: 7em;
     }
-    
+    body{
+    margin-left:auto auto;
+    margin-right:auto;
+}
     .tamaño-logo img{ /*tamaño y posicion del logo*/
         bottom: 60px;
     }
@@ -406,9 +591,104 @@
         box-shadow: 0px 0px 12px rgba(173, 173, 67, 0.575);
     }
 
+
+
+    --------
+
+
+
+    .contenedor-faceboock::after{
+        content: "";
+        position: absolute;
+        background:linear-gradient(45deg, #0082fb, #8200fb, #120775, #6f87f0);
+        background-size: 400%;
+        opacity: 5;
+        filter: blur(5px);
+        transition: 0.5s;
+        animation: animate 20s linear infinite;
+    }
+    
+    .contenedor-faceboock{
+        text-transform: uppercase;
+        line-height: 48px;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        text-decoration: none;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.2);
+        transition: 0.5s;
+        
+    }
+    .contenedor-faceboock::before{
+        content: "";
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        left: 100px;
+        background:linear-gradient(45deg, #0082fb, #8200fb, #120775, #6f87f0);
+        background-size: 400%;
+        opacity: 0;
+        filter: blur(20px);
+        transition: 0.5s;
+        animation: animate 20s linear infinite;
+    }
+    
+    .contenedor-faceboock:hover::before,
+    .contenedor-faceboock:hover::after{
+        opacity: 2.5;
+    }
+    @keyframes animate 
+    {
+        0%
+        {
+            background-position: 0 0;
+        }
+        50%
+        {
+            background-position: 300% 0;
+        }
+        100%
+        {
+            background-position: 0 0;
+        }
+    }
+    .contenedor-faceboock .button-faceboock {
+        z-index: 2;
+        box-shadow: 0px 0px 12px rgb(0, 0, 0);
+    
+    }
+    .contenedor-faceboock:hover .button-faceboock {
+        color: white;
+        background-color: black;
+    }
+    .contenedor-faceboock .button-faceboock::before{
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 0%;
+        top: 0;
+        bottom: 0px;
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .button-faceboock{ /*detalles de boton google*/
+        box-shadow: 0px 0px 12px rgba(173, 173, 67, 0.575);
+    }
+
+
 }
     
-
+#boton-logueo{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.575);
+    background-color: transparent;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 30px;
+}
 /*****************ESCRITORIO********************/
 @media all and (min-width:1024PX){
     .tamaño-logo{
@@ -421,6 +701,6 @@
         right: 2px;
         
     }
-    
+   
 
 }
