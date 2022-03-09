@@ -80,12 +80,33 @@ window.addEventListener('load',function (){
                 break;
         }
     })
-    
-    console.log($productColor)
-    $productColor.forEach(color => {
+    /* $terms.addEventListener('click', function () {
+        $terms.value = "on"
+        $terms.classList.toggle('is-valid')
+        $terms.classList.remove('is-invalid')
+        $termsErrors.innerHTML = ""
+    })
+    if (!$terms.checked) {
+        $terms.classList.add('is-invalid')
+        $termsErrors.innerHTML = 'Debes aceptar los términos y condiciones'
+        error = true
+    } */
+    /* $productColor.forEach(color => {
         color.addEventListener('change',function(event){
-            console.log(event.target.value)
-            if(!event.target.value){
+            let valor = false;
+            //console.log(event.target.checked) 
+            // target devuelve el input 
+            // target.checked devuelve true o false
+            // target.value devuelve el id
+            for(let i = 0 ; i< $productColor.length ; i++){
+                console.log($productColor[i].checked)
+                if($productColor[i].checked == true){
+                    valor=true;
+                }else{
+                    valor=false;
+                }
+            }
+                if(!valor){
                     $productColor.classList.add('is-invalid');
                     $colorErrors.innerHTML= 'Ingresa al menos un color';
                     validationsErrors = true;
@@ -93,13 +114,13 @@ window.addEventListener('load',function (){
                     $productColor.classList.add('is-valid');
                     $colorErrors.innerHTML= '';
                     validationsErrors = false;
-                }
+                    }
         })
-    })
-
-        $image.addEventListener('change', function fileValidation(){
-            let filePath = $image.value; //Captura el value del input (imagen)
-            let allowedExtensions = /(.jpg|.jpeg|.png|.gif|.web)$/i;
+    }) */
+        if($image){
+            $image.addEventListener('change', function fileValidation(){
+                let filePath = $image.value; //Captura el value del input (imagen)
+                let allowedExtensions = /(.jpg|.jpeg|.png|.gif|.web)$/i;
             if(!allowedExtensions.exec(filePath)){//El método exec() ejecuta una busqueda sobre las coincidencias de una expresión regular en una cadena especifica. Devuelve el resultado como array, o null.
                 $imageErrors.innerHTML = 'Carga un archivo de imagen válido, con las extensiones (.jpg - .jpeg - .png - .gif)'
                 $image.value = '';
@@ -107,7 +128,7 @@ window.addEventListener('load',function (){
                 return false;
             } else {
                 //Image preview
-                console.log($image.files)
+                //console.log($image.files)
                 if($image.files && $image.files[0]){
                     let reader = new FileReader();
                     reader.onload = function(e){
@@ -117,24 +138,39 @@ window.addEventListener('load',function (){
                     $imageErrors.innerHTML = '';
                     $image.classList.remove('is-invalid')
                 }
-            }
-        })
+             }
+            })
+        }
+        //console.log($form)
+
 
         $form.addEventListener('submit', function(event) {
             event.preventDefault();
-            
+
+            let checked = 0
+            $productColor.forEach(color => {
+              if(color.checked == true) {
+                checked++
+              } 
+            })
+            if(checked < 1) { 
+              $colorErrors.innerHTML= "Debe seleccionar una opcion"
+            } else {
+              $colorErrors.innerHTML= ""
+            }
             let error = false;
             let elementsForm = this.elements;
     
-            for (let index = 0; index< elementsForm.length - 1;index++){
+            for (let index = 0; index< elementsForm.length - 2;index++){
                 if(elementsForm[index].value ==''){
+                    //console.log(elementsForm[index])Miro el valor que tiene ''
                     elementsForm[index].classList.add('is-invalid');
-                    $submitErrors.innerHTML = 'Los campos señalados son obligatorios';
+                    $submitErrors.innerHTML = '**Los campos señalados son obligatorios**';
                     error = true;
                 }
             }
-    
             if(!error && !validationsErrors){
+                console.log($form)
                 $form.submit();
             }
     

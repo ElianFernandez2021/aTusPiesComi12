@@ -8,6 +8,7 @@
         <tr>
             <td>
                 <form id="form" class="categories-product" action="/admin/products" autocomplete="off" method="POST" enctype="multipart/form-data">
+                    
                     <div>
                         <label for="product">Nombre</label>
                         <input type="text" name="name" id="productName" value="<%= locals.old && old.name %>">
@@ -18,10 +19,10 @@
                         <small id="productErrors" class="text-danger"></small>
                     <div class="products">
                         <p>Talle: </p>
-                        <input type="text" name="size" id="productSize" placeholder="Separados por coma( , )" value="<%= locals.old && old.size %> ">
+                        <input type="text" name="size" id="productSize" placeholder="Separados por coma( , )" value="<%= locals.old && old.size %>">
                     </div>
                     <% if (locals.errors && errors.size) { %>
-                    <small id="sizeErrors" class="text-danger"><%= errors.sizes.msg %></small>
+                    <small id="sizeErrors" class="text-danger"><%= errors.size.msg %></small>
                     <% } %>
                     <small id="sizeErrors" class="text-danger"></small>
                     <div class="products">
@@ -34,7 +35,7 @@
                     </div>
                     <div>
                         <label for="perPrice">Precio</label>
-                        <input type="number" name="price" id="perPrice">
+                        <input type="number" name="price" id="perPrice" value="<%= locals.old && old.price%>">
                         <% if (locals.errors && errors.price) { %>
                             <small id="priceErrors" class="text-danger"><%= errors.price.msg %></small>
                         <% } %>
@@ -56,22 +57,28 @@
                         <p>Color: </p>
                         <% colors.forEach(color => { %>
                             <label for="colors"><%- color.name %> </label>
-                            <input name="colors" class="productColor" type="checkbox" value="<%- color.id %>">
-                            <% }) %>
+                            <input name="colors" class="productColor" type="checkbox" value="<%- color.id %>"
+                            <% if (locals.old && old.colors) { %>
+                                <% for( let index = 0; index < old.colors.length; index++ ) { %>
+                                    <% if (old.colors[index] == color.id ) { %>
+                                        checked
+                                    <% } %>
+                                <% } %>>
+                            <% } %>
+                        <% }) %>
                         </div>
                         <% if (locals.errors && errors.colors) { %>
-                            <small class="colorErrors" class="text-danger"><%= errors.colors.msg %></small>
+                            <small id="colorErrors" class="text-danger"><%= errors.colors.msg %></small>
                         <% } %>
                     <small id="colorErrors" class="text-danger"></small>
                     <div>
                         <label for="image">Imagen</label>
                         <input id="imageErrors" type="file" name="image" id="image" multiple>
                     </div>
-
+                    
+                    <small class="text-danger" id="submitErrors"></small>
                     <div class="form_action--button">
-                        <small class="text-danger" id="submitErrors"></small>
                         <input type="submit" value="Enviar">
-
                         <input type="reset" value="Reiniciar">
                     </div>
                 </form>

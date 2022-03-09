@@ -97,6 +97,7 @@ let controller= {
             .catch(error => console.log(error))              
         }
         else{
+            console.log(req.body)
             Promise.all([Categories.findAll(),Marks.findAll(),Color.findAll()])
             .then(([categories,marks,colors]) => {
                 
@@ -140,16 +141,16 @@ let controller= {
         console.log(errors)
         const {name,description,price,trade_mark,category,size,colors} = req.body
         let arrayColors= typeof req.body.colors !== 'string' ? req.body.colors : [req.body.colors];
-        let colores = arrayColors.map((color) => {
-            return {
-                color_id:color,
-                product_id:req.params.id           
-            }
-        })
-        Products_color.destroy({where:{product_id:req.params.id}
-        })
-        .then(() => {  
-            if(errors.isEmpty()){
+        if(errors.isEmpty()){
+            let colores = arrayColors.map((color) => {
+                return {
+                    color_id:color,
+                    product_id:req.params.id           
+                }
+            })
+            Products_color.destroy({where:{product_id:req.params.id}
+            })
+            .then(() => {  
                 Products.findByPk(req.params.id)
                 .then((product)=> {
                     product.update({
@@ -216,32 +217,32 @@ let controller= {
                 .catch(error => console.log(error))               
             })
             .catch(error => console.log(error))               
-        }else{
-            let productId = req.params.id
-            Promise.all([Products.findByPk(productId,{
-                    include:[
-                    {association:'category'},
-                    {association:'colors'},
-                    {association:'images'},
-                    {association:'marca'},]}
-                    ),
-                Categories.findAll(),Marks.findAll(),Color.findAll()])
-            .then(([product,categories,marks,colors]) => {  
-                
-                res.render('admin/productEdit',{
-                    product,
-                    categories,
-                    marks,
-                    colors,
-                    adminTitle: "Editar producto",
-                    session: req.session,
-                    errors:errors.mapped(),
-                    old:req.body
-                })
             })
-                .catch(error => console.log(error)) 
-            }
+        }else{
+        let productId = req.params.id
+        Promise.all([Products.findByPk(productId,{
+                include:[
+                {association:'category'},
+                {association:'colors'},
+                {association:'images'},
+                {association:'marca'},]}
+                ),
+            Categories.findAll(),Marks.findAll(),Color.findAll()])
+        .then(([product,categories,marks,colors]) => {  
+            
+            res.render('admin/productEdit',{
+                product,
+                categories,
+                marks,
+                colors,
+                adminTitle: "Editar producto",
+                session: req.session,
+                errors:errors.mapped(),
+                old:req.body
+            })
         })
+            .catch(error => console.log(error)) 
+        }
     },
     fatality:(req,res) => {
         let zapaId = +req.params.id;

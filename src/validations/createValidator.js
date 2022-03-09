@@ -8,14 +8,14 @@ module.exports = [
     
     check('size')
         .notEmpty()
-        .withMessage('Debes ingresar como minimo un talle, separados por coma (,)'),
+        .withMessage('Debes ingresar como minimo un talle'),
     
     check('price')
         .notEmpty()
         .withMessage('Debes ingresar un precio').bail(),
 
     check('colors')
-        .notEmpty()
+        .isIn([1,2,3,4,5,6,7])
         .withMessage('Debes ingresar como minimo un color'),
 
 ]
