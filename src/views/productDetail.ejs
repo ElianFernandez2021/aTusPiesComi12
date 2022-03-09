@@ -92,13 +92,29 @@
                         <!-- TALLES -->
                         <div class="size-container">
                             <h3 class="title">Talles</h3>
+
                             <div class="sizes">
+                                <% let talles = product.size
+                                console.log(typeof talles);
+                                /* let tallesDisponibles = [(0,2),(3,5),(6,8),(9,11),(12,14),(15,17),(18,20)] */
+                                %>
+                                
+                                    <span class="size"><%= talles.slice(0,2) %> </span>
+                                    <span class="size"><%= talles.slice(3,5) %> </span>
+                                    <span class="size"><%= talles.slice(6,8) %> </span>
+                                    <span class="size"><%= talles.slice(9,11) %> </span>
+                                    <span class="size"><%= talles.slice(12,14) %> </span>
+                                  
+                            </div>
+                            
+
+                            <!-- <div class="sizes">
                                 <span class="size">34</span>
                                 <span class="size">35</span>
                                 <span class="size active">40</span>
                                 <span class="size">42</span>
                                 <span class="size">43</span>
-                            </div>
+                            </div> -->
                             <!-- FIN TALLES -->
     
                         <div class="purchase-info">
