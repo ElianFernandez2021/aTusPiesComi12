@@ -146,20 +146,19 @@ window.addEventListener('load',function (){
 
         $form.addEventListener('submit', function(event) {
             event.preventDefault();
-
             let checked = 0
+            let error = false;
+            let elementsForm = this.elements;
             $productColor.forEach(color => {
               if(color.checked == true) {
                 checked++
               } 
             })
             if(checked < 1) { 
-              $colorErrors.innerHTML= "Debe seleccionar una opcion"
+              $colorErrors.innerHTML= "Debe seleccionar un color"
             } else {
               $colorErrors.innerHTML= ""
             }
-            let error = false;
-            let elementsForm = this.elements;
     
             for (let index = 0; index< elementsForm.length - 2;index++){
                 if(elementsForm[index].value ==''){
@@ -170,7 +169,7 @@ window.addEventListener('load',function (){
                 }
             }
             if(!error && !validationsErrors){
-                console.log($form)
+                console.log(!error)
                 $form.submit();
             }
     
