@@ -1,4 +1,11 @@
 
+.login-entero{
+    padding: 0;
+    width: 100%;
+    margin-left: 30%;
+    
+}
+
 .text-danger{
     color:red;
 }

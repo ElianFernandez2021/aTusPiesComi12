@@ -1,44 +1,139 @@
+
 /*  Footer  */
 footer{
-    background: linear-gradient(#524d3d, #8c8364 50%, #cdc4a9 ,  #f8f1df);
+    background: linear-gradient( #cdc4a9, #8c8364 50%, #524d3d);
     border-radius: 20px 20px 0 0 ;
     margin-top: 12px;
     bottom: 0;
-    width:100%
+    width:100%;
+    padding-top: 40px;
+
+}
+
+
+.container-footer-all{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px;
+}
+
+.container-footer{ /*container body*/
+    display: flex;
+    justify-content: space-between;
+}
+
+.columnFooter1{
+    max-width: 400px;
+}
+
+.columnFooter1 h1{
+    font-size: 22px;
+}
+
+.columnFooter1 p{
+    font-size: 14px;
+    color: #c7c7c7;
+    margin-top: 20px;
+}
+
+.columnFooter2{
+    max-width: 400px;
+}
+
+.columnFooter2 h1{
+    font-size: 22px;
+}
+
+.row{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.row img{
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    margin: 0;
+    margin-left: 0;
+}
+.row label {
+    margin-top: 10px;
+    margin-left: 10px;
+    color: white;
+    font-size: 14px;
+    padding: 0;
+}
+
+.columnFooter3{
+    max-width: 400px;
+}
+
+.columnFooter3 h1{
+    font-size: 22px;
+}
+
+.row2{
+    margin-top: 20px;
+    display: flex;
+}
+
+.row2 img {
+    width: 36px;
+    height: 36px;
+}
+
+.row2 label{
+    margin-left: 10px;
+    max-width: 170px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.pieDeFooter{
+    max-width: 1200px;
     
+    display: flex;
+    justify-content:space-between;
+    padding: 10px;
 }
-footer p {
-    display:flex;
-    justify-content:fle;
+
+.PapaDePieDeFooter{
+    width: 100%;
+    margin: auto;
+    background:#8c8364 ;
 }
-footer a{
+
+.copyright{
+    color: black;
+    font-size: 14px;
+}
+
+.copyright a{
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.information a{
     text-decoration: none;
     color: black;
-    
+    font-size: 14px;
 }
-footer #fb{
-    color: blue;
-    font-size:20px;
-}
-footer #wpp{
-    color: white;
-    background-color: green;
-    border-radius: 1rem;
-    font-size:25px;
-}
-footer #ig{
-    background:linear-gradient(#8a3ab9,#fccc63,#fbad50,#cd486b);
-    color: whitesmoke;
-    border-radius: 10%;
-    font-size:20px;
-}
-footer #tw{
-    color: cyan;
-    font-size:20px;
-}
-@media(min-width:768px){
-    footer i, footer #fb, footer #ig, footer #tw{
-        font-size:20px;
-        justify-content: space-between;
+
+@media screen and (max-width:1100px){
+    .container-footer{ /*container body*/
+        flex-wrap: wrap;
+    }
+
+    .columnFooter1{
+        max-width: 100%;
+    }
+
+    .columnFooter2,
+    .columnFooter3{
+        margin-top: 40px;
     }
 }
