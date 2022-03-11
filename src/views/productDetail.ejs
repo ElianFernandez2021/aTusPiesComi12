@@ -19,12 +19,17 @@
     <!--  -->
     <section class="productDetail">
         <div class="card-wrapper">
-            <div class="card">
+            <div class="card" style="width: 100%; height: 100%;">
                 <!-- imagenes producto -->
                 <div class="product-imgs">
                     <div class="img-display">
                         <div class="img-showcase">
-                            <img src="/images/products/<%- product.images[0].image %>" alt="ID:<%= product.id%> ">
+                            <div>
+                                <% product.images.forEach(imagenes => { %>
+                                <img src="/images/products/<%- imagenes.image %>" alt="ID:<%= product.id%>">
+                                <% }) %>
+                                
+                              </div>
                             
                         </div>
                     <!-- </div>
