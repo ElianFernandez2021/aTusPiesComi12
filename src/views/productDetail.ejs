@@ -63,15 +63,15 @@
                 <!-- tarjeta derecha -->
                 <div class="product-content">
                     <h2 class="product-title"><%= product.name %></h2>
-                    <a href="#" class="product-link">Más productos</a>
-                    <div class="product-rating">
+                    <a href="/products" class="product-link">Más productos</a>
+                    <!-- <div class="product-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                         <span>4.7(21)</span>
-                    </div>
+                    </div> -->
                     <!-- precio -->
                     <div class="product-price">
                         <p class="last-price">Precio: $<span><%= product.price %></span></p>
@@ -111,7 +111,19 @@
                                     <span class="size"><%= talles.slice(12,14) %> </span>
                                   
                             </div>
-                            
+                            <p> 
+                                <h3 class="title">Color</h3>
+                                <td><% product.colors.forEach(color => { %>
+                                <%- color.name%>
+                                <% }) %>
+                              </td></p>
+                            <% console.log(product.colors); %>  
+
+
+                            <p>
+                            <h3 class="title">Marca</h3>
+                            <td><%= product.marca.mark %></td>
+                            </p>
 
                             <!-- <div class="sizes">
                                 <span class="size">34</span>
