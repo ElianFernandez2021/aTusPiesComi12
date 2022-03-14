@@ -4,56 +4,56 @@
 <body>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <%- include('../partials/adminHeader')%> 
-    <table>
-        <tr>
-            <td>
-                <form id="form" class="categories-product" action="/admin/products" autocomplete="off" method="POST" enctype="multipart/form-data">
+    <div class="container-fluid">
+        <div class="row">
+            <%- include('../partials/adminSidebar') %>
+                <form id="form" class="categories-product col-md-9 ms-sm-auto col-lg-10 px-md-4 row p-3 justify-content-center" action="/admin/products" autocomplete="off" method="POST" enctype="multipart/form-data">
                     
-                    <div>
-                        <label for="product">Nombre</label>
-                        <input type="text" name="name" id="productName" value="<%= locals.old && old.name %>">
+                    <div class="col-12 mb-3">
+                        <label class="form-label" for="product">Nombre</label>
+                        <input class="form-control" type="text" name="name" id="productName" value="<%= locals.old && old.name %>">
                     </div>
                     <% if (locals.errors && errors.name) { %>
                         <small id="productErrors" class="text-danger"><%= errors.name.msg %></small>
                         <% } %>
                         <small id="productErrors" class="text-danger"></small>
-                    <div class="products">
+                    <div class="products col-12 mb-3">
                         <p>Talle: </p>
-                        <input type="text" name="size" id="productSize" placeholder="Separados por coma( , )" value="<%= locals.old && old.size %>">
+                        <input class="form-control" type="text" name="size" id="productSize" placeholder="Separados por coma( , )" value="<%= locals.old && old.size %>">
                     </div>
                     <% if (locals.errors && errors.size) { %>
                     <small id="sizeErrors" class="text-danger"><%= errors.size.msg %></small>
                     <% } %>
                     <small id="sizeErrors" class="text-danger"></small>
-                    <div class="products">
+                    <div class="products col-12 mb-3">
                         <p>Categoria: </p>
-                        <select name="category" id="">
+                        <select  class="form-select categorySelect" name="category" id="">
                             <% categories.forEach(category => { %>
                              <option value="<%- category.id %> "> <%- category.name %> </option>
                             <% }) %>
                         </select>
                     </div>
-                    <div>
-                        <label for="perPrice">Precio</label>
-                        <input type="number" name="price" id="perPrice" value="<%= locals.old && old.price%>">
+                    <div class="col-12 mb-3">
+                        <label class="form-label" for="perPrice">Precio</label>
+                        <input class="form-control" type="number" name="price" id="perPrice" value="<%= locals.old && old.price%>">
                         <% if (locals.errors && errors.price) { %>
                             <small id="priceErrors" class="text-danger"><%= errors.price.msg %></small>
                         <% } %>
                         <small id="priceErrors" class="text-danger"></small>
                     </div>
-                    <div>
-                        <label for="trade_mark">Marca</label>
-                        <select name="trade_mark" id="">
+                    <div class="col-12 mb-3">
+                        <label class="form-label" for="trade_mark">Marca</label>
+                        <select class="form-select categorySelect" name="trade_mark" id="">
                             <% marks.forEach(marca => { %>
                                 <option value="<%- marca.id %> "><%- marca.mark%> </option>                             
                             <% }) %>
                         </select>
                     </div>
-                    <div>
-                        <label for="description">Descripcion</label>
-                        <input type="text" name="description" id="description">
+                    <div class="col-12 mb-3">
+                        <label class="form-label" for="description">Descripcion</label>
+                        <input class="form-control" type="text" name="description" id="description">
                     </div>
-                    <div class="products">
+                    <div class="products col-12 mb-3">
                         <p>Color: </p>
                         <% colors.forEach(color => { %>
                             <label for="colors"><%- color.name %> </label>
@@ -71,21 +71,22 @@
                             <small id="colorErrors" class="text-danger"><%= errors.colors.msg %></small>
                         <% } %>
                     <small id="colorErrors" class="text-danger"></small>
-                    <div>
-                        <label for="image">Imagen</label>
-                        <input id="imageErrors" type="file" name="image" id="image" multiple>
+                    <br>
+                    <br>
+                    <div class="col-12 mb-3">
+                        <label class="form-label" for="image">Imagen</label>
+                        <input class="form-control" aria-label="file example" id="imageErrors" type="file" name="image" id="image" multiple>
                     </div>
                     
                     <small class="text-danger" id="submitErrors"></small>
-                    <div class="form_action--button">
-                        <input type="submit" value="Enviar">
-                        <input type="reset" value="Reiniciar">
+                    <div class="form_action--button d-grid gap-2 col-6 mx-auto">
+                        <input class="btn btn-success" type="submit" value="Enviar">
+                        <input class="btn btn-danger" type="reset" value="Reiniciar">
                     </div>
                 </form>
-            </td>
-        </tr>
-    </table>
-    <script type="text/javascript" src="/javascript/productCreate.js"></script>
+            </div>
+            </div>
+                <script type="text/javascript" src="/javascript/productCreate.js"></script>
 
 
     <script>
