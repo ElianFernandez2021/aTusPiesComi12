@@ -17,6 +17,6 @@ router.get('/products/edit/:id?'/* ,admin */, controller.adminEdit)//Renderisa l
 router.put('/products/:id',upload.array('image'),editValidator, controller.update)//Guarda la informacion de un parametro obligatorio y actualiza la base de datos
 
 /* product remove */
-router.delete('/products/category/:id'/* ,admin */, controller.fatality)
+router.delete('/products/:id'/* ,admin */, controller.fatality)
 
 module.exports = router
