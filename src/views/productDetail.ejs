@@ -19,12 +19,17 @@
     <!--  -->
     <section class="productDetail">
         <div class="card-wrapper">
-            <div class="card">
+            <div class="card" style="width: 100%; height: 100%;">
                 <!-- imagenes producto -->
                 <div class="product-imgs">
                     <div class="img-display">
                         <div class="img-showcase">
-                            <img src=/images/products/<%- product.images[0].image %> " alt="ID:<%= product.id%> ">
+                            <div>
+                                <% product.images.forEach(imagenes => { %>
+                                <img src="/images/products/<%- imagenes.image %>" alt="ID:<%= product.id%>">
+                                <% }) %>
+                                
+                              </div>
                             
                         </div>
                     <!-- </div>
@@ -58,15 +63,15 @@
                 <!-- tarjeta derecha -->
                 <div class="product-content">
                     <h2 class="product-title"><%= product.name %></h2>
-                    <a href="#" class="product-link">Más productos</a>
-                    <div class="product-rating">
+                    <a href="/products" class="product-link">Más productos</a>
+                    <!-- <div class="product-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                         <span>4.7(21)</span>
-                    </div>
+                    </div> -->
                     <!-- precio -->
                     <div class="product-price">
                         <p class="last-price">Precio: $<span><%= product.price %></span></p>
@@ -92,13 +97,41 @@
                         <!-- TALLES -->
                         <div class="size-container">
                             <h3 class="title">Talles</h3>
+
                             <div class="sizes">
+                                <% let talles = product.size
+                                console.log(typeof talles);
+                                /* let tallesDisponibles = [(0,2),(3,5),(6,8),(9,11),(12,14),(15,17),(18,20)] */
+                                %>
+                                
+                                    <span class="size"><%= talles.slice(0,2) %> </span>
+                                    <span class="size"><%= talles.slice(3,5) %> </span>
+                                    <span class="size"><%= talles.slice(6,8) %> </span>
+                                    <span class="size"><%= talles.slice(9,11) %> </span>
+                                    <span class="size"><%= talles.slice(12,14) %> </span>
+                                  
+                            </div>
+                            <p> 
+                                <h3 class="title">Color</h3>
+                                <td><% product.colors.forEach(color => { %>
+                                <%- color.name%>
+                                <% }) %>
+                              </td></p>
+                            <% console.log(product.colors); %>  
+
+
+                            <p>
+                            <h3 class="title">Marca</h3>
+                            <td><%= product.marca.mark %></td>
+                            </p>
+
+                            <!-- <div class="sizes">
                                 <span class="size">34</span>
                                 <span class="size">35</span>
                                 <span class="size active">40</span>
                                 <span class="size">42</span>
                                 <span class="size">43</span>
-                            </div>
+                            </div> -->
                             <!-- FIN TALLES -->
     
                         <div class="purchase-info">

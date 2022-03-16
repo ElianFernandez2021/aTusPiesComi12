@@ -12,9 +12,6 @@ body {
 .is-invalid{
     display: block;
 }
-.is-valid{
-    display: none;
-}
 .navigation {
     position: fixed;
     width: 77px;

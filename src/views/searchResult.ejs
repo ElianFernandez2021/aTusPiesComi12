@@ -10,16 +10,18 @@
                 <section class="categories-product">
                     <% result.forEach(product => { %>
                         <div class="products">
-                            <a href="/products/detail/<%- product.id %>">
-                                <img src="/images/products/<%-product.category%> /<%- product.image%>" alt="ID: <%= product.id %> ">
-                                <p class="productName"> 
-                                    <% if (product.name.length > 30) { %>
-                                        <%- `${product.name.slice(0,30)}...` %>
-                                    <% } else { %>
-                                        <%= product.name %>
-                                    <% } %></p>
-                                <h4 class="productPrice">$<%- product.price %></h4>
-                            </a>
+                            <% product.images.forEach(imagen => { %>
+                                <a href="/products/detail/<%- product.id %>">
+                                    <img src="/images/products/<%- imagen.image%>" alt="ID: <%= product.id %> ">
+                                    <p class="productName"> 
+                                        <% if (product.name.length > 30) { %>
+                                            <%- `${product.name.slice(0,30)}...` %>
+                                        <% } else { %>
+                                            <%= product.name %>
+                                        <% } %></p>
+                                    <h4 class="productPrice">$<%- product.price %></h4>
+                                </a>
+                            <% }) %>
                         </div>
                     <% }) %> 
                 </section> 

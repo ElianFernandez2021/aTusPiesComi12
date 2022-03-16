@@ -4,7 +4,7 @@
 <body>
     <%- include ('./partials/header.ejs')%>
     <!--    Product Cart    -->
-        <article class="categories-product">        
+        <article class="categories-product" id="item">        
             <% products.forEach(zapatilla => { %>
                 <div class="products">
                     <p><%- zapatilla.name%> </p>
@@ -82,7 +82,7 @@
             <h2>X</h2>
             <a href="">Pago Facil</a>
             <a href="">Rapi Pago</a>
-            <a href="">Mercado Liebre</a>
+            <a href="">Mercado Pago</a>
         </section>
         <!--Completar con codigo de referencia para confirmar pago!-->
         <section class="scan-pay card">  <!--Codigo QR-->
