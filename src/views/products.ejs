@@ -25,12 +25,15 @@
                             <div class="body__card_back">
                                 <h1><%-shoes.name %> </h1>
                                 <a href="/products/detail/<%-shoes.id %> "><input type="button" value="Ver detalle"></a>
+                                <%-shoes.category.name %> 
                             </div>
                         </div>
                     </div>
+                    <button class="agregar">Agregar al carrito</button> 
                 </div>
-            <% }) %> 
+            <% }) %>
         <% }) %>
     </div>  
+    <%- include('./partials/footer.ejs')%>
 </body>
 </html>

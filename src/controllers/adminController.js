@@ -249,7 +249,7 @@ let controller= {
         Products.findByPk(zapaId,{
             include:[{association:'images'}]
         })
-            .then(result => {
+            .then(result => { console.log(result)
                 if (zapaId && req.file) {
                     if (fs.existsSync("../public/images/products/botas", result.images.image)) {
                         fs.unlinkSync(`../public/images/products/botas ${result.images.image}`)
@@ -282,13 +282,9 @@ let controller= {
                 }
             })
             .then(()=>{
-                Products.destroy({
-                    where:{
-                        id:req.params.id
-                    }
-                })
+                Products.destroy({where:{id:req.params.id}})
                 .then(res.redirect('/admin/products/'))
-                    })                    
+            })                    
         })
         .catch(error => console.log(error))        
     }
