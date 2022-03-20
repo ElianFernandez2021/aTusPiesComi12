@@ -8,12 +8,12 @@
             <% products.forEach(zapatilla => { %>
                 <div class="products">
                     <p><%- zapatilla.name%> </p>
-                    <img class="product-image" src="/images/products/<%- zapatilla.subcategory%>/<%- zapatilla.image%>" alt="<%- zapatilla.id%> ">
+                    <% zapatilla.images.forEach(element => { %>
+                        <img class="product-image" src="/images/products/<%- element.image%>" alt="<%- zapatilla.id%> ">
+                    <% }) %>                   
                     <p>Descripcion: <%- zapatilla.description%> </p>
                     <p>Talle:
-                        <% zapatilla.sizes.forEach(talle => { %>
-                            <%- talle.num %> 
-                            <% }) %>
+                        <%- zapatilla.size%>
                     </p>
                     <p>Color:
                         <% zapatilla.colors.forEach(color => { %>
@@ -21,10 +21,10 @@
                             <% }) %>
                         </p>    
                     <p>Precio: <%- zapatilla.price%> </p>
-                    
+                    <p>Cantidad: <%#- zapatilla.quantity %> </p> <button>Agregar</button> <button>Restar</button>
                 </div>
-                <p>Total: <% let total = zapatilla.price++ %> </p>
                 <% }) %>
+                <p>Total: <%# let total = zapatilla.price++ %> </p>
         </article>
     <nav class="last-option">
         <ul>

@@ -20,10 +20,10 @@ router.get('/detail/:id?', userLogs, controller.detail)
 
 /* GET - Product cart */
 router.get('/cart', onlyUsers, userLogs, controller.cart)
-router.post('/:id',add)
-router.delete('/empty',empty)
-router.delete('/item/:id',removeItem)
-router.delete('/:id',remove)
+router.post('/cart/:id',add)
+router.delete('/cart/empty',empty)
+router.delete('/cart/item/:id',removeItem)
+router.delete('/cart/:id',remove)
 
 
 

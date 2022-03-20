@@ -97,10 +97,20 @@ let controller= {
             .catch(error => console.log(error))              
         }
         else{
+            /* errors = errors.mapped()
+            if(req.fileValidationError) {
+                //console.log(req.fileValidationError)
+                errors = {
+                    ...errors,
+                    image : {
+                        msg: req.fileValidationError
+                    }
+                }
+            }
+            */
             console.log(req.body)
             Promise.all([Categories.findAll(),Marks.findAll(),Color.findAll()])
-            .then(([categories,marks,colors]) => {
-                
+            .then(([categories,marks,colors]) => {                
                 res.render('admin/productCreate',{
                     categories,
                     marks,

@@ -25,7 +25,7 @@ let controller={
     },
     cart:(req,res)=>{
         Products.findAll({
-            include:[{association:'cart'},{association:'category'},{association:'colors'}]
+            include:[{association:'cart'},{association:'category'},{association:'colors'},{association:'images'}]
         })
         .then((products)=>{
             res.render('productCart',{
