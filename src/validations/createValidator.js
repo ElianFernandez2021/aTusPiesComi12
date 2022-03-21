@@ -29,11 +29,6 @@ module.exports = [
 
 
 
-    body('image')
-    .custom((value, {req}) => {
-        if(req.body.image.value != allowedExtensions){
-            return withMessage('Las imagenes permitidas son .jpg|.jpeg|.png|.gif|.web')
-        }
-    })
+    
 
 ]

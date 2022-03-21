@@ -39,6 +39,7 @@ let controller= {
     },
    
     store: (req,res) => {
+        console.log(req.files)
         const{name,description,price,category,trade_mark,colors,size} = req.body
         let errors = validationResult(req);
         let arraySizes= typeof req.body.size !== 'string' ? req.body.size : [req.body.size];
@@ -98,15 +99,16 @@ let controller= {
         }
         else{
              errors = errors.mapped()
-            if(req.fileValidationError) {
+            /* if(req.fileValidationError) {
                 console.log(req.fileValidationError)
                 errors = {
                     ...errors,
                     image : {
                         msg: req.fileValidationError
                     }
-                }
-            }         
+                } 
+            }        
+            */
             console.log(errors)
             Promise.all([Categories.findAll(),Marks.findAll(),Color.findAll()])
             .then(([categories,marks,colors]) => {                

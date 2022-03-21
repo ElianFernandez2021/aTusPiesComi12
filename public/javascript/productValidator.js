@@ -164,6 +164,11 @@ window.addEventListener('load',function (){
                     error = true;
                 }
             }
+            console.log("ERROR")
+            console.log(error)
+            console.log("VALIDATION-ERROR")
+            console.log(validationsErrors)
+
             if(!error && !validationsErrors){
                 console.log(!error)
                 $form.submit();

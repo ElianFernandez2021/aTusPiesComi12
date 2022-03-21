@@ -14,10 +14,10 @@ const fileFilter = function(req, file,callback) {
     if(!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)){
         req.fileValidationError = "Sólo imágenes (.jpg, .jpeg, .png, .gif)";
         return callback(null,false,req.fileValidationError);
-    }else{
-        return callback(null,true);
     }
+    callback(null,true);
 }
+
 
 const uploadFile = multer({storage, fileFilter});
 
