@@ -11,8 +11,8 @@
             
             <div class="form-ad-input">
                 <input class="form-control" id="first_name" class="forma-tamaño" type="text" name="first_name" placeholder="Nombre" value="<%= locals.old && old.name %>">
-                <% if (locals.errors && errors.name) { %>
-                    <small class="text-danger"><%= errors.name.msg %> </small>
+                <% if (locals.errors && errors.first_name) { %>
+                    <small class="text-danger"><%= errors.first_name.msg %> </small>
                 <% } %>
                 <span class="error" id="nameErrors"></span>
 
@@ -29,7 +29,7 @@
                 <% if (locals.errors && errors.email) { %>
                     <small class="text-danger"><%= errors.email.msg %> </small>
                 <% } %>
-                <span class="error" id="emailErrors"></span>
+                <span id="emailErrors"></span>
             </div>
             <div class="form-ad-input">
                 <input class="form-control" id="pass1" class="forma-tamaño" type="password" name="pass1" placeholder="Contraseña">

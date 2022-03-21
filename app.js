@@ -34,12 +34,14 @@ let indexRouter = require("./src/routes/indexRouter")
 let products=require('./src/routes/products')
 let userRoutes = require("./src/routes/userRoutes")
 let productCreateRouter = require("./src/routes/adminProducts");
+let api = require("./src/routes/api/apiCart")
 
 /* Routes */
 app.use('/',indexRouter)//home
 app.use('/user',userRoutes)//Register,Login
 app.use('/products',products)//Products,ProductDetail,ProductCart
 app.use('/admin',productCreateRouter)
+app.use(api)
 app.listen(PORT, () => console.log(`Servidor abierto en el puerto ${PORT}
 http://localhost:${PORT}`))
 

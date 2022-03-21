@@ -1,5 +1,4 @@
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
         <%- include('../partials/adminHead') %>
     <body>
@@ -8,14 +7,15 @@
         <div class="container-fluid">
           <div class="row">
             <%- include('../partials/adminSidebar') %>
-            <form class="col-md-9 ms-sm-auto col-lg-10 px-md-4 row p-3 justify-content-center" action="/admin/products/<%=product.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+            <form id="form" class="col-md-9 ms-sm-auto col-lg-10 px-md-4 row p-3 justify-content-center" action="/admin/products/<%=product.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="col-12 mb-3">
-                    <label for="inputName" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" name="name" value="<%= locals.old ? old.name : product.name %>">
+                    <label for="productName" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="productName" name="name" value="<%= locals.old ? old.name : product.name %>">
                     <% if (locals.errors && errors.name) { %>
                         <small class="text-danger"><%= errors.name.msg %></small>
                     <% } %>
                 </div>
+                <small id="productErrors" class="text-danger"></small>
                 <div class="col-12 mb-3">
                     <select class="form-select categorySelect" id="specificSizeSelect" name="category">
                       <!-- <option selected hidden value="">Categorias</option> -->
@@ -31,7 +31,7 @@
                     <select class="form-select subcategorySelect" id="" name="trade_mark">
                         <option selected hidden value="">Marca</option>
                         <% marks.forEach(marca => { %>
-                            <option value="<%= marca.id %>" <%- locals.old && old.trade_mark == mark.id ? "selected" : marca.id == product.trade_mark ? "selected" : "" %> ><%- marca.mark%> </option>
+                            <option value="<%= marca.id %>" <%- locals.old && old.trade_mark == marca.id ? "selected" : marca.id == product.trade_mark ? "selected" : "" %> ><%- marca.mark%> </option>
                           <% }) %>
                       </select>
                     <% if (locals.errors && errors.trade_mark) { %>
@@ -39,42 +39,51 @@
                     <% } %>
                 </div>
                 <div class="col-12 mb-3">
-                    
-                        <label for="sizes" class="form-label"> Talles</label>
-                        <br>
-                        <input type="text" name="size" id="" value="<%- product.size %>">
-                    
+                <label for="productSize" class="form-label">Talles</label>
+                <br>
+                <input type="text" class="form-control" name="productSize" id="productSize" value="<%-product.size.trim()%>">
                 </div>
+                <small id="sizeErrors" class="text-danger"></small>
                 <div class="col-12 mb-3">
-                    <label for="sizes" class="form-label"> Color</label>
+                    <label for="colors" class="form-label"> Color</label>
                         <br>
                     <% colors.forEach(color => { %>
                         <label for="colors"><%- color.name %> </label>
-                        <input name="colors" type="checkbox" value="<%- color.id %>"
+                        <input class="productColor" name="colors" type="checkbox" value="<%- color.id %>"
                         <%product.colors.forEach(colorId => { %>
-                        <% if (colorId.id == +color.id) { %>
-                            checked 
-                        <% } %> 
+                            <% if (colorId.id == +color.id) { %>
+                                checked 
+                            <% } %> 
                         <% }) %>> 
                         <% }) %>
-                </div>
+                    </div>
+                    <% if (locals.errors && errors.colors) { %>
+                        <small class="text-danger"><%- errors.colors.msg %> </small>
+                        <% } %>
+                        <small class="text-danger" id="colorErrors"></small>
                 <div class="col-12 mb-3">
-                    <label for="inputPrice" class="form-label">Precio</label>
-                    <input type="number" class="form-control" id="inputPrice" name="price" value="<%= locals.old ? old.price : product.price %>">
+                    <label for="perPrice" class="form-label">Precio</label>
+                    <input type="number" class="form-control" id="perPrice" name="price" value="<%= locals.old ? old.price : product.price %>">
                     <% if (locals.errors && errors.price) { %>
                         <small class="text-danger"><%= errors.price.msg %></small>
                     <% } %>
                 </div>
-                <div class="col-12 mb-3">
+                <small id="priceErrors" class="text-danger"></small>
+                <!-- <div class="col-12 mb-3">
                     <label for="inputDiscount" class="form-label">Descuento</label>
-                    <input type="number" class="form-control" id="inputDiscount" name="discount" value="<%= locals.old ? old.discount : product.discount %>">
+                    <input type="number" class="form-control" id="inputDiscount" name="discount" value="<%#= locals.old ? old.discount : product.discount %>">
+                </div> -->
+                <div class="col-12 mb-3">
+                    <label for="description" class="form-label">Descripción</label>
+                    <textarea   name="description"><%= locals.old ? old.description : product.description %></textarea>
                 </div>
                 <div class="col-12 mb-3">
                     <label for="image" class="form-label">Imagen</label>
-                        <input type="file" name="image" class="form-control" id="image" multiple value="<%= locals.old ? old.product.image : product.image %> selected">
+                        <input type="file" name="image" class="form" id="image" multiple >
                     <% if (locals.errors && errors.image) { %>
                         <small class="text-danger"><%= errors.image.msg %> </small>
                     <% } %>
+                    <small class="text-danger" id="image"></small>
                 </div>
                 <div class="card mb-3" style="max-width: 300px;">
                     <% product.images.forEach(imagenes => { %>
@@ -82,14 +91,12 @@
                     <% }) %>
                     
                   </div>
-                <div class="col-12 mb-3">
-                    <label for="validationTextarea" class="form-label">Descripción</label>
-                    <textarea class="form-control" id="validationTextarea" name="description"><%= locals.old ? old.description : product.description %></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">
-                    GUARDAR
+                <small class="text-danger" id="submitErrors"></small>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-primary btn btn-success">
+                    EDITAR
                 </button>
-                
+                </div>
             </form>
           </div>
         </div>

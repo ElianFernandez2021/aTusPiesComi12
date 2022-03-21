@@ -3,7 +3,7 @@ let router = express.Router();
 let controller = require("../controllers/userController.js");
 let loginValidator = require('../validations/loginValidator');
 let registerValidator = require('../validations/registerValidator');
-let editValidator= require('../validations/editValidator');
+let editUserValidator= require('../validations/editUserValidator');
 let uploadFile = require('../middlewares/uploadAvatar');
 
 let userLogs = require('../middlewares/userLogs');
@@ -20,7 +20,7 @@ router.post('/register', uploadFile.single('avatar'), registerValidator, control
 router.get('/profile',userLogs , users.activeUser, controller.profile)
 
 router.get('/profile/edit/:id',userLogs , users.activeUser, controller.editProfile)
-router.put('/profile/edit/:id', users.activeUser,editValidator,uploadFile.single('avatar'),controller.updateProfile)
+router.put('/profile/edit/:id', users.activeUser,editUserValidator,uploadFile.single('avatar'),controller.updateProfile)
 
 /* Get -Logout */
 router.get('/logout', controller.logout)

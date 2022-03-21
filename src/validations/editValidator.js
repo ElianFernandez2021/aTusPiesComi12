@@ -1,24 +1,21 @@
-const {check,body} = require('express-validator')
-const db = require('../data/models')
-const bcrypt = require('bcryptjs')
+const {check} = require('express-validator')
+module.exports = [
+    check("name")
+        .notEmpty()
+        .withMessage('Debes ingresar un nombre al producto').bail()
+        .isLength({min:5})
+        .withMessage('La descripcion tiene que tener al menos 5 caracteres'),
+    
+    check('productSize')
+        .notEmpty()
+        .withMessage('Debes ingresar como minimo un talle, separados por coma (,)'),
+    
+    check('price')
+        .notEmpty()
+        .withMessage('Debes ingresar un precio').bail(),
 
-const Users = db.User
+    check('colors')
+        .notEmpty()
+        .withMessage('Debes ingresar como minimo un color'),
 
-module.exports = [    
-        body('custom')
-        .custom((value, {req}) => {
-           return Users.findOne({
-               where: {
-                   email: req.body.email
-               }
-           })
-           .then(user => {
-               if(!bcrypt.compareSync(req.body.password, user.dataValues.password)){
-                   return Promise.reject()
-               }
-           })
-           .catch(() => {
-               return Promise.reject("Las contraseñas no coinciden")
-           })
-        })
 ]

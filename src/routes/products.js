@@ -1,4 +1,5 @@
-let express=require('express')
+let express=require('express');
+const { add, empty, removeItem, remove } = require('../controllers/cartController');
 let router=express.Router();
 let controller=require('../controllers/productsController')
 let onlyUsers = require('../middlewares/onlyUsers')
@@ -19,6 +20,10 @@ router.get('/detail/:id?', userLogs, controller.detail)
 
 /* GET - Product cart */
 router.get('/cart', onlyUsers, userLogs, controller.cart)
+router.post('/cart/:id',add)
+router.delete('/cart/empty',empty)
+router.delete('/cart/item/:id',removeItem)
+router.delete('/cart/:id',remove)
 
 
 

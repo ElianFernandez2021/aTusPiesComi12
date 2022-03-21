@@ -9,7 +9,7 @@
         </div>
         
             <ul id="contenedor-enlaces">
-                <li><a href="/products" ><i class="fas fa-shoe-prints"></i>Productos</a></li>
+                <li><a href="/products"><i class="fas fa-shoe-prints"></i>Productos</a></li>
                 <li><a href="/products/cart"><i class="fas fa-shopping-cart"></i>Carrito</a></li>
                 <li>
                     <div class="user-icons-desktop">
@@ -40,12 +40,12 @@
             <div class="search-bar">
                 <form action="/products/search" class="search-form" id="search">
                     <input type="search" name="keywords" id="" placeholder="Buscar productos">
-                    <button class="lupa"type="submit"><i class="fas fa-search"></i></button>
+                    <button class="lupa" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
-        </nav>         
+        </nav>
     </section>
-</header> 
-<% if (typeof session.user !== "undefined") { %>
-    
-<% } %>
+</header>
+<% if (typeof session.user !=="undefined" ) { %>
+
+    <% } %>
