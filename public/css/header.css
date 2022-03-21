@@ -1,9 +1,5 @@
 @import url('./animation.css');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: content-box;
-}
+
 /********HEADER*******/
 .header{
     background: linear-gradient(#524d3d, #8c8364 50%, #cdc4a9 ,  #f8f1df);  
@@ -19,9 +15,7 @@
     box-shadow: 0 0 15px #f8f1df ;
 }
 /**********MENÚ***********/
-li{
-    border-bottom: #8c8364 solid 0.2em;
-}
+
 .img-menú1 .fas{
     color: black;
 }
@@ -61,6 +55,11 @@ li{
 @media all and (min-width:320px){
 
     /*********HEADER*********/
+    #abrir{
+        margin-left: 10px;
+        font-size: 30px;
+    }
+    
 
     img.redondo { /*controla que no desborde la imágen del logo*/
         width: 15%;
@@ -102,10 +101,14 @@ li{
     
     #contenedor-menú:target #abrir{
         display: none;
+        
     }
 
     #contenedor-menú:target #cerrar{
-        display: block;
+        display:block;
+        position: absolute;
+        right: 25px;
+        font-size: 25px;
     }
 
     #contenedor-menú:target #contenedor-enlaces{
@@ -117,13 +120,15 @@ li{
     .search-bar{
         height: 5%;
         display: flex;
-        flex-direction: row;
-        position:relative;
+        flex-direction:inherit;
+        position:;
+        
     }
     .search-bar input{
         width: 90%;
         height: 5%;
         padding: 0.3em;
+        display: none;
     }
     .search-bar .search-form{
         display: contents;
@@ -169,6 +174,9 @@ li{
     #abrir, #cerrar{
         display: none;
     } 
+    .equis_menu{
+        right: 0px;
+    }
 
     #contenedor-menú #contenedor-enlaces{
         display: flex;
@@ -176,9 +184,6 @@ li{
         height: 10%;
     }
 
-    li{
-        border-bottom: none;
-    }
     
 
 }
