@@ -9,6 +9,8 @@ window.addEventListener('load',function (){
         $sizeErrors = qs('#sizeErrors'),
         $perPrice = qs('#perPrice'),
         $priceErrors = qs('#priceErrors'),
+        $productDescription = qs('#productDescription')
+        $descriptionErrors = qs('#descriptionErrors')
         $productColor = document.querySelectorAll('.productColor'),
         $colorErrors = qs('#colorErrors'),
         $image = qs('#image'),
@@ -80,43 +82,23 @@ window.addEventListener('load',function (){
                 break;
         }
     })
-    /* $terms.addEventListener('click', function () {
-        $terms.value = "on"
-        $terms.classList.toggle('is-valid')
-        $terms.classList.remove('is-invalid')
-        $termsErrors.innerHTML = ""
-    })
-    if (!$terms.checked) {
-        $terms.classList.add('is-invalid')
-        $termsErrors.innerHTML = 'Debes aceptar los términos y condiciones'
-        error = true
-    } */
-    /* $productColor.forEach(color => {
-        color.addEventListener('change',function(event){
-            let valor = false;
-            //console.log(event.target.checked) 
-            // target devuelve el input 
-            // target.checked devuelve true o false
-            // target.value devuelve el id
-            for(let i = 0 ; i< $productColor.length ; i++){
-                console.log($productColor[i].checked)
-                if($productColor[i].checked == true){
-                    valor=true;
-                }else{
-                    valor=false;
-                }
+
+        $productDescription.addEventListener('blur',function (){
+            switch (true) {
+                case $productDescription.value=="":
+                    $descriptionErrors.innerHTML = "Descripcion requerida"
+                    $descriptionErrors.classList.add('text-danger')                   
+                    break;
+                case $productDescription.value.length<20:
+                    $descriptionErrors.innerHTML = "Debe contener al menos 20 caracteres"
+                    $descriptionErrors.classList.add('text-danger')
+                    break;
+                default:
+                    $descriptionErrors.innerHTML = ""
+                    break;
             }
-                if(!valor){
-                    $productColor.classList.add('is-invalid');
-                    $colorErrors.innerHTML= 'Ingresa al menos un color';
-                    validationsErrors = true;
-                }else {
-                    $productColor.classList.add('is-valid');
-                    $colorErrors.innerHTML= '';
-                    validationsErrors = false;
-                    }
         })
-    }) */
+    
         if($image){
             $image.addEventListener('change', function fileValidation(){
                 let filePath = $image.value; //Captura el value del input (imagen)
@@ -149,6 +131,20 @@ window.addEventListener('load',function (){
             let checked = 0
             let error = false;
             let elementsForm = this.elements;
+            console.log(elementsForm)
+            if($productName.value.trim()==""){
+            $productErrors.innerHTML = "El campo nombre es obligatorio"
+            $productName.classList.add('text-danger');
+            }
+            if($productSize.value.trim()==""){
+                $sizeErrors.innerHTML = 'El talle es obligatorio'
+                $productSize.classList.add('is-invalid')
+            }
+            if($perPrice.value==""){
+                $priceErrors.innerHTML = 'El precio es obligatorio';//muestre el error debajo del input
+                $perPrice.classList.add('is-invalid');
+            }
+
             $productColor.forEach(color => {
               if(color.checked == true) {
                 checked++
@@ -168,6 +164,11 @@ window.addEventListener('load',function (){
                     error = true;
                 }
             }
+            console.log("ERROR")
+            console.log(error)
+            console.log("VALIDATION-ERROR")
+            console.log(validationsErrors)
+
             if(!error && !validationsErrors){
                 console.log(!error)
                 $form.submit();

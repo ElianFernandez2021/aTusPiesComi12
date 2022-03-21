@@ -114,7 +114,7 @@ CREATE TABLE `products` (
   KEY `products_FK` (`trade_mark`),
   CONSTRAINT `products_FK` FOREIGN KEY (`trade_mark`) REFERENCES `trade_mark` (`id`),
   CONSTRAINT `products_FK_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=282 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=401 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,6 +123,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (373,'Millet GR-4','Zapatos de trabajo deportivas',1000,'2022-03-20 01:35:18','2022-03-20 01:35:18',1,2,'40,41,42'),(374,'Zapatillas fachas','Comodas y rapidas',1000,'2022-03-20 01:37:52','2022-03-20 01:37:52',1,1,'38,39'),(375,'Botines nike 1','Con estos botines los goles se hacen solos',10000,'2022-03-20 01:39:10','2022-03-20 01:39:10',1,1,'37,38,40,41,42'),(376,'Flyknit','Cuidado con usar los pasos prohibidos!',10000,'2022-03-20 01:40:08','2022-03-20 01:40:08',3,3,'39,40'),(377,'Adidas blancas','Lo mas comodo que hay en el mercado',1000,'2022-03-20 01:41:00','2022-03-20 01:41:00',3,4,'37,38,42,43'),(378,'BurguerShoes','Nunca tendrás hambre',1000,'2022-03-20 01:41:38','2022-03-20 01:41:38',3,3,'40,42'),(379,'HungryShoe','Se recomienda no andar descalzo porque estas zapatillas te comen',1000,'2022-03-20 01:42:41','2022-03-20 01:42:41',3,4,'37,39,42,43,44'),(380,'JojoShoes','Se recomienda ver el anime antes de entender la referencia',1000,'2022-03-20 01:43:39','2022-03-20 01:43:39',3,3,'42,43'),(381,'NarutoShoe','Conviértete en un verdadero ninja con estas zapatillas',1000,'2022-03-20 01:44:36','2022-03-20 01:44:36',3,4,'37,38,39,41,42'),(382,'Nike 2','Basicas y sencillas',10000,'2022-03-20 01:45:40','2022-03-20 01:45:40',3,1,'36,37,38,39,40,41'),(383,'Nike 3','Las verdaderas \"Altas llantas\"',1000,'2022-03-20 01:46:52','2022-03-20 01:46:52',3,1,'37,38'),(384,'SimpsonShoes','Para un verdadero fanático',1000,'2022-03-20 01:47:36','2022-03-20 01:47:36',3,3,'36,37,38,39'),(385,'ShoeBlack','Demasiado comodas',1000,'2022-03-20 01:48:21','2022-03-20 01:48:21',3,4,'36,37,38'),(386,'Nike 4','Animal print',1000,'2022-03-20 01:49:01','2022-03-20 01:49:01',3,1,'37,38,39,40'),(387,'Nike 6','NikeJordan',1000,'2022-03-20 01:49:48','2022-03-20 01:49:48',3,1,'40,41,42'),(388,'Zapato dama negro','Estilo con elegancia',1000,'2022-03-20 01:51:17','2022-03-20 01:51:17',2,4,'36,37,38'),(389,'Zapato dama rojo','Rojo fuego con punta de colmillo de dragon',1000,'2022-03-20 01:52:16','2022-03-20 01:52:16',2,3,'35,36,37,38'),(390,'Zapato hombre','Tipicas para hombre elegante',1000,'2022-03-20 01:53:05','2022-03-20 01:53:05',2,1,'39,40,41,42'),(391,'Zapato hombre 2','Elegancia masculina',1000,'2022-03-20 01:54:52','2022-03-20 01:54:52',2,3,'40,41,42');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,9 +172,8 @@ CREATE TABLE `products_color` (
   PRIMARY KEY (`id`),
   KEY `product_colorFK` (`product_id`),
   KEY `products_color_FK` (`color_id`),
-  CONSTRAINT `product_colorFK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   CONSTRAINT `products_color_FK` FOREIGN KEY (`color_id`) REFERENCES `color` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=425 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,6 +182,7 @@ CREATE TABLE `products_color` (
 
 LOCK TABLES `products_color` WRITE;
 /*!40000 ALTER TABLE `products_color` DISABLE KEYS */;
+INSERT INTO `products_color` VALUES (392,373,2),(393,374,1),(394,374,2),(395,374,5),(396,375,4),(397,376,4),(398,377,4),(399,378,7),(400,379,2),(401,379,4),(402,380,7),(403,381,5),(404,382,4),(405,383,1),(406,383,5),(407,384,4),(408,385,5),(409,386,4),(410,387,1),(411,387,4),(412,388,5),(413,389,1),(414,390,5),(415,391,5);
 /*!40000 ALTER TABLE `products_color` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,7 +200,7 @@ CREATE TABLE `products_image` (
   PRIMARY KEY (`id`),
   KEY `products_image_FK` (`product_id`),
   CONSTRAINT `products_image_FK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=357 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -208,6 +209,7 @@ CREATE TABLE `products_image` (
 
 LOCK TABLES `products_image` WRITE;
 /*!40000 ALTER TABLE `products_image` DISABLE KEYS */;
+INSERT INTO `products_image` VALUES (329,'1647740118646_img_.jpg',373),(330,'1647740272857_img_.jpg',374),(331,'1647740350194_img_.jpg',375),(332,'1647740408836_img_.jpg',376),(333,'1647740460474_img_.jpg',377),(334,'1647740498876_img_.jpg',378),(335,'1647740561554_img_.jpg',379),(336,'1647740619491_img_.jpg',380),(337,'1647740675992_img_.jpg',381),(338,'1647740740142_img_.jpg',382),(339,'1647740812048_img_.jpg',383),(340,'1647740856916_img_.jpg',384),(341,'1647740901179_img_.jpg',385),(342,'1647740941909_img_.jpg',386),(343,'1647740988861_img_.jpg',387),(344,'1647741077428_img_.jpg',388),(345,'1647741136331_img_.jpg',389),(346,'1647741185288_img_.jpg',390),(347,'1647741292782_img_.jpg',391);
 /*!40000 ALTER TABLE `products_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,7 +255,7 @@ CREATE TABLE `user` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,7 +264,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'','Diaz','facu@mail.com','Jake_Sully.jpg',1,'$2a$10$3XM.Md2KGX8SR18liP5wjuWOk6cxleSW2vZ/ViEPAo49R9pDUTagi','2022-02-04 03:52:03','2022-02-04 03:52:03'),(2,'','usuario','prueba@mail.com','1644097686793_img_.jpg',0,'$2a$10$t60iGpMKNBde6txdG/uHHOEG78PHOAZRHbavwhzJHhCmm.U24r8x.','2022-02-05 21:48:09','2022-02-05 21:48:09'),(3,'asd','asd','asd@mail.com','Jake_Sully.jpg',0,'$2a$10$ghNU5lAVnoRqwLFHUkNGqeMoqvpxeARqDZghMfUpm6ajmF63YPXki','2022-02-08 21:06:06','2022-02-08 21:06:06');
+INSERT INTO `user` VALUES (1,'Facu','Diaz','facu@mail.com','Jake_Sully.jpg',1,'$2a$10$3XM.Md2KGX8SR18liP5wjuWOk6cxleSW2vZ/ViEPAo49R9pDUTagi','2022-02-04 03:52:03','2022-03-16 21:04:17'),(2,'','usuario','prueba@mail.com','1644097686793_img_.jpg',0,'$2a$10$t60iGpMKNBde6txdG/uHHOEG78PHOAZRHbavwhzJHhCmm.U24r8x.','2022-02-05 21:48:09','2022-02-05 21:48:09'),(3,'Jake','Sully','asd@mail.com','Jake_Sully.jpg',0,'$2a$10$ghNU5lAVnoRqwLFHUkNGqeMoqvpxeARqDZghMfUpm6ajmF63YPXki','2022-02-08 21:06:06','2022-02-20 02:42:56'),(4,'Grupo','Seis','grupo6@asd.com','1646359985212_img_.png',0,'$2a$10$YDH.lJcRofPqgWy7vTnQn.XQzVst2irPY3U0BHp3Vhoosg84r1N2K','2022-03-04 02:13:05','2022-03-04 02:13:05');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -279,4 +281,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-19  0:20:48
+-- Dump completed on 2022-03-21 17:20:41
