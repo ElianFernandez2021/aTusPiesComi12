@@ -121,7 +121,7 @@
         height: 5%;
         display: flex;
         flex-direction:inherit;
-        position:;
+        position: relative;
         
     }
     .search-bar input{
