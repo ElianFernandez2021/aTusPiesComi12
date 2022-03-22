@@ -6,7 +6,7 @@
 }
 
 a {
-    color: gray;
+    color: black;
     font-weight: bold;
     text-decoration: none;
 }
@@ -34,7 +34,7 @@ a {
 
     position: relative;
     margin-top: 5%;
-    
+    margin-bottom: 5%;
 
 }
 .slider11{
@@ -115,7 +115,6 @@ transition: .9s;
     justify-content: space-evenly;
     margin: auto;
     margin-top: 1%;
-    
 }
 
 

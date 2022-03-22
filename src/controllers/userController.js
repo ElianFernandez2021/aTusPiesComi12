@@ -24,15 +24,16 @@ let controller={
                 }
             })
             .then(user => {
+                console.log(user)
                 req.session.user = {
                     id: user.id,
-                    first_name: user.name,
+                    first_name: user.first_name,
                     last_name: user.last_name,
                     email: user.email,
                     avatar: user.avatar,
                     rol: user.rol
                 }
-    
+               // console.log(req.session.user)
                if(req.body.remember){
                    const TIME_IN_MILISECONDS = 60000
                    res.cookie("aTusPies", req.session.user, {

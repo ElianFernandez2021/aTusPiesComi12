@@ -4,10 +4,11 @@
     <link rel="stylesheet" href="/css/loginValidator.css">
 <body >
     <%- include('./partials/header.ejs')%>
-    <div class="cuadro-form tamaño-logo">
+    <div class="login-entero">
+    <div class="cuadro-form-login tamaño-logo">
         <img src="/images/login/logo.png" alt="logo" >
         <h3>Bienvenido :)</h3>
-        <form action="/user/login" method="post">
+        <form class="formulario-login" action="/user/login" method="post">
             <div>
                 <label for="email">Email:</label>
             </div>      
@@ -38,16 +39,17 @@
             <section class="containerDeContainerBtn">
             <div class="orientar-boton">
                <a href="" class="contenedor-google"><button class="button-google forma-tamaño"  >GOOGLE</button>></a>
-                <a href=""class="contenedor-faceboock"><button class="button-face forma-tamaño">FACEBOOK</button>></a>
+                <a href=""class="contenedor-faceboock"><button class="button-faceboock forma-tamaño">FACEBOOK</button>></a>
             </div>
             </section>
             <div class="olvidaste" ><a href="">¿Olvidaste tu contraseña?</a> </div>
         </form>
         
     </div>
-    <div class="cuadro-form orientar-p">
+    <div class="cuadro-form-login orientar-p">
         <p>¿No tienes cuenta?</p>
         <a href="/user/register" class="registrate"><button>Registrate</button></a>
+    </div>
     </div>
     <%- include('./partials/footer.ejs')%>
     <%- include('./partials/scripts.ejs')%>

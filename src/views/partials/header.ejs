@@ -1,40 +1,42 @@
-<header class="color-gradient header">
-    <section id="contenedor-menú">
-        <a href="/">
-            <figure class="posicion-logo"><img class="redondo" src="/images/login/logo.png" alt="logo"></figure>
-        </a>
+<header class="color-gradient header">  
+    <section  id="contenedor-menú"> 
+        <nav>
+        <a href="/"><figure class="posicion-logo"><img class="redondo" src="/images/login/logo.png" alt="logo"></figure></a>
+        
+        <div class="equis_menu"> 
         <a href="#contenedor-menú" class="img-menú1 hamburguesa"> <i class="fas fa-bars" id="abrir"></i></a>
         <a href="#" class="img-menú1 equis"> <i class="fas fa-times" id="cerrar"></i></a>
-        <nav>
+        </div>
+        
             <ul id="contenedor-enlaces">
                 <li><a href="/products"><i class="fas fa-shoe-prints"></i>Productos</a></li>
                 <li><a href="/products/cart"><i class="fas fa-shopping-cart"></i>Carrito</a></li>
                 <li>
                     <div class="user-icons-desktop">
-                        <div class="user">
-                            <% if (typeof session.user !="undefined" ) { %>
-                                <i class="fas fa-user">
-                                    <p>
-                                    <h2>Hola <%= session.user.first_name %>
-                                            <%= session.user.last_name %>
-                                    </h2>
-                                    </p>
-                                </i><span class="session"></span>
-                                <div class="menu-user">
-                                    <a href="/user/profile">Mis datos</a>
-                                    <hr>
-                                    <a href="/user/logout">Cerrar sesión</a>
-                                    <% if (session.user.rol===1) { %>
-                                        <a href="/admin/products/">ADMIN</a>
-                                        <% } %>
-                                </div>
-                                <% } else {%>
-                                    <a href="/user/login"><i class="fas fa-user"></i>Login</a>
-                                    <% } %>
-                        </div>
-                </li>
+                    <div class="user">
+                        <% if (typeof session.user != "undefined") { %>
+                            <i class="fas fa-user">
 
-            </ul>
+                                <p>
+                                    <h2>Hola <%= session.user.first_name %> <%= session.user.last_name %> </h2>
+                                </p>
+                                 
+
+
+                                </i><span class="session"></span>
+                             <div class="menu-user">
+                                <a href="/user/profile">Mis datos</a><hr>
+                                <a href="/user/logout">Cerrar sesión</a>
+                                <% if (session.user.rol === 1) { %>
+                                    <a href="/admin/products/">ADMIN</a>
+                                <% } %>
+                            </div>
+                        <% } else {%>
+                            <a href="/user/login"><i class="fas fa-user"></i>Login</a>
+                        <% } %>
+                </div>
+            </li>      
+          </ul>
             <div class="search-bar">
                 <form action="/products/search" class="search-form" id="search">
                     <input type="search" name="keywords" id="" placeholder="Buscar productos">

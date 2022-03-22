@@ -97,6 +97,10 @@
 .text-danger{
   color: #ff0000;
 }
+.formRegister .cuadro-form {
+  /*centra el contenido del form y pone color de fondo*/
+  margin-top: 0px;
+}
 
 /*******************CELULAR********************/
 @media (min-width: 320px) {
@@ -130,7 +134,7 @@
     flex-direction: column;
     align-items: center;
     border-radius: 8%;
-    margin-top: 1rem;
+    margin-top: 2.5rem;
   }
 
   .formRegister .cuadro-form img {
@@ -164,6 +168,39 @@
   .formRegister .orientar-p {
     padding: 1em;
   }
+
+  .olvidaste-register{
+    display:flex;
+    margin: 0px;
+    padding: 0px;
+    justify-content: center;
+    margin-top: 70px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.olvidaste-register a{
+    position:relative;
+    left: 20%;
+}
+
+}
+@media (min-width: 505px) {
+  .olvidaste-register{
+    display:flex;
+    margin: 0px;
+    padding: 0px;
+    justify-content: center;
+    margin-top: 70px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.olvidaste-register a{
+    position:relative;
+    left: 10%;
+}
+
 }
 
 /********************TABLET********************/
@@ -185,6 +222,21 @@
   .formRegister .form-ad-input input {
     height: 2.5rem;
   }
+
+  .olvidaste-register{
+    display:flex;
+    margin: 0px;
+    padding: 0px;
+    justify-content: center;
+    margin-top: 70px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.olvidaste-register a{
+    position:relative;
+    left: 20%;
+}
 }
 
 /*****************ESCRITORIO********************/
@@ -200,4 +252,24 @@
     top: 5px;
     right: 20px;
   }
+
+  .formRegister .cuadro-form {
+    /*centra el contenido del form y pone color de fondo*/
+    margin-top: 25px;
+  }
+
+  .olvidaste-register{
+    display:flex;
+    margin: 0px;
+    padding: 0px;
+    justify-content: center;
+    margin-top: 70px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.olvidaste-register a{
+    position:relative;
+    left: 30%;
+}
 }
