@@ -18,11 +18,17 @@
             <% if (typeof session.user !="undefined") { %>
                Hola <%= session.user.first_name %>!
                 <i class="fas fa-user icon_user_desktop session"></i>
-            <% } else { %> 
-                <i class="fas fa-user icon_user_desktop"></i>
-            <% } %> 
-            
-            <a href="/products/cart"><i class="fas fa-bag-shopping"></i></a>
+                <% if (session.cart.length>0 ) { %>
+                    <div class="globito"><%- session.cart.length  %></div>
+                    <a href="/products/cart">
+                        <i class="fas fa-bag-shopping"></i>
+                    </a>
+                <% }else { %>
+                    <a href="/products/cart"><i class="fas fa-bag-shopping"></i></a>
+                <% } %> 
+                <% } else { %> 
+                    <a href="/user/login"><i class="fas fa-user icon_user_desktop"></i></a>
+                    <% } %> 
         </div>
     </div>
     <nav class="nav_desktop">

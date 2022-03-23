@@ -3,10 +3,10 @@ let router = express.Router();
 
 let {show,add,remove,removeItem,empty} = require("../../controllers/cartController")
 
-router.get("api/cart", show)
-router.post("/api/item/:id", add);
-router.post("/api/item/:id", remove);
-router.post("/api/item/:id", removeItem);
-router.post("/api/item/", empty);
+router.get("/cart", show)
+router.post("/cart/:id", add);
+router.delete("/cart/:id", remove);
+router.delete("/cart/item/:id", removeItem);
+router.delete("/cart/item/", empty);
 
 module.exports= router;

@@ -41,7 +41,7 @@ app.use('/',indexRouter)//home
 app.use('/user',userRoutes)//Register,Login
 app.use('/products',products)//Products,ProductDetail,ProductCart
 app.use('/admin',productCreateRouter)
-app.use(api)
+app.use('/api', api)
 app.listen(PORT, () => console.log(`Servidor abierto en el puerto ${PORT}
 http://localhost:${PORT}`))
 

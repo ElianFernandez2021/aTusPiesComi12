@@ -24,17 +24,19 @@ main.cart .container_cart {
 .container_cart .tablas {
     margin: 0 auto;
     width: 100%;
+    border: none;
 }
 .container_cart .tablas table {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
+    border: none;
 }
+
 .container_cart .tablas table thead tr  {
     background-color: #96894b;
     color:white;
     border: none;
-    
 }
 .container_cart .tablas table thead tr th {
     border: none;
@@ -45,16 +47,19 @@ main.cart .container_cart {
     letter-spacing: 1px;
 }
 .container_cart .tablas table tbody {
-
+    border: none;
 }
 .container_cart .tablas table tbody tr {
-    
+    border: none;
 }
 .container_cart .tablas table tbody tr td {
     padding: 10px;
     border-bottom: 2px solid #96894b;
     font-size: 14px;
+    background-color: none;
     position: relative;
+    border-left: none;
+    border-right: none;
 }
 .container_cart .tablas table tbody tr td figure {
     width: 90px;
@@ -64,6 +69,28 @@ main.cart .container_cart {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.botonSuma{
+    background: #eee;
+    padding:0;
+    margin:0;
+    display: inline-block;
+    border: none;
+    border-radius: none;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+}
+.botonResta{
+    background: #eee;
+    padding:0;
+    margin:0;
+    display: inline-block;
+    border: none;
+    border-radius: none;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
 }
 .container_cart .tablas table tbody tr td button{
     color: white;
@@ -87,6 +114,8 @@ main.cart .container_cart {
     padding: 10px;
     font-size: 18px;
     color: #96894b;
+    border-left: none ;
+    border-right: none;
 }
 .container_cart .last-option {
     width: 100%;
@@ -120,93 +149,6 @@ main.cart .container_cart {
 /*===========   Fin estilos en tablas   =======*/
 
 
-
-/*  End Body    */
-
-/*  Category    
-.category{ /*Agrego display flex a todo el cuerpo
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-.category .items{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center    ;
-}
-.category .items .image-position{
-    display: flex;
-    align-items: center;
-}
-.category .items .image-position i{
-    position:relative;
-    bottom:-3rem;
-    right:-3px;
-    color: slateblue;
-    background-color:white;
-    border-radius:50px;
-}
-.category .items .image{
-    width: 140px;
-}
-.category .items .items-descriptions{
-    margin-left: 20px;
-}
-.category .items .items-descriptions .color-text,
-.category .items .items-descriptions #cantidad{
-    width: 50%;
-    padding:0;
-    font-size: 20px;
-}
-.category .amount #cantidad{
-    width:30px;
-}
-.total{
-    display:flex;
-    justify-content: center;
-    padding-top: 20px;
-    font-size: 23px;
-}
-/*  End Category*/
-
-/*  Last option*
-
-.last-option ul{
-    display: flex;
-    justify-content: space-evenly;
-}
-.last-option ul {
-    list-style: none;
-    text-decoration: none;
-}
-.last-option ul li{
-    font-size: 20px;
-}
-.last-option ul li a{
-    text-decoration: none;
-    border:2.5px solid black;
-    border-radius: 16px;
-    color: black;
-    font-size: 20px;
-}
-.last-option ul li a:hover{
-    background: linear-gradient(90deg,#96894b,#bb7821);
-    transition: all 3s ease-out;
-}
-
-/* End Last option*/
-
-/*  Metodo de pago    *
-form input{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    border: none;
-    border-radius:50px;
-}
-.continue{
-    cursor: pointer;
-}
 
 /* Modal // PopUp */
 form.pay{
@@ -261,6 +203,7 @@ form.pay{
     border: 1px solid black;
     border-radius:50px;
     background-color: beige;
+    padding: none;
 }
 .method{
     display:flex;

@@ -1,20 +1,31 @@
 console.log("Estas en el carrito")
-let $cart = document.querySelector('#cart')
+let carrito = document.querySelector('#cart')
+let total = document.querySelector('#total')
 
-const getCarito = async () => {
+const getCarrito = async () => {
     try {
-        const response = await fetch(`/api/cart`)
+        const response = await fetch(`/api/cart`);
+        const result = await response.json();
+
+        console.log(result);
+
+        cargarTabla(result.data)
+
     } catch (error) {
         console.log(error)
     }
 }
 
 const addItem = async (id) => {
+    console.log(id)
     try {
         const response = await fetch(`/api/cart/${id}`, {
             method: 'POST'
         })
-        const result = await response.json()
+        const result = await response.json();
+        console.log(result)
+        cargarTabla(result.data)
+
     } catch (error) {
         console.log(error)
     }
@@ -67,9 +78,9 @@ const emptyCart = async () => {
 
 const cargarTabla = (data) => {
 
-    $cart.innerHTML = null;
+    carrito.innerHTML = null;
 
-    data.forEach(({ id, amount, image, name, price, total,size,color }) => {
+    data.forEach(({ id, quantity, image, name, price, total,size,color }) => {
         let item = `
         <tr>
             <td>
@@ -78,25 +89,25 @@ const cargarTabla = (data) => {
                 </figure>
             </td>
             <td>${name}</td>
-            <td>>${size}</td>
-            <td>>${color}</td>
+            <td>${size}</td>
+            <td>${color}</td>
             <td>
-                <button>+</button>
-                <p>${amount}</p>
-                <button>-</button>
+                <button onclick="addItem(${id})" class ="botonSuma">+</button>
+                <p>${quantity}</p>
+                <button onclick="removeItem(${id})" class="botonResta">-</button>
             </td>
-            <td>>${price}</td>
+            <td>$${(total)}</td>
         </tr>
-        <tfoot>
-            <tr>
-                <td>Total: </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>${total}</td>
-            </tr>
-        </tfoot>
+        `
+        let totales = `
+        <tr>
+            <td>Total: </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>${++total}</td>
+        </tr>
         `
         carrito.innerHTML += item
     });

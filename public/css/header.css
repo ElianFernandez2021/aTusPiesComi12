@@ -170,6 +170,16 @@ ul {
     border-radius: 50%;
     background-color: greenyellow;
 }
+.header .container_header .icons_desktop .globito{ /* Globito que indica cantidad de productos en el carrito */
+    position: absolute;
+    text-align: center;
+    right: 19px;
+    top: 18px;
+    background-color: red;
+    border-radius: 35%;
+    width: 16px;
+    height: 22px;
+}
 .header nav.nav_mobile {
     display: none;
 }
