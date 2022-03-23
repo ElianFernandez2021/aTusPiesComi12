@@ -2,10 +2,13 @@ const slider = document.querySelector("#slider");
 let sliderSection = document.querySelectorAll(".slider__section22");
 let sliderSectionLast = sliderSection[sliderSection.length -1];
 
+
 const btnLeft = document.querySelector("#btn-left");
 const btnRight = document.querySelector("#btn-right");
 
 slider.insertAdjacentElement("afterbegin", sliderSectionLast);
+
+
 
 function Next() {
     let sliderSectionFirst = document.querySelectorAll(".slider__section22")[0];
@@ -40,4 +43,4 @@ btnLeft.addEventListener("click", function(){
 
 setInterval(function(){
     Next()
-}, 5000);
+}, 10000);
