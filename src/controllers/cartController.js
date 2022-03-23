@@ -55,11 +55,11 @@ module.exports = {
                 })
                 item = {
                     ...item,
-                    item_id:item.id
+                    item_id:cart.id
                 }
                 await db.Product_cart.create({
                     cart_id: order.id,
-                    product_id: item.id,
+                    product_id: cart.id,
                     quantity: 1
                 })
                 req.session.cart.push(item)

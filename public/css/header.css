@@ -1,189 +1,245 @@
 @import url('./animation.css');
-
-/********HEADER*******/
-.header{
-    background: linear-gradient(#524d3d, #8c8364 50%, #cdc4a9 ,  #f8f1df);  
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul {
+    list-style: none;
+}
+.header {
     width: 100%;
+    background-color: bisque;
+    min-width: 370px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    position: fixed;
+    background-color: rgb(15, 15, 15);
+    top:0;
+    left: 0;
+    z-index: 9999999;
 }
-.posicion-logo{
+.header .container_header {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1350px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    padding: 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
-
-.redondo{ /*sombreado en el radio del logo*/
-    box-shadow: 0 0 15px #f8f1df ;
+.header .container_header a {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
 }
-/**********MENÚ***********/
-
-.img-menú1 .fas{
-    color: black;
+.header .container_header a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
 }
-#contenedor-menú #cerrar{
-    display: none;
+.header .container_header form {
+    width: 50%;
+    height: 40px;
 }
-.user {
+.header .container_header form.search input {
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+    margin: 0;
+}
+.header .container_header .menu_mobile {
+    height: auto;
+    display: block;
+}
+.header .container_header .menu_mobile i{
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    margin: 0 10px;
+}
+.header .container_header .menu_mobile i.fa-user {
+    font-size: 28px;
     position: relative;
 }
-
-.menu-user {
-    display: none;
-    position: sticky;
-    font-size: 1rem;
-    width: 9rem;
-    background-color: white;
-    padding: 1rem;
-    border-radius: .5rem;
-    margin-left: -3rem;
-}
-
-.user:hover .menu-user{
-   display: block;
-
-}
-.session {
-    display: inline-block;
+.header .container_header .menu_mobile i.fa-user.session::after {
+    content: "";
+    position: absolute;
     width: 8px;
     height: 8px;
-    background: #00d900;
-    border-radius: 50px;
+    right: -6px;
+    top: 2px;
+    border-radius: 50%;
+    background-color: greenyellow;
+}
+.header .nav_desktop {
+    display: none;
+    width: 100%;
+    background-color: white;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
     position: relative;
-    top: -10px;
-    right: 0px;
 }
-/*******************CELULAR********************/
-@media all and (min-width:320px){
-
-    /*********HEADER*********/
-    #abrir{
-        margin-left: 10px;
-        font-size: 30px;
-    }
-    
-
-    img.redondo { /*controla que no desborde la imágen del logo*/
-        width: 15%;
-    }
-
-    .redondo{ /*forma redondeada de logo*/
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        object-fit:scale-down;
-    }
-  
-    /*********MENÚ*********/
-    .header ul li{
-        padding: 1em;
-
-    } 
-    
-    nav ul{
-        list-style: none;
-    }
-
-    nav a{
-        text-decoration: none;
-        font-size: 1.2em;
-        color: #000000;
-
-    }
-
-    #contenedor-menú #cerrar{ /*oculta imagen de la equis*/
-        display: none;
-    }
-
-    #contenedor-menú #contenedor-enlaces{
-        height: 0; /*cambia altura a 0*/
-        overflow: hidden; /*oculta lo que sobresalga del menú*/
-        transition: height 0.1s ease; /*efecto de transicion*/
-    }
-    
-    #contenedor-menú:target #abrir{
-        display: none;
-        
-    }
-
-    #contenedor-menú:target #cerrar{
-        display:block;
-        position: absolute;
-        right: 25px;
-        font-size: 25px;
-    }
-
-    #contenedor-menú:target #contenedor-enlaces{
-        height: 20%; /*altura del menú*/
-        transition: height 0.5s ease-in-out;
-    }
-
-    /***************BUSCADOR******************/
-    .search-bar{
-        height: 5%;
-        display: flex;
-        flex-direction:inherit;
-        position: relative;
-        
-    }
-    .search-bar input{
-        width: 90%;
-        height: 5%;
-        padding: 0.3em;
-        display: none;
-    }
-    .search-bar .search-form{
-        display: contents;
-    }
-    .search-bar button{
-        position: relative;
-        bottom: 17px;
-    }
-    
-
+.header .nav_desktop a {
+    text-align: center;
+    line-height: 40px;
+    width: 25%;
+    height: 100%;
+    /*position: relative;*/
+    cursor: pointer;
+    color: #8C8065;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all .5s ease;
 }
-/*******************TABLET********************/
-@media all and (min-width:768px){
-    /**********MENU**********/
- 
-    #abrir, #cerrar{
-        display: none;
-    } 
-
-    #contenedor-menú #contenedor-enlaces{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        height: 10%;
-    }
-
-    li{
-        border-bottom: none;
-    }
-    .search-bar{
-        display: flex;
-        justify-content: flex-end;
-    }
-    .search-bar input{
-        width: 50%;
-    } 
+.header .nav_desktop a:hover {
+    background-color: #8C8065;
+    color: white;
 }
+.header .nav_desktop a:hover div.items {
+    display: flex;
+}
+.header .nav_desktop a div.items {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    z-index: 9999;
+    padding: 10px;
+    top: 38px;
+    left: 0;
+    background-color: white;
+    /*display: flex;*/
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
     
-/*****************ESCRITORIO********************/
-@media all and (min-width:1024PX){
-    /**********MENU**********/
+}
+.header .nav_desktop a div.items figure{
+    width: 35%;
+    max-width: 200px;
+    height: 230px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.5);
+    border-radius: 20px;
+}
+.header .nav_desktop a div.items figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.header .nav_desktop a div.items div {
+    width: 60%;
+    color: black;
+}
+.header .nav_desktop a div.items div h3 {
+    text-align: left;
+}
+.header .nav_desktop a div.items div p {
+    text-transform: initial;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 25px;
+}
+.header .container_header .icons_desktop {
+    display: none;
+    color: white;
+    text-transform: capitalize;
+}
+.header .container_header .icons_desktop i {
+    font-size: 25px;
+    color: white;
+    cursor: pointer;
+    margin: 0 10px;
+}
+.header .container_header .icons_desktop i.fa-user {
+    position: relative;
+}
+.header .container_header .icons_desktop i.fa-user.session::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    right: -6px;
+    top: 2px;
+    border-radius: 50%;
+    background-color: greenyellow;
+}
+.header nav.nav_mobile {
+    display: none;
+}
+.header nav.nav_mobile._active {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 30px 0;
+    align-items: center;
+    position: absolute;
+    width: 60%;
+    right: 0;
+    z-index: 9999;
+    background-color: white;
+}
+.header nav.nav_mobile a,
+.header div.user_data a {
+    width: 100%;
+    padding: 15px;
+    /*line-height: 50px;*/
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    text-align: center;
+}
 
-    #abrir, #cerrar{
-        display: none;
-    } 
-    .equis_menu{
-        right: 0px;
-    }
-
-    #contenedor-menú #contenedor-enlaces{
+.header nav.nav_mobile a:hover,
+.header div.user_data a:hover {
+    background-color: rgb(15, 15, 15);
+    color: white;
+}
+.header div.user_data {
+    display: none;
+}
+.header div.user_data._active {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 30px 0;
+    align-items: center;
+    position: absolute;
+    width: 40%;
+    max-width: 300px;
+    top:90px;
+    right: 0;
+    z-index: 9999;
+    background-color: white;
+}
+header div.user_cart {
+    display: none;
+}
+header div.user_cart._active {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 30px 0;
+    align-items: center;
+    position: absolute;
+    width: 40%;
+    max-width: 300px;
+    top:90px;
+    right: 0;
+    z-index: 9999;
+    background-color: white;
+}
+@media (min-width:750px) {
+    .header .nav_desktop {
         display: flex;
-        flex-direction: row;
-        height: 10%;
     }
-
-    
-
+    .header .container_header .menu_mobile {
+        display: none;
+    }
+    .header .container_header .icons_desktop {
+        display: block;
+    }
 }
