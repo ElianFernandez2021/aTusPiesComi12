@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
-    <%- include ('partials/head') %> 
-<body>
-    <%- include ('partials/header') %> 
-    <main class="categories">
-        <div class="container products-container">
-            <% if (result.length > 0) { %>
-                <h2 class="subtitle">Resultados de la búsqueda de <%- search %></h2>
-                <section class="categories-product">
-                    <% result.forEach(product => { %>
-                        <div class="products">
-                            <% product.images.forEach(imagen => { %>
-                                <a href="/products/detail/<%- product.id %>">
-                                    <img src="/images/products/<%- imagen.image%>" alt="ID: <%= product.id %> ">
-                                    <p class="productName"> 
-                                        <% if (product.name.length > 30) { %>
-                                            <%- `${product.name.slice(0,30)}...` %>
-                                        <% } else { %>
-                                            <%= product.name %>
-                                        <% } %></p>
-                                    <h4 class="productPrice">$<%- product.price %></h4>
-                                </a>
+<%- include ('partials/head') %>
+
+    <body>
+        <%- include ('partials/header') %>
+
+            <% if (result.length> 0) { %>
+                <h2 class="subtitle">Resultados de la búsqueda de <%- search %>
+                </h2>
+                <div class="background"></div>
+                <div class="container__card">
+                    <% result.forEach(product=> { %>
+                        <% product.images.forEach(imagen=> { %>
+                            <div class="card__father">
+                                <div class="card">
+                                    <div class="card__front">
+                                        <img src="/images/products/<%- imagen.image%>" width="100%"
+                                            alt="ID: <%= product.id %> ">
+                                        </h4>
+                                        <div class="bg"></div>
+                                        <div class="body__card_front"> </div>
+                                    </div>
+                                
+                                <div class="card__back">
+                                    <div class="body__card_back">
+                                        <h2>
+                                            <% if (product.name.length> 30) { %>
+                                                <%- `${product.name.slice(0,30)}...` %>
+                                                    <% } else { %>
+                                                        <%= product.name %>
+                                                            <% } %>
+                                        </h2>
+                                        <a href="/products/detail/<%- product.id %>"><input type="button"
+                                                value="Ver detalle"></a>
+                                        <button id="add" class="agregar" onclick="addItem('<%= product.id%>')">Agregar
+                                            al carrito</button>
+                                    </div>
+                                </div>
+                                <% }) %>
+                                </div>
+                            </div>
                             <% }) %>
-                        </div>
-                    <% }) %> 
-                </section> 
-            <% }else{%>
-                <h2 class="subtitle">No hay resultados de la búsqueda de <%- search %></h2>
-            <% } %>
-        </div>
-    </main> 
-    <%- include ('partials/footer') %>
-</body>
+                </div>
+                <% }else{%>
+                    <h2 class="subtitle">No hay resultados de la búsqueda de <%- search %>
+                    </h2>
+                    <% } %>
+
+                        <%- include ('partials/footer') %>
+    </body>
+
 </html>

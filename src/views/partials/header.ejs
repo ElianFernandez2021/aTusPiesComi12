@@ -3,8 +3,9 @@
         <a href="/">
             <img class="redondo" src="/images/login/logo.png" alt="logo">
         </a>
-        <form class="search" action="">
+        <form class="search" action="/products/search">
             <input type="text" name="search" placeholder="Que éstas buscando ?">
+            <i class="fa-solid fa-magnifying-glass"></i>
         </form>
         <div class="menu_mobile">
             <% if (typeof session.user !="undefined") { %>
@@ -17,7 +18,7 @@
         <div class="icons_desktop">
             <% if (typeof session.user !="undefined") { %>
                Hola <%= session.user.first_name %>!
-                <i class="fas fa-user icon_user_desktop session"></i>
+                <a href="/user/profile"><i class="fas fa-user icon_user_desktop session"></i></a>
                 <% if (session.cart.length>0 ) { %>
                     <div class="globito"><%- session.cart.length  %></div>
                     <a href="/products/cart">
@@ -33,47 +34,47 @@
     </div>
     <nav class="nav_desktop">
 
-        <a href="/">Categoria
+        <a href="/">Deportivas
             <div class="items">
                 <figure>
-                    <img src="/images/home/zapatillas_hombre_moda_tendencias_2831.jpg" alt="">
+                    <img src="/images/header/deportivas-nav.jpg" alt="">
                 </figure>
                 <div class="info">
-                    <h3>Categoria 1</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio debitis atque doloremque sit! Obcaecati delectus maiores similique repudiandae explicabo possimus, officia eveniet excepturi expedita minima placeat iste est voluptatum alias quia rem. Quibusdam sequi, numquam doloremque adipisci sapiente ipionem?</p>
+                    <h3>Deportivas</h3>
+                    <p>Día a día miles de deportistas eligen nuestros productos, ya que ofrecemos unas zapatillas de muy buena calidad y alto rendimiento al momento de hacer deportes.</p>
                 </div>
             </div>
         </a>
-        <a href="/">Categoria
+        <a href="/">Zapatos
             <div class="items">
                 <figure>
-                    <img src="" alt="">
+                    <img src="/images/header/zapatos.jpg" alt="">
                 </figure>
                 <div class="info">
-                    <h3>Categoria 2</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio debitis atque doloremque sit! Obcaecati delectus maiores similique repudiandae explicabo possimus, officia eveniet excepturi expedita minima placeat iste est voluptatum alias quia rem. Quibusdam sequi, numquam doloremque adipisci sapiente ipionem?</p>
+                    <h3>Zapatos</h3>
+                    <p>Si queres verte elegante, pero no anticuado, llegaste al mejor lugar "A tus pies" te ofrece un catalogo de zapatos A TU MEDIDA.</p>
                 </div>
             </div>
         </a>
-        <a href="/">Categoria
+        <a href="/">Casual
             <div class="items">
                 <figure>
-                    <img src="" alt="">
+                    <img src="/images/header/casual.jpeg" alt="">
                 </figure>
                 <div class="info">
-                    <h3>Categoria 3</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio debitis atque doloremque sit! Obcaecati delectus maiores similique repudiandae explicabo possimus, officia eveniet excepturi expedita minima placeat iste est voluptatum alias quia rem. Quibusdam sequi, numquam doloremque adipisci sapiente ipionem?</p>
+                    <h3>Casual</h3>
+                    <p>Millones de personas eligen usar casual en ese momento del día que no saben que ponerse y si, me alegra informarte que estás en el lugar correcto, a tus pies tiene el catalogo de zapatillas "casual" ¡más grande del mundo! para que se ajusten, a tu medida.</p>
                 </div>
             </div>
         </a>
-        <a href="/">Categoria
+        <a href="/">Botas
             <div class="items">
                 <figure>
-                    <img src="" alt="">
+                    <img src="/images/header/botas.jpg" alt="">
                 </figure>
                 <div class="info">
-                    <h3>Categoria 4</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio debitis atque doloremque sit! Obcaecati delectus maiores similique repudiandae explicabo possimus, officia eveniet excepturi expedita minima placeat iste est voluptatum alias quia rem. Quibusdam sequi, numquam doloremque adipisci sapiente ipionem?</p>
+                    <h3>Botas</h3>
+                    <p>En "A tus pies", creemos que las botas no son valoradas como deberían, así que decidimos crear una categoría para los amantes de ellas. De todo corazón esperamos que les gusten a tu pies.</p>
                 </div>
             </div>
         </a>
@@ -82,10 +83,10 @@
 
     <nav class="nav_mobile" id="options">
         <a href="/">Sobre nosotros</a>
-        <a href="/">Categoria 1</a>
-        <a href="/">Categoria 2</a>
-        <a href="/">Categoria 3</a>
-        <a href="/">Categoria 4</a>
+        <a href="/">Deportivas</a>
+        <a href="/">Zapatos</a>
+        <a href="/">Casual</a>
+        <a href="/">Botas</a>
         <a href="/">Ayuda</a>
     </nav>
 

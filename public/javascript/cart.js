@@ -79,8 +79,8 @@ const emptyCart = async () => {
 const cargarTabla = (data) => {
 
     carrito.innerHTML = null;
-
-    data.forEach(({ id, quantity, image, name, price, total,size,color }) => {
+    let totalCart = 0
+    data.forEach(({ id, quantity, image, name, price, total,size,colors }) => {
         let item = `
         <tr>
             <td>
@@ -90,7 +90,7 @@ const cargarTabla = (data) => {
             </td>
             <td>${name}</td>
             <td>${size}</td>
-            <td>${color}</td>
+            <td>${colors}</td>
             <td>
                 <button onclick="addItem(${id})" class ="botonSuma">+</button>
                 <p>${quantity}</p>
@@ -99,18 +99,21 @@ const cargarTabla = (data) => {
             <td>$${(total)}</td>
         </tr>
         `
-        let totales = `
+        totalCart = totalCart+total
+        carrito.innerHTML += item
+        
+    });
+    let totales = `
         <tr>
             <td>Total: </td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td>${++total}</td>
+            <td>${totalCart }</td>
         </tr>
         `
-        carrito.innerHTML += item
-    });
+    total.innerHTML = totales
 
 }
 

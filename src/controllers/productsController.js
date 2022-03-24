@@ -85,7 +85,7 @@ let controller={
         Products.findAll({
             where:{
                 name:{
-                    [Op.substring]: req.query.keywords
+                    [Op.substring]: req.query.search
                 }
             },
             include: [{association: "images"}]
@@ -93,7 +93,7 @@ let controller={
         .then((result) => {
             res.render("searchResult",{
                 result,
-                search: req.query.keywords,
+                search: req.query.search,
                 session: req.session
             })
         })
