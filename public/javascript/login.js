@@ -79,7 +79,7 @@ window.addEventListener('load', function () {
     
 
     $form.addEventListener('submit', function (event) {
-        event.preventDefault();
+        
 
         let error = false;
         let elementsForm = this.elements;
@@ -102,6 +102,9 @@ window.addEventListener('load', function () {
         }
         if (!error && !validationsErrors) {
             $form.submit()
+        }
+        else{
+            event.preventDefault();
         }
     })
 

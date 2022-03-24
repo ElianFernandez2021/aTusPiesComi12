@@ -80,7 +80,7 @@ const cargarTabla = (data) => {
 
     carrito.innerHTML = null;
     let totalCart = 0
-    data.forEach(({ id, quantity, image, name, price, total,size,colors }) => {
+    data.forEach(({ id, quantity, image, name, total, size, color }) => {
         let item = `
         <tr>
             <td>
@@ -90,7 +90,7 @@ const cargarTabla = (data) => {
             </td>
             <td>${name}</td>
             <td>${size}</td>
-            <td>${colors}</td>
+            <td>${color}</td>
             <td>
                 <button onclick="addItem(${id})" class ="botonSuma">+</button>
                 <p>${quantity}</p>

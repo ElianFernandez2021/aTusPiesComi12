@@ -34,20 +34,19 @@ module.exports = {
     },
     add : async ( req,res) => {
 
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>',req.params.id)
         try {
             
             let product = await db.Product.findByPk(req.params.id,{
                 include:[{association : 'images'}]
             });
-            const  {id,name,size,price,color}=product
+            const  {id,name,size,price,colors}=product
             let item = {
                 id,
                 name,
                 size,
                 price,
                 image : product.images[0].image,
-                color,
+                colors,
                 quantity : 1,
                 total: price
             }
