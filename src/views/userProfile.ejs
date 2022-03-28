@@ -3,17 +3,21 @@
     <%- include ('partials/head') %> 
 <body>
     <%- include ('partials/header') %> 
-
-    <div class="profile">
-        <div class="avatar"><img src="/images/users/<%= user.avatar%>" alt="avatar"></div>
-        <div class="datos">
-            <div> Nombre: <%= user.first_name%> </div>
-            <div>Apellido: <%= user.last_name%> </div>
-            <div>Email: <%= user.email%> </div>
-        </div>
-    </div>
-    <a href="/user/profile/edit/<%= user.id %> "><button type="submit" >Editar perfil</button></a>
+    <main class="userProfile">
+        <div class="avatar">
+              <img src="/images/users/<%= user.avatar%>" alt="avatar">
+          </div>
+          <div class="userProfile-container">
+              <div class="userProfile_box">
+                  <h3 class="userProfile_title">Datos personales</h3>
+                  <p class="userProfile_item">Nombre: <%= user.first_name%> %></p>
+                  <p class="userProfile_item">Apellido: <%= user.last_name%> %></p>
+                  <p class="userProfile_item">Email: <%= user.email%></p>
+              </div>
+              
+              <a href="/user/profile/edit/<%= user.id %> "><button type="submit" >Editar perfil</button></a>
+          </div> 
+      </main>
     <%- include ('partials/footer') %>
-    <%- include ('partials/scripts') %> 
 </body>
 </html>

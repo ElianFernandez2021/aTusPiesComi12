@@ -10,6 +10,9 @@
     color:red;
 }
 
+.buttonIniciar{
+    border-radius: 30px;
+}
 
 .borde{
     border-bottom: grey 0.1em solid;
