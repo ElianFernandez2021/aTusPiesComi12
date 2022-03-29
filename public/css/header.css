@@ -110,6 +110,24 @@ ul {
     align-items: center;
     position: relative;
 }
+.header .sticky{
+    position: absolute;
+    top: 0;
+    z-index: -999999;
+}
+.header .nav_desktop a {
+    text-align: center;
+    line-height: 40px;
+    width: 25%;
+    height: 100%;
+    /*position: relative;*/
+    cursor: pointer;
+    color: #8C8065;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all .5s ease;
+}
 .header .nav_desktop a {
     text-align: center;
     line-height: 40px;
@@ -124,7 +142,7 @@ ul {
     transition: all .5s ease;
 }
 .header .nav_desktop a:hover {
-    background:linear-gradient(black, white) ;
+    background: radial-gradient( #524d3d, #8c8364, 50%,#cdc4a9 );
     color: white;
     transition: 2s;
 }

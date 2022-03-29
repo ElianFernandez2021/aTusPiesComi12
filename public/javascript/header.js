@@ -5,6 +5,8 @@ let menu_mobile = document.querySelector('#options')
 let user_data = document.querySelector('#user_data')
 let icon_cart = document.querySelector('.fa-bag-shopping')
 let cart_content = document.querySelector('#content_cart')
+let ubicacionPrincipal = window.scrollY;
+let navbar = document.querySelector(".aNav");
 
 window.onload = () => {
 
@@ -18,7 +20,7 @@ window.onload = () => {
         user_data.classList.remove('_active')
     })  
 
-    icon_user_desktop.addEventListener('click', () => {
+    icon_user_desktop.addEventListener('click', () => {                                                                                                                                                                                                                                                                 
         user_data.classList.toggle('_active')
         cart_content.classList.remove('_active')
     })
@@ -28,5 +30,18 @@ window.onload = () => {
         user_data.classList.remove('_active')
     })  
 
+    function desaparecerNav() {
+        let scrollTop = document.documentElement.scrollTop
+        for (var i=0; i < navbar.length; i++){
+            let alturaAnimado = navbar[i].offsetTop;
+            if(alturaAnimado -50 < scrollTop) {
+                navbar[i].style.display = none;
+            }                                                                                                                                                                                                                                                                                                                                             
+        }
+    }
+    window.addEventListener("scroll", desaparecerNav )
+
 }
+
+
 
