@@ -4,8 +4,8 @@
 <body>
     <%- include ('partials/header') %> 
     <form action="/user/profile/edit/<%= user.id %>?_method=PUT" method="POST">
-        <div class="profile">
-            <div class="avatar"><img src="/images/users/<%= user.avatar%>" alt="avatar"></div>
+        <div class="userProfile">
+            <div class="avatar"><img src="/images/users/<%= user.avatar%>" width="300" height="300"alt="avatar"></div>
             <div class="datos">
             <label for="name"> <div> Ingrese nombre:</div></label>
             <input class="forma-tamaño" type="text" name="name" value="<%= user.first_name %>">
@@ -44,7 +44,5 @@
             <button type="reset" >Reiniciar</button>
         </div>
     </form>
-    <%- include ('partials/footer') %>
-    <%- include ('partials/scripts') %> 
 </body>
 </html>

@@ -51,7 +51,11 @@
                     </div>
                     <div class="col-12 mb-3">
                         <label class="form-label" for="description">Descripcion</label>
-                        <input class="form-control" type="text" name="description" id="description">
+                        <input class="form-control" type="text" name="description" id="productDescription" value="<%- locals.old && old.description %> ">
+                        <% if (locals.errors && errors.description) { %>
+                            <small id="descriptionErrors" class="text-danger"><%= errors.description.msg %></small>
+                        <% } %>
+                        <small id="descriptionErrors"></small>
                     </div>
                     <div class="products col-12 mb-3">
                         <p>Color: </p>
@@ -75,7 +79,11 @@
                     <br>
                     <div class="col-12 mb-3">
                         <label class="form-label" for="image">Imagen</label>
-                        <input class="form-control" aria-label="file example" id="imageErrors" type="file" name="image" id="image" multiple>
+                        <input class="" aria-label="file example" id="imageErrors" type="file" name="image" id="image" multiple>
+                        <% if(locals.errors && errors.image){ %>
+                            <small id="imageErrors" class="text-danger"><%= errors.image.msg %> </small>
+                        <% } %>
+                        <small id="imageErrors"></small>
                     </div>
                     
                     <small class="text-danger" id="submitErrors"></small>

@@ -26,14 +26,19 @@
                                 <h1><%-shoes.name %> </h1>
                                 <a href="/products/detail/<%-shoes.id %> "><input type="button" value="Ver detalle"></a>
                                 <%-shoes.category.name %> 
+                                <button id="add" class="agregar" onclick="addItem('<%= shoes.id%>')">Agregar al carrito</button> 
+
                             </div>
                         </div>
                     </div>
-                    <button class="agregar">Agregar al carrito</button> 
+                    
                 </div>
             <% }) %>
         <% }) %>
     </div>  
     <%- include('./partials/footer.ejs')%>
+    <script src="/javascript/cart.js"></script>
+    
+
 </body>
 </html>

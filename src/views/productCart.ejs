@@ -20,66 +20,27 @@
                                     <th>Subtotal</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="cart">
                                 <tr>
                                     <td>
                                         <figure>
-                                            <img src="/images/home/zapatillas_hombre_moda_tendencias_2831.jpg" alt="">
+                                            imagen
                                         </figure>
                                     </td>
                                     <td>Nombre del Producto</td>
-                                    <td>35</td>
-                                    <td>Rojo</td>
+                                    <td>Talle</td>
+                                    <td>color</td>
                                     <td>
-                                        <button class="botonSuma">+</button>
-                                        <p>1</p>
-                                        <button class="botonResta">-</button>
+                                        <button>+</button>
+                                        <p>cantidad</p>
+                                        <button>-</button>
                                     </td>
-                                    <td>$5000</td>
+                                    <td>precio</td>
 
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <figure>
-                                            <img src="/images/home/zapatillas_hombre_moda_tendencias_2831.jpg" alt="">
-                                        </figure>
-                                    </td>
-                                    <td>Nombre del Producto</td>
-                                    <td>35</td>
-                                    <td>Rojo</td>
-                                    <td>
-                                        <button class="botonSuma">+</button>
-                                        <p>1</p>
-                                        <button class="botonResta">-</button>
-                                    </td>
-                                    <td>$5000</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <figure>
-                                            <img src="/images/home/zapatillas_hombre_moda_tendencias_2831.jpg" alt="">
-                                        </figure>
-                                    </td>
-                                    <td>Nombre del Producto</td>
-                                    <td>35</td>
-                                    <td>Rojo</td>
-                                    <td>
-                                        <button class="botonSuma">+</button>
-                                        <p>1</p>
-                                        <button class="botonResta">-</button>
-                                    </td>
-                                    <td>$5000</td>
-                                </tr>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                <td>Total: </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>$ 15000</td>
-                            </tr>
+                            <tfoot id="total">
+                                
                             </tfoot>
 
                         </table>
@@ -92,33 +53,6 @@
                         </ul>
                     </div>
 
-                    <% products.forEach(zapatilla=> { %>
-
-                        <div class="products">
-                            <p>
-                                <%- zapatilla.name%>
-                            </p>
-                            <% zapatilla.images.forEach(element=> { %>
-                                <img class="product-image" src="/images/products/<%- element.image%>"
-                                    alt="<%- zapatilla.id%> ">
-                                <% }) %>
-                                    <p>Descripcion: <%- zapatilla.description%>
-                                    </p>
-                                    <p>Talle:
-                                        <%- zapatilla.size%>
-                                    </p>
-                                    <p>Color:
-                                        <% zapatilla.colors.forEach(color=> { %>
-                                            <%- color.name %>
-                                                <% }) %>
-                                    </p>
-                                    <p>Precio: <%- zapatilla.price%>
-                                    </p>
-                                    <p>Cantidad: <%#- zapatilla.quantity %>
-                                    </p> <button>Agregar</button> <button>Restar</button>
-                        </div>
-                        <% }) %>
-    </section> -->
 
                             <!--Seccion pago-->
                             <form class="pay" action="" method="post">
@@ -177,7 +111,7 @@
                             </div>
             </main>
             <%- include ('./partials/footer.ejs')%>
-                <%- include ('./partials/scripts.ejs')%>
+            <script src="/javascript/cart.js"></script>
     </body>
 
 </html>
