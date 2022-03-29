@@ -133,6 +133,13 @@ transition: .9s;
     transform: scale(1.1);
 }
 
+.imagen111{
+    object-fit: cover;
+    height: 100%;
+    width: 300px;
+    padding: 0;
+}
+
 .dataCard2 p{
     text-align: center;
     color: rgb(94, 91, 91);
