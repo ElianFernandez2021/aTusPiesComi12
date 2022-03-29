@@ -1,50 +1,127 @@
-<header class="color-gradient header">  
-    <section  id="contenedor-menú"> 
-        <nav>
-        <a href="/"><figure class="posicion-logo"><img class="redondo" src="/images/login/logo.png" alt="logo"></figure></a>
-        
-        <div class="equis_menu"> 
-        <a href="#contenedor-menú" class="img-menú1 hamburguesa"> <i class="fas fa-bars" id="abrir"></i></a>
-        <a href="#" class="img-menú1 equis"> <i class="fas fa-times" id="cerrar"></i></a>
+<header class="color-gradient header">
+    <div class="container_header">
+        <a href="/">
+            <img class="redondo" src="/images/login/logo.png" alt="logo">
+        </a>
+        <form class="search" action="/products/search">
+            <input type="text" name="search" placeholder="Que éstas buscando ?">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </form>
+        <div class="menu_mobile">
+            <% if (typeof session.user !="undefined") { %>
+                <i class="fas fa-user icon_user_mobile session"></i>
+            <% } else { %> 
+                <i class="fas fa-user icon_user_mobile"></i>
+            <% } %> 
+            <i class="fas fa-bars" id="icon_menu"></i>
         </div>
-        
-            <ul id="contenedor-enlaces">
-                <li><a href="/products"><i class="fas fa-shoe-prints"></i>Productos</a></li>
-                <li><a href="/products/cart"><i class="fas fa-shopping-cart"></i>Carrito</a></li>
-                <li>
-                    <div class="user-icons-desktop">
-                    <div class="user">
-                        <% if (typeof session.user != "undefined") { %>
-                            <i class="fas fa-user">
-
-                                <p>
-                                    <h2>Hola <%= session.user.first_name %> <%= session.user.last_name %> </h2>
-                                </p>
-                                 
-
-
-                                </i><span class="session"></span>
-                             <div class="menu-user">
-                                <a href="/user/profile">Mis datos</a><hr>
-                                <a href="/user/logout">Cerrar sesión</a>
-                                <% if (session.user.rol === 1) { %>
-                                    <a href="/admin/products/">ADMIN</a>
-                                <% } %>
-                            </div>
-                        <% } else {%>
-                            <a href="/user/login"><i class="fas fa-user"></i>Login</a>
-                        <% } %>
-                </div>
-            </li>      
-          </ul>
-            <div class="search-bar">
-                <form action="/products/search" class="search-form" id="search">
-                    <input type="search" name="keywords" id="" placeholder="Buscar productos">
-                    <button class="lupa" type="submit"><i class="fas fa-search"></i></button>
-                </form>
+        <div class="icons_desktop">
+            <% if (typeof session.user !="undefined") { %>
+               Hola <%= session.user.first_name %>!
+               <a href="/user/profile"><i class="fas fa-user icon_user_desktop session"></i></a>
+               <div class="menu-user">
+                <a href="/user/profile">Mis datos</a><hr>
+                <a href="/user/logout">Cerrar sesión</a>
+                <% if (session.user.rol === 1) { %>
+                    <a href="/admin/products/">ADMIN</a>
+                <% } %>
             </div>
-        </nav>
-    </section>
+                <% if (session.cart.length>0 ) { %>
+                    <div class="globito"><%- session.cart.length  %></div>
+                    <a href="/products/cart">
+                        <i class="fas fa-bag-shopping"></i>
+                    </a>
+                <% }else { %>
+                    <a href="/products/cart"><i class="fas fa-bag-shopping"></i></a>
+                <% } %> 
+                <% } else { %> 
+                    <a href="/user/login"><i class="fas fa-user icon_user_desktop"></i></a>
+                    <% } %> 
+        </div>
+    </div>
+    <nav class="nav_desktop">
+
+        <a href="/">Deportivas
+            <div class="items">
+                <figure>
+                    <img src="/images/header/deportivas-nav.jpg" alt="">
+                </figure>
+                <div class="info">
+                    <h3>Deportivas</h3>
+                    <p>Día a día miles de deportistas eligen nuestros productos, ya que ofrecemos unas zapatillas de muy buena calidad y alto rendimiento al momento de hacer deportes.</p>
+                </div>
+            </div>
+        </a>
+        <a href="/">Zapatos
+            <div class="items">
+                <figure>
+                    <img src="/images/header/zapatos.jpg" alt="">
+                </figure>
+                <div class="info">
+                    <h3>Zapatos</h3>
+                    <p>Si queres verte elegante, pero no anticuado, llegaste al mejor lugar "A tus pies" te ofrece un catalogo de zapatos A TU MEDIDA.</p>
+                </div>
+            </div>
+        </a>
+        <a href="/">Casual
+            <div class="items">
+                <figure>
+                    <img src="/images/header/casual.jpeg" alt="">
+                </figure>
+                <div class="info">
+                    <h3>Casual</h3>
+                    <p>Millones de personas eligen usar casual en ese momento del día que no saben que ponerse y si, me alegra informarte que estás en el lugar correcto, a tus pies tiene el catalogo de zapatillas "casual" ¡más grande del mundo! para que se ajusten, a tu medida.</p>
+                </div>
+            </div>
+        </a>
+        <a href="/">Botas
+            <div class="items">
+                <figure>
+                    <img src="/images/header/botas.jpg" alt="">
+                </figure>
+                <div class="info">
+                    <h3>Botas</h3>
+                    <p>En "A tus pies", creemos que las botas no son valoradas como deberían, así que decidimos crear una categoría para los amantes de ellas. De todo corazón esperamos que les gusten a tu pies.</p>
+                </div>
+            </div>
+        </a>
+
+    </nav>
+
+    <nav class="nav_mobile" id="options">
+        <a href="/">Sobre nosotros</a>
+        <a href="/">Deportivas</a>
+        <a href="/">Zapatos</a>
+        <a href="/">Casual</a>
+        <a href="/">Botas</a>
+        <a href="/">Ayuda</a>
+    </nav>
+
+    <div class="user_data" id="user_data">
+        <% if (typeof session.user !="undefined") { %>
+            <a href="/">perfil</a>
+            <a href="/">Mis productos</a>
+            <a href="/">cerrar sesion</a>
+        <% } else { %>
+        <a href="/user/login">Ingresar</a>
+        <a href="/user/register">No tenes cuenta?</a>
+        <% }  %>
+    </div>
+
+    <div class="user_cart" id="content_cart">
+            <p>Carrito</p>
+            <div class="container_items">
+                <div class="item">
+                    <figure>
+                        <img src="" alt="">
+                    </figure>
+                    <p>cantidad : 3</p>
+                </div>
+                <p>Subtotal: 5000</p>
+            </div>
+            <a href="/">Comprar</a>
+    </div>
+    
 </header>
 <% if (typeof session.user !=="undefined" ) { %>
 

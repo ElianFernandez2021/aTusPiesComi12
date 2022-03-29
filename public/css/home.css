@@ -1,8 +1,7 @@
 .home {
     box-sizing: border-box;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    padding: 0;
-    margin: 0;
+    
 }
 
 a {
@@ -16,6 +15,7 @@ a {
     margin: auto;
     font-weight: 300;
     font-size: 16px;
+    margin-top: 5rem;
 }
 
 /*slider*/
@@ -34,7 +34,7 @@ a {
 
     position: relative;
     margin-top: 5%;
-    margin-bottom: 5%;
+    
 
 }
 .slider11{
@@ -133,6 +133,15 @@ transition: .9s;
     transform: scale(1.1);
 }
 
+.dataCard2 p{
+    text-align: center;
+    color: rgb(94, 91, 91);
+    font-weight: bold;
+}
+
+.dataCard2 h2{
+    text-align: center;
+}
 
 .card-bg111 {
     position: relative;
@@ -236,14 +245,14 @@ transition: .9s;
 }
 
 .eligeypaga{
-    
     display: flex;
     justify-content: center;
     text-align: center;
-    
     background-position: center;
+}
 
-    
+.eligeypaga h3{
+    font-size: 35px;
 }
 
 .eligeypagaiconos{
@@ -258,8 +267,12 @@ transition: .9s;
     justify-content: center;
     text-align: center;
     align-items: center;
-    
 }
+
+.eligeypaga1 h5{
+    font-size: 35px;
+}
+
 .eligeypaga1 .fa-shoe-prints:nth-child(1){
     margin-right: 15px;
     rotate: 100%;
