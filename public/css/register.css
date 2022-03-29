@@ -134,7 +134,7 @@
     flex-direction: column;
     align-items: center;
     border-radius: 8%;
-    margin-top: 2.5rem;
+    margin-top: 12.5rem;
   }
 
   .formRegister .cuadro-form img {
@@ -255,7 +255,7 @@
 
   .formRegister .cuadro-form {
     /*centra el contenido del form y pone color de fondo*/
-    margin-top: 25px;
+    margin-top: 140px;
   }
 
   .olvidaste-register{

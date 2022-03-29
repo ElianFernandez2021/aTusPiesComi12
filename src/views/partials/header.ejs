@@ -3,8 +3,8 @@
         <a href="/">
             <img class="redondo" src="/images/login/logo.png" alt="logo">
         </a>
-        <form class="search" action="">
-            <input type="text" name="search" placeholder="Que estás buscando ?">
+        <form class="search" action="/products/search">
+            <input type="text" name="search" placeholder="Qué estás buscando ?">
             <i class="fa-solid fa-magnifying-glass"></i>
         </form>
         <div class="menu_mobile">
@@ -18,17 +18,30 @@
         <div class="icons_desktop">
             <% if (typeof session.user !="undefined") { %>
                Hola <%= session.user.first_name %>!
-                <i class="fas fa-user icon_user_desktop session"></i>
-            <% } else { %> 
-                <i class="fas fa-user icon_user_desktop"></i>
-            <% } %> 
-            
-            <i class="fas fa-bag-shopping"></i>
+               <a href="/user/profile"><i class="fas fa-user icon_user_desktop session"></i></a>
+               <div class="menu-user">
+                <a href="/user/profile">Mis datos</a><hr>
+                <a href="/user/logout">Cerrar sesión</a>
+                <% if (session.user.rol === 1) { %>
+                    <a href="/admin/products/">ADMIN</a>
+                <% } %>
+            </div>
+                <% if (session.cart.length>0 ) { %>
+                    <div class="globito"><%- session.cart.length  %></div>
+                    <a href="/products/cart">
+                        <i class="fas fa-bag-shopping"></i>
+                    </a>
+                <% }else { %>
+                    <a href="/products/cart"><i class="fas fa-bag-shopping"></i></a>
+                <% } %> 
+                <% } else { %> 
+                    <a href="/user/login"><i class="fas fa-user icon_user_desktop"></i></a>
+                    <% } %> 
         </div>
     </div>
     <nav class="nav_desktop" id="navbar">
 
-        <a class="aNav" href="/">Deportivas
+        <a class="aNav" href="/products">Deportivas
             <div class="items">
                 <figure>
                     <img src="/images/header/deportivas-nav.jpg" alt="">
@@ -39,7 +52,7 @@
                 </div>
             </div>
         </a>
-        <a class="aNav" href="/">Zapatos
+        <a class="aNav" href="/products">Zapatos
             <div class="items">
                 <figure>
                     <img src="/images/header/zapatos.jpg" alt="">
@@ -50,7 +63,7 @@
                 </div>
             </div>
         </a>
-        <a class="aNav" href="/">Casual
+        <a class="aNav" href="/products">Casual
             <div class="items">
                 <figure>
                     <img src="/images/header/casual.jpeg" alt="">
@@ -61,7 +74,7 @@
                 </div>
             </div>
         </a>
-        <a class="aNav" href="/">Botas
+        <a class="aNav" href="/products">Botas
             <div class="items">
                 <figure>
                     <img src="/images/header/botas.jpg" alt="">

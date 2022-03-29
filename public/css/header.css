@@ -7,9 +7,6 @@
 ul {
     list-style: none;
 }
-
-
-
 .header {
     width: 100%;
     background-color: bisque;
@@ -100,6 +97,24 @@ ul {
     top: 2px;
     border-radius: 50%;
     background-color: greenyellow;
+}
+.menu-user {
+    display: none;
+    position: sticky;
+    font-size: 1rem;
+    width: 9rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: .5rem;
+    margin-left: -3rem;
+    box-shadow: 0 0 0 4px rgba(0,0,0,0.5);
+}
+
+.icons_desktop:hover .menu-user{
+   display: block;
+   position:fixed;
+   z-index:999;
+
 }
 .header .nav_desktop {
     display: none;
@@ -207,6 +222,23 @@ ul {
 }
 .header .container_header .icons_desktop i.fa-user {
     position: relative;
+    color:wihte;
+    transition: all 0.5s ease
+}
+.header .container_header .icons_desktop .globito{ /* Globito que indica cantidad de productos en el carrito */
+    position: absolute;
+    text-align: center;
+    right: 64px;
+    top: 11px;
+    background-color: red;
+    border-radius: 35%;
+    width: 16px;
+    height: 22px;
+}
+.header .container_header .icons_desktop i.fa-user:hover {
+    color: black;
+    border: none;
+    transition: 1.5s;
 }
 .header .container_header .icons_desktop i.fa-user.session::after {
     content: "";

@@ -41,6 +41,16 @@ btnLeft.addEventListener("click", function(){
     Prev();
 });
 
-setInterval(function(){
-    Next()
-}, 30000);
+for(let i =0; i< sliderSection.length; i++){    
+    
+    if(sliderSection[i].firstElementChild.attributes.type.value == 'video/mp4'){
+        setInterval(function(){
+            console.log("HAY UN VIDEO")
+            Next()
+        },5000)
+    } else{
+        setInterval(function(){
+            Next()
+        },2000)
+    }
+}
