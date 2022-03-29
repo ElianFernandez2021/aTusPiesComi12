@@ -93,7 +93,7 @@ footer{
 
 .pieDeFooter{
     max-width: 1200px;
-    
+    margin: auto;
     display: flex;
     justify-content:space-between;
     padding: 10px;
@@ -121,7 +121,12 @@ footer{
     text-decoration: none;
     color: black;
     font-size: 14px;
+    text-align: center;
+    justify-content:center;
+    margin: auto;
+    margin-right: 0;
 }
+
 
 @media screen and (max-width:1100px){
     .container-footer{ /*container body*/
@@ -135,5 +140,14 @@ footer{
     .columnFooter2,
     .columnFooter3{
         margin-top: 40px;
+    }
+    .information{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        margin-left: 3.5rem;
+        margin-right: 0;
+        text-align: center;
     }
 }
