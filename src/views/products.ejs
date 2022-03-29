@@ -17,13 +17,13 @@
                 <div class="card__father">
                     <div class="card">
                         <div class="card__front">
-                            <img src="/images/products/<%- image.image%>" alt="" width="100%">
+                            <img style="height: 160px; width: 200px; border-radius: 30px;" src="/images/products/<%- image.image%>" alt="" width="100%">
                             <div class="bg"></div>
                                 <div class="body__card_front"> </div>
                         </div>
                         <div class="card__back">
                             <div class="body__card_back">
-                                <h1><%-shoes.name %> </h1>
+                                <h1 style="font-size: 20px;"><%-shoes.name %> </h1>
                                 <a href="/products/detail/<%-shoes.id %> "><input type="button" value="Ver detalle"></a>
                                 <%-shoes.category.name %> 
                                 <button id="add" class="agregar" onclick="addItem('<%= shoes.id%>')">Agregar al carrito</button> 
