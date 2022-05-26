@@ -1,7 +1,7 @@
 # aTusPiesComi12
 ## e-comerce de calzados
 Esta página esta orientada a la venta de calzado para cualquier persona, se ofrecen productos con ofertas, descuentos con tarjetas y envios a todo el pais
-El equipo está conformado por 5 personas (Luciana Vanesa Lescano, Lucas Nahuel Gonza, Roberto Miranda, Bastian Fernandez, Diaz Facundo Ezequiel)
+El equipo está conformado por 3 personas: Diaz Facundo Ezequiel, Elian Fernández y Roberto Miranda.
 ### Sitios de referencia:
 - [Dafiti](dafiti.com.ar "dafiti.com.ar") (estilo de menu).
 - [Dadoa](dadoa.com.ar "dadoa") (catalogo de ofertas).
